@@ -1,0 +1,4 @@
+<% activities = @activities %>
+
+$( "#activities-log" ).html("<%= escape_javascript render partial: 'public_activity/activities' ,locals: {activities: activities} %>");
+

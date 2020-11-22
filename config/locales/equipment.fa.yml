@@ -1,0 +1,10 @@
+fa:
+  equipments:
+    messages:
+      success_message: "با موفقیت ایجاد شد."
+
+  # activerecord:
+  #   errors:
+  #     models:
+  #       equipment:
+  #         attributes:

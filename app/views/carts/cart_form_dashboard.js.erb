@@ -1,0 +1,4 @@
+<%= render partial: 'shared/show_modal',
+  locals: {modal_partial: 'cart_form_dashboard', modal_title: t(:'carts.new_cart'),
+           local_vars: {method_value: 'post', url_value: cart_create_path, items: items,
+           frame_id: frame_id, cart: cart, total: total, frame: frame}} %>

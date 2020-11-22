@@ -1,0 +1,73 @@
+<!--<script type="text/javascript">-->
+<!--var onloadCallback = function() {-->
+<!--  grecaptcha.render('html_element', {-->
+<!--    'sitekey' : '6Le5RVMUAAAAAPDHSd22qfNnEvzK0Di8dmAh3reh',-->
+<!--    'fl':'fa',-->
+<!--    'theme' : 'light'-->
+<!--  });-->
+<!--};-->
+<!--</script>-->
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <h3 class="text-center" style="color: black;">
+            اول از همه، حفظ امنیت اطلاعات
+          </h3>
+          <p class="text-center" style="margin-bottom: 0px">
+            یک شماره موبایل صحیح وارد کنید.
+          </p>
+          <div class="col-sm-12 col-md-6 col-md-offset-3">
+            <%= form_for(resource, as: resource_name, url: users_check_number_path(resource_name), html: {class: "form form-group new_user"}) do |f| %>
+              <!-- pass business params for campaigns  -->
+              <% if params[:b].present? %>
+                <input type="hidden" id="business_name" name="business_name" value="<%= params[:b] %>"/>
+              <% end %>
+              <% if params[:package_id].present? %>
+                <input type="hidden" name="package_id" id="package-id" value="<%= params[:package_id] %>">
+              <% end %>
+              <% if params[:price].present? %>
+                <input type="hidden" name="price" id="price" value="<%= params[:price] %>">
+              <% end %>
+              <% if params[:shoot_type_id].present? %>
+                <input type="hidden" name="shoot_type_id" id="speciality-id" value="<%= params[:shoot_type_id] %>">
+              <% end %>
+              <% if params[:photographer_id].present? %>
+                <input type="hidden" name="photographer_id" id="photographer_id" value="<%= params[:photographer_id] %>">
+              <% end %>
+              <!-- end of pass business params for campaigns  -->
+              <div class="col-sm-12">
+                <%#= f.label "شماره موبایل" %><br/>
+                <input type="number" class="form-control text-center" placeholder="شماره موبایل" name="mobile_number" required="" autofocus="true" data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" style="height: 65px;font-size: 35px;direction: ltr;">
+                <%#= f.number_field :mobile_number, autofocus: true , class: "form-control" , required="" , data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" %>
+              </div>
+<!--              <div class="col-sm-12 text-center" style="margin-top: 30px;">-->
+<!--                <!-- <div class="g-recaptcha" data-sitekey="6Le5RVMUAAAAAPDHSd22qfNnEvzK0Di8dmAh3reh"></div> -->
+<!--                <div id="html_element" style="margin-top: 30px;"></div>-->
+<!--              </div>-->
+              <div class="col-sm-12 text-center" style="margin-top: 15%;">
+                <%= f.submit "ادامه", class: "btn btn-blue btn-block btn-lg" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-sm-12 col-md-6 col-md-offset-3" style="height: 100px;padding-top: 20px;">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<script>
+    $('.new_user').parsley().on('field:validated', function () {
+        // $('button').prop('disabled', false);
+    }).on('form:submit', function () {
+    });
+</script>
+
+<!--<script src="https://www.google.com/recaptcha/api.js?hl=fa&onload=onloadCallback&render=explicit"-->
+<!--async defer>-->
+<!--</script>-->

@@ -1,0 +1,1 @@
+json.partial! "expertise_widget_attachments/expertise_widget_attachment", expertise_widget_attachment: @expertise_widget_attachment

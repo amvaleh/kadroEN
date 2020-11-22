@@ -1,0 +1,307 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+fa:
+  messages:
+    permission_denied: "شما مجوز دسترسی این عملیات را ندارید."
+  activerecord:
+    errors:
+      models:
+        transaction:
+          attributes:
+            slug:
+              taken: "این شماره یکتا قبلا ثبت شده است."
+        photographer:
+          attributes:
+            mobile_number:
+              taken: "این شماره موبایل قبلا ثبت شده است."
+            password:
+              too_short: "کوتاه است."
+            current_password:
+              invalid: "رمز وارد شده اشتباه است"
+      messages:
+        record_invalid: رکورد نامعتبر است %{errors}
+        restrict_dependent_destroy:
+          has_many: نمی توان رکورد را حذف کرد بخاطر اینکه %{record} وابسته وجود دارد
+          has_one: نمی توان رکورد را حذف کرد بخاطر اینکه یک %{record} وابسته وجود دارد
+  date:
+    abbr_day_names:
+    - ی
+    - د
+    - س
+    - چ
+    - پ
+    - ج
+    - ش
+    abbr_month_names:
+    -
+    - ژانویه
+    - فوریه
+    - مارس
+    - آوریل
+    - مه
+    - ژوئن
+    - ژوئیه
+    - اوت
+    - سپتامبر
+    - اکتبر
+    - نوامبر
+    - دسامبر
+    day_names:
+    - یکشنبه
+    - دوشنبه
+    - سه‌شنبه
+    - چهارشنبه
+    - پنج‌شنبه
+    - جمعه
+    - شنبه
+    formats:
+      default: "%Y/%m/%d"
+      long: "%e %B %Y"
+      short: "%m/%d"
+    month_names:
+    -
+    - ژانویه
+    - فوریه
+    - مارس
+    - آوریل
+    - مه
+    - ژوئن
+    - ژوئیه
+    - اوت
+    - سپتامبر
+    - اکتبر
+    - نوامبر
+    - دسامبر
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: حدود یک ساعت
+        other: حدود %{count} ساعت
+      about_x_months:
+        one: حدود یک ماه
+        other: حدود %{count} ماه
+      about_x_years:
+        one: حدود یک سال
+        other: حدود %{count} سال
+      almost_x_years:
+        one: حدود یک سال
+        other: حدود %{count} سال
+      half_a_minute: نیم دقیقه
+      less_than_x_minutes:
+        one: کمتر از یک دقیقه
+        other: کمتر از %{count} دقیقه
+      less_than_x_seconds:
+        one: یک ثانیه
+        other: کمتر  از %{count} ثانیه
+      over_x_years:
+        one: بیش از یک سال
+        other: بیش از %{count} سال
+      x_days:
+        one: یک روز
+        other: "%{count} روز"
+      x_minutes:
+        one: یک دقیقه
+        other: "%{count} دقیقه"
+      x_months:
+        one: یک ماه
+        other: "%{count} ماه"
+      x_seconds:
+        one: یک ثانیه
+        other: "%{count} ثانیه"
+      x_years:
+        one: 1 سال
+        other: "%{count} سال"
+    prompts:
+      day: روز
+      hour: ساعت
+      minute: دقیقه
+      month: ماه
+      second: ثانیه
+      year: سال
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      mini_magick_processing_error: "%{e}" # <= e contains the exception.
+      accepted: باید پذیرفته شود
+      blank: نباید خالی باشد
+      confirmation: با تایید نمی‌خواند
+      empty: نمی‌تواند خالی باشد
+      equal_to: باید برابر %{count} باشد
+      even: باید زوج باشد
+      exclusion: رزرو است
+      greater_than: باید بزرگتر از %{count} باشد
+      greater_than_or_equal_to: باید بزرگتر یا برابر %{count} باشد
+      inclusion: در لیست موجود نیست
+      invalid: نامعتبر است
+      less_than: باید کمتر از %{count} باشد
+      less_than_or_equal_to: باید کمتر یا برابر %{count} باشد
+      model_invalid: "رکورد نامعتبر است %{errors}"
+      not_a_number: عدد نیست
+      not_an_integer: عدد صحیح نیست
+      odd: باید فرد باشد
+      other_than: باید غیر از %{count} باشد
+      present: باید خالی باشد
+      required: باید وجود داشته باشد
+      taken: پیشتر گرفته شده
+      too_long: بلند است (حداکثر %{count} کاراکتر)
+      too_short: کوتاه است (حداقل %{count} کاراکتر)
+      wrong_length: نااندازه است (باید %{count} کاراکتر باشد)
+    template:
+      body: "موارد زیر مشکل داشت:"
+      header:
+        one: 1 خطا جلوی ذخیره این %{model} را گرفت
+        other: "%{count} خطا جلوی ذخیره این %{model} را گرفت"
+  helpers:
+    select:
+      prompt: لطفا انتخاب کنید
+    submit:
+      create: ایجاد %{model}
+      submit: ذخیره‌ی %{model}
+      update: بروز رسانی %{model}
+  number:
+    currency:
+      format:
+        delimiter: "٬"
+        format: "%n %u"
+        precision: 0
+        separator: "٫"
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "﷼"
+    format:
+      delimiter: "٬"
+      precision: 2
+      separator: "٫"
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: میلیارد
+          million: میلیون
+          quadrillion: کادریلیون
+          thousand: هزار
+          trillion: تریلیون
+          unit: ""
+      format:
+        delimiter: ""
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: بایت
+            other: بایت
+          gb: گیگابایت
+          kb: کیلوبایت
+          mb: مگابایت
+          tb: ترابایت
+    percentage:
+      format:
+        delimiter: ""
+    precision:
+      format:
+        delimiter: ""
+  support:
+    array:
+      last_word_connector: " و "
+      two_words_connector: " و "
+      words_connector: "، "
+  time:
+    am: قبل از ظهر
+    formats:
+      default: "%A، %e %B %Y، ساعت %H:%M:%S (%Z)"
+      long: "%e %B %Y، ساعت %H:%M"
+      short: "%e %B، ساعت %H:%M"
+    pm: بعد از ظهر
+  errors:
+    messages:
+      expired: 'منقضی شده، لطفا درخواست جدید بدهید'
+      not_found: 'یافت نشد'
+      already_confirmed: 'قبلا تایید شده، لطفا وارد شوید'
+      not_locked: 'قفل نشده است'
+      not_saved:
+        one: '۱ خطا جلوی ذخیره %{resource} را گرفت:'
+        other: '%{count} خطا جلوی ذخیره این %{resource} را گرفت:'
+
+  devise:
+    failure:
+      already_authenticated: 'وارد سیستم هستید.'
+      unauthenticated: 'پیش از ادامه باید وارد شوید یا ثبت نام کنید.'
+      unconfirmed: 'باید حسابتان را قبل از ادامه تایید کنید.'
+      locked: 'حسابتان قفل شده است.'
+      invalid: '%{authentication_keys} یا رمز عبور نامعتبر است.'
+      invalid_token: 'کلمه رمز نامعتبر.'
+      timeout: 'نشست شما منقضی شده است. برای ادامه دوباره وارد شوید.'
+      inactive: 'حساب شما هنوز فعال نشده است.'
+      not_found_in_database: "چنین %{authentication_keys} یا رمز عبوری ثبت نشده است."
+    sessions:
+      signed_in: 'ورود موفق.'
+      signed_out: 'خروج موفق.'
+      photographer:
+        already_signed_out: 'خروج موفق بود.'
+    passwords:
+      send_instructions: 'در چند دقیقه آینده ایمیلی حاوی راهنمای بازگرداندن رمز عبورتان دریافت خواهید کرد.'
+      updated: 'رمز عبورتان با موفقیت عوض شد. اکنون وارد شدید.'
+      updated_not_active: 'رمز عبورتان با موفقیت عوض شد‫.‬'
+      send_paranoid_instructions: '‫.‬اگر ایمیلتان در پایگاه داده ما باشد، در چند دقیقه ایملی حاوی لینک بازگردانی رمز عبور دریافت خواهید کرد'
+      no_token: '‫.‬بدون ایمیل برگرداندن رمز عبورتان به این صفحه دسترسی ندارید. اگر از ایمیل بازگردانی رمز عبور می‌آیید، لطفا مطمئن شوید آدرس کامل را وارد کرده‌اید'
+    confirmations:
+      send_instructions: 'در چند دقیقه آینده ایمیلی حاوی راهنمای تایید حسابتان دریافت خواهید کرد.'
+      send_paranoid_instructions: '‫.‬اگر ایمیلتان در پایگاه داده ما باشد، در چند دقیقه ایملی حاوی لینک تایید حسابتان دریافت خواهید کرد'
+      confirmed: 'حسابتان با موفقیت تایید شد. هم اکنون وارد شدید.'
+    registrations:
+      signed_up: 'خوش آمدید! با موفقیت ثبت نام کردید.'
+      signed_up_but_unconfirmed: '‫.‬پیغامی حاوی لینک تایید به ایملتان فرستاده شد‫.‬ لطفا لینک را باز کنید تا حسابتان را فعال کنید'
+      signed_up_but_inactive: 'با موفقیت ثبت نام کردید‫.‬ اما نمی‌توانید وارد شوید چون هنوز حسابتان تایید نشده است.'
+      signed_up_but_locked: '‫.‬با موفقیت ثبت نام کردید، اما نمی‌توانید وارد شوید چون حسابتان قفل شده است'
+      updated: 'به روز رسانی حسابتان با موفقیت انجام شد.'
+      update_needs_confirmation: '‫.‬حسابتان را با موفقیت به روز کردید، اما باید ایملیل جدیدتان را تایید کنید‫.‬ لطفا ایمیلتان را چک کنید و بر روی لینک تایید کلیک کنید تا تایید ایمیل جدیدتان نهایی شود'
+      destroyed: 'بدرود! حسابتان لغو شد. به امید دیدار دوباره.'
+      photographer: 'پروفایل عکاسی'
+    unlocks:
+      send_instructions: 'ایمیلی حاوی راهنمای باز کردن حسابتان در چند دقیقه آینده به شما ارسال خواهد شد.'
+      unlocked: 'حسابتان با موفقیت باز شد. اکنون وارد شدید.'
+      send_paranoid_instructions: 'اگر حسابتان وجود داشته باشد، در چند دقیقه ایمیلی حاوی راهنمای باز کردن قفل آن دریافت خواهید کرد.'
+    omniauth_callbacks:
+      success: 'با موفقیت مجوز استفاده از  %{kind} دریافت شد.'
+      failure: 'امکان استفاده از مجوز %{kind} نبود زیرا "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'راهنمای تایید'
+      reset_password_instructions:
+        subject: 'راهنمای بازنشانی رمز عبور'
+        action: 'تغییر رمز عبور'
+        greeting: سلام %{recipient} عزیز!
+        instruction: یک درخواست برای تغییر رمز عبور شما دریافت کرده ایم، می توانید از طریق لینک زیر این کار را انجام دهید.
+        instruction_2: اگر این درخواست از طرف شما نبوده است، لطفا آنرا نادیده بگیرید.
+        instruction_3: رمز عبور شما تا زمانیکه از لینک بالا وارد نشوید و رمزتان را تغییر ندهید عوض نخواهد شد.
+      unlock_instructions:
+        subject: 'راهنمای باز کردن'

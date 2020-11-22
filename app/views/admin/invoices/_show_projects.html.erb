@@ -1,0 +1,5 @@
+<% p = Invoice.find_by(id: inv) %>
+<% p.cart.cart_items.each do |c| %>
+  <%= link_to "Project ##{c.frame.gallery.project.id}", admin_project_path(c.frame.gallery.project) %>
+  <br>
+<% end %>

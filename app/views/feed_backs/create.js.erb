@@ -1,0 +1,6 @@
+<% if @project.reserve_step.name == "qualified" or @project.reserve_step.name == "downloaded" %>
+<%= render partial: 'shared/show_modal',
+  locals: {modal_partial: '/galleries/exempt_photographer_money', modal_title: " ", local_vars: {project: @project}, modal_id: 'modal_form_lg'} %>
+  <% else %>
+  jQuery("#modal_form_lg").modal("hide");
+  <% end %>

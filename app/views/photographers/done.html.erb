@@ -1,0 +1,56 @@
+<% @top_title = "اطلاعات شما دریافت شد." %>
+<%= render 'shared/studio_header' , title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-md-12">
+            <% if not @photographer.join_step.name == "تاییدیه" %>
+            <p class="text-center">
+              <%= @photographer.display_name %> عزیز
+              ممنون از وقتیکه گذاشتید،
+              تیم کارشناسی کادرو فرم شما را بررسی می کند و در اسرع وقت با شما تماس می گیرد.
+              <br>
+              به دلیل تعداد بالای متقاضیان، ممکن است کمی طول بکشد تا با شما تماس بگیریم،
+              <br>
+              از اینکه در این خصوص با ما همکاری میکنید سپاس گزاریم.
+            </p>
+            <h3 class="text-center">
+              صفحه شما:
+              <%= link_to "#{@photographer.uid}.kadro.co" , @photographer.page_url %>
+            </h3>
+            <div class="text-center">
+              <br>
+              <%= link_to 'ویرایش تجهیزات عکاسی' , equipments_photographer_path , :class => "btn btn-default" %>
+              <%= link_to 'ویرایش تجربه کاری' , experience_photographer_path , :class => "btn btn-default" %>
+              <%= link_to 'ویرایش نمونه کارها' , portfolio_photographer_path , :class => "btn btn-default" %>
+              <br>
+              <br>
+              <%= link_to "https://t.me/joinchat/AAAAAEMcW80DPgzPNYR-dA" , :class => "btn btn-default"  do %>
+              <%= image_tag("/assets/t_logo.png", :alt => "کانال عکاسان تلگرام کادرو", :title => "Home") %>
+              عضویت در کانال عکاسان کادرو
+              <%end%>
+            </div>
+            <% else %>
+            <p class="text-center">
+              تبریک، شما عضوی از عکاسان حرفه ای کادرو شده اید:
+              <%= link_to 'برو به استودیوی من' , studio_photographer_path(@photographer) , :class => "btn btn-default" %>
+            </p>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <!-- <a href="https://kadro.co" class="btn btn-gray"> خانه </a> -->
+      <!-- <button type="submit" id = "submit_page_form" class="btn btn-blue">ذخیره و ادامه -->
+      <!-- </button> -->
+    </div>
+  </div>
+</footer>

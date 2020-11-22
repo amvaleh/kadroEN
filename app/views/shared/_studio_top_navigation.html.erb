@@ -1,0 +1,231 @@
+<nav class="navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" style="border-color: #328af5;">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="fa fa-cogs fa-lg" style="color:#328AF5"> منو</span>
+      </button>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+        <li class="">
+          <%= link_to "داشبورد", studio_photographer_path(current_photographer) %>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" id="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            مدیریت پروژه ها
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu text-right" style="">
+            <li>
+              <%= link_to projects_photographer_path(current_photographer) do %>
+                لیست پروژه های من
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li class="text-danger">
+              <%= link_to candidated_for_photographer_path(current_photographer), id: '' do%>
+                لیست عکاسان رقیب
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li class="">
+              <%= link_to checkout_photographer_path(@photographer) do %>
+              <span id="">
+                تسویه حساب
+              </span>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <%= link_to "تقویم کاری من", times_photographer_path(@photographer)%>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" >
+            مدیریت صفحه
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to page_setting_photographer_path(@photographer), :class => "btn text-primary btn-xs" do %>
+                <i class="fa fa-pencil"></i>
+                تغییر عکس و رشته ها
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to  to_shares_photographer_path(@photographer) do %>
+                <i class="fa fa-check"></i>
+                عکسهای اجازه داده شده
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to studio_locations_photographer_path(@photographer),class:"", target: "_blank" do%>
+                <i class="fa fa-location-arrow"></i>
+                مدیریت آتلیه
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to current_photographer.page_url, :class => "", target: "_blank" do %>
+                <i class="fa fa-eye"></i>
+                برو به صفحه من
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            حقوقی و مالی
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu text-right" style="">
+            <li>
+              <%= link_to has_scanned_profile_path(@photographer), :class => "btn text-primary btn-xs" do %>
+                <i class="fa fa-upload"></i>
+                مدارک شناسایی
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li class="text-danger">
+              <%= link_to register_sn_photographer_path(@photographer), :class => "btn  btn-xs text-danger" do %>
+                <i class="fa fa-shield"></i>
+                احراز مالکیت تجهیزات عکاسی
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to bank_account_photographer_path(@photographer), :class => "btn text-primary btn-xs" do %>
+                <i class="fa fa-credit-card"></i>
+                اطلاعات بانکی و پرداخت
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            تنظیمات
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to edit_info_photographer_path(@photographer), :class => "btn text-primary btn-xs" do %>
+                <i class="fa fa-user"></i>
+                اطلاعات اولیه پروفایل
+              <% end %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <a href="/photographers/join.<%= @photographer.mobile_number %>?step=1" class="btn text-primary btn-xs">
+                <i class="fa fa-camera"></i>
+                تجهیزات عکاسی
+              </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <a href="/photographers/join.<%= @photographer.mobile_number %>?step=2" class="btn text-primary btn-xs">
+                <i class="fa fa-photo"></i>
+                نمونه کارهای عکاسی
+              </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <a href="/photographers/join.<%= @photographer.mobile_number %>?step=3" class="btn text-primary btn-xs">
+                <i class="fa fa-edit"></i>
+                تجربه کاری
+              </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+              <%= link_to destroy_photographer_session_path, class: "" do %>
+                <i class="fa fa-sign-out"></i>
+                خروج
+              <% end %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    <div class="row" style="margin-top:4px;">
+      <!-- <div class="col-xs-12 alert have_you_updated_bg">
+        <div class="col-xs-6">
+          <h5 class="text-right">
+            اکسسوری هاتو اضافه کردی؟
+          </h5>
+        </div>
+        <div class="col-xs-6 text-left">
+          <%#= link_to "نمونه ببین" , "https://pro.kadro.co/sample#field_4168",class:"btn btn-xs btn-default", target: "_blank" %>
+          <%#= link_to "بزن بریم" , page_setting_photographer_path(@photographer),class:"btn btn-xs btn-black" %>
+        </div>
+      </div> -->
+      <% last_updated_expertise = Expertise.joins(:shoot_type).where('shoot_types.is_active = ? and expertises.photographer_id = ?',true,current_photographer.id).order("expertises.updated_at").first %>
+      <% if last_updated_expertise.present? and last_updated_expertise.updated_at.to_pdate < (Date.today-6.month).to_date.to_pdate %>
+        <div class="col-xs-12 alert have_you_updated_bg">
+          <div class="col-md-9 col-xs-9">
+            <h6 class="text-right" style="color: #747474;">
+              بیش از ۶ ماه از آخرین آپدیت
+              نمونه کارهای
+              <span><%=image_tag last_updated_expertise.shoot_type.avatar_url(:thumb) %><%= last_updated_expertise.shoot_type.title %>-ت</span>
+              میگذره، برای دریافت ورودی بیشتر در گوگل پیشنهاد می کنیم به روزرسانی کنی شون!
+            </h6>
+          </div>
+          <div class="col-xs-3 col-md-3 text-left" style="margin: auto;">
+            <%= link_to "بزن بریم" , page_setting_photographer_path(@photographer),class:"btn btn-xs btn-black face" %>
+          </div>
+        </div>
+      <% end  %>
+      <% if not current_photographer.shoot_locations.where(:is_studio=>true).any? %>
+        <div class="col-xs-12 alert have_you_updated_bg">
+          <div class="col-md-6 col-xs-9">
+            <h5 class="text-right">
+              آتلیه خودتو تعریف کردی؟
+            </h5>
+          </div>
+          <div class="col-xs-3 col-md-6 text-left">
+            <%= link_to "بزن بریم" , studio_locations_photographer_path(@photographer),class:"btn btn-xs btn-black " %>
+          </div>
+        </div>
+      <% end  %>
+      <%# expertises_unapproved = current_photographer.expertises.where(approved: false) %>
+      <%# if expertises_unapproved.any? %>
+      <!--        <div class="col-xs-12 alert have_you_updated_bg">-->
+      <!--            <div class="col-md-9 col-xs-12">-->
+      <!--              <h5 class="text-right">-->
+      <!--                برای تایید شدن رشته های-->
+      <!--                (-->
+      <%#expertises_unapproved.each do |e| %>
+      <!--                  <span style="color:black;"><%#=image_tag e.shoot_type.avatar_url(:thumb) %><%#= e.shoot_type.title %></span>-->
+      <%#end%>
+      <!--                )-->
+      <!--                لطفا حداقل ۱۲ نمونه کار آپلود نمایید.-->
+      <!--              </h5>-->
+      <!--            </div>-->
+      <!--            <div class="col-xs-12 col-md-2 text-left" style="margin-right: auto;margin-top:auto;margin-bottom:auto;">-->
+      <%#= link_to "بزن بریم" , page_setting_photographer_path(@photographer),class:"btn btn-xs btn-black face" %>
+      <!--              <a href="/photographers/<%#= current_photographer.mobile_number %>/page_setting?id=shoot_types" class="btn btn-xs btn-black face">بزن بریم</a>-->
+      <!--            </div>-->
+      <!--        </div>-->
+      <%# end %>
+      <!--      <br>-->
+    </div>
+  </div><!-- /.container-fluid -->
+  <% if notice %>
+    <div class="alert alert-info">
+      <h2 class="text-center text-info"><%= notice %></h2>
+    </div>
+  <% elsif alert %>
+    <div class="alert alert-danger text-center">
+      <h2 class="text-center text-danger"><%= alert %></h2>
+    </div>
+  <% else %>
+    <div></div>
+  <% end %>
+</nav>

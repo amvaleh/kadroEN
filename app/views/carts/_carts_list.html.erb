@@ -1,0 +1,36 @@
+<div class="row well">
+  <% carts.joins("left join lookups l on l.code = carts.status and l.category = 'shop_status'").
+      select('carts.*, l.title status_title').
+      order(created_at: :desc).each do |cart| %>
+    <% total = 0 %>
+    <% cart.cart_items.each do |cart_item| %>
+      <% total = total + (cart_item.quantity * cart_item.item.price).to_i %>
+    <% end %>
+    <div class="col-md-3 alert alert-success">
+      <h4><%= cart.status_title %></h4>
+      <table class="well">
+        <thead>
+        <tr style="font-size: 12px">
+          <th class="text-center">vch number</th>
+          <th class="text-center">قیمت کل</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td class="text-center"><%= cart.invoice.vch_number if cart.invoice.present? %></td>
+          <td class="text-center"><%= total %></td>
+        </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#receipt<%=cart.id%>" >نمایش فاکتور</button>
+    </div>
+    <div class="modal fade"  id="receipt<%=cart.id%>">
+      <!-- Modal content-->
+      <div class="modal-body">
+        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+        <%= render partial: 'carts/cart_show', locals: {cart_id: cart.id} %>
+      </div>
+
+    </div>
+  <% end %>
+</div>

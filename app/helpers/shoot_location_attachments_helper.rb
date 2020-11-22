@@ -1,0 +1,2 @@
+module ShootLocationAttachmentsHelper
+end

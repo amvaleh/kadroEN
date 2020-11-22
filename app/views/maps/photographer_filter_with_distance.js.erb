@@ -1,0 +1,50 @@
+handler = Gmaps.build('Google');
+handler.buildMap({ provider: {
+  zoom:      15,
+  center:    new google.maps.LatLng(35.79078628217929, 51.40356720775139),
+  mapTypeId: google.maps.MapTypeId.ROADMAP }, internal: {id: 'map'}}, function(){
+    markers = handler.addMarkers([
+      <% @approved_photographer.each do |p| %>
+      <% if p.location.present? %>
+      {
+        "lat": <%=p.location.working_lat%>,
+        "lng": <%=p.location.working_long%>,
+        "picture": {
+          "url": "https://kadro.co/wp-content/uploads/photographerMarker.png",
+          "width":  25,
+          "height": 25
+        },
+        infowindow: "<%=p.first_name%> <%=p.last_name%>"
+      },
+      <% end %>
+      <% end %>
+    ]);
+    var circles = handler.addCircles(
+      [
+        <% @approved_photographer.each do |p| %>
+        <% if p.location.present? %>
+        <% if @distance.present? %>
+        { lat: <%=p.location.working_lat%>, lng: <%=p.location.working_long%>, radius: <%=@distance.to_i*1000%> },
+        <% else %>
+        <% r=Setting.find_by_var("distance").value.to_i%>
+        { lat: <%=p.location.working_lat%>, lng: <%=p.location.working_long%>, radius: <%=r.to_i*1000%> },
+        <% end %>
+        <% end %>
+        <% end %>
+      ],
+      { strokeColor: '#rgba(0,0,0,0.45)',
+      strokeOpacity: 0.05,
+      strokeWeight: 1,
+      fillColor: "#000",
+      fillOpacity: 0.06}
+    );
+    <% if @distance.present? %>
+    document.getElementById("h1_distance").innerHTML = "شعاع ناحیه : <%= @distance %> کیلومتر";
+    <% else %>
+    <% r=Setting.find_by_var("distance").value.to_i%>
+    document.getElementById("h1_distance").innerHTML = "شعاع ناحیه : <%= r %> کیلومتر";
+    <% end %>
+    handler.bounds.extendWith(circles);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });

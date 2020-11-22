@@ -1,0 +1,21 @@
+<div class="row" style="margin-bottom:10px;">
+    <div class="col-xs-2">
+        <span>
+        Ahoy Visit Analyze Charts
+        </span>
+    </div>
+</div>
+<% utm_sources.each do |utm_source| %>
+<div class="row">
+    <div class="col-xs-12">
+        <span><%= utm_source %></span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <% data = AhoyAnalyze::VisitsCountPerDayWithUtmSource.call(start_date: start_date, end_date: end_date, utm_source: utm_source).result %>
+        <%= line_chart data, library: {backgroundColor: "#eee"} %>
+        <%#= line_chart Ahoy::Visit.where('started_at >= ? and started_at <= ? and utm_source = ?',start_date ,end_date ,utm_source ).group_by_day(:started_at, range: context.start_date..context.end_date).count.map { |p| [p.first.to_date.to_pdate.to_s[5..12], p.second] } %>
+    </div>
+</div>
+<% end %>

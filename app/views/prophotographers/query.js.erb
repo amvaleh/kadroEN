@@ -1,0 +1,3 @@
+console.log("<%=@photographers.count%>");
+$('#photographers_list').html("<%= j render 'replace_photographers' , :@photographers=>@photographers %>");
+$('#waiting').removeClass("open");

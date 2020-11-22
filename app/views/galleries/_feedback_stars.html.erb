@@ -1,0 +1,149 @@
+<% if @gallery.project.feed_back.present? %>
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <% @project = @gallery.project %>
+    <div style="direction: ltr;">
+      <div class="row">
+        <div class="col-md-6 col-xs-6 text-right">
+          <h5>
+            کیفیت عکس
+          </h5>
+          <div class="row">
+            <fieldset class="demo_rating" id="feed_back[qrate]" disabled>
+              <% if @project.feed_back.qrate == 10 %>
+              <input type="radio" value="10" checked />
+              <% else %>
+              <input type="radio" value="10" />
+              <% end %>
+              <label class = "full" for="star5" title="5"></label>
+              <% if @project.feed_back.qrate == 9 %>
+              <input type="radio" value="9" checked />
+              <% else %>
+              <input type="radio" value="9" />
+              <% end %>
+              <label class="half" for="star4half" title="4.5"></label>
+              <% if @project.feed_back.qrate == 8 %>
+              <input type="radio" value="8" checked />
+              <% else %>
+              <input type="radio" value="8" />
+              <% end %>
+              <label class = "full" for="star4" title="4"></label>
+              <% if @project.feed_back.qrate == 7 %>
+              <input type="radio" value="7" checked />
+              <% else %>
+              <input type="radio" value="7" />
+              <% end %>
+              <label class="half" for="star3half" title="3.5"></label>
+              <% if @project.feed_back.qrate == 6 %>
+              <input type="radio" value="6" checked />
+              <% else %>
+              <input type="radio" value="6" />
+              <% end %>
+              <label class = "full" for="star3" title="3"></label>
+              <% if @project.feed_back.qrate == 5 %>
+              <input type="radio" value="5" checked />
+              <% else %>
+              <input type="radio" value="5" />
+              <% end %>
+              <label class="half" for="star2half" title="2.5"></label>
+              <% if @project.feed_back.qrate == 4 %>
+              <input type="radio" value="4" checked />
+              <% else %>
+              <input type="radio" value="4" />
+              <% end %>
+              <label class = "full" for="star2" title="2"></label>
+              <% if @project.feed_back.qrate == 3 %>
+              <input type="radio" value="3" checked />
+              <% else %>
+              <input type="radio" value="3" />
+              <% end %>
+              <label class="half" for="star1half" title="1.5"></label>
+              <% if @project.feed_back.qrate == 2 %>
+              <input type="radio" value="2" checked />
+              <% else %>
+              <input type="radio" value="2" />
+              <% end %>
+              <label class = "full" for="star1" title="1"></label>
+              <% if @project.feed_back.qrate == 1 %>
+              <input type="radio" value="1" checked />
+              <% else %>
+              <input type="radio" value="1" />
+              <% end %>
+              <label class="half" for="starhalf" title="0.5"></label>
+            </fieldset>
+          </div>
+        </div>
+        <div class="col-md-6 col-xs-6 text-right">
+          <h5>
+            برخورد عکاس
+          </h5>
+          <div class="row">
+            <fieldset class="demo_rating" id="feed_back[qrate]" disable>
+              <% if @project.feed_back.arate == 10 %>
+              <input type="radio" value="10" checked />
+              <% else %>
+              <input type="radio" value="10" />
+              <% end %>
+              <label class = "full" for="star5" title="5"></label>
+              <% if @project.feed_back.arate == 9 %>
+              <input type="radio" value="9" checked />
+              <% else %>
+              <input type="radio" value="9" />
+              <% end %>
+              <label class="half" for="star4half" title="4.5"></label>
+              <% if @project.feed_back.arate == 8 %>
+              <input type="radio" value="8" checked />
+              <% else %>
+              <input type="radio" value="8" />
+              <% end %>
+              <label class = "full" for="star4" title="4"></label>
+              <% if @project.feed_back.arate == 7 %>
+              <input type="radio" value="7" checked />
+              <% else %>
+              <input type="radio" value="7" />
+              <% end %>
+              <label class="half" for="star3half" title="3.5"></label>
+              <% if @project.feed_back.arate == 6 %>
+              <input type="radio" value="6" checked />
+              <% else %>
+              <input type="radio" value="6" />
+              <% end %>
+              <label class = "full" for="star3" title="3"></label>
+              <% if @project.feed_back.arate == 5 %>
+              <input type="radio" value="5" checked />
+              <% else %>
+              <input type="radio" value="5" />
+              <% end %>
+              <label class="half" for="star2half" title="2.5"></label>
+              <% if @project.feed_back.arate == 4 %>
+              <input type="radio" value="4" checked />
+              <% else %>
+              <input type="radio" value="4" />
+              <% end %>
+              <label class = "full" for="star2" title="2"></label>
+              <% if @project.feed_back.arate == 3 %>
+              <input type="radio" value="3" checked />
+              <% else %>
+              <input type="radio" value="3" />
+              <% end %>
+              <label class="half" for="star1half" title="1.5"></label>
+              <% if @project.feed_back.arate == 2 %>
+              <input type="radio" value="2" checked />
+              <% else %>
+              <input type="radio" value="2" />
+              <% end %>
+              <label class = "full" for="star1" title="1"></label>
+              <% if @project.feed_back.arate == 1 %>
+              <input type="radio" value="1" checked />
+              <% else %>
+              <input type="radio" value="1" />
+              <% end %>
+              <label class="half" for="starhalf" title="0.5"></label>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,77 @@
+<div class="projectbox <%= p.user.lead_source.present? ? 'alert alert-success' : 'well' %>" id="p<%= p.id %>">
+  <%= render "shared" , :p => p , timer: timer , sms: sms%>
+
+  <p id="show-result<%= p.id %>" style="color: orangered; font-size: x-large"></p>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="btn-group text-center" role="group" aria-label="...">
+        <input type="button" value="I called" id="<%= p.id %>" class="btn btn-xs btn-info">
+        <input type="button" value="Not answered"  id="<%= p.id %>2" class="btn btn-xs btn-default">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="input-group">
+      <span class="input-group-btn">
+        <button id="<%= p.id%>-submit" type="button" name="datepicker-submit-<%= p.id%>" class="btn btn-default" onclick="submit_date_call(<%= p.id%>);">ثبت</button>
+      </span>
+        <input type="text" id="<%= p.id %>-input" class="form-control observer-example"/>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div><!-- /.row -->
+
+</div>
+<script>
+    $('#<%= p.id %>').click(function (e) {
+        e.preventDefault();
+
+        var first_call = 'true';
+
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: "<%= CGI.unescape set_first_call_path(p.id) %>",
+            dataType: 'script',
+            data: {
+                first_call: first_call
+            },
+            success: function () {
+                $('#p<%= p.id %>').hide();
+            }
+
+        });
+    });
+
+    $('#<%= p.id %>2').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: "<%= CGI.unescape not_answered_path(p.id) %>",
+            dataType: 'script',
+            success: function () {
+                $('#p<%= p.id %>').hide();
+            }
+
+        });
+    });
+
+    $('#<%= p.id %>sms').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: "<%= CGI.unescape sms_link_path(p.id) %>",
+            dataType: 'script',
+            success: function () {
+                $('#<%= p.id %>sms').hide();
+                $('#show-result<%= p.id %>').html('SMS sent')
+
+            }
+
+        });
+    })
+</script>

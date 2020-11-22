@@ -1,0 +1,10 @@
+<span>
+  پیامک "گالریت آماده است بیا ببین!" به کاربر
+  <span class="owner">
+  <%= link_to activity.owner.display_name, admin_user_path(activity.owner.slug) %>
+  </span>
+  ارسال شد.
+  <strong class="owner">
+  <%= link_to "پروژه", admin_project_path(activity.trackable.slug) %>
+  </strong>
+</span>

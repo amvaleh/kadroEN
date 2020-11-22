@@ -1,0 +1,288 @@
+<% near_numbers = @photographers.where('price = 0').size %>
+<div id="photographer-choose-section" class="text-center">
+  <% unless near_numbers == 0 %>
+    <h2><%= near_numbers %> عکاس در نزدیکی شما</h2>
+  <% end %>
+  <p style="font-size: large">
+    <%= @photographers.size - near_numbers %> عکاس از مناطق دیگر با احتساب
+    <span class="text-danger">حداقل هزینه</span>
+    ایاب و ذهاب پیشنهاد شده اند.
+    <i data-html="true" data-toggle="transportation_cost_tooltip" data-placement="top" data-original-title="" title="">
+      <i class="fa fa-info-circle"></i>
+    </i>
+  </p>
+</div>
+<div id="photographer">
+  <p  style="color: black" hidden id="kadro-selected-warning">
+    <i class="fa fa-check-square fa-2x" style="color: rgb(50, 138, 246)"></i>
+      عکاس پیشنهادی ما
+    <strong id="kadro-suggested-photographer" style="color: rgb(50, 138, 246); font-size: x-large">
+
+    </strong>
+    است. برای ثبت این عکاس بر روی دکمه
+    <strong style="color: rgb(50, 138, 246); font-size: x-large">
+      ثبت
+    </strong>
+    کلیک کنید.
+  </p>
+  <div class="shoot-slider owl-carousel">
+    <% @photographers.each do |photographer| %>
+      <div class="owl-item" style="width: 100%">
+        <div class="item" id="<%= photographer.priority %>">
+          <header style="margin-top: 0px!important;
+              margin-bottom: 0px!important;">
+            <div style="color: gray;
+                margin-bottom: 22px;">
+              <h4>
+                <%= photographer.display_name %>
+              </h4>
+            </div>
+          </header>
+          <div class="photographer-avatar-container">
+            <div class="img" data-value="<%= photographer.id %>id" onclick="$(this).handleProfileClick('p<%= photographer.id %>')" style="background-image: url('<%= photographer.avatar.medium.url %>'); cursor: pointer;">
+              <svg class="photographer-change-circle" viewBox="0 0 100 100" id="0">
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color: rgb(137, 33, 107); stop-opacity: 1;"></stop>
+                    <stop offset="100%" style="stop-color: rgb(218, 68, 83); stop-opacity: 1;"></stop>
+                  </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="46" style="stroke: url('#gradient');"></circle>
+              </svg>
+            </div>
+            <% if photographer.photographer_attachments[0].present? %>
+              <div class="attach-img-change-photographer" data-value="<%= photographer.id %>" onclick="$(this).handleProfileClick('p<%= photographer.id %>')" style="background-image: url('<%= photographer.photographer_attachments[0].avatar.mini.url %>'); cursor: pointer; top: -42px; left: 75px; z-index: 1"></div>
+            <% end %>
+            <% if photographer.photographer_attachments[1].present? %>
+              <div class="attach-img-change-photographer" data-value="<%= photographer.id %>" onclick="$(this).handleProfileClick('p<%= photographer.id %>')" style="background-image: url('<%= photographer.photographer_attachments[1].avatar.mini.url %>'); cursor: pointer; top: -90px; left: 40px;"></div>
+            <% end %>
+          </div>
+          <div class="stars rating">
+            <% rate = (photographer.arate + photographer.qrate) / 4 %>
+            <% if rate.to_i == rate %>
+              <% (5 - rate).to_i.times do %>
+                <span class="none-star"></span>
+              <% end %>
+            <% else %>
+              <% (5 - rate.to_i - 1).times do %>
+                <span class="none-star"></span>
+              <% end %>
+              <span class="half-star"></span>
+            <% end %>
+            <% rate.to_i.times do %>
+              <span class="star"></span>
+            <% end %>
+          </div>
+          <p>
+            متخصص در عکاسی
+            <%= @project.shoot_type.title %>
+          </p>
+          <button class="portfolio-example btn btn-sm btn-default" data-value="<%= photographer.id %>" onclick="$(this).handleClickShoot('p<%=photographer.expertises.first.id%>')">نمونه
+            کارها
+          </button>
+          <button class="btn btn-blue choice" first-name="<%= photographer.first_name %>" last-name="<%= photographer.last_name %>" data-selector="<%= photographer.id %>" price="<%= photographer.price %>">انتخاب</button>
+          <% if photographer.price.to_i == 0 %>
+            <p class=" price-box-mobile text-success"><i class="fa fa-check"></i> در محدوده شما
+            </p>
+          <% else %>
+            <p class="well price-box-mobile text-success"><i class="fa fa-taxi"></i>
+              هزینه رفت و آمد:
+              <%= number_with_delimiter(photographer.price.to_i, :delimiter => ',') %>
+              تومان
+            </p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= form_tag projects_debit_check_path, id: "approval_form", method: :post do %>
+  <%= hidden_field_tag :photographer_id %>
+  <%= hidden_field_tag :price %>
+  <%= hidden_field_tag :id %>
+<% end %>
+
+
+<section id="samples">
+  <div class="inner">
+    <span class="btn close">بستن</span>
+    <% @photographers.each do |p| %>
+      <div class="portfolio hidden owl-carousel" id="p<%= p.expertises.first.id %>">
+        <% exp = p.expertises.find_by_shoot_type_id(@project.shoot_type.id) %>
+        <% exp.samples.each do |s| %>
+          <div class="item">
+            <a href="<%= s.url %>">
+              <img src="<%= s.url %>" style="display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 90vh; width: auto;" alt="">
+            </a>
+          </div>
+        <% end %>
+        <% exp.photos.each do |p| %>
+          <div class="item">
+            <img src="<%= p.file_url(:medium) %>" style="display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 90vh; width: auto; object-fit: scale-down; " alt="">
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<section id="portfolios">
+  <div class="inner">
+    <span class="btn close">بستن</span>
+    <% @photographers.each do |p| %>
+      <% if p.photographer_attachments.any? %>
+        <div class="portfolio hidden owl-carousel" id="p<%= p.id %>">
+          <% photographer_attachments = p.photographer_attachments %>
+          <% photographer_attachments.each do |ph_attach| %>
+            <div class="item">
+              <img src="<%= ph_attach.avatar.url %>" style="width: auto; height: auto" alt="">
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+
+<script>
+
+    $(document).ready(function () {
+        persian_number();
+
+        $('[data-toggle="transportation_cost_tooltip"]').tooltip({
+            title: "حداقل هزینه ایاب ذهاب عکاس از منطقه فعال عکاس تا محل مورد نظر عکاسی شما (معیار محاسبه هزینه اسنپ است.)"
+        });
+
+        $('.shoot-slider').owlCarousel({
+            navText: [],
+            nav: true,
+            rtl: true,
+            responsiveClass: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 2
+                }
+            }
+        });
+
+        $('#submit_page_form').click(function () {
+            if (confirm("آیا از انتخابتان مطمئن هستید؟")) {
+                $('#id').val(<%= @project.id %>);
+                $('#approval_form').submit();
+            } else {
+                txt = "You pressed Cancel!";
+            }
+        });
+
+
+        jQuery(document).keyup(function (e) {
+            if (e.keyCode === 27) {
+                samples.removeClass('open');
+                samples.find('.portfolio').addClass('hidden');
+            }
+        });
+
+        var samples = $('#samples');
+        $.fn.handleClickShoot = function (element) {
+            samples.addClass('open');
+            samples.find('#' + element).removeClass('hidden');
+        };
+
+        samples.find('.close').on('click', function () {
+            samples.removeClass('open');
+            samples.find('.portfolio').addClass('hidden');
+        });
+
+        $('.portfolio').owlCarousel({
+            items: 1,
+            navText: [],
+            margin: 0,
+            smartSpeed: 150,
+            loop: true,
+            nav: true,
+            autoplay: true,
+            rtl: true,
+            autoplaySpeed: 500
+        });
+
+        var portfolios = $('#portfolios');
+        $.fn.handleProfileClick = function (element) {
+            portfolios.addClass('open');
+            portfolios.find('#' + element).removeClass('hidden');
+        };
+
+        portfolios.find('.close').on('click', function () {
+            portfolios.removeClass('open');
+            portfolios.find('.portfolio').addClass('hidden');
+        });
+
+
+        $('#portfolios .inner .portfolio .owl-stage-outer').on('click', function () {
+            $('.close').trigger('click');
+        });
+        $('#portfolios .inner .portfolio img').on('click', function () {
+            return false;
+        });
+
+        $('#samples .inner .portfolio .owl-stage-outer').on('click', function () {
+            $('.close').trigger('click');
+        });
+        $('#samples .inner .portfolio img').on('click', function () {
+            return false;
+        });
+    });
+
+    function persian_number() {
+        persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
+        function traverse(el) {
+            if (el.nodeType == 3) {
+                var list = el.data.match(/[0-9]/g);
+                if (list != null && list.length != 0) {
+                    for (var i = 0; i < list.length; i++)
+                        el.data = el.data.replace(list[i], persian[list[i]]);
+                }
+            }
+            for (var i = 0; i < el.childNodes.length; i++) {
+                traverse(el.childNodes[i]);
+            }
+        }
+
+        traverse(document.body);
+    }
+
+    $('button.choice').on('click', function () {
+        $('button.choice').removeClass('btn-selected');
+        $('#photographer').find('.item').removeClass('selected light-green');
+        if ($(this).text() == 'انتخاب') {
+            $('button.choice').html('انتخاب');
+            $(this).html('انتخاب شد');
+            $(this).addClass('btn-selected');
+            $(this).parent().addClass('selected light-green');
+            $('#photographer_id').val($(this).attr('data-selector'));
+            $('#price').val($(this).attr('price'));
+            $('#submit_page_form').prop("disabled", false);
+        } else {
+            $('button.choice').html('انتخاب');
+            $('#photographer_id').val('');
+            $('#price').val('');
+            $('#submit_page_form').prop("disabled", true);
+        }
+
+    });
+
+</script>

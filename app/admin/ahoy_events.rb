@@ -1,0 +1,22 @@
+ActiveAdmin.register Ahoy::Event do
+
+  # See permitted parameters documentation:
+  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
+  #
+  # permit_params :list, :of, :attributes, :on, :model
+  #
+  # or
+  #
+  menu parent: "Dashboard", priority: 5
+  filter :user
+  filter :name
+  filter :time
+
+  #
+  # permit_params do
+  #   permitted = [:permitted, :attributes]
+  #   permitted << :other if params[:action] == 'create' && current_user.admin?
+  #   permitted
+  # end
+
+end

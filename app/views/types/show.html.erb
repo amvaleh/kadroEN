@@ -1,0 +1,82 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/raychat' %>
+<% end %>
+  <title>
+    <%= @shoot_type.w_title %>
+    | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description"
+        content="از
+  <%= @cheapest_package.price%>
+  تومان برای
+  <%=@cheapest_package.duration%>
+  عکاس
+  <%=@shoot_type.title%>
+  بگیرید. و هر جا که می خواهید عکاسی کنید، انتخاب محل با شماست.">
+  <meta name="keywords" content="قیمت, تعرفه, قیمت عکاسی <%=@shoot_type.title%>, تعرفه عکاسی <%=@shoot_type.title%>, عکاسی <%=@shoot_type.title%> در محل">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload'  %>
+  <% end %>
+  <link rel="icon" type="image/png" href="<%= assets_url(@shoot_type.avatar_url) %>">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://www.kadro.co",
+      "logo": "https://www.kadro.co/img/logo.png"
+    }
+    </script>
+  <%= render "types/sections/schema_code"%>
+</head>
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#ex6").slider();
+        $('.service_package').css('display', 'none');
+        $('[hourindex=0]').css('display', '');
+        $("#ex6").on("change", (slideEvt) => {
+            var slider_value = slideEvt.value;
+            $('.service_package').css('display', 'none');
+            $('[hourindex=' + slider_value.newValue + ']').css('display', '');
+        });
+    });
+
+    function packageClicked(num) {
+        $('.selected').removeClass('selected');
+        $('[index=' + num + ']').addClass("selected");
+    }
+</script>
+
+<%= render "public/shared/wordpress_header", :@shoot_type=>@shoot_type%>
+<%= render "types/sections/intro", :@shoot_type=>@shoot_type%>
+<%= render "types/sections/prices", :@shoot_type=>@shoot_type%>
+<%= render "types/sections/portfolios", :@shoot_type=>@shoot_type%>
+
+<% if @good_feedbacks.count > 4 %>
+  <%= render "types/sections/feedbacks", :@shoot_type=>@shoot_type%>
+<% end %>
+<%= render "types/sections/best_pros", :@shoot_type=>@shoot_type%>
+<%= render "types/sections/how_works", :@shoot_type=>@shoot_type%>
+<%= render "types/sections/features", :@shoot_type=>@shoot_type%>
+<%= render "types/sections/partners", :@shoot_type=>@shoot_type%>
+<%= render "public/shared/section_of_call_request" , dest_url: create_call_request_path %>
+<%= render "types/sections/why_kadro", :@shoot_type=>@shoot_type%>

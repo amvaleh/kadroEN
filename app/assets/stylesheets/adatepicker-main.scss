@@ -1,0 +1,322 @@
+$orange: #e92064;
+$blue: #3299cc;
+$red:#da251c;
+$grey5: darken(#fff, 5%);
+$grey10: darken(#fff, 10%);
+$grey25: darken(#fff, 25%);
+$grey75: darken(#fff, 75%);
+
+/* Material design box shadows */
+/// Gives a card depth effect.
+/// @param {Number} $depth - depth level (between 1 and 5)
+/// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+/// @requires {function} top-shadow
+/// @requires {function} bottom-shadow
+@mixin card($depth) {
+    @if $depth < 1 {
+        box-shadow: none;
+    } @else if $depth > 5 {
+        @warn "Invalid $depth `#{$depth}` for mixin `card`.";
+    } @else {
+        box-shadow: bottom-shadow($depth), top-shadow($depth);
+    }
+}
+/// Computes a top-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function top-shadow($depth) {
+    $primary-offset: nth(1.5 3 10 14 19, $depth) * 1px;
+    $blur: nth(1.5 3 10 14 19, $depth) * 4px;
+    $color: rgba(black, nth(.12 .16 .19 .25 .30, $depth));
+
+    @return 0 $primary-offset $blur $color;
+}
+
+/// Computes a bottom-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function bottom-shadow($depth) {
+    $primary-offset: nth(1.5 3 6 10 15, $depth) * 1px;
+    $blur: nth(1 3 3 5 6, $depth) * 4px;
+    $color: rgba(black, nth(.24 .23 .23 .22 .22, $depth));
+
+    @return 0 $primary-offset $blur $color;
+}
+
+.adpmain {
+    position: absolute;
+}
+
+.adpmain.persian {
+    direction: rtl;
+}
+
+.adpmain.gregorian {
+    direction: ltr;
+}
+
+.adpmain > table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 0;
+	background-color: #fff;
+    @include card(1);
+}
+
+.adpmain td {
+    border: 1px solid $grey25;
+    border-left: 0;
+    border-right: 0;
+    padding: 0;
+    text-align: center;
+    min-width: 35px;
+    height: 30px;
+	font-size:0.85rem;
+    &.adp-month-name {
+        background-color: $grey10;
+        border: 0;
+    }
+}
+
+.adpmain td.chanageMode {
+    border-color: #fff;
+}
+
+.adpmain td a {
+    padding: 0;
+    display: block;
+    line-height: 30px;
+    min-width: 35px;
+    height: 30px;
+}
+
+@media(min-width: 768px) {
+    .two-months.persian {
+        table table:first-child {
+            border-left:1px solid $blue;
+        }
+    }
+
+    .two-months.gregorian {
+        table table:first-child {
+            border-right:1px solid $blue;
+        }
+    }
+    .adpmain td {
+        min-width: 40px;
+		table {
+			display: inline-block;
+			vertical-align: top;
+		}
+    }
+    .adpmain td a {
+        min-width: 40px;
+    }
+}
+
+.adpmain td.chanageMode a {
+    width: 100%;
+}
+
+.adpmain .navBack {
+/*	float: right;
+	uncommenting this line breaks IE display of element
+	in some unknown situations !
+*/
+}
+
+.adpmain.persian .navBack a {
+	float: right;
+}
+
+.adpmain.gregorian .navBack a {
+	float: left;
+}
+
+.adpmain.persian .navFwd {
+	float: left;
+}
+
+.adpmain.gregorian .navFwd {
+	float: right;
+}
+
+.adpmain.persian .navFwd a {
+	float: left;
+}
+
+.adpmain.gregorian .navFwd a {
+	float: right;
+}
+
+.adpmain .navInfo {
+	padding: 5px 0;
+	display: inline-block;
+}
+
+.adpmain .pickerHead {
+    background-color: #fff;
+    border: 0;
+    height: 40px;
+}
+
+.adpmain .pickerHead a {
+	padding: 0 5px;
+    height: 40px;
+	line-height: 40px;
+	font-size: 0.85rem;
+    color: $blue;
+    min-width:30px;
+}
+
+.adpmain .pickerHead a:hover {
+    background-color: $blue;
+    color: #fff;
+}
+
+.adpmain .pickerHead a.nav {
+	display: block;
+}
+
+.adpmain a.nav:hover {
+	background-color: $blue;
+}
+
+.adpmain  a.monYear {
+	display: inline-block;
+	padding-left: 5px;
+    padding-right: 5px;
+    width: auto;
+}
+
+.adpmain a.monYear:hover {
+	background-color: $blue;
+	color: #fff;
+}
+
+.adpmain a.weekday {
+	display: block;
+	padding: 2px 0;
+    color: #000;
+}
+
+.adpmain a.weekday.invalid,
+.adpmain a.weekday.invalid:hover {
+    color: grey !important;
+    background-color: lighten($red, 40%);
+    cursor:not-allowed;
+}
+
+.adpmain.persian a.friday {
+	color: $orange;
+}
+
+.adpmain.gregorian a.sunday {
+	color: $orange;
+}
+
+.adpmain a.selected {
+    background-color: $blue;
+	color: #fff;
+}
+
+.adpmain a.chosen {
+    background-color: $grey10;
+}
+
+.adpmain a.today {
+    /*background-color: $blue;
+	color: #fff !important;*/
+}
+
+.adpmain td.calWeekdays {
+	background-color: $grey75;
+	color: #fff;
+	text-align: center;
+	padding-top: 3px;
+	padding-bottom: 2px;
+}
+
+.adpmain td.pickerFoot a {
+	display: block;
+	padding: 2px;
+    background-color: $grey75;
+    width: auto;
+}
+
+.adpmain td.pickerFoot a:hover {
+    background-color: $grey25;
+}
+
+.adpmain a {
+	text-decoration: none;
+	color: #fff;
+	-moz-transition: all 0.1s cubic-bezier(0,1,1,0);
+	-webkit-transition: all 0.1s cubic-bezier(0,1,1,0);
+	-o-transition: all 0.1s cubic-bezier(0,1,1,0);
+	transition: all 0.1s cubic-bezier(0,1,1,0);
+}
+
+.adpmain td.chanageMode a {
+    color: $grey75;
+}
+
+.adpmain td.chanageMode a:hover {
+    color: $orange;
+    background-color: #fff;
+}
+
+.adpmain .chanageMode a {
+	display: inline-block;
+	padding: 2px 5px;
+}
+
+.adpmain a:hover {
+    background-color: $grey10;
+	text-decoration: none;
+}
+
+div.monthYearPicker a:hover {
+	text-decoration: none;
+	background: $blue;
+}
+
+div.monthYearPicker {
+	background-color: $blue;
+	@include card(2);
+	text-align: center;
+	position: absolute;
+	max-width: 250px;
+}
+
+div.monthYearPicker a {
+	text-decoration: none;
+	color: #fff;
+	box-sizing: border-box;
+	display: inline-block;
+	padding: 0.3em 0.5em;
+	transition: all 0.1s cubic-bezier(0, 1, 1, 0) 0s;
+	width: 33.333%;
+}
+
+div.monthYearPicker a:hover {
+    background-color: $orange;
+    color: #fff;
+}
+
+div.monthYearPicker a.selected {
+    background-color: $orange;
+	color: #fff;
+}
+.table-splitter {
+    position: relative;
+}
+.table-splitter:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right:50%;
+    background-color: $blue;
+    width:1px;
+}

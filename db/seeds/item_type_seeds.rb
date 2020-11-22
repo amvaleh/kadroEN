@@ -1,0 +1,1 @@
+ItemType.create!(title: "سرویس", category: "service", seq: 5)

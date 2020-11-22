@@ -1,0 +1,42 @@
+<span>
+  ادمین
+  <span style="color: black">
+    <%= link_to activity.owner.email, admin_admin_user_path(activity.owner_id), style: 'color: #38678b !important' %>
+  </span>
+  <% words = activity.trackable_type.split /(?=[A-Z])/ %>
+  <% link = "" %>
+  <% words.each_with_index do |receipt, index| %>
+    <% if index == words.size - 1 %>
+      <% link = link + receipt.downcase %>
+    <% else %>
+      <% link = link + receipt.downcase + "_" %>
+    <% end %>
+  <% end %>
+  <% link = link + "s" %>
+
+  <% if link.include? "category" %>
+    <% link = "categories" %>
+  <% end %>
+
+  <% if activity.trackable_type == "Photographer" %>
+    <% slug = Photographer.find_by(id: activity.trackable_id)&.slug %>
+    <% elsif activity.trackable_type == "Project" %>
+    <% slug = Project.find_by(id: activity.trackable_id)&.slug %>
+    <% elsif activity.trackable_type == "Gallery" %>
+    <% slug = Gallery.find_by(id: activity.trackable_id)&.slug %>
+    <% link = "galleries" %>
+  <% end %>
+  روی
+  <span class="recipient">
+<%= link_to activity.trackable_type , slug.present? ? "#{link}/#{slug}" : "#{link}/#{activity.trackable_id}", style: 'color: #38678b !important' %>  </span>
+  تغییرات زیر را اعمال کرد:
+  <% unless activity.recipient_type.nil? %>
+  <p style="color: #ff0069; direction: ltr !important;">
+    <%params =  activity.recipient_type.split('],') %>
+    <% params.each do |param| %>
+      <%= param %>
+      <br>
+    <% end %>
+  </p>
+    <% end %>
+</span>

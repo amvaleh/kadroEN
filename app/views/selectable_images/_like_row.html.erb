@@ -1,0 +1,35 @@
+<% selectable = SelectableImage.find_by(image_id: p.id, image_type: "Photo") %>
+<% if selectable.present? %>
+<div class="col-12 text-center" style="margin-top: 5px; margin-bottom: 10px;">
+  <button type="button" id="<%= selectable.id %>-sample-like" class="btn no-padding" style="width: 45%; background-color: #eeeeee;" onclick="likephoto(<%= selectable.id %>,'like','<%= base_url %>/selectable_images/like','<%= p.id %>');">
+    <div class="text-center">
+      <i class="fa fa-heart-o fa-2x icon-like" id="like-<%= selectable.id %>" data-value="false" style="color: #767575;"></i>
+      <span id="<%= selectable.id %>-span-like-number" class="number-text text-center counter" style="font-size: 23px; margin-right: 5px;">  <%= selectable.like_number.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %></span>
+    </div>
+  </button>
+  <button type="button" id="<%= selectable.id %>-sample-dislike" class="btn no-padding" style="width: 45%; background-color: #eeeeee;" onclick="likephoto(<%= selectable.id %>,'dislike','<%= base_url %>/selectable_images/like','<%= p.id %>');">
+    <div class="text-center">
+      <i class="fa fa-times fa-2x icon-dislike" id="dislike-<%= selectable.id %>" data-value="false" style="color: #767575;"></i>
+      <span id="<%= selectable.id %>-span-dislike-number" class="number-text text-center counter" style="font-size: 23px; margin-right: 5px;"><%= selectable.dislike_number.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %></span>
+    </div>
+  </button>
+</div>
+<script type="text/javascript">
+  checkCookie('<%= selectable.id %>-sample');
+</script>
+<% else %>
+<div id="like-row-<%= p.id %>">
+  <div class="col-12 text-center" style="margin-top: 5px; margin-bottom: 10px;">
+    <button type="button" id="<%= p.id %>-photo-like" class="btn" style="width: 45%; background-color: #eeeeee;" onclick="create_selectable(<%= p.id %>,'like','<%= base_url %>/selectable_images/create', '<%= e.shoot_type.id %>');">
+      <div class="text-center">
+        <i class="fa fa-heart-o fa-2x icon-like"  data-value="false" style="color: #767575;"></i>
+      </div>
+    </button>
+    <button type="button" id="<%= p.id %>-photo-dislike" class="btn" style="width: 45%; background-color: #eeeeee;" onclick="create_selectable(<%= p.id %>,'dislike','<%= base_url %>/selectable_images/create', '<%= e.shoot_type.id %>');">
+      <div class="text-center">
+        <i class="fa fa-times fa-2x icon-dislike"  data-value="false" style="color: #767575;"></i>
+      </div>
+    </button>
+  </div>
+</div>
+<% end %>

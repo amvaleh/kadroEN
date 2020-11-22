@@ -1,0 +1,36 @@
+<head>
+  <% if Rails.env.production? %>
+  <%= render 'shared/externals/gtag_header' %>
+  <%= render 'shared/externals/ganalytics' %>
+  <%#= render 'shared/externals/addthis' %>
+  <%= render 'shared/externals/raychat' %>
+  <%#= render 'shared/externals/heap_analytics' %>
+  <%= render 'shared/yektanet_header' %>
+  <%= render 'shared/externals/yandex' %>
+  <% end %>
+  <title>
+    درخواست تماس
+    | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="درخواست تماس">
+  <meta name="keywords" content="">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    <%= csrf_meta_tags %>
+    <% if Rails.env.production? %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload',host: "app.kadro.co" %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload',host: "app.kadro.co"  %>
+    <% else %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload'  %>
+    <% end %>
+    <link rel="icon" type="image/png" href="">
+  </head>
+  <% if params[:header] != "false" %>
+  <%= render "public/shared/wordpress_header" %>
+  <% end %>
+<%= render "public/shared/section_of_call_request" , dest_url: create_call_request_path %>
+
+

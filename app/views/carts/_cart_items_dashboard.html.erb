@@ -1,0 +1,62 @@
+<% cart_items.each do |item| %>
+  <div class="row">
+    <div class="col-3 col-sm-3 col-md-3">
+      <% frame = current_frames.detect {|f| f.id == item.frame_id} %>
+      <img src="<%= frame.file_address(true, 'light') %>"  class="img-thumbnail" alt=""/>
+    </div>
+    <div class="col-9 px-0">
+      <div class="row">
+        <div class="col-3 text-center cart-table">
+          <%= item.title %>
+        </div>
+        <div class="col-2 hidden-xs text-center cart-table">
+          <%= number_with_delimiter(item.price.to_i , :delimiter => ',') %>
+        </div>
+        <div class="col-2 col-sm-2 text-center cart-table">
+          <%= number_field_tag(:quantity, item.quantity, min: 0,
+                               'data-remote' => true,
+                               'data-url' => url_for(controller: 'carts', action: 'cart_update_dashboard',
+                                                     item_id: item.item_id,
+                                                     frame_id: item.frame_id,
+                                                     format: 'js'),
+                               style: 'width: 100%;
+                            text-align: center;
+                            min-width: 30px;
+                            height: 35px;
+                            font-size: 15px;
+                            border-radius: 0px;',
+                               id: "quantity_#{item.id}", class: 'form-control',
+                               onchange: "return quantityChange(quantity_#{item.id}, #{item.quantity}, '#{item.category}')") %>
+        </div>
+        <div class="col-2 text-center cart-table">
+          <div id="row-total-<%= item.id %>">
+            <%= number_with_delimiter((item.price * item.quantity).to_i , :delimiter => ',')%>
+          </div>
+        </div>
+
+        <div class="col-1 text-center cart-table">
+          <%= link_to("<i class='fa fa-trash fa-2x'></i>".html_safe, cart_item_delete_dashboard_path(cart_item_id: item.id), remote: true,
+                      class: 'text-danger', title: 'حذف', method: :delete, onclick: 'return deleteItem()') %>
+        </div>
+
+        <% if item.item.title == "روتوش حرفه ای" || item.item.title == "روتوش استاندارد" || item.item.title == "روتوش چهره" || item.item.title == "روتوش صنعتی محصول" || item.item.title == "روتوش تمام قد" %>
+          <div class="col-xs-9 col-sm-9 col-md-6">
+            <div class="form-group" style="margin-top: 10px;">
+              <%= text_area(:description, nil,
+                            'data-remote' => true,
+                            'data-url' => url_for(controller: 'carts', action: 'add_description_to_cart_item_dashboard',
+                                                  item_id: item.item_id,
+                                                  frame_id: item.frame_id,
+                                                  format: 'js'),
+                            id: "description_#{item.id}", class: 'form-control',
+                            value: item.description,
+                            placeholder: "لطفا توضیحات در مورد رتوش خود را وارد نمایید.",
+                            onchange: "return quantityChange(quantity_#{item.id}, #{item.quantity}, '#{item.category}')")%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br/>
+<% end %>

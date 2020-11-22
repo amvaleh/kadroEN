@@ -1,0 +1,6 @@
+setTimeout(function () {
+    jQuery('.loading-spinner').hide();
+    jQuery('#cart-header').hide().html(
+        "<%= j render partial:'overrides/cart_header' %>").fadeIn('slow');
+    <%= render 'shared/modal_hide_and_flash' %>
+}, 1000)

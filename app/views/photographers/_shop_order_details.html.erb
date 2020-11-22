@@ -1,0 +1,54 @@
+<div class="modal-section">
+  <div class="row">
+  <% shop_orders.each_with_index do |shop_order,index|%>
+       <div class="col-xs-12 col-md-6 well">
+         <div class="col-md-6 col-xs-12 text-right">
+           <% frame = Frame.find(shop_order.frame_id) %>
+           <%#= frame.file.to_s.split('/').last %>
+           <%= image_tag frame.file_url(:light) %>
+         </div>
+         <div class="col-md-6 col-xs-12">
+           <br class="hidden-xs">
+           <br>
+           <div class="row" >
+             <div class="col-md-4 col-xs-4">
+               سفارش
+             </div>
+             <div class="col-md-8 col-xs-8 text-left">
+               <%= shop_order.title %>
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-md-4 col-xs-4">
+               تعداد
+             </div>
+             <div class="col-md-8 col-xs-8 text-left">
+               <%= shop_order.quantity %>
+               عدد
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-md-4 col-xs-4" >
+               مبلغ
+             </div>
+             <div class="col-md-8 col-xs-8 text-left">
+               <%= shop_order.subtotal.to_i %>
+               تومان
+             </div>
+           </div>
+           <hr style="margin: 5px">
+           <div class="row ">
+             <div class="col-md-4  col-xs-7 text-left">
+               مجموع:
+             </div>
+             <div class="col-md-8 col-xs-5 text-left">
+               <%= shop_order.subtotal.to_i * shop_order.quantity %>
+               تومان
+             </div>
+           </div>
+         </div>
+      </div>
+      <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,46 @@
+<% photographers = current_admin_user.business.photographers %>
+<div style="direction:rtl !important;">
+  <table class="table table-hover table-bordered">
+    <tr>
+      <th class="text-center">نام عکاس</th>
+      <th class="text-center">تاریخ ثبت نام</th>
+      <th class="text-center">مرحله</th>
+      <th class="text-center">تایید شده</th>
+      <th class="text-center">شماره موبایل</th>
+      <th class="text-center">ایمیل</th>
+    </tr>
+    <% photographers.each do |photographer| %>
+    <tr>
+      <td>
+          <%= photographer.display_name %>
+      </td>
+
+      <td>
+        <% time = photographer.created_at %>
+        <%= convert_persian_day(time.strftime("%A")).to_s + " " + time.to_date.to_pdate.strftime("%e %b").to_s +  " ساعت " + time.strftime("%H:%M") %>
+      </td>
+
+      <td>
+        <%= photographer.join_step.name %>
+      </td>
+
+      <td>
+        <% if photographer.approved? %>
+        بله
+        <% else %>
+        خیر
+        <% end %>
+      </td>
+
+      <td>
+        <%= photographer.mobile_number %>
+      </td>
+
+      <td>
+        <%= photographer.email %>
+      </td>
+
+    </tr>
+    <% end %>
+  </table>
+</div>

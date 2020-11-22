@@ -1,0 +1,108 @@
+<%= render 'shared/modal_sm' %>
+<div class="content-wrapper padding-content">
+  <%= render 'shared/alert_notice' %>
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h3 class="page-title">
+          <i class="mdi mdi-refresh"></i>
+          پروژه های آماده پرداخت
+        </h3>
+      </div>
+    </div>
+  </div>
+  <section class="content">
+    <div class="row">
+      <% if @projects.any? %>
+        <% @projects.order("created_at DESC").each do |project| %>
+          <div class="col-12 col-md-6 mt-3">
+            <div class="card shadow-sm">
+              <div class="card-horizontal">
+                <div class="col-6 pl-0">
+                  <div class="img-square-wrapper">
+                    <img class="rounded-right" src="/img/updateslogo-square.jpg" alt="Card image cap" style="height: 220px;object-fit: cover;width: 100%;">
+                  </div>
+                </div>
+                <div class="col-6 pt-5">
+                  <div class="m-5">
+                    <h4 class="card-title"><%= project.photographer.display_name %></h4>
+                    <div class="col-12 p-2" style="direction: rtl;border-bottom: 1px solid rgba(28, 29, 29, 0.07);">
+                      <span class="fa fa-star checked"></span>
+                      <p class="checked" style="display: inline;">
+                      <% if project.reserve_step_id == 5 %>
+                        در انتظار پرداخت
+                      <% else %>
+                        انصراف از پرداخت
+                      <% end %>
+                      </p>
+                    </div>
+                    <div class="col-12 pr-0 pt-4">
+                      <div class="row">
+                        <div class="col-12 col-md-5">
+                          شروع پروژه :
+                        </div>
+                        <div class="col-12 col-md-7" style="text-align: left;">
+                          <span><%= ( project.start_time.strftime("%H:%M") + " - " + project.start_time.to_date.to_pdate.strftime("%Y/%m/%d")).tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-5">
+                          رشته :
+                        </div>
+                        <div class="col-12 col-md-7" style="text-align: left;">
+                          <span><%= project.shoot_type.title %></span>
+                        </div>
+                      </div>
+                      <div class="row mt-3" style="font-size: 1.2rem;">
+                        <div class="col-12 col-md-7" style="text-align: left;">
+                          <%= number_with_delimiter(project.receipt.subtotal.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                          <!--                <span class="fa fa-camera"></span>-->
+                        </div>
+                        <div class="col-12 col-md-5" style="text-align: left;">
+                          <span style="font-size: 10px;">تومان</span>
+                        </div>
+                      </div>
+                      <div class="row py-4 text-left">
+                        <div class="col-12">
+                          <% if project.start_time < Time.now + 1.days %>
+                            <button class="btn btn-sm btn-info" target="_blank" disabled="true">منقضی شده</button>
+                          <% else %>
+                            <a class="btn btn-sm btn-info" href="/projects/<%= project.slug %>/receipt" target="_blank">مشاهده فاکتور</a>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="col-12 col-md-12 text-center">
+          <img src="/img/emotystate.png" style="margin-bottom: 100px;">
+          <h5>اگر تا الان پروژه ای ثبت نکردی همین حالا اقدام کن</h5>
+          <p class="lead" style="margin-top:30px;margin-bottom: 150px;">
+            <a class="btn btn-info btn-lg" href="/" role="button">رزرو عکاس</a>
+          </p>
+        </div>
+      <% end %>
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+<style>
+  .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+  .checked {
+    color: orange;
+  }
+
+  .lock-checked {
+    color: #0188ff;
+  }
+</style>

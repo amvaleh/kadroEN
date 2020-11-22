@@ -1,0 +1,33 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<div style="direction:rtl !important;">
+
+<h4 style="direction: rtl; text-align: right;">
+  آمار ایمیل های ارسال شده به عکاسان
+</h4>
+<%= column_chart SentPhotographerEmail.all.group_by_month(:sent).count.map{|s,total| [ s.to_date.to_pdate.strftime("%y %b").to_s , total]} , library: {backgroundColor: "#eee"} %>
+<h4 style="direction: rtl; text-align: right;">
+  آمار ایمیل های دیده شده عکاسان
+</h4>
+<%= column_chart SentPhotographerEmail.opened.group_by_month(:sent).count.map{|s,total| [ s.to_date.to_pdate.strftime("%y %b").to_s , total]} , library: {backgroundColor: "#eee"}, colors: ["green", "#999"] %>
+
+
+<h4 style="direction: rtl; text-align: right;">
+  آمار ایمیل های ارسال شده به مشتریان
+</h4>
+<%= column_chart SentUserEmail.all.group_by_month(:sent).count.map{|s,total| [ s.to_date.to_pdate.strftime("%y %b").to_s , total]} , library: {backgroundColor: "#eee"} %>
+<h4 style="direction: rtl; text-align: right;">
+  آمار ایمیل های دیده شده مشتریان
+</h4>
+<%= column_chart SentUserEmail.opened.group_by_month(:sent).count.map{|s,total| [ s.to_date.to_pdate.strftime("%y %b").to_s , total]} , library: {backgroundColor: "#eee"}, colors: ["green", "#999"] %>
+</div>
+
+<h4 style="direction: rtl; text-align: right;">
+  آمار ایمیل های ارسال شده برای پروژه
+</h4>
+<%= column_chart SentProjectEmail.all.group_by_month(:sent).count.map{|s,total| [ s.to_date.to_pdate.strftime("%y %b").to_s , total]} , library: {backgroundColor: "#eee"} %>
+<h4 style="direction: rtl; text-align: right;">
+  آمار ایمیل های دیده شده پروژه ها
+</h4>
+<%= column_chart SentProjectEmail.opened.group_by_month(:sent).count.map{|s,total| [ s.to_date.to_pdate.strftime("%y %b").to_s , total]} , library: {backgroundColor: "#eee"}, colors: ["green", "#999"] %>
+</div>

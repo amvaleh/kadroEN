@@ -1,0 +1,61 @@
+<footer class="gallery-capacity-footer">
+  <div class="container" id="capacity-container" style="position: relative">
+    <span class="circle-capacity text-center" id="download-capacity-notice"><%= @gallery.download_limit - @gallery.downloaded_count %> </span>
+    <div class="row" id="download-capacity-notify" >
+
+      <div class="col-md-9 col-xs-9 text-right" style="padding-left: 0px">
+        شما
+        <strong style="color: #f5ff24" id="download-count-notice"><%= @gallery.downloaded_count %></strong>
+        عکس از
+        <strong style="color: #f5ff24" id="download-limit-notice"><%= @gallery.download_limit %></strong>
+        عکس پکیج خود را دانلود کرده اید.
+      </div>
+      <div class="col-md-3 col-xs-3" style=" padding: 0px; padding-right: 2px; color: #feffff">
+        باقیمانده:
+      </div>
+    </div>
+  </div>
+  <div class="container" id="capacity-container">
+    <div class="row" id="download-acknowledge" style="background-color: rgb(0, 129, 218); padding: 3%; color: white" hidden>
+      <div class="col-md-8 col-xs-7" style="padding: 0px">
+        آیا مطمئنید برای دانلود این عکس؟
+        <br>
+        <div class="checkbox check-show" style="margin-bottom: 0px">
+          <label><input id="dont-show" type="checkbox">دیگه نمایش نده!</label>
+        </div>
+      </div>
+      <div class="col-md-4 col-xs-5" style="padding: 0px">
+        <button class="btn btn-default" onclick="downloadCaller()" id="approve-download-btn" style="background-color: #69da62; color: white; border: none">بله</button>
+        <button class="btn btn-default" onclick="jQuery('#download-acknowledge').slideUp(); jQuery('.gallery-capacity-footer').css('z-index','999')" id="approve-download-btn" style="background-color: #dc0673; color: white; border: none">لغو</button>
+      </div>
+    </div>
+  </div>
+  <div class="container" id="capacity-container">
+    <div class="row" id="extra-download" style="background-color: rgb(240,245,0); padding: 3%; color: rgb(175, 84, 20); font-size: 100%" hidden>
+      <div class="text-center" style="padding: 0px">
+        برای دانلود هر فریم بیشتر باید فریم انتخابی تان را خریداری کنید.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+    function persian_number() {
+        persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
+        function traverse(el) {
+            if (el.nodeType == 3) {
+                var list = el.data.match(/[0-9]/g);
+                if (list != null && list.length != 0) {
+                    for (var i = 0; i < list.length; i++)
+                        el.data = el.data.replace(list[i], persian[list[i]]);
+                }
+            }
+            for (var i = 0; i < el.childNodes.length; i++) {
+                traverse(el.childNodes[i]);
+            }
+        }
+
+        traverse(document.body);
+    }
+</script>

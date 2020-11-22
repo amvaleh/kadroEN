@@ -1,0 +1,162 @@
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="tracker-container">
+        <div class="tracker">
+          <div class="process-tabs-line w-hidden-tiny">
+            <span class="step-line step-line-package active" style="width: 33.3333%; right: 0%;"></span>
+            <span class="step-line step-line-datetime active" style="width: 33.3333%; right: 33.3333%;"></span>
+            <span class="step-line step-line-details active" style="width: 33.3333%; right: 66.6667%;"></span>
+          </div>
+
+          <div class="process-tab-button tracker-circle selected" style="right: 0%;">
+            <div class="tracker-text">
+              پکیج
+            </div>
+          </div>
+          <div class="process-tab-button tracker-circle selected" style="right: 33.3333%;">
+            <div class="tracker-text">
+              کی و کجا؟
+            </div>
+          </div>
+          <div class="process-tab-button tracker-circle selected" style="right: 66.6667%;">
+            <div class="tracker-text">
+              عکاس
+            </div>
+          </div>
+          <div class="process-tab-button tracker-circle selected" style="right: 100%;">
+            <div class="tracker-text">
+              جزئیات
+            </div>
+          </div>
+        </div><!-- /.tracker -->
+      </div>
+
+      <div class="wrapper">
+        <div class="pie-container">
+          <div class="pie">
+            <div id="rotate" class="pie-rotate" style="background-color: rgb(42, 134, 249); transform: rotate(-355.2deg);"></div>
+            <div id="timer" class="pie-center">9:53</div>
+          </div>
+          <p>
+            دقیقه
+            رزرو این عکاس برای شما محفوظ خواهد بود.
+          </p>
+        </div>
+        <p id="after-count" class="hidden">
+          ممکن هست در صورتیکه شخص دیگری عکاس را رزور کرده باشد باید به مرحله قبل بازگردید.
+        </p>
+        <br>
+        <h3>
+          نهایی سازی
+        </h3>
+        <%= form_tag reserve_submit_detail_path , id:"form4" , class: "form form-group" do %>
+        <%= hidden_field_tag "project_id" ,  @project.id %>
+        <div class="row" id="detail">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="address-detail">
+                استایل عکاسی
+              </label>
+              <textarea name="shoot-style" rows="5" class="form-control" id="address-detail" placeholder="استایل تصاویری که دوست دارید بگیرید، لینک به نمونه های مشابه یا هر چیزی (ببینیم چه کار براتون می تونیم بکنیم)"></textarea>
+            </div>
+            <!-- /.form-group -->
+            <div class="form-group" style="margin-top: 30px;">
+              <div class="checkbox-control">
+                <input type="checkbox" id="check1" value="انتخاب توافق" required="" data-parsley-multiple="check1">
+                <label for="check1">
+                  من
+                  <a target="_blank" href="https://kadro.co/terms/">
+                    شرایط و مقررات
+                  </a>
+                  کادرو را خوانده و پذیرفته ام.
+                </label>
+              </div>
+              <div class="checkbox-control">
+                <input type="checkbox" id="check2" value="قوانین" required="" data-parsley-multiple="check2">
+                <label for="check2">
+                  من با شرط لغو زیر موافق هستم:
+                </label>
+              </div>
+            </div><!-- /.form-group -->
+            <p style="color: #b2bcc7; font-size: 0.9em;">
+             زمان و مکان پروژه تا ۲۴ ساعت مانده به رزرو شما
+              قابل تغییر نیست.
+              اولین تغییر زمان یا مکان بدون هزینه انجام می شود، تغییر های
+              بعدی مستلزم پرداخت هزینه است.
+              هیچ بازپرداخت مبلغی
+              در صورت
+                کنسلی یا عدم حضور شما در زمان پروژه وجود ندارد.
+            </p>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="shooter-detail">نحوه آشنایی با ما</label>
+              <%= select_tag "feedback_channel", options_from_collection_for_select(FeedbackChannel.all.sort_by{|e| e[:order]}, "id", "title"),class: "form-control" %>
+            </div>
+
+          </div><!-- /.col sm 6 -->
+        </div>
+        <footer id="footer">
+          <div class="container">
+            <div class="wrap">
+              <%= link_to "بازگشت" , photographer_project_path(@project) , class: "btn btn-gray" %>
+              <button type="submit" id="submit_page_form" class="btn btn-blue">ذخیره و ادامه</button>
+            </div>
+          </div>
+        </footer>
+        <% end %>
+      </div><!-- /.wrapper -->
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+<script>
+$(document).ready(function () {
+  $('#submit_page_form').click(function(){
+    $('#form4').submit();
+  });
+  $('#form4').parsley().on('field:validated', function () {
+    $('button').prop('disabled', false);
+    //            $('.name, .phone, .map').removeClass('hidden');
+  }).on('form:submit', function () {
+  });
+  // show company input on click
+  $('.add-company').click(function () {
+    $('.company').removeClass('hidden');
+    $(this).remove();
+  });
+});
+var minutes        = 10;
+var secs           = minutes * 60;
+var currentSeconds = 0;
+var currentMinutes = 0;
+var circle         = -360;
+var half           = -360;
+setTimeout(Decrement, 1000);
+function Decrement() {
+  currentMinutes = Math.floor(secs / 60);
+  currentSeconds = secs % 60;
+  if (currentSeconds <= 9) currentSeconds = "0" + currentSeconds;
+  secs--;
+  if (currentMinutes >= 5) {
+    circle += 0.6;
+    $('#rotate').css('transform', 'rotate(' + circle + 'deg)');
+  } else {
+    $('#rotate').addClass('next-half');
+    $('#rotate').css({
+      'background-color': 'rgb(239, 241, 243)',
+      'transform'       : 'rotate(' + half + 'deg)'
+    });
+    half += 0.6;
+  }
+  $("#timer").html(currentMinutes + ":" + currentSeconds);
+  if (secs !== -1) {
+    setTimeout('Decrement()', 1000);
+  } else {
+    $('.pie-container').remove();
+    $('#after-count').removeClass('hidden');
+  }
+
+}
+
+</script>

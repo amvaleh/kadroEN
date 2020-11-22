@@ -1,0 +1,154 @@
+<script type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+</script>
+<script type="text/javascript">
+  window.dataLayer.push({'transactionTotal':'<%=(@project.receipt.subtotal.to_i-@project.receipt.ph_payment.to_i)/12000%>'});
+  window.dataLayer.push({
+    "ecommerce": {
+      "purchase": {
+        "actionField": {
+          "id" : "<%=@project.shoot_type.title%>"
+        },
+        "products": [
+        {
+          "id": "<%=@project.slug%>",
+          "name": "<%=@project.user.display_name%>",
+          "price": <%=@project.receipt.subtotal%>,
+          "brand": "<%=@project.photographer.display_name%>",
+          "category": "<%=@project.shoot_type.title%>",
+          "variant": "<%=@project.user.display_name%>"
+        }
+        ]
+      }
+    }});
+  </script>
+  <script>
+    gtag('event', 'purchase', {
+      "transaction_id": "<%=@project.receipt.id%>",
+      "affiliation": "<%=@project.photographer.display_name%>",
+      "value": <%=(@project.receipt.subtotal.to_i - @project.receipt.ph_payment.to_i)/12000%>,
+      "currency": "USD",
+      "tax": 0,
+      "shipping": <%=@project.receipt.transportion_cost %>,
+      "items": [
+      {
+        "id": "<%=@project.package.id%>",
+        "name": "<%=@project.package.name%>",
+        "list_name": "<%=@project.photographer.display_name%>",
+        "brand": "<%=@project.shoot_type.title%>",
+        "category": "<%=@project.shoot_type.title%>",
+        "variant": "<%=@project.package.duration%>",
+        "list_position": 1,
+        "quantity": 1,
+        "price": '<%=@project.receipt.subtotal%>'
+      }
+      ]
+    });
+  </script>
+  <script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyBqAlo6eTQeSbkOn3xYIjJ4e1zr4ewrSxU&sensor=false&libraries=places'>
+  </script>
+  <%= javascript_include_tag "locationpicker.jquery" %>
+  <% exp = @project.photographer.expertises.approved.find_by_shoot_type_id(@project.shoot_type.id) %>
+
+  <%= render 'thank_you' %>
+
+
+  <% unless exp.nil? %>
+  <section id="portfolios">
+    <div class="inner">
+      <span class="btn close">بستن</span>
+      <div class="portfolio hidden owl-carousel" id="p<%= exp.id %>">
+        <% exp.samples.each do |s| %>
+        <div class="item">
+          <a href="<%= s.url %>">
+            <img src="<%= s.url %>" alt="">
+          </a>
+        </div>
+        <% end %>
+        <% exp.photos.each do |p| %>
+        <div class="item">
+          <a href="<%= p.file.url %>">
+            <img src="<%= p.file_url %>" alt="">
+          </a>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+  <% end %>
+  <script>
+
+    // $("#birthdate-picker").pDatepicker(
+    //     {
+    //         observer: true,
+    //
+    //         format: 'YYYY/MM/DD',
+    //
+    //         autoClose: true,
+    //         initialValue: false,
+    //
+    //     }
+    // );
+
+    $(document).ready(function () {
+
+      function validateEmail(sEmail) {
+        var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        if (filter.test(sEmail)) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+
+
+      $('#update-user').click(function () {
+        company_name = jQuery('#corporation').val();
+        email = jQuery('#email').val();
+
+        if (validateEmail(email)) {
+          $.ajax({
+            type: 'GET',
+            url: '/users/update_info',
+            dataType: 'script',
+            data: {
+              company_name: company_name,
+              email: email,
+              user_id: <%= @project.user.id %>
+            },
+            success: function () {
+              jQuery('#update-info').slideUp();
+              jQuery('#myalbum').show();
+
+            }
+          });
+        } else {
+          alert('لطفا یک ایمیل معتبر وارد کنید.')
+        }
+      });
+      // call kadro numbers
+      $(function () {
+        if (navigator.userAgent.match(/(iPhone|Android.*Mobile)/i)) {
+          $('a[data-tel]').each(function () {
+            $(this).prop('href', 'tel:' + $(this).data('tel'));
+          });
+        }
+        else {
+          $('a[data-tel]').each(function () {
+            $(this).text($(this).data('name') + ": " + $(this).data('tel'));
+          });
+        }
+      });
+      $('#map').locationpicker({
+        location: {
+          latitude: <%= @project.address.lattitude %>,
+          longitude: <%= @project.address.longtitude %>
+        },
+        radius: 10,
+        zoom: 16,
+        markerDraggable: false
+      });
+    });
+
+  </script>

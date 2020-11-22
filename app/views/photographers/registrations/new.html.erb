@@ -1,0 +1,36 @@
+<% @top_title = "ثبت نام برای عکاسی" %>
+<%= render 'shared/join_dynamic_header' , title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-md-6 col-sm-offset-3 col-sm-12">
+
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name) , html: {class: "form form-group"} ) do |f| %>
+            <%= devise_error_messages! %>
+
+            <div class="col-sm-12">
+              <%= f.label "شماره موبایل" %><br/>
+              <%= f.number_field :mobile_number, autofocus: true , class: "form-control"  %>
+            </div>
+
+            <div class="col-sm-12">
+              <%= f.label "رمز عبور" %><br/>
+              <%= f.password_field :password, autocomplete: "new-password" , class: "form-control" %>
+            </div>
+
+            <div class="col-sm-12 text-center" style="margin-top: 30px;">
+              <%= f.submit "ثبت" , class: "btn btn-blue btn-block" %>
+            </div>
+            <div class="col-sm-12" style="margin-top: 30px;">
+              <%= render "photographers/shared/links" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+</div><!-- /.container -->
+</section>

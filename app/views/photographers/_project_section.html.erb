@@ -1,0 +1,216 @@
+<style>
+  input {
+    margin: 0;
+  }
+</style>
+<% @projects.order("start_time DESC").each do |project| %>
+  <div class="col-md-4 col-sm-6 col-xs-12" style="">
+
+    <div class="row well" style=" <%if project.is_shooted%>background-color: #3b3b3b;<% else %> background-color: #a2d0f7;
+        <% end %>
+        border: 1px solid #ffffff;">
+      <div class="row">
+        <div class="col-xs-4">
+          <div class="text-left" style="">
+            <div class="dropdown" style="list-style: none">
+              <a href="#" class="dropdown-toggle btn btn-info btn-xs" style="color: black" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                بیشتر
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li style="    background: #e7e7e7;">
+                  <p class="text-center">
+                    ارزیابی:
+                  </p>
+                  <% if project.user_feedback.present? %>
+                    <%= link_to user_feedbacks_path(project), class: "btn" do %>
+        <span class="fa fa-check">
+        </span>
+                      ارزیابی شده
+                    <% end %>
+                  <% elsif !project.is_shooted %>
+                    <a href="#" class="btn">
+          <span class="fa fa-remove">
+          </span>
+                      عکاسی نشده
+                    </a>
+                  <% else %>
+                    <%= link_to user_feedbacks_path(project), class: "btn " do %>
+        <span class="fa fa-comment">
+        </span>
+                      ارزیابی کنید
+                    <% end %>
+                  <% end %>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <%= link_to project_information_project_path(project), class: "", target: '_blank' do %>
+        <span class="fa fa-info">
+        </span>
+                    اطلاعات پروژه
+                  <% end %>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <%= link_to payments_photographer_path(project: project.id), target: '_blank' do %>
+                    <span class="fa fa-folder-open"></span>
+                    جزئیات مالی
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <%= image_tag project.shoot_type.avatar_url(:medium) , class:"img-responsive" %>
+        </div>
+        <div class="col-xs-8">
+          <h5 class="text-right" style="color:white">
+            <%= project.user.display_name %>
+          </h5>
+          <h6 class="text-right" style="color:white">
+            <%= convert_persian_day(project.start_time.strftime("%A")).to_s + " " + project.start_time.to_date.to_pdate.strftime("%e %b").to_s + " ساعت " + project.start_time.strftime("%H:%M") %>
+          </h6>
+          <h6 class="text-right" style="color:white">
+            <%= project.package.present? ? "#{project.package.duration} -" : "" %> <%= project.shoot_type.title %>
+          </h6>
+        </div>
+
+      </div>
+      <div class="row">
+
+        <div class="col-xs-6 col-sm-6">
+          <% if project.gallery.present? %>
+            <%= link_to edit_gallery_path(project.gallery.slug), class: "btn btn-blue btn-xs btn-block" do %>
+              <span class="fa fa-photo"></span>
+              مدیریت
+            <% end %>
+          <% elsif project.is_shooted %>
+            <%= form_for project, url: galleries_path, method: 'post' do |g| %>
+              <%= g.hidden_field :project_id, value: project.slug %>
+              <%= g.submit "ساخت گالری", class: "btn btn-xs btn-primary btn-block" %>
+            <% end %>
+          <% elsif !project.is_shooted %>
+            <button class="btn btn-xs btn-primary btn-block" disabled> ساخت گالری</button>
+          <% end %>
+        </div>
+        <div class="col-xs-6 col-sm-6">
+          <%= link_to project_information_project_path(project), class: "btn btn-block btn-default", target: '_blank' do %>
+            <small>
+              <% if not project.confirmed %>
+                تعیین وضعیت
+              <% else %>
+              <span class="fa fa-info">
+              </span>
+                مدیریت
+              <% end %>
+            </small>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <hr style="width: 25%">
+        <div style="font-size:10px;">
+          <div class="text-center">
+            <span style="color: yellow;"> <%= project.payment_status %> </span> -
+            <% if project.checked_out %>
+              تسویه شده
+            <% else %>
+              تسویه نشده
+            <% end %>
+          </div>
+        </div>
+        <hr style="width: 25%">
+
+      </div>
+
+      <% if project.feed_back.present? %>
+        <div class="row" style="overflow: hidden">
+          <ul class="nav nav-justified">
+            <li role="presentation" class="active">
+              <a data-toggle="tab" href="#user_feedback_<%= project.slug %>" style="color: gray">
+                بازخورد کارفرما
+              </a>
+            </li>
+            <% if project.feed_back.supervisor_rates.any? %>
+              <li role="presentation" class="">
+                <a data-toggle="tab" href="#kadro_feedback_<%= project.slug %>" style="color: gray">
+                  بازخورد کادرو
+                  <span class="label label-danger">
+                    <%= project.feed_back.supervisor_rates.count %>
+                  </span>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+
+          <div class="tab-content" style="height: 11rem; overflow: scroll">
+            <div id="user_feedback_<%= project.slug %>" class="tab-pane fade in active" style="margin:0.8em">
+              <div class="col-xs-6 text-center" style="font-size:14px;">
+              <span style="font-size: 7px;">
+                کیفیت:
+              </span>
+                <% if project.feed_back.present? %>
+                <span>
+                   <%= number(project.feed_back.qrate, 'fa') %>
+                </span>
+                  از ۱۰
+                <% else %>
+                  بدون نمره
+                <% end %>
+              </div>
+              <div class="col-xs-6 text-center" style="font-size:14px;">
+              <span style="font-size: 8px;">
+                سرویس:
+              </span>
+                <% if project.feed_back.present? %>
+                <span>
+                  <%= number(project.feed_back.arate, 'fa') %>
+                </span>
+                  از ۱۰
+                <% else %>
+                  بدون نمره
+                <% end %>
+              </div>
+
+              <div class="col-xs-12" style=" overflow-y: scroll;color: white;
+                  text-align: justify; padding-right: 0px; box-sizing: content-box">
+                <% if project.feed_back.present? %>
+                  <% if project.feed_back.description.present? %>
+                    <p class="text-center">
+                      <%= (project.feed_back.description) %>
+                    </p>
+                  <% else %>
+                    <h6 class="text-center text-muted"> بدون توضیح. </h6>
+                  <% end %>
+                <% else %>
+                  <h6 class="text-center text-muted"> بدون توضیح. </h6>
+                <% end %>
+              </div>
+            </div>
+
+            <% if project.feed_back.supervisor_rates.any? %>
+
+              <div id="kadro_feedback_<%= project.slug %>" class="tab-pane fade" style="margin:0.8em">
+                <% project.feed_back.supervisor_rates.each do |sr| %>
+                  <div class="col-xs-12">
+                    <span style="color:gray; font-size: 10px">
+                      کارشناس کنترل کیفیت کادرو:
+                    </span>
+                    <span>
+                      <%= number(sr.rate, 'fa') %>
+                      از ۱۰
+                    </span>
+                  </div>
+                  <div class="col-xs-12">
+                    <p style="color: white;">
+                      <%= sr.description %>
+                    </p>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

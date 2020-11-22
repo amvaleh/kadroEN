@@ -1,0 +1,68 @@
+
+<div id="photographer_feedbacks" class="row">
+  <div class="col-xs-12">
+    <div id="ph_comments" style="margin: 2% 0px 0px 0px;" >
+      <% @good_feedbacks.each_with_index do |r,index| %>
+      <div class="row <%=index>4 ? 'hidden feedback_hidden' : '' %> " id="">
+        <div class="col-xs-2 col-md-2">
+          <span data-toggle="tooltip" data-placement="left" title="عکاسی <%=r.shoot_type.title%>" >
+            <%= image_tag r.shoot_type.avatar_url(:mini) , class: "img-rounded img-responsive img-comment-icon",style:"width:60px;margin:0px auto 0px auto;" %>
+          </span>
+        </div>
+        <div class="col-xs-4 col-md-2">
+          <h4 style="color: #a0a0a0; font-size: 16px">
+            <%= r.user.display_name %>:
+            <br>
+            <%begin%>
+            <p style="font-size: 9px!important;color: #636363;">
+              <% time = convert_persian_day(r.start_time.to_date.strftime("%A")).to_s + " " + r.start_time.to_date.to_date.to_pdate.strftime("%e %b").to_s %>
+              <%= time.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+            </p>
+            <% rescue StandardError => msg  %>
+            <%puts msg%>
+            <%end%>
+          </h4>
+        </div>
+        <div class="col-xs-6 col-md-5">
+          <p class="text-center" style="color: #676767;text-align: right;">
+            <%= truncate(r.feed_back.description,length: 300) %>
+          </p>
+        </div>
+        <div class="col-xs-6 col-md-2 pull-left">
+          <div class="row feedback_rate" style="margin-bottom: 3rem;display: flex;justify-content: space-between;">
+            <div class="text-center" style="display:flex;">
+              <div class="" >
+                <h6>
+                  <span class="number">
+                    <%= (r.feed_back.qrate).to_i.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                  </span>
+                  / ۱۰
+                </h6>
+                <span style="font-size: 12px">
+                  مهارت عکاسی
+                </span>
+              </div>
+            </div>
+            <div class="text-center" style="display:flex;">
+              <div class="" >
+                <h6>
+                  <span class="number">
+                    <%= (r.feed_back.arate).to_i.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                  </span>
+                  / ۱۰
+                </h6>
+                <span style="font-size: 12px">
+                  کیفیت خدمات
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-xs-12 text-center">
+      <button class="btn btn-xs btn-default" style="color: #513cd3;" id="more_comments"> نظرات بیشتر... </button>
+    </div>
+  </div>
+</div><!-- .container -->

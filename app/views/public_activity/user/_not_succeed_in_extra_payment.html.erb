@@ -1,0 +1,13 @@
+<span>
+
+  تمدید
+  <span class="recipient">
+  <%= link_to " پروژه" ,admin_project_path(Project.find_by(id: activity.recipient_id).slug) %>
+  </span>
+  توسط
+    کاربر
+  <span class="owner">
+  <%= link_to activity.owner.display_name, admin_user_path(activity.owner.id) %>
+  </span>
+  نا موفق بود.
+</span>

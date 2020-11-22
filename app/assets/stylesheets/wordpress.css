@@ -1,0 +1,341 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require wordpress/font-awesome.min
+*= require gallery/cubeportfolio.min
+*= require wordpress/bootstrap
+*= require wordpress/froala_blocks
+*= require wordpress/timeline
+#= require wordpress/faq
+#= require wordpress/pricing
+*= require_self
+*/
+@font-face {
+    font-family: 'iranyekan-light';
+    font-style: normal;
+    font-weight: 300;
+    src: url("/fonts/iranyekanweblight.eot");
+    src: url("/fonts/iranyekanweblight.eot?#iefix") format("embedded-opentype"), url("/fonts/iranyekanweblight.woff2") format("woff2"), url("/fonts/iranyekanweblight.woff") format("woff"), url("/fonts/iranyekanweblight.ttf") format("truetype"); }
+html , body , h1,h2,h3,h4,h5,h6,p{
+    font-family: "iranyekan-light";
+    direction: rtl;
+}
+
+p{
+    text-align: justify;
+    direction: rtl;
+}
+.lead{
+    text-align: justify;
+}
+.btn-group{
+    direction: ltr;
+}
+.carousel-caption{
+    font-size: 0.5rem !important;
+    background: #ffffffb5;
+    position: sticky;
+    left: unset;
+    right: unset;
+    /* right: 0; */
+    bottom: -20px;
+    z-index: 10;
+    padding-top: 4px;
+    padding-bottom: 10px;
+    color: gray;
+    text-align: right;
+    line-height: 0em;
+}
+.slider.slider-horizontal .slider-tick-label-container .slider-tick-label{
+    padding-top: 34px !important;
+    font-size: 1.1em !important;
+}
+
+@media only screen and (max-width:969px) {
+
+    .breadcrumb-item{
+        font-size: 75%;
+        padding-left: 0!important;
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+        padding-right: 0.1rem;
+        color: #fe7803;
+    }
+
+    h1 , h2 {
+        font-size: 170% !important;
+    }
+    p , .lead {
+        font-size: 120% ;
+        text-align: justify;
+    }
+    .small{
+        font-size: 80%!important; ;
+    }
+    .slider.slider-horizontal .slider-tick-label-container .slider-tick-label{
+        font-size: 11px !important;
+    }
+    #intro_ctas .btn{
+      font-size: 14px;
+    }
+}
+
+.move{
+    position: relative;
+    -webkit-animation-name: var(--type); /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 15s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-direction: alternate; /* Safari 4.0 - 8.0 */
+    animation-name: var(--type);
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+}
+.radius {
+    border-radius: 3%;
+}
+
+.one-radius {
+    border-radius: 5px 5px 0 0;
+}
+
+.box-shadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.fix-width{
+    width: 100%;
+}
+.fix-height{
+    height: 100%;
+}
+
+.btn-circle.btn-xl {
+    font-size: 20px;
+    line-height: 0.9em;
+}
+
+.number-text{
+    font-size: 0.9em;
+    color: #767575;
+}
+
+.gallery-frame-heart{
+    animation: pulse 1s ease;
+    animation-iteration-count: 4;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.heart{
+    position: absolute;
+    width: 100px;
+    height: 90px;
+    top: 50%;
+    left: 50%;
+    margin-top: -45px;
+    margin-left: -50px;
+}
+.heart:before, .heart:after{
+    position: absolute;
+    content: "";
+    left: 50px;
+    top: 0;
+    width: 50px;
+    height: 80px;
+    background: #ff4e37;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+.heart:after{
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+.love1{
+    animation: heart-animation 1s linear .4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.love1:after, .love1:before{
+    background-color: #ff4e37;
+}
+
+@keyframes beating{
+    0%{
+        transform: scale(1.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes heart-animation{
+    46%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.3);
+    }
+    52%{
+        transform: scale(1.5);
+    }
+    55%{
+        transform: scale(3);
+    }
+    100%{
+        opacity: 0;
+        transform: scale(50);
+    }
+}
+.col-6-padding{
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.terms h3,h4,h5{
+    text-align: right;
+    color: rgb(50, 158, 248);
+}
+
+.specialty:hover{
+    box-shadow:0 8px 14px rgba(0,0,0,0.3);-webkit-transform:scale(1.05);-moz-transform:scale(1.05);-ms-transform:scale(1.05);-o-transform:scale(1.05);transform:scale(1.05);
+}
+.specialty h5{
+    color: gray;
+}
+.join_steps h3{
+    text-align: right;
+}
+.photographer_income span{
+    color: #515dff;
+}
+.dropdown-toggle::after {
+    display: none;
+}
+.dropdown-toggle::before {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+.bg-dark-blue{
+    background-color: #00133e !important;
+}
+.fill_imgs img{
+    height: 120px;
+    object-fit: cover;
+    width: 100%;
+}
+.fill_imgs > div:first-child > img {
+    border-radius: 0px 0px 40px 0px;
+}
+.fill_imgs > div:last-child > img {
+    border-radius: 40px 0px 0px 0px;
+}
+.fill_imgs div{
+    width: 25%;
+}
+.fill_imgs > div:first-child{
+    width: 50%;
+}
+.fill_avatar{
+    height: 50px;
+    object-fit: cover;
+    width: 100%;
+}
+.btn-outline-light-hover{
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+}
+.dropdown-menu{
+    left: -8em;
+}
+.dropdown-item {
+    line-height: 3em;
+}
+
+
+.header-lead{
+    font-size: 22px;
+}
+
+
+
+
+
+.primary_color{
+   color:  #4286F5 !important;
+}
+
+.secondary_color{
+   color:  #5465FF !important;
+}
+
+.primarylight_color{
+   color:  #33A1FD !important;
+}
+
+.on_primary_color{
+   color:  #EFEFEF !important;
+}
+.on_secondary_color{
+   color:  #24272B !important;
+}
+.background_color{
+   color:  white !important;
+}
+
+
+.primary_color_bg{
+    background-color:  #4286F5 !important;
+}
+
+.secondary_color_bg{
+    background-color:  #5465FF !important;
+}
+
+.primarylight_color_bg{
+    background-color:  #33A1FD !important;
+}
+
+.on_primary_color_bg{
+    background-color:  #EFEFEF !important;
+}
+.on_secondary_color_bg{
+    background-color:  #24272B !important;
+}
+.background_color_bg{
+    background-color:  white !important;
+}
+
+
+.dropdown-toggle::before {
+    margin: 0 !important;
+}
+
+.package_features .badge {
+    text-align: right;
+    white-space: unset;
+    line-height: 1.4em;
+    margin: 0.1em;
+}

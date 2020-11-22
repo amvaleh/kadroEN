@@ -1,0 +1,11 @@
+<div class="row mb-4">
+  <div class="col-8 col-md-6 cart-table">
+    <strong><%= t(:'carts.cart_total') %>:</strong>
+    <span style="font-size: 25px"><%= number_with_delimiter(total.cart_total.to_i , :delimiter => ',') %> </span>
+    <strong><%= t(:'invoices.currency') %></strong>
+  </div>
+  <div class="col-4 col-md-6 cart-table">
+    <strong><%= t(:'carts.cart_count') %>: </strong>
+    <span style="font-size: 25px"><%= total.cart_count %></span>
+  </div>
+</div>

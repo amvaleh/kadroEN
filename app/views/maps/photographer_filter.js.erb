@@ -1,0 +1,45 @@
+console.log("inside");
+<% if @error %>
+alert("<%=@error%>");
+<% else %>
+
+
+handler2 = Gmaps.build('Google');
+handler2.buildMap({ provider: {
+  zoom:      15,
+  center:    new google.maps.LatLng(35.79078628217929, 51.40356720775139),
+  mapTypeId: google.maps.MapTypeId.ROADMAP }, internal: {id: 'photographers_map'}}, function(){
+    markers2 = handler2.addMarkers([
+      <% @approved_photographer.each do |p| %>
+        <% if p.location.present? %>
+        {
+          "lat": <%=p.location.working_lat%>,
+          "lng": <%=p.location.working_long%>,
+          "picture": {
+            "url": "https://kadro.co/wp-content/uploads/photographerActive.png",
+            "width":  50,
+            "height": 50
+          },
+          infowindow: '<%=link_to p.display_name , admin_photographer_path(p),target: "_blank" %> - <%=link_to "page" , "http://#{p.uid}.kadro.co",:target=>"_blank"%>'
+        },
+        <% end %>
+      <% end %>
+      <% @not_approved_photographer.each do |p| %>
+        <% if p.location.present? %>
+        {
+          "lat": <%=p.location.working_lat%>,
+          "lng": <%=p.location.working_long%>,
+          "picture": {
+            "url": "https://kadro.co/wp-content/uploads/photographerMarker.png",
+            "width":  50,
+            "height": 50
+          },
+          infowindow: '<%=link_to p.display_name , admin_photographer_path(p),target: "_blank" %>'
+        },
+        <% end %>
+      <% end %>
+    ]);
+    handler2.bounds.extendWith(markers2);
+    handler2.fitMapToBounds();
+  });
+  <% end %>

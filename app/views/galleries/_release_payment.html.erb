@@ -1,0 +1,34 @@
+<div class="col-xs-12 text-primary">
+  <h2 class="" style="color:white;">
+    <%= image_tag "/img/payment_guarantee.png",style:"width:50px" %>
+    پرداخت امن
+  </h2>
+  <% if
+  ReserveStep.find_by(name:"confirmed").id <= project.reserve_step.id and project.reserve_step.id <= ReserveStep.find_by(name:"downloaded").id and project.is_shooted %>
+    <h4 style="color:white;text-align:center" id="release_text">
+      در صورت رضایت از عملکرد عکاس، مبلغ پروژه را برای وی آزاد کنید.
+    </h4>
+    <br>
+        <%= form_tag release_payment_project_path(project) do %>
+        <%= hidden_field_tag id: project.slug %>
+        <%= submit_tag "آزاد سازی مبلغ", class:"btn", style:"background:black;color:white" %>
+        <% end %>
+      <% elsif project.reserve_step.id == ReserveStep.find_by(name:"happy_call").id or
+      project.reserve_step.id == ReserveStep.find_by(name:"checkout").id %>
+      <h4 style="color:white;text-align:center">
+        مبلغ پروژه برای عکاس‌ آزاد شده است.
+      </h4>
+      <br>
+      <%= link_to thank_you_project_path(project) ,class:"btn btn-default",target:"_blank" do %>
+      مشاهده فاکتور
+      <% end %>
+  <% else %>
+    <h4 style="color:white;text-align:center">
+      مبلغ پروژه در حالت امن قرار دارد
+    </h4>
+    <br>
+    <%= link_to thank_you_project_path(project) ,class:"btn btn-default",target:"_blank" do %>
+    مشاهده فاکتور
+    <% end %>
+  <% end %>
+</div>

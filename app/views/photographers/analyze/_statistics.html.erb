@@ -1,0 +1,252 @@
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-lg-3">
+        <div class="card-stat">
+          <div class="card-body">
+            <div class="stat-widget" id="left-border">
+              <div class="stat-icon flat-color-1">
+                <i class="fa fa-camera fa-1x"></i>
+              </div>
+              <div class="stat-content">
+                <div class="text-center">
+                  <div class="stat-text">
+                    <span><%= projects_number.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                    <%= t(:'photographers.number') %>
+                  </div>
+                  <div class="stat-heading"><%= t(:'photographers.ph_projects') %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 ">
+        <div class="card-stat">
+          <div class="card-body">
+            <div class="stat-widget" id="left-border">
+              <div class="stat-icon flat-color-2">
+                <i class="fa  fa-upload"></i>
+              </div>
+              <div class="stat-content">
+                <div class="text-center">
+                  <div class="stat-text">
+                    <span><%= frames_number.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                    <%= t(:'photographers.number') %>
+                  </div>
+                  <div class="stat-heading"><%= t(:'photographers.uploaded_frames') %></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card-stat">
+          <div class="card-body">
+            <div class="stat-widget" id="left-border">
+              <div class="stat-icon flat-color-2">
+                <i class="fa fa-clock-o fa-1x"></i>
+              </div>
+              <div class="stat-content">
+                <div class="text-center">
+                  <div class="stat-text">
+                    <span><%= duration_total.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                    <%= t(:'photographers.hour') %>
+                  </div>
+                  <div class="stat-heading"><%= t(:'photographers.photography') %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card-stat">
+          <div class="card-body">
+            <div class="stat-widget">
+              <div class="stat-icon flat-color-5">
+                <i class="fa   fa-refresh"></i>
+              </div>
+              <div class="stat-content">
+                <div class="text-center">
+                  <div class="stat-text">
+                    <span><%= suggestion_times.to_i.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                    <%= t(:'photographers.time') %>
+                  </div>
+                  <div class="stat-heading"><%= t(:'photographers.you_were_seen') %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-lg-3">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-stat" id="bottom-border">
+              <div class="card-body">
+                <div class="stat-widget">
+                  <div class="stat-icon flat-color-1">
+                    <i class="fa  fa-dollar fa-1x"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="text-center">
+                      <div class="stat-text">
+                        <span><%= number_with_delimiter(total_income.to_i, :delimiter => ',').to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                        <%= t(:'photographers.toman') %>
+                      </div>
+                      <div class="stat-heading"><%= t(:'photographers.total_income') %></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-stat">
+              <div class="card-body">
+                <div class="stat-widget">
+                  <div class="stat-icon flat-color-1">
+                    <i class="fa fa-users fa-1x"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="text-center">
+                      <div class="stat-text">
+                        <span><%= customers_number.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                        <%= t(:'photographers.people') %>
+                      </div>
+                      <div class="stat-heading"><%= t(:'photographers.employers') %></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card-stat">
+          <div class="card-body">
+            <div class="stat-widget">
+              <div class="progress-statistic" data-percentage="<%= arate.to_i * 10 %>">
+          <span class="progress-left">
+            <span class="progress-bar"></span>
+          </span>
+                <span class="progress-right">
+            <span class="progress-bar"></span>
+          </span>
+                <div class="progress-value">
+                  <div class="stat-text">
+                    <%= (arate.round(2) * 10).to_s.tr('.:0123456789', '/:۰۱۲۳۴۵۶۷۸۹') if arate.present? %><br>
+                    <span class="stat-heading"><%= t(:'photographers.percent') %></span>
+                  </div>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span class="stat-heading"><%= t(:'photographers.mean_of_feedbacks_about_services') %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-lg-3">
+        <div class="card-stat">
+          <div class="card-body">
+            <div class="stat-widget">
+              <div class="progress-statistic" data-percentage="<%= qrate.to_i * 10 %>">
+                <span class="progress-left">
+                  <span class="progress-bar"></span>
+                </span>
+                <span class="progress-right">
+                  <span class="progress-bar"></span>
+                </span>
+                <div class="progress-value">
+                  <div class="stat-text">
+                    <%= (qrate.round(2) * 10).to_s.tr('.:0123456789', '/:۰۱۲۳۴۵۶۷۸۹') if qrate.present? %> <br>
+                    <span class="stat-heading"><%= t(:'photographers.percent') %></span>
+                  </div>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <span class="stat-heading" style="text-align: center"><%= t(:'photographers.mean_of_feedbacks_about_quality') %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-3">
+        <div class="row">
+          <div class="card-stat" id="bottom-border">
+            <div class="card-body">
+              <div class="stat-widget">
+
+                <div class="stat-icon flat-color-2">
+                  <i class="fa fa-download fa-1x"></i>
+                </div>
+                <div class="stat-content">
+                  <div class="text-center">
+                    <div class="stat-text">
+                      <span><%= download_number.to_i.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                      <%= t(:'photographers.number') %>
+                    </div>
+                    <div class="stat-heading">
+                      <span data-html="true" class="text-muted" style="font-size: 11px;font-style: italic;" data-toggle="why_mobile_number" data-placement="top" data-original-title="" title="">
+                      <i class="fa fa-info-circle fa-x" style="font-size: 16px; color: cadetblue"></i>
+                      </span>
+                      <%= t(:'photographers.downloaded_frames') %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card-stat">
+            <div class="card-body">
+              <div class="stat-widget">
+                <div class="stat-icon flat-color-2">
+                  <i class="fa  fa-shopping-cart"></i>
+                </div>
+                <div class="stat-content">
+                  <div class="text-center">
+                    <div class="stat-text">
+                      <span><%= bought_frames.to_i.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                      <%= t(:'photographers.number') %>
+                    </div>
+                    <div class="stat-heading"><%= t(:'photographers.bought_frames') %></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+    $(document).ready(function () {
+
+        $(function () {
+            $('[data-toggle="why_mobile_number"]').tooltip({
+                title: "<%= t(:'photographers.downloaded_frames_info') %>"
+            });
+        })
+    });
+</script>

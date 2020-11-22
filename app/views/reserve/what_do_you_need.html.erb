@@ -1,0 +1,413 @@
+<%#= stylesheet_link_tag "package_style.css"%>
+
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="tracker">
+        <div class="process-tabs-line w-hidden-tiny">
+          <span class="step-line step-line-package"
+          style="width: 33.3333%; right: 0%;"></span>
+          <span class="step-line step-line-datetime"
+          style="width: 33.3333%; right: 33.3333%;"></span>
+          <span class="step-line step-line-details"
+          style="width: 33.3333%; right: 66.6667%;"></span>
+        </div>
+
+        <%= render 'shared/process_header' %>
+      </div><!-- /.tracker -->
+
+      <div class="wrapper">
+        <div class="pie-container">
+          <div class="pie">
+            <div id="rotate" class="pie-rotate" style="background-color: rgb(42, 134, 249); transform: rotate(-321deg);"></div>
+            <div id="timer" class="pie-center">8:56</div>
+          </div>
+          <p>مدت باقیمانده برای رزرو عکاس</p>
+        </div>
+        <p id="after-count" class="hidden">ممکن هست در صورتیکه شخص دیگری عکاس را رزور کرده باشد باید به مرحله قبل بازگردید</p>
+        <h3>اطلاعات شما</h3>
+
+        <form action="page_end.php" id="form4" class="form form-group" data-parsley-validate="" novalidate="">
+
+          <div class="row" style="margin-bottom: 30px;">
+            <div class="col-sm-6">
+              <label for="name"></label>
+              <input class="form-control" type="text" name="name" id="name" placeholder="نام (الزامی)" required="">
+            </div>
+            <div class="col-sm-6">
+              <label for="name"></label>
+              <input class="form-control" type="text" name="family" id="family" placeholder="نام خانوادگی (الزامی)" required="">
+            </div>
+            <span class="add-company">افزودن نام شرکت</span>
+            <div class="col-sm-6 hidden company">
+              <label for="name"></label>
+              <input class="form-control" type="text" name="company" id="company" placeholder="نام شرکت" required="">
+            </div>
+          </div>
+          <div class="row hidden" id="detail">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="address-detail">توضیحات آدرس</label>
+                <textarea name="address-detail" rows="5" class="form-control" id="address-detail" placeholder="توضیحات دقیق در مورد آدرس (مثال: پلاک، طبقه، و ..)"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="address-detail">توضیحات عکاس</label>
+                <textarea name="address-detail" rows="5" class="form-control" id="address-detail" placeholder="توضیحات در مورد عکاس درخواستی"></textarea>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="shooter-detail">نحوه آشنایی با ما</label>
+                <select class="form-control" name="shooter-detail" required="">
+                  <option value="" style="color: gray;">انتخاب نحوه آشنایی (الزامی)</option>
+                  <option value="word of mouth">تبلیغات</option>
+                  <option value="facebook friend">دوستان</option>
+                  <option value="other">دیگر</option>
+                </select>
+              </div><!-- /.form-group -->
+              <div class="form-group" style="margin-top: 30px;">
+                <div class="checkbox-control">
+                  <input type="checkbox" id="check1" value="انتخاب توافق" required="" data-parsley-multiple="check1">
+                  <label for="check1">
+                    توضیحات این قسمت
+                    <a href="#">لینک توافق</a>
+                  </label>
+                </div>
+                <div class="checkbox-control">
+                  <input type="checkbox" id="check2" value="قوانین" required="" data-parsley-multiple="check2">
+                  <label for="check2">
+                    توضیحات این قسمت
+                  </label>
+                </div>
+              </div><!-- /.form-group -->
+              <p style="color: #b2bcc7; font-size: 0.9em;">
+                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و
+                برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
+                می باشد.
+              </p>
+            </div><!-- /.col sm 6 -->
+          </div>
+          <footer id="footer">
+            <div class="container">
+              <div class="wrap">
+                <a href="page_3.php" class="btn btn-gray">بازگشت</a>
+                <button type="submit" class="btn btn-blue">ذخیره و ادامه</button>
+              </div>
+            </div>
+          </footer>
+        </form>
+
+      </div>
+
+
+      <div class="wrapper">
+        <div class="package">
+          <h3>پکیج</h3>
+          <p>
+            مدت زمان رزرو عکاس شامل زمان مسیر تا محل پروژه نمی شود، اما شامل زمان مورد نیاز
+            برای راه اندازی و نصب تجهیزات عکاسی در محل پروژه می شود.
+          </p>
+        </div><!-- /.package -->
+
+        <div class="speciality-type">
+          <div class="type-box selected" onclick="$(this).specialityType('#business')">اداری</div>
+          <div class="type-box" onclick="$(this).specialityType('#personal')">شخصی</div>
+        </div>
+
+        <div id="specialities" class="specialties">
+
+          <h3 style="margin: 45px 0;">
+            یک عکاس به من معرفی کن که تخصص داشته باشد در زمینه ...
+          </h3>
+
+          <ul id="business" class="row row-m10">
+            <% sindex = 0 %>
+            <% ShootType.all.businessz.each do |s| %>
+            <li class="col-xs-6 col-sm-4 col-md-3 <% if sindex > 3 %> hidden <% end %> %>">
+              <div href="#" class="specialty  <% if sindex==0%> selected <% end %>" id="<%=s.id%>" onclick="$(this).showPackage('sp<%=s.id%>', <%=s.packages.count%>)">
+                <img src="img/spec.jpg" alt="">
+                <span>
+                  <%= s.title%>
+                </span>
+              </div>
+            </li>
+            <% sindex = sindex + 1 %>
+            <% end %>
+
+          </ul><!-- ./row business-->
+
+          <ul id="personal" class="row row-m10 hidden">
+            <% sindex = 0 %>
+            <% ShootType.all.personalz.each do |s| %>
+            <li class="col-xs-6 col-sm-4 col-md-3  <% if sindex > 3 %> hidden <% end %> ">
+              <div href="#" class="specialty" id="<%=s.id%>" onclick="$(this).showPackage('sp<%=s.id%>', <%=s.packages.count%>)">
+                <img src="img/spec.jpg" alt="">
+                <span>
+                  <%= s.title%>
+                </span>
+              </div>
+            </li>
+            <% sindex = sindex + 1 %>
+            <% end %>
+          </ul><!-- ./row personal-->
+          <div id="show-more" class="show-more" style="display: block;">
+            <span>مشاهده بیشتر</span>
+          </div>
+        </div><!-- ./specialities -->
+
+        <figure id="coupon">
+          <h3 style="margin: 45px 0;">کوپن تخفیف خود را وارد کنید</h3>
+
+          <div class="input-box">
+            <input type="text" placeholder="کوپن تخفیف">
+            <button class="btn-blue">ثبت</button>
+          </div>
+        </figure>
+
+        <% count = 1 %>
+        <% ShootType.all.each do |t|%>
+        <figure id="sp<%=t.id%>" class="pricing <% if count!=1 %> hidden <% end%>">
+          <h3>انتخاب قیمت</h3>
+
+          <div class="pricing-section">
+
+            <div id="low-price" class="block selected" onclick="$(this).pricing('low')" style="margin-left: 2%;">
+              <div class="img-box hidden-xs">
+                <img src="img/low-book.png">
+              </div>
+              <div class="info-box">
+                <p class="title">
+                  کمترین هزینه را می خواهم بکنم.
+                </p>
+                <p class="description">
+                  شامل تعداد معینی عکس دیجیتال که می تونید از بینشون انتخاب کنید، دانلود
+                  <br>
+                  هر فریم بیشتر
+                  با هزینه ثابت
+                </p>
+              </div>
+            </div>
+
+            <div id="high-price" class="block" onclick="$(this).pricing('high')">
+              <div class="img-box hidden-xs">
+                <img src="img/high-book.png">
+              </div>
+              <div class="info-box">
+                <p class="title">
+                  همه عکس های با کیفیت را می خواهم.
+                </p>
+                <p class="description">
+                  همه تصاویر عکاسی شده را دانلود کنید و همه خاطرات رو به یادبسپرید.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="shoot-package">
+            <h3>پکیج خود را انتخاب کنید</h3>
+
+
+            <input type="text" id="shoot-sp1" data-slider-min="0" data-slider-max="5" data-slider-value="0" data-value="3" value="3" class="shoot hidden-xs hidden-sm" style="display: none;">
+
+            <div class="shoot-packages-boxes low" id="package-box-low">
+              <ul>
+                <% index = 0 %>
+                <% t.packages.each do |p| %>
+                <li id="<%=p.id%>" class="service-block <% if index==0 %> active <% end %>" data-index="<%= index %>">
+                  <div class="service-name">
+                    <p class="service-name-box">
+                      <%= p.title %>
+                    </p>
+                  </div>
+                  <div class="service-image-box" style="background-image: url('img/portrait-0.5.JPG');">
+                    <div class="service-image-box-inner">
+                      <div class="service-price">
+                        <%=  number(p.price , 'fa')  %>
+                        <small> ت </small>
+                      </div>
+                      <div class="service-duration">
+                        <%= p.duration %>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="digits"><span>
+                    <%= number(p.digitals,'fa') %>
+                  </span>
+                  فریم باکیفیت
+                </p>
+                <div class="suggestion-box">
+                  <p class="ideal" style="font-size: 10px;
+                  text-align: -webkit-center;
+                  margin-top: 10px;">
+                  هر فریم اضافی
+                  <%= number(p.extra_price, 'fa') %>
+                  تومان
+                </p>
+                <!-- <span>Single preson/project Single background e.g. Profile picture</span> -->
+              </div>
+            </li>
+            <% index = index + 1 %>
+            <% end %>
+          </ul>
+        </div>
+
+        <div class="shoot-packages-boxes high hidden" id="package-box-high">
+          <ul>
+            <% index = 0 %>
+            <% t.packages.each do |p| %>
+            <li id="<%=p.id%>" class="service-block <% if index==0 %> active <% end %>" data-index="<%=index%>">
+              <div class="service-name">
+                <p class="service-name-box">
+                  <%= p.title %>
+                </p>
+              </div>
+              <div class="service-image-box" style="background-image: url('img/portrait-0.5.JPG');">
+                <div class="service-image-box-inner">
+                  <div class="service-price">
+                    <%=  number(p.price , 'fa')  %>
+                    <small> ت </small>
+                  </div>
+                  <div class="service-duration">
+                    <%= p.duration %>
+                  </div>
+                </div>
+              </div>
+              <p class="digits"><span>
+                <%= number(p.digitals,'fa') %>
+              </span>
+              فریم باکیفیت
+            </p>
+            <div class="suggestion-box">
+              <p class="ideal" style="font-size: 10px;
+              text-align: -webkit-center;
+              margin-top: 10px;">
+              هر فریم اضافی
+              <%= number(p.extra_price, 'fa') %>
+              تومان
+            </p>
+            <!-- <span>Single preson/project Single background e.g. Profile picture</span> -->
+          </div>
+        </li>
+        <% index = index + 1 %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</figure>
+<% count = count + 1 %>
+<% end %>
+<!-- <form action=""> -->
+<%= form_tag reserve_package_path, id: "package_form" do %>
+<%= hidden_field_tag "project_id" ,  @project.id %>
+<input type="hidden" name="speciality-id" id="speciality-id">
+<input type="hidden" name="package-id" id="package-id">
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <a href="page_1.html" class="btn btn-gray">بازگشت</a>
+      <button type="submit" class="btn btn-blue">ذخیره و ادامه
+      </button>
+    </div>
+  </div>
+</footer>
+<!-- </form> -->
+<% end %>
+
+</div><!-- /.wrapper -->
+</div><!-- /.main -->
+</div><!-- /.container -->
+</section>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+  var sliderBar   = $('.shoot');
+  var packageList = $('.shoot-packages-boxes').find('ul li');
+  var ww = $(window).width();
+
+  // speciality select function
+  $.fn.specialityType = function (filter) {
+    $('.type-box').removeClass('selected');
+    $(this).addClass('selected');
+    $('.specialties .row').addClass('hidden');
+    $(filter).removeClass('hidden');
+  };
+
+
+  // on speciality select
+  var speciality = $('#specialities').find('.specialty');
+  speciality.on("click", function () {
+    speciality.removeClass('selected');
+    $(this).addClass('selected');
+    // set form input value:
+    $("#speciality-id").val(this.id);
+  });
+
+  // on package select
+  var packaje = $('.shoot-packages-boxes').find('.service-block');
+  packaje.on("click", function () {
+    // set form input value:
+    $("#package-id").val(this.id);
+  });
+
+
+  // handle show more button
+  $('#show-more').click(function () {
+    $('.specialties .row li').removeClass('hidden');
+    $(this).hide(500);
+  });
+
+  if (ww > 991){
+    sliderBar.slider({tooltip: 'hide'});
+    sliderBar.slider().on('change', function (event) {
+      var newValue = event.value.newValue;
+      $('.shoot-packages-boxes ul li').removeClass('active');
+      $('.shoot-packages-boxes ul').find("li[data-index=" + newValue + "]").addClass('active');
+    });
+  } else {
+    $('.shoot').remove();
+  }
+
+
+
+  // pricing click function
+  $.fn.pricing = function (selectClassName) {
+    $('.pricing-section .block').removeClass('selected');
+    $(this).addClass('selected');
+    $('.shoot-packages-boxes').addClass('hidden');
+    $('.shoot-packages-boxes.' + selectClassName).removeClass('hidden');
+    $('.shoot-packages-boxes ul li').removeClass('active');
+    $('.shoot-packages-boxes ul').find("li[data-index=0]").addClass('active');
+  };
+
+
+  $.fn.showPackage = function (id, count) {
+    $('figure.pricing').addClass('hidden');
+    $('#' + id).removeClass('hidden');
+    $(".slider-horizontal").css({
+      "max-width": 160 * (count-1)
+    });
+  };
+
+
+  // change class and slider value on Click pricing
+  packageList.on('click', function () {
+    $('.shoot-packages-boxes').find('ul li').removeClass('active');
+    $(this).addClass('active');
+    var index = $(this).data('index');
+    sliderBar.slider('setValue', index, true);
+  });
+
+});
+
+$(window).on('load', function () {
+  // set width for slider
+  // 5 equal 6 pricing for dynamic change value
+  $(".slider-horizontal").css({
+    "max-width": 160 * (5)
+  });
+});
+</script>

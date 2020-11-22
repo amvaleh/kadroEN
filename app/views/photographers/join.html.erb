@@ -1,0 +1,34 @@
+<body>
+<% if Rails.env.production? %>
+  <%= render 'shared/externals/gtag_body' %>
+<% end %>
+
+<% if current_photographer %>
+  <%= react_component 'PhotographersJoin',
+                      link: @kadro,
+                      join_step: join_step.to_i,
+                      photographer_info: {photographer: photographer,
+                                          location: location,
+                                          photographer_lenzs: photographer_lenzs,
+                                          photographer_cameras: photographer_cameras,
+                                          photographer_kits: photographer_kits,
+                                          photographer_equipment: photographer_equipment,
+                                          lenzs: lenzs, cameras: cameras, kits: kits, shoot_types: shoot_types,
+                                          photographer_expertises: photographer_expertises,
+                                          photographer_experience: photographer_experience} %>
+<% else %>
+  <%= react_component 'PhotographersJoin',
+                      link: @kadro,
+                      join_step: 0,
+                      photographer_info: {photographer: photographer,
+                                          location: location,
+                                          photographer_lenzs: photographer_lenzs,
+                                          photographer_cameras: photographer_cameras,
+                                          photographer_kits: photographer_kits,
+                                          photographer_equipment: photographer_equipment,
+                                          lenzs: lenzs, cameras: cameras, kits: kits, shoot_types: shoot_types,
+                                          photographer_expertises: photographer_expertises,
+                                          photographer_experience: photographer_experience} %>
+
+<% end %>
+</body>

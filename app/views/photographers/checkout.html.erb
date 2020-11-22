@@ -1,0 +1,219 @@
+<% @top_title = "استودیوی شما" %>
+<%= render 'shared/studio_header', title: "تسویه حساب" %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <% if notice %>
+                <div class="alert-info">
+                  <%= notice %>
+                </div>
+              <% elsif alert %>
+                <div class="alert-danger">
+                  <%= alert %>
+                </div>
+              <% else %>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="container-fluid" style="margin-top:3%">
+            <div class="row well">
+              <h3 class="text-center"> تسویه حساب</h3>
+              <br>
+              <p class="text-right" style="margin-right: 15%;">
+                - در این قسمت می توانید پروژه های تمام شده را تسویه کنید.
+                <br>
+                - تا ۲۴ ساعت بعد از درخواست، مبلغ مورد نظر به حساب شما
+                <strong> به صورت خودکار </strong>
+                توسط بانک واریز می شود.
+                <br>
+                - حداقل مبلغ قابل تسویه ۱۰۰۰ تومان می باشد.
+                <br>
+                  - از درست بودن
+                  <%= link_to "شماره شبای", bank_account_photographer_path(@photographer) %>
+                  خود اطمینان حاصل کنید.
+                <br>
+                <span style="color: orangered" >
+                  <i class="fa fa-info-circle" >
+                </i>
+                  کادرو هیچ تعهدی در قبال شماره شبای اشتباه ندارد.
+                </span>
+              </p>
+
+
+
+              <div class="col-xs-12 col-md-4" style="padding: 1%; margin-top: 5%; background-color: #e3e3e3; border: 2px solid whitesmoke">
+                <p class="text-center" style="margin-bottom: 0px">
+                  <i class="fa fa-ban"></i>
+                  جمع پروژه های ناتمام
+                </p>
+                <div class="text-center" style="font-size: xx-large">
+                  <span class="text-center">
+                    <%= number_with_delimiter(@following_projects_pay.sum(:price).to_i, :delimiter => ',').to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %>
+                    <span style="font-size: small">
+                    تومان
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-md-4" style="padding: 0px;margin-top: 3%;">
+                <div class="col-xs-12 col-md-12" style="background-color: #ffffff; border: 1px solid #e3e3e3;padding:6px">
+
+                  <div class="col-xs-12">
+                    <div class="row">
+                    <div class="col-xs-8">
+                      <p class="text-right" style="margin-bottom: 0px;">
+                        جمع پروژه های تمام شده
+                      </p>
+                    </div>
+                    <div class="col-xs-4">
+                      <span class="text-center">
+                        <%= number_with_delimiter(@total_free_payments.sum(:price).to_i, :delimiter => ',').to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %>
+                      </span>
+                    </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-12">
+                    <div class="row">
+                    <div class="col-xs-8">
+                      <p class="text-right" style="margin-bottom: 0px;">
+                        جمع جریمه های لغو
+                      </p>
+                    </div>
+                    <div class="col-xs-4">
+                      <span class="text-center">
+                        <%= number_with_delimiter(@total_penalty.sum(:price).to_i * (-1), :delimiter => ',').to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %>
+                      </span>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-12" style="margin-top: 1%;color:#2b87f8;
+                background-color: white;
+                border: 1px solid #e3e3e3;">
+
+                <p class="text-center" style="margin-bottom: 0px"><i class="fa fa-check-square"></i>
+                  جمع قابل پرداخت
+                </p>
+                <div class="text-center" style="font-size: xx-large">
+                  <p class="text-center" style="margin: 10px;">
+                    <span id="topay" style="color:#2b87f8;">
+                      <%= number_with_delimiter(@total_ready_to_pay.sum(:price).to_i, :delimiter => ',').to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %>
+                    </span>
+                    <span style="font-size: small">
+                      تومان
+                    </span>
+                  </p>
+                </div>
+                <div class="text-center">
+                  <p class="text-center">
+                    <span id="settle-message" style="font-size: x-large"></span>
+                  </p>
+                  <% if @photographer.bank_account.present? and @photographer.bank_account.card_last_name.present? && @photographer.bank_account.card_name.present? && @total_ready_to_pay.sum(:price).to_i >= 0 %>
+                    <button class="btn btn-blue" id="settle-button" style="width: 50%">
+                      درخواست تسویه
+                    </button>
+                  <% elsif @photographer.bank_account.present?%>
+                    <button class="btn btn-blue" style="width: 50%" disabled>
+                      درخواست تسویه
+                    </button>
+                  <% else %>
+                    <a href="/photographers/<%= @photographer.mobile_number %>/bank_account" class="btn btn-danger" id="card_name_complete" style="width: 100%">
+                    تکمیل نام و نام خانوادگی صاحب حساب
+                    </a>
+                  <% end %>
+                  <a href="https://docs.google.com/forms/d/1G6CsEKoCcRr8YjpKnvlmgu3oShjonzxUpTjZ_HAirxE/edit?usp=sharing" class="btn btn-gray" style="width: 30%">
+                      گزارش خطا
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-md-4" style="padding: 1%; margin-top: 5%; background-color: #e3e3e3; border: 2px solid whitesmoke">
+              <p class="text-center" style="margin-bottom: 0px">
+                <i class="fa fa-hourglass-end"></i>
+                در انتظار عملیات بانکی
+              </p>
+              <div class="text-center" style="font-size: xx-large">
+                <span id="waiting-pays" class="text-center">
+                  <%= number_with_delimiter(@waiting_to_pay.sum(:price).to_i, :delimiter => ',').to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %>
+                </span>
+                <span style="font-size: small">
+                  تومان
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <%= render partial: 'photographers/analyze/payments', locals: {payments: @payments} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<script>
+
+  $(document).ready(function () {
+
+    $('#settle-button').click(function () {
+      if ('<%= @total_ready_to_pay.sum(:price) %>' > 1000) {
+        var r = confirm("آیا مطمئنید؟ لطفا از درست بودن شماره شبای خود اطمینان حاصل کنید.");
+        if (r == true) {
+          // $('#settle-button').css('color', 'black');
+          $('#settle-message').css('color', 'black');
+          $('#settle-button').css('background-color', '#656565');
+          $('#settle-message').text ("در حال ارسال ..");
+          $('#settle-button').text("لطفا منتظر بمانید..");
+          $('#settle-button').prop("disabled", true);
+          $.ajax({
+            type: 'POST',
+            url: '/photographers/settlement',
+            data: {
+              pay_ids: <%= @total_ready_to_pay.pluck(:id) %>
+            },
+            dataType: 'json',
+            success: function (data) {
+              console.log(data.success);
+              if (data.success) {
+                $('#topay').empty();
+                $('#topay').html('صفر');
+                $('#settle-message').css('color', 'green');
+                var message = 'تسویه حساب با موفقیت انجام شد. کد پیگیری : ';
+                var res = message.concat(data.cashout_id);
+                $('#settle-message').html(res);
+                var num1 = parseInt('<%= @total_ready_to_pay.sum(:price).to_i %>') + parseInt('<%= @waiting_to_pay.sum(:price).to_i %>');
+                $('#waiting-pays').html(numberWithCommas(num1));
+              } else {
+                $('#settle-message').css('color', 'brown');
+                $('#settle-message').html('خطا: '.concat(data.message));
+                $('#settle-button').css('color', 'white');
+                setTimeout(function () {
+                  $('#settle-button').prop("disabled", false);
+                },2500);
+              }
+            }
+          });
+        }
+      } else {
+        alert('حداقل مبلغ قابل پرداخت ۱۰۰۰ تومان می باشد.')
+      }
+    });
+
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    });
+</script>

@@ -1,0 +1,58 @@
+<table class="index_table index" paginator="true">
+  <thead>
+  <th>ID</th>
+  <th>Photographer</th>
+  <th>Image Id</th>
+  <th>Image</th>
+  <th>Light</th>
+  <th>Shoot Type</th>
+  <th>Type</th>
+  <th>Like</th>
+  <th>DisLike</th>
+  <th>وضعیت</th>
+  <th></th>
+  </thead>
+  <tbody>
+  <% selectable_images.order(created_at: :desc).each do |si| %>
+    <tr>
+      <td><%= si.id %></td>
+        <% if si.image_type == 'Frame' %>
+                  <td><%= link_to frames.where(id: si.image_id)[0].gallery.project.photographer.first_name + " " + frames.where(id: si.image_id)[0].gallery.project.photographer.last_name, admin_photographer_path(frames.where(id: si.image_id)[0].gallery.project.photographer.slug) %> </td>
+                  <td><%= si.image_id %></td>
+                  <% image = si.image_type == 'Frame' ? frames.select {|f| f.id == si.image_id} : '' %>
+                  <td><%= link_to "view",image[0].file_url, :target => "_blank" %>
+                  </td>
+                  <td><%= link_to image[0].file_url(:light), :target => "_blank" do %>
+                      <%= image_tag image[0].file_url(:light), :width => 100 %>
+                    <% end %>
+                  </td>
+                  <% shoot_types = si.image_type == 'Frame' ? frame_shoot_types.select {|f| f.id == si.image_id}.map(&:shoot_type_title).join(',') : '' %>
+                  <td><%= shoot_types %></td>
+                  <td>عکس پروژه</td>
+        <% else %>
+                  <td><%= link_to photos.where(id: si.image_id)[0].expertise.photographer.display_name, admin_photographer_path(photos.where(id: si.image_id)[0].expertise.photographer.slug) %> </td>
+                  <td><%= si.image_id %></td>
+                  <% image = si.image_type == 'Photo' ? photos.select {|f| f.id == si.image_id} : '' %>
+                  <td><%= link_to "view",image[0].file_url, :target => "_blank" %>
+                  </td>
+                  <td><%= link_to image[0].file_url(:medium), :target => "_blank" do %>
+                      <%= image_tag image[0].file_url(:thumb), :width => 100 %>
+                    <% end %>
+                  </td>
+                  <% shoot_types = si.image_type == 'Photo' ? photo_shoot_types.select {|f| f.id == si.image_id}.map(&:shoot_type_title).join(',') : '' %>
+                  <td><%= shoot_types %></td>
+                  <td>نمونه کار</td>
+        <% end %>
+        <td> <%= si.like_number %> </td>
+        <td> <%= si.dislike_number %> </td>
+        <% if si.published? %>
+        <td>منتشر شده</td>
+        <% else %>
+        <td>توقف انتشار</td>
+        <% end %>
+        <td><%= link_to "مشاهده", admin_selectable_image_path(si.id), class: 'btn btn-link' %>
+        <%= link_to "ویرایش", edit_admin_selectable_image_path(si.id), class: 'btn btn-link' %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

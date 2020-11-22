@@ -1,0 +1,58 @@
+<li class="string input required stringish" id="project_slug_input">
+  <label for="project_slug" class="label">
+    Project Slug
+  </label>
+  <% if credit_detail.project.present? %>
+    <input autocomplete="off" id="project_slug" type="text" name="credit_detail[project_slug]" list="slug" value="<%= credit_detail.project.slug %>">
+  <% elsif params["credit_detail"].present? and params["credit_detail"]["project_slug"].present? %>
+    <input autocomplete="off" id="project_slug" type="text" name="credit_detail[project_slug]" list="slug" value="<%= params["credit_detail"]["project_slug"] %>">
+  <% else %>
+    <input autocomplete="off" id="project_slug" type="text" name="credit_detail[project_slug]" list="slug">
+  <% end %>
+  <datalist id="slug">
+  </datalist>
+</li>
+<script>
+    $("#project_slug").keyup(function(){
+        var value = $(this).val();
+        if ( value.length > 1 && value.length < 11 && value != "Default text" ) {
+            var result = $.ajax({
+                data: {
+                    slug: value,
+                },
+                dataType: 'json',
+                async: false,
+                success: function(){
+
+                },
+                type: 'POST',
+                url: "/api/v3/give_projects_slug",
+            });
+            slug = document.getElementById("slug")
+            slug.innerHTML = ""
+            for(var project in result.responseJSON.projects) {
+                slug.innerHTML += "<option value=" + result.responseJSON.projects[project].slug + ">" + result.responseJSON.projects[project].slug + "</option>"
+            };
+        };
+
+        if ( value.length < 5 ) {
+            slug = document.getElementById("slug")
+            slug.innerHTML = ""
+        };
+
+        if ( value.length == 11 && value != "Default text" ) {
+            var result = $.ajax({
+                data: {
+                    value: value,
+                },
+                dataType: 'json',
+                async: false,
+                success: function(){
+
+                },
+                type: 'POST',
+                url: "/api/v3/give_users",
+            });
+        };
+    });
+</script>

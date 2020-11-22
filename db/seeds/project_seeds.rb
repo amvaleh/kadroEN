@@ -1,0 +1,1 @@
+Project.update_all(reminded: true)

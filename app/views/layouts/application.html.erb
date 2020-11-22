@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/externals/addthis' %>
+    <%= render 'shared/externals/raychat' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+  <% end %>
+
+  <title>
+    <% if @title.present? %>
+      <%= @title %>
+    <% else %>
+      بازار آنلاین عکاسی و فیلمبرداری | کادرو
+    <% end %>
+  </title>
+  <meta charset="UTF-8">
+  <% if @description.present? %>
+    <meta name="description" content="<%=@description%>">
+    <% else %>
+    <meta name="description" content="رزرو آنلاین عکاس حرفه ای، برای هر زمان و هر مکان یک عکاس حرفه ای انتخاب و رزرو کنید، عکاسی در منزل شما بدون نیاز به رفتن به آتلیه.">
+<% end %>
+  <meta name="keywords" content="رزرو, قیمت ,عکاسی ,پرتره, ,کودک ,بارداری, محصول, صنعتی,رویداد,آتلیه ,ارزان, عکاسی در منزل, عکاسی در محل">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <meta name="revisit-after" content="3 days" />
+  <meta name="theme-color" content="RGB(41, 135, 249)" />
+
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <% if @favicon.present? %>
+    <link rel="icon" type="image/png" href="<%=@favicon%>">
+  <%else %>
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+  <% end %>
+
+</head>
+
+<body>
+<%= render 'shared/externals/gtag_body' %>
+<div id="page">
+  <%= render "shared/header" %>
+  <%= yield %>
+</div>
+</body>
+</html>

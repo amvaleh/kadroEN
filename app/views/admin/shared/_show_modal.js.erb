@@ -1,0 +1,23 @@
+<% modal_id ||= 'modal_form' %>
+jQuery(document).ready(function ($) {
+    $('#' + '<%= modal_id %>').on('show.bs.modal', function (e) {
+        $(this).removeAttr('tabindex');
+    });
+
+    $('#' + '<%= modal_id %>').modal('show');
+    <% local_vars ||= {} %>
+    var ready = function() {
+        <% if modal_id == 'modal_form' %>
+        $('#modal_content').html("<%= j(render partial: modal_partial, locals: local_vars) %>");
+        $('#modal_title').text("<%= modal_title %>");
+        <% elsif modal_id == 'modal_form_lg' %>
+        $('#modal_content_lg').html("<%= j(render partial: modal_partial, locals: local_vars) %>");
+        $('#modal_title_lg').text("<%= modal_title %>");
+        <% else %>
+        $('#modal_content_sm').html("<%= j(render partial: modal_partial, locals: local_vars) %>");
+        $('#modal_title_sm').text("<%= modal_title %>");
+        <% end %>
+    };
+
+    $(document).ready(ready);
+});

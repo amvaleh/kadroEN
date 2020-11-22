@@ -1,0 +1,51 @@
+<div class="col-md-12 col-xs-12 well" style="margin-bottom: 2%;">
+  <% if project.reserve_step.name == "care" %>
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-6">
+        <%= link_to alternate_photographers_project_path(project.slug), class: 'btn btn-block btn-default', style:'border: solid 3px #f0ad4e;
+    font-size: x-large;'  do %>
+          <i class="fa fa-retweet fa-x" style="margin: 0px 5px 0px; color: palevioletred"></i>
+            انتخاب عکاس جایگزین
+          <i class="fa fa-arrow-left fa-x" style="margin: 0px 5px 0px; color: palevioletred"></i>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+  <div class="col-md-6 pull-right col-xs-12 text-center">
+    <img src="/img/toshoot.jpg" class="img-thumbnail">
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <p style="text-align: right;">
+      <span class="fa fa-calendar fa-lg" style="font-size:20px;"></span>
+      <%= project.start_time.to_date.to_pdate.strftime("%A - %d %b ") %>
+      <br>
+
+      <span class="fa fa-user fa-lg" style="font-size:20px;"></span>
+      <%= project.photographer.display_name %>
+      <br>
+
+      <span class="fa fa-image fa-lg" style="font-size:20px;"></span>
+      ( <%= project.package.duration %> -
+      <% if project.package.is_full %>
+        تمام فریم ها
+      <% else %>
+        <%= project.package.digitals %>
+        فریم
+        دانلود
+      <% end %>
+      )
+      <br>
+    </p>
+  </div>
+  <div class="col-xs-12 ">
+    <div class="btn-group" role="group">
+      <%= link_to extra_hour_project_path(project), class: "btn btn-lg btn-warning", target: "_blank" do %>
+        <i class="fa fa-clock-o"></i>
+        تمدید زمان بیشتر
+      <% end %>
+      <%= link_to "مشاهده فاکتور", thank_you_project_path(project), class: "btn btn-lg btn-default", target: "_blank" %>
+    </div>
+
+  </div>
+</div>

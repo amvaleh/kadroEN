@@ -1,0 +1,9 @@
+$("#submit_form").removeClass("btn-info");
+$("#submit_form").addClass("btn-success");
+$("#submit_form").html("اطلاعات با موفقیت ذخیره شد");
+setTimeout(function(){
+    $("#submit_form").removeClass("btn-success");
+    $("#submit_form").addClass("btn-info");
+    $("#submit_form").html("ذخیره")
+    location.reload();
+}, 2000);

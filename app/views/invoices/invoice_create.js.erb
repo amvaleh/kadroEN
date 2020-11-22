@@ -1,0 +1,18 @@
+<% if @user_error %>
+setTimeout(function () {
+    swal({
+        title: 'هشدار',
+        text: '<%= @user_error %>',
+        type: 'error',
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'تایید',
+        closeOnConfirm: false,
+        closeOnCancel: false
+    });
+
+    jQuery('.loading-spinner').hide();
+    document.getElementById('shipping_address_first_name').focus();
+}, 1000);
+<% else %>
+  window.location = '<%= @gate %>';
+<% end %>

@@ -1,0 +1,62 @@
+<header style="direction:ltr !important;" >
+  <div class="" style="padding: 0">
+
+    <nav class="navbar navbar-expand-lg  bg-dark-blue" style="left: 0px;
+        right: 0px;
+        position: static;
+        z-index: 10;" id="main_navbar">
+      <button class="mr-auto navbar-toggler btn-light" type="button" data-toggle="collapse" data-target="#navbarNav5" aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
+        منو
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav5">
+        <ul class="nav nav-pills nav-fill text-center navbar-nav ml-0 mr-auto justify-content-center " style="text-align:center">
+          <li class="mx-auto nav-item btn-group text-center">
+            <a class="btn btn-outline-primary btn-sm" href="<%=galleries_url%>"> ورود </a>
+            <a class="btn btn-primary btn-sm" href="<%=book_url%>"> رزرو عکاس / آتلیه </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav mx-auto justify-content-between" style="text-align:center">
+          <li class="nav-item">
+            <a class="nav-link text-light mx-2" href="<%=all_pros_url %>"> لیست عکاسها  </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-light mx-2" href="<%=pricing_url %>"> تعرفه قیمت عکاسی </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              خدمات کادرو
+            </a>
+            <div class="dropdown-menu dropdown-menu-left text-right">
+              <a class="dropdown-item" href="<%=book_url %>"> رزرو عکاس / آتلیه </a>
+              <a class="dropdown-item" href="<%=shoot_location_root_url %>"> کجا بریم عکاسی؟ </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<%= call_request_url %>"> مشاوره رایگان </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<%= videography_url %>"> سفارش ساخت تیزر  </a>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav justify-content-end ml-auto text-center">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle mr-md-5 text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              برای عکاس
+            </a>
+            <div class="dropdown-menu text-right">
+              <a class="dropdown-item" href="<%=join_us_url %>"> ثبت نام </a>
+              <a class="dropdown-item" href="<%=new_photographer_session_url %>"> ورود </a>
+              <a class="dropdown-item" href="<%=updates_url %>"> آخرین اخبار </a>
+              <% if photographer_signed_in? %>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-warning border border-warning" href="<%=destroy_photographer_session_url%>"> خروج </a>
+              <%end %>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <a class="navbar-brand" href="<%=root_url%>">
+        <img src=<%=assets_url("/img/kadro_logo.png")%>  height="30" alt="لوگوی کادرو">
+      </a>
+    </nav>
+  </div>
+</header>

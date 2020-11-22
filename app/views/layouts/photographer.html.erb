@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if Rails.env.production? %>
+  <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/raychat' %>
+  <%= render 'shared/externals/studio/gtag_header' %>
+  <%= render 'shared/externals/studio/analytics' %>
+  <%= render 'shared/yektanet_header' %>
+  <% end %>
+  <title>
+    کادرو -
+    کسب درآمد با عکاسی حرفه ای
+  </title>
+  <meta charset="UTF-8">
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag 'photographers', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="NOINDEX, FOLLOW">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <link rel="manifest" href="/calender.json">
+  <meta name="theme-color" content="RGB(41, 135, 249)" />
+  <script>
+  if ('serviceWorker' in navigator) {
+      console.log("Will the service worker register?");
+      navigator.serviceWorker.register('service-worker.js')
+        .then(function(reg){
+          console.log("Yes, it did.");
+      }).catch(function(err) {
+          console.log("No it didn't. This happened:", err)
+      });
+  }
+  </script>
+  </head>
+
+  <body>
+    <% if Rails.env.production? %>
+    <%= render 'shared/externals/studio/gtag_body' %>
+    <% end %>
+    <div id="page">
+      <%= yield %>
+    </div>
+
+  </body>
+  <script  src="https://script.cashineh.com/tracker/js?id=CA-856475218-1"></script>
+  </html>

@@ -1,0 +1,549 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/raychat' %>
+<% end %>
+  <title>
+    سوالات متداول | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="صفحه سوالات متدوال کادرو">
+  <meta name="keywords" content="سوالات متداول, faq">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+  <link rel="icon" type="image/png" href="">
+</head>
+<%= render "public/shared/wordpress_header" %>
+<section class="fdb-block" style="background-image: url(<%= assets_url("/types/imgs/shapes/8.svg") %>)">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col col-md-8 text-center">
+        <h1>
+          سوالات متداول در کادرو
+        </h1>
+        <h5 class="text-center">
+          شاید سوالت رو قبلا کسی پرسیده باشه
+        </h5>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fdb-block mx-sm-5 my-0 py-0">
+  <div class="container">
+    <div class="row faq-page">
+      <div class="col-12 col-sm-6 mx-auto justify-content-right my-5">
+        <h2>
+          عمومی
+        </h2>
+        <div class="faqs">
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>کادرو چیست؟</h5></div>
+            <div class="answer">
+              <p>
+                ما در کادرو معتقدیم یک عکاسی تخصصی نباید گرون قیمت باشه. ما شما رو به یک عکاس حرفه ای وصل می کنیم،
+                <br>
+                تنها
+                کاریکه شما باید بکنید، تعیین روز، تاریخ و مکان عکاسی است. عکاس ما به همراه تجهیزات نور لازم به محل شما
+                می آیند.
+                همچنین می تونید آتلیه هم رزرو کنید و در آتلیه عکاسی کنید.<br>
+
+                <br>
+                بعد از اتمام عکاسی، از طریق آلبوم آنلاین شخصی خودتون می تونید عکس ها رو ببینید و دانلود
+                کنید.
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="لینک های کمکی">
+                  <a class="btn btn-outline-primary btn-sm" href="https://pro.kadro.co"> رزرو آتلیه </a>
+                  <a class="btn btn-primary btn-sm" href="http://app.kadro.co/book"> رزرو عکاس </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>در چه مناطقی خدمات می دهید؟</h5></div>
+            <div class="answer">
+              <p>
+                کادرو در حال حاضر در شهرهای
+                <% ActiveCity.all.each do |ac| %>
+                  <span style="font-style: italic"> <%= ac.name %> - </span>
+                <% end %>
+                عکاس برای ارائه خدمات دارد.
+              </p>
+              <div class="row">
+                <a class="btn btn-outline-primary btn-sm" href="https://pro.kadro.co"> مشاهده لیست شهرها </a>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>چه نوع عکس هایی می تونم بگیرم؟</h5></div>
+            <div class="answer">
+              <p>
+                ما همه نوع عکاسی انجام می دهیم:
+                <% ShootType.all.active.each do |st| %>
+                  <span style="font-style: italic;color:dodgerblue"> <%= st.title %> - </span>
+                <% end %>
+                اگر نوع خاصی دیگر لازم دارید می تواند
+                با پشتیبانی تماس بگیرید و نیازتون رو بگید، ما براتون جورش می کنیم.
+              </p>
+              <div class="row">
+                <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>استودیوی شما کجاست؟</h5></div>
+            <div class="answer">
+              <p>
+                کادرو استودیوی فیزیکی ندارد!
+                <br>
+                عکاسان ما به محل پروژه شما سفر می کنند. شما می توانید هر موقعیتی مانند
+                خانه،‌ شرکت، اداره، مغازه، پارک، مکان توریستی یا هر جای دیگه که مناسب باشه رو انتخاب کنید.
+              </p>
+              <div class="row">
+                <a class="btn btn-success btn-sm" href="https://locations.kadro.co"> مکانهای مناسب عکاسی </a>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>چه کسی حق طبع و نشر عکس ها را دارد؟</h5></div>
+            <div class="answer">
+              <p>شما فقط حق طبع و نشر عکس هایی را دارید که قبلا هزینه آنرا پرداخت کرده باشید. اگر هنگام سفارش، همه عکس
+                ها را خریداری کرده باشید، حق طبع و نشر همه عکس های آلبوم تان را خواهید داشت.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 mx-auto justify-content-right my-5">
+        <h2>قیمت ها و تعرفه ها</h2>
+        <div class="faqs">
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>هزینه های شما به چه صورت است؟</h5></div>
+            <div class="answer">
+              <p>شما می توانید قیمت های ما را در این آدرس ببینید:
+                <br><a href="https://www.kadro.co/pricing"> قیمت عکاسی </a>
+                <br>
+                اگر شما شرایط ويژه ای دارید که
+                تمایل دارید با ما در میان بگذارید، ما خوشحال می شویم به شما کمک کنیم مناسب ترین و مقرون به صرفه ترین
+                هزینه
+                رو پیدا کنید. فقط کافیست با ما در ارتباط باشید.<br>
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+                  <a class="btn btn-dark btn-sm" href="<%= call_request_path %>"> درخواست مشاوره </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>نهایتا چند تا عکس خواهم داشت؟</h5></div>
+            <div class="answer">
+              <p>
+                شما
+                <strong class="text-success"> هر پکیجی که خریداری کنید، تمام عکسها را مشاهده خواهید کرد،</strong>
+                در صورتیکه پکیج استاندارد خریداری کرده باشید، همه عکسها را می توانید دانلود کنید،<br>
+                درصورتیکه پکیج اقتصادی بخرید، تعداد محدودی از همه عکسها را می توانید دانلود کنید.
+                <br>
+                ما در هر پکیج، میانگین تقریبی تحویل عکسها را با توجه به آمار پروژه های قبلی درج کرده ایم:
+                <%= image_tag assets_url("/img/faq/average_shots.jpg"), class: "img-fluid" %>
+              </p>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>عکس های من ویرایش فتوشاپی خواهند شد؟</h5></div>
+            <div class="answer">
+              <p>
+                بله، همه پکیج های کادرو
+                دارای
+                <strong class="text-success"> ادیت نور و رنگ استاندارد </strong> هستند.
+                <br>
+                برای مثال، کالیبراسیون دمای رنگ، نور، وضوح، تضاد (contrast) و crop&nbsp; کردن و میزان کردن
+                پارامتر های دیگر.
+                <br>
+                کادرو
+                <strong class="text-success"> سرویس روتوش عکس </strong>
+                هم دارد، بعد از عکاسی می توانید با انتخاب هر عکس سرویس روتوش حرفه ای سفارش دهید.<br>
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="راهنمای ادیت عکس">
+                  <a class="btn btn-outline-primary " href="<%= standard_edit_path %>"> نمونه ادیت نور و رنگ </a>
+                  <a class="btn btn-outline-info " href="<%= retouch_edit_path %>"> نمونه روتوش عکس </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 mx-auto justify-content-right my-5">
+        <h2>فرآیند رزرو کردن</h2>
+        <div class="faqs">
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>عکاس را برای چه مدت باید زررو کنم؟</h5></div>
+            <div class="answer">
+              <p>
+                بسته به تعداد عکسی که می خواهید، با راهنمایی روی پکیج ها، ساعت مورد نیاز خودتون رو
+                انتخاب کنید.
+                در صورت نیاز، برای راهنمایی با ما تماس بگیرید.
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+                  <a class="btn btn-dark btn-sm" href="<%= call_request_path %>"> درخواست مشاوره </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>بعد از زررو چه اتفاقی می افتد؟</h5></div>
+            <div class="answer">
+              <p>
+                اطلاعات پروژه برای عکاس ارسال می شود، در صورت تایید عکاس، اطلاعات تماس طرفین در اختیار قرار می گیرد.
+                <br>
+                در صورت عدم تایید، شما می توانید عکاس دیگری انتخاب کنید یا اجازه دهید ما برایتان عکاس دیگری جایگزین
+                کنیم.
+              </p>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>چه زمانی باید هزینه را پرداخت کنم؟</h5></div>
+            <div class="answer">
+              <p>
+                <strong class="text-success" style="text-decoration: underline"> با سیستم پرداخت امن کادرو</strong>
+                ، شما کل مبلغ پروژه را می پردازید،
+                <strong class="text-success"> اما هیچ مبلغی </strong>
+                به عکاستان پرداخت نمی شود تا پروژه عکاسی تمام شود و شما تمام عکسها را تحویل بگیرید.
+                <br>
+                سپس می توانید نسبت به آزاد سازی مبلغ عکاس، در صورت رضایت اقدام کنید.
+                <br>
+                در غیر اینصورت می توانید با عکاس دیگری عکاسی کنید یا کل مبلغ را بازپس بگیرید.
+              </p></div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5> نحوه پرداخت چیست؟ </h5></div>
+            <div class="answer">
+              <p>
+                آنلاین می توانید رزرو کنید. در صورتیکه دسترسی به پرداخت آنلاین ندارید، می توانید به شماره کارت شرکت که
+                در فاکتورتان درج شده است مبلغ را واریز کنید تا سفارش شما به صورت دستی ثبت گردد.
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>می توانم برای فردا یک عکاس رزرو کنم؟</h5></div>
+            <div class="answer">
+              <p>بله می توانید! شما می توانید از ۱۲ ساعت آینده به بعد رزرو کنید. همچنین ما ممکن است بتوانیم برای شما در
+                همان روز هم عکاس فراهم کنید، فقط کافیست با ما تماس بگیرید.<br>
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 mx-auto justify-content-right my-5">
+        <h2>درخواست های ويژه</h2>
+        <div class="faqs">
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>من می توانم خودم عکاس را انتخاب کنم؟
+              </h5>
+            </div>
+            <div class="answer">
+              <p><em style="font-size: 2em">بله قطعا! </em>
+                اصلا یکی از مزایای کادرو همینست که
+                <strong class="text-success"> شما خودتان </strong>
+                با دیدن نمونه کارها، نظرات قبلی و سابقه عکاس انتخاب میکنید.
+              </p>
+              <div class="row">
+                <a class="btn btn-primary btn-sm" href="https://app.kadro.co/book"> رزرو عکاس </a>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>اگر من نیاز های ويژه ای داشته باشم، می توانم قبل از رزرو یک عکاس نمونه کار های او را ببینم؟</h5></div>
+            <div class="answer">
+              <p>
+                بله، شما می توانید با توجه به نمونه کارهای عکاسان کسی که به سلیقه شما نزدیک تر است را انتخاب کنید.
+                <em>
+                  در صورتیکه نیاز دیگری دارید، می توانید با ما تماس بگیرید تا بهترین راه حل را به شما ارائه دهیم.
+                </em>
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+                  <a class="btn btn-dark btn-sm" href="<%= call_request_path %>"> درخواست مشاوره </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>اگر من بخواهم عکاسی در چند مکان مختلف اتفاق بیفتد چطور؟</h5></div>
+            <div class="answer">
+              <p>
+                شما می توانید در مدت پروژه تان
+                <strong class="text-success"> نزدیک مکانی که تعیین کرده اید، </strong>
+                هر جا میخواهید عکاسی کنید و عکاس همراه شما بیاید.
+                <br>
+                برای مثال، پارک نزدیک منزل، کافی شاپ یا فضای باز دیگری که در همان نزدیکی است.
+              </p>
+              <p>
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+                  <a class="btn btn-dark btn-sm" href="<%= call_request_path %>"> درخواست مشاوره </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>آیا شما برای تعداد زیاد عکس تخفیف هم می دهید؟</h5></div>
+            <div class="answer">
+              <p>بله، شما می توانید از <a href="<%=enterprises_path %>">پکیج های تجاری  </a> کادرو برای کسب و
+                کارهای بزرگ استفاده کنید.
+              <br>در صورتیکه تمایل دارید می توانید نیازتان را با ما در میان بگذارید.<br>
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+                  <a class="btn btn-dark btn-sm" href="<%= call_request_path %>"> درخواست مشاوره </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>آیا شما خدمات تصویر برداری هم ارائه می دهید؟</h5></div>
+            <div class="answer">
+              <p>
+                بله، شما می توانید از لینک زیر وارد بخش فیلمبرداری و ساخت تیزر کادرو شوید.
+            </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-outline-secondary btn-sm" href="<%= videography_path %>">  فیلممبرداری و ساخت تیزر کادرو </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 mx-auto justify-content-right my-5">
+        <h2>تغییر یک رزرو</h2>
+        <div class="faqs">
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>چطور می توانم رزروم را لغو کنم؟</h5></div>
+            <div class="answer">
+              <p>متاسفانه ما امکان بازگشت مبلغ برای مواقعی که پروژه لغو می شود نداریم. اما شما می توانید زمان پروژه تان
+                را تغییر دهید، و یا آنرا به دوستی هدیه کنید.</p></div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>آیا من می توانم زمان رزروم را تغییر بدهم؟</h5></div>
+            <div class="answer">
+              <p>اولین تغییر زمان رزرو هزینه ای نخواهد داشت. اما بیشتر از یکبار شامل هزینه مشخصی خواهد بود. شما می
+                توانید زمان پروژه تان را فقط تا ۲۴ ساعت قبل از موعد آن تغییر دهید.<br> برای تغییر زمان لطفا با ما تماس
+                بگیرید.
+              </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>آیا من می توانم تعرفه ای را که انجام داده ام به روز رسانی کنم؟</h5></div>
+            <div class="answer">
+              <p>
+                <em class="text-success">بله حتما می توانید! </em>اگر تصمیم گرفتید که تمامی عکس های پروژه را داشته باشید، با ما تماس بگیرید
+                تا اختلاف هزینه آنرا برای شما فاکتور و ارسال کنیم.
+                </p>
+              <div class="row">
+                <div class="btn-group" role="group" aria-label="قیمتهای عکاسی">
+                  <a class="btn btn-success btn-sm" href="<%= contact_us_path %>">تماس با ما </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>آیا من میتوانم زمان عکاسی را تمدید کنم؟</h5></div>
+            <div class="answer">
+              <p>بله، به شرطیکه عکاس شما زمان خالی داشته باشد و بتواند بیشتر برای شما بماند.<br> برای اینکه این کار را
+                بکنید، از طریق پیامکی که برای شما ارسال شده است وارد صفحه پروژه تان شوید و دکمه تمدید زمان بیشتر را
+                بزنید. برای زمان اضافی تمدید شده، هزینه ای برای شما فاکتور خواهد شد.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 mx-auto justify-content-right my-5">
+        <h2> بعد از رزرو کردن </h2>
+        <div class="faqs">
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>من همین الان رزرو کردم، چه اتفاقی بعدش می افتد؟</h5></div>
+            <div class="answer">
+              <p>زمان عکاس برای رزرو شما اختصاص داده می شود. عکاس با شما تماس خواهد گرفت تا در مورد پروژه تان صحبت
+                کند،
+                <br>
+                در صورتیکه مشکلی نباشد، عکاس تایید کرده و پیامک تایید برای شما ارسال می گردد.
+                <br>
+                <strong class="text-warning"> اگر عکاس تایید نکند، </strong>
+                شما می توانید عکاس دیگری انتخاب کنید یا اجازه دهید کادرو برایتان جایگزین کند.
+              </p>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>چطور من با عکاسم در ارتباط باشم؟</h5></div>
+            <div class="answer">
+              <p>
+                اگر خبری از عکاستان نشد، یا خواستید زودتر با او در تماس باشید، از طریق لینک فاکتور تان می توانید روی دکمه تماس با عکاس بزنید و به شماره موبایل عکاس تماس بگیرید.
+              </p>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5> عکاس تایید نکرد، چه کنم؟  </h5>
+            </div>
+            <div class="answer">
+              <p>
+                اصلا نگران نباشید، در حال حاضر ما بیش از <%=Photographer.all.active.count %>
+                عکاس فعال داریم که می توانیم برایتان عکاس حرفه ای دیگیری جایگزین کنیم.
+                <br>
+                ۱) شما از لینک پروژه تان می توانید عکاس دیگری انتخاب کنید.
+                <br>
+                ۲) اگر شما نکنید، پشتیبانی کادرو با
+                <strong class="text-warning"> هماهنگی شما </strong>
+                عکاس دیگری جایگزین میکند.
+              </p>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>چه زمانی عکس هایم را خواهم گرفت؟</h5></div>
+            <div class="answer">
+              <p>
+                تا ۷۲ ساعت بعد از تاریخ عکاسی، شما یک پیامک و ایمیل دریافت خواهید کرد مبنی بر آماده بودن عکس های شما.
+                <br>
+                از طریق
+                <%= link_to "ورود به آلبوم شخصی" , galleries_url %>
+                می توانید با شماره موبایل خود تمام عکسهایتان را مشاهده و استفاده کنید.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 mx-auto justify-content-right my-5">
+        <h2>برای عکاسان</h2>
+        <div class="faqs">
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>
+                چرا من با کادرو همکاری کنم؟
+              </h5>
+            </div>
+            <div class="answer">
+              <h6>
+                <span class="fa fa-check"></span>
+                تقویم زمانی دلخواه
+              </h6>
+              <p>
+                با کادرو عکاسی کنید و به عنوان یک پیمانکار/فریلنسر مستقل پول خوب دریافت کنید. شما به محض اتمام پروژه حق الزحمه
+                خود را دریافت خواهید کرد، در همین حال رییس خودتان خواهید بود و طبق
+                <strong class="">برنامه زمانی</strong>
+                خودتان کار خواهید
+                کرد.
+              </p>
+              <h6>
+                <span class="fa fa-check"></span>
+                درآمد ماهیانه پایدار
+              </h6>
+              <p>
+                در صورتیکه پروفایل شما تایید شود و نمونه کارهای خوب + تعداد رشته عکاسی بالا فعال کرده باشید ماهانه درآمد قابل توجهی با کار کردن
+                <strong>
+                  در زمان های خالی خود،
+                </strong>
+                خواهید داشت که اهرم کمک کننده اقتصادی خوبی خواهد بود.
+              </p>
+              <h6>
+                <span class="fa fa-check"></span>
+                تبلیغات خودکار
+              </h6>
+              <p>
+                فرآیند سخت و اذیت کننده عقد قرارداد با کارفرمایان را فراموش کنید و با خیال راحت از اینکه هزینه پروژه
+                دریافت شده است سر پروژه بروید، چرا که ما سختی تبلیغات و جذب مشتری را برای شما به دوش خواهیم کشید.
+              </p>
+              <h6>
+                <span class="fa fa-check"></span>
+                کسب تجربه و جمع آوری نمونه کار
+              </h6>
+              <p>
+                اگر عکاسی هستید که سابقه کاری چندانی ندارید می توانید در کادرو در کنار دیگر عکاسان حرفه ای با رفتن سر پروژه های عکاسی مختلف کسب تجربه کرده و نمونه کارهای متنوع
+                <strong class=""> بسازید و مشتری های دائمی خود را </strong>
+                به سادگی پیدا کنید.
+              </p>
+            </div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>من می خواهم یک عکاس کادرو باشم، چه کار باید بکنم؟</h5></div>
+            <div class="answer">
+              <p style="text-align: right;">
+                ما مشتاقانه منتظر همکاری با شما هستیم. لطفا فورم زیر را تکمیل کنید، ما به
+                زودی با شما تماس می گیریم.</p>
+              <p style="text-align: center;">
+                <a href="<%=join_us_url %>" class="btn btn-outline-dark">عضویت در تیم عکاسان کادرو</a></p>
+              <p style="text-align: center;"></p></div>
+          </div>
+          <div class="faq">
+            <div class="question"><i class="fa fa-angle-left" aria-hidden="true"></i>
+              <h5>من خارج از ناحیه خدمت دهی کادرو زندگی می کنم، آیا می توانم به عنوان عکاس کار کنم؟</h5></div>
+            <div class="answer">
+              <p>بله، می توانید، مشروط بر اینکه تمایل داشته باشید برای کار کردن به مناطق خدمات دهی کادرو سفر کنید.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+</script>

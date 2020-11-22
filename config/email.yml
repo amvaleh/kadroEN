@@ -1,0 +1,20 @@
+development:
+  :address: smtp.zoho.com
+  :port: 465
+  :authentication: plain
+  :user_name: support@kadro.co
+  :password: 2019kadroSupport@@password
+  :authentication: login
+  :ssl: true
+  :tls: true
+  :enable_starttls_auto: true
+production:
+  :address: smtp.zoho.com
+  :port: 465
+  :authentication: plain
+  :user_name: support@kadro.co
+  :password: 2019kadroSupport@@password
+  :authentication: login
+  :ssl: true
+  :tls: true
+  :enable_starttls_auto: true

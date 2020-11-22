@@ -1,0 +1,366 @@
+<%= render 'shared/modal_sm' %>
+<div class="content-wrapper padding-content">
+  <%= render 'shared/alert_notice' %>
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h3 class="page-title">
+          <i class="mdi mdi-view-dashboard"></i>
+          پروژه های پرداخت شده
+        </h3>
+      </div>
+    </div>
+  </div>
+  <section class="content">
+    <div class="row">
+      <% if @projects.any? %>
+        <% @projects.order("created_at DESC").where(:reserve_step_id => 7..17).each do |project| %>
+          <% if project.gallery.present? and project.gallery.frames.count > 0 %>
+            <% gallery = project.gallery %>
+            <div class="col-12 col-md-6 mt-3">
+              <div class="card shadow-sm">
+                <div class="card-horizontal">
+                  <div class="col-6 pl-0">
+                    <div class="img-square-wrapper" style="height:100%;">
+                      <div class="container-image">
+                        <a href="/galleries/<%= gallery.slug %>" target="_blank">
+                          <img class="rounded-right" src="<%= gallery.frames.first.file_address(false, "light") %>" alt="Card image cap" style="height: 247px;object-fit: cover;width: 100%;">
+                          <div class="top-right">کامل شده</div>
+                        </a>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 pt-5">
+                    <div class="m-5">
+                      <div class="row">
+                        <div class="col-9" style="padding-left: 0px;">
+                          <h4 class="card-title" style="font-size: 15px;"><%= project.photographer.display_name %></h4>
+                        </div>
+                        <div class="col-2 text-left px-0">
+                          <% if gallery.hashed_password == nil %>
+                            <%= link_to('<span class="fa fa-unlock" style="vertical-align: middle; font-size: 23px;margin-right: 5px;"></span>'.html_safe,
+                                        gallery_password_form_path(gallery_id: gallery.slug), remote: true) %>
+                          <% else %>
+                            <%= link_to('<span class="fa fa-lock lock-checked" style="vertical-align: middle; font-size: 23px;margin-right: 5px;"></span>'.html_safe,
+                                        gallery_password_form_path(gallery_id: gallery.slug), remote: true) %>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-8 p-2" style="direction: rtl;border-bottom: 1px solid rgba(28, 29, 29, 0.07);">
+                          <% if project.feed_back.present? %>
+                            <% 5.times do |n| %>
+                              <% if n*2 < project.feed_back.qrate %>
+                                <span class="fa fa-star checked"></span>
+                              <% else %>
+                                <span class="fa fa-star"></span>
+                              <% end %>
+                            <% end %>
+                          <% else %>
+                            <a class="btn btn-sm btn-warning py-0" href="/feed_backs/<%= project.slug %>" target="_blank">
+                              <span class="fa fa-star"></span>
+                              <p style="display: inline;">نظر دهید</p>
+                            </a>
+                          <% end %>
+                        </div>
+                        <div class="col-4 text-left py-2" style="text-align: left;padding-right:0px;">
+                          <%= project.gallery.frames.count.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                          <span class="fa fa-camera"></span>
+                        </div>
+                      </div>
+                      <div class="col-12 pr-0 pt-4">
+                        <div class="row">
+                          <div class="col-12" style="padding-left: 0px;">
+                            <%= ( convert_persian_day(project.start_time.strftime("%A")).to_s + " " + project.start_time.to_date.to_pdate.strftime("%e %b %Y").to_s + " - " + project.start_time.strftime("%H:%M") )%>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 col-md-12">
+                            عکاسی <%= project.shoot_type.title %>
+                          </div>
+                        </div>
+                        <div class="row mt-4">
+                          <div class="col-5" style="text-align: right;">
+                            مبلغ :
+                            <!--                <span class="fa fa-camera"></span>-->
+                          </div>
+                          <div class="col-7" style="text-align: left;">
+                            <%= number_with_delimiter(project.receipt.subtotal.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                            <span style="font-size: 10px;">تومان</span>
+                          </div>
+                        </div>
+                        <div class="row py-4 text-left">
+                          <div class="col-12">
+                            <a class="btn btn-sm btn-info" href="/galleries/<%= gallery.slug %>">ورود به گالری</a>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% elsif project.reserve_step_id >= 7 && project.reserve_step_id <= 13 %>
+            <div class="col-12 col-md-6 mt-3">
+              <div class="card shadow-sm">
+                <div class="card-horizontal">
+                  <div class="col-6 pl-0">
+                    <div class="img-square-wrapper">
+                      <div class="container-image">
+                        <img class="rounded-right" src="/img/image-state.png" alt="Card image cap" style="height: 247px;object-fit: cover;width: 100%;">
+                        <div class="top-right">
+                          <% if ( project.reserve_step_id == 10 || project.reserve_step_id == 11) && project.is_shooted %>
+                            در انتظار آپلود عکس
+                          <% else %>
+                            <% case project.reserve_step_id %>
+                          <% when 7 %>
+                              در انتظار تایید عکاس
+                            <% when 8 %>
+                              انتخاب عکاس جدید
+                            <% when 9 %>
+                              انتخاب عکاس جدید
+                            <% when 10 %>
+                              در انتظار شروع عکاسی در زمان جدید
+                            <% when 11 %>
+                              در انتظار شروع عکاسی
+                            <% when 12 %>
+                              در انتظار تایید عکس های آپلود شده
+                            <% when 13 %>
+                              اصلاح عکس ها
+                            <% end %>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 pt-5">
+                    <div class="m-5">
+                      <h4 class="card-title" style="font-size: 15px;"><%= project.photographer.display_name %></h4>
+                      <div class="col-8" style="direction: rtl;border-bottom: 1px solid rgba(28, 29, 29, 0.07);padding-top: 2.3rem;">
+                      </div>
+                      <div class="col-12 pr-0 pt-4">
+                        <div class="row">
+                          <div class="col-12" style="padding-left: 0px;">
+                            <%= ( convert_persian_day(project.start_time.strftime("%A")).to_s + " " + project.start_time.to_date.to_pdate.strftime("%e %b %Y").to_s + " - " + project.start_time.strftime("%H:%M") )%>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            عکاسی <%= project.shoot_type.title %>
+                          </div>
+                        </div>
+                        <div class="row mt-4">
+                          <div class="col-5" style="text-align: right;">
+                            مبلغ :
+                            <!--                <span class="fa fa-camera"></span>-->
+                          </div>
+                          <div class="col-7" style="text-align: left;">
+                            <%= number_with_delimiter(project.receipt.subtotal.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                            <span style="font-size: 10px;">تومان</span>
+                          </div>
+                        </div>
+                        <div class="row py-4 text-left">
+                          <div class="col-12">
+                            <a class="btn btn-sm btn-info" href="/projects/<%= project.slug %>/thank_you" target="_blank">مشاهده فاکتور</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <div class="col-12 col-md-6 mt-3">
+              <div class="card shadow-sm">
+                <div class="card-horizontal">
+                  <div class="col-6 pl-0">
+                    <div class="img-square-wrapper">
+                      <div class="container-image">
+                        <a href="">
+                          <img class="rounded-right" src="img/memory-plus.png" alt="Card image cap" style="height: 247px;object-fit: cover;width: 100%;">
+                          <div class="top-right">کامل شده</div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 pt-5">
+                    <div class="m-5">
+                      <h4 class="card-title" style="font-size: 15px;"><%= project.photographer.display_name %></h4>
+                      <div class="col-12 p-2" style="direction: rtl;border-bottom: 1px solid rgba(28, 29, 29, 0.07);">
+                        <% if project.feed_back.present? %>
+                          <% 5.times do |n| %>
+                            <% if n*2 < project.feed_back.qrate %>
+                              <span class="fa fa-star checked"></span>
+                            <% else %>
+                              <span class="fa fa-star"></span>
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          <a class="btn btn-sm btn-warning py-0" href="/feed_backs/<%= project.slug %>" target="_blank">
+                            <span class="fa fa-star"></span>
+                            <p style="display: inline;">نظر دهید</p>
+                          </a>
+                        <% end %>
+                      </div>
+                      <div class="col-12 pr-0 pt-4">
+                        <div class="row">
+                          <div class="col-12" style="padding-left: 0px;">
+                            <%= ( convert_persian_day(project.start_time.strftime("%A")).to_s + " " + project.start_time.to_date.to_pdate.strftime("%e %b %Y").to_s + " - " + project.start_time.strftime("%H:%M") )%>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            عکاسی <%= project.shoot_type.title %>
+                          </div>
+                        </div>
+                        <div class="row mt-4">
+                          <div class="col-5" style="text-align: right;">
+                            مبلغ :
+                            <!--                <span class="fa fa-camera"></span>-->
+                          </div>
+                          <div class="col-7" style="text-align: left;">
+                            <%= number_with_delimiter(project.receipt.subtotal.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                            <span style="font-size: 10px;">تومان</span>
+                          </div>
+                        </div>
+                        <div class="row py-4 text-left">
+                          <div class="col-12">
+                            <% if project.reserve_step.present?  &&  ( project.reserve_step.name != "happy_call" && project.reserve_step.name != "checkout" ) %>
+                              <%= form_tag release_payment_project_path(project) do %>
+                                <%= hidden_field_tag id: project.slug %>
+                                <%= submit_tag "آزاد سازی مبلغ", class:"btn btn-sm btn-info" %>
+                              <% end %>
+                            <% else %>
+                              <a class="btn btn-sm btn-info" href="/projects/<%= project.slug %>/thank_you" target="_blank">مشاهده فاکتور</a>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <% @projects = User.find_by(mobile_number: "09035974218").projects %>
+        <% @projects.where(:reserve_step_id => 7..17).each do |project| %>
+          <% gallery = project.gallery %>
+          <div class="col-12 col-md-6 mt-3">
+            <div class="card shadow-sm">
+              <div class="card-horizontal">
+                <div class="col-6 pl-0">
+                  <div class="img-square-wrapper" style="height:100%;">
+                    <div class="container-image">
+                      <a href="/galleries/<%= gallery.slug %>" target="_blank">
+                        <img class="rounded-right" src="<%= gallery.frames.first.file_address(false, "light") %>" alt="Card image cap" style="height: 247px;object-fit: cover;width: 100%;">
+                        <div class="top-right">گالری <%= gallery.name %></div>
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 pt-5">
+                  <div class="m-5">
+                    <div class="row">
+                      <div class="col-9" style="padding-left: 0px;">
+                        <h4 class="card-title" style="font-size: 15px;">عکاس: <%= project.photographer.display_name %></h4>
+                      </div>
+                      <div class="col-2 text-left px-0">
+                        <% if gallery.hashed_password == nil %>
+                          <%= link_to('<span class="fa fa-unlock" style="vertical-align: middle; font-size: 23px;margin-right: 5px;"></span>'.html_safe,
+                                      gallery_password_form_path(gallery_id: gallery.slug), remote: true) %>
+                        <% else %>
+                          <%= link_to('<span class="fa fa-lock lock-checked" style="vertical-align: middle; font-size: 23px;margin-right: 5px;"></span>'.html_safe,
+                                      gallery_password_form_path(gallery_id: gallery.slug), remote: true) %>
+                        <% end %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-8 p-2" style="direction: rtl;border-bottom: 1px solid rgba(28, 29, 29, 0.07);">
+                        <% if project.feed_back.present? %>
+                          <% 5.times do |n| %>
+                            <% if n*2 < project.feed_back.qrate %>
+                              <span class="fa fa-star checked"></span>
+                            <% else %>
+                              <span class="fa fa-star"></span>
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          <a class="btn btn-sm btn-warning py-0" href="/feed_backs/<%= project.slug %>" target="_blank">
+                            <span class="fa fa-star"></span>
+                            <p style="display: inline;">نظر دهید</p>
+                          </a>
+                        <% end %>
+                      </div>
+                      <div class="col-4 text-left py-2" style="text-align: left;padding-right:0px;">
+                        <%= project.gallery.frames.count.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                        <span class="fa fa-camera"></span>
+                      </div>
+                    </div>
+                    <div class="col-12 pr-0 pt-4">
+                      <div class="row">
+                        <div class="col-12" style="padding-left: 0px;">
+                          <%= ( convert_persian_day(project.start_time.strftime("%A")).to_s + " " + project.start_time.to_date.to_pdate.strftime("%e %b %Y").to_s + " - " + project.start_time.strftime("%H:%M") )%>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 col-md-12">
+                          عکاسی <%= project.shoot_type.title %>
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col-5" style="text-align: right;">
+                          مبلغ :
+                          <!--                <span class="fa fa-camera"></span>-->
+                        </div>
+                        <div class="col-7" style="text-align: left;">
+                          <%= number_with_delimiter(project.receipt.subtotal.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                          <span style="font-size: 10px;">تومان</span>
+                        </div>
+                      </div>
+                      <div class="row py-4 text-left">
+                        <div class="col-12">
+                          <a class="btn btn-sm btn-info" href="/galleries/<%= gallery.slug %>">ورود به گالری <%= gallery.name %></a>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+                <div class="col-12 col-md-12 text-center" style="margin-top: 60px;">
+<!--                  <img src="/img/emotystate.png" style="margin-bottom: 100px;">-->
+                  <h5>اگر تا الان پروژه ای ثبت نکردی همین حالا اقدام کن</h5>
+                  <p class="lead" style="margin-top:30px;margin-bottom: 150px;">
+                    <a class="btn btn-info btn-lg" href="/" role="button">رزرو عکاس</a>
+                  </p>
+                </div>
+      <% end %>
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+
+<style>
+  .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+  .checked {
+    color: orange;
+  }
+
+  .lock-checked {
+    color: #0188ff;
+  }
+</style>

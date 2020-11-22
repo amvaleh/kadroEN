@@ -1,0 +1,86 @@
+<div class="container-fluid">
+  <%= form_for :maps, url: photographer_filter_path, method: "post", :remote => true do |f| %>
+    <div class="form-group">
+      <%= f.collection_select :shoot_type_id, ShootType.all, :id, :title, include_blank: true %>
+      <label> رشته
+      </label>
+    </div>
+    <div class="form-group">
+      <%= f.collection_select :city_id, City.all, :id, :name, include_blank: true %>
+      <label> شهر
+      </label>
+    </div>
+    <div class="form-group">
+      <%= f.collection_select :week_day_order, WeekDay.all, :order, :name, include_blank: true %>
+      <label> روز فعالیت
+      </label>
+    </div>
+    <div class="form-group">
+      <%= f.number_field :project_count, include_blank: true %>
+      <label> تعداد پروژه های انجام شده
+      </label>
+    </div>
+    <div class="form-group">
+      <%= f.select :checked, ['true','false'], include_blank: true %>
+      <label> چک شده است؟
+      </label>
+    </div>
+    <div class="form-group">
+      <%= f.collection_select :step, JoinStep.all, :id, :name, include_blank: true %>
+      <label> مرحله
+      </label>
+    </div>
+    <div style="margin-top: 20px; margin-bottom: 20px;">
+      <%= f.submit 'فیلتر کن' %>
+    </div>
+  <% end %>
+  <div class="col-md-12">
+    <div class="col-xs-12 col-md-12">
+      <div id="photographers_map" style="width: 100%; height: 600px;"></div>
+    </div>
+  </div>
+  <script>
+      handler2 = Gmaps.build('Google');
+      handler2.buildMap({
+          provider: {
+              zoom: 15,
+              center: new google.maps.LatLng(35.79078628217929, 51.40356720775139),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          }, internal: {id: 'photographers_map'}
+      }, function () {
+          markers2 = handler2.addMarkers([
+              <% Photographer.all.active.each do |p| %>
+              <% if p.location.present? %>
+              {
+                  "lat": <%=p.location.working_lat%>,
+                  "lng": <%=p.location.working_long%>,
+                  "picture": {
+                      "url": "https://kadro.co/wp-content/uploads/photographerActive.png",
+                      "width": 50,
+                      "height": 50
+                  },
+                  infowindow: '<%=link_to p.display_name , admin_photographer_path(p),target: "_blank" %> - <%=link_to "page" , "http://#{p.uid}.kadro.co",:target=>"_blank"%>'
+              },
+              <% end %>
+              <% end %>
+              <% Photographer.all.where(:approved=>false).each do |p| %>
+              <% if p.location.present? %>
+              {
+                  "lat": <%=p.location.working_lat%>,
+                  "lng": <%=p.location.working_long%>,
+                  "picture": {
+                      "url": "https://kadro.co/wp-content/uploads/photographerMarker.png",
+                      "width": 50,
+                      "height": 50
+                  },
+                  infowindow: '<%=link_to p.display_name , admin_photographer_path(p),target: "_blank" %>'
+              },
+              <% end %>
+              <% end %>
+          ]);
+          handler2.bounds.extendWith(markers2);
+          handler2.fitMapToBounds();
+      });
+  </script>
+
+</div>

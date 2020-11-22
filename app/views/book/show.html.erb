@@ -1,0 +1,88 @@
+<body id="page">
+  <%= render 'shared/externals/gtag_body' %>
+
+  <header id="header">
+    <nav class="nav">
+      <div class="container">
+        <div class="wrap">
+          <div class="btn-group" style="direction: ltr !important;">
+            <%= link_to "عکاسی رایگان", "/users/refer" ,class:"btn btn-default free-photography"%>
+            <% if user_signed_in? %>
+            <button type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              بیشتر
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" style="direction: ltr !important;">
+              <li>
+                <%= link_to "آلبوم من" , galleries_path , :onclick => 'confirmExit(event)' %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to "خروج", destroy_user_session_path %>
+              </li>
+            </ul>
+            <% else %>
+            <% if Time.now > Time.now.change(:hour => 9 ).to_i or Time.now < Time.now.change(:hour => 20 ).to_i  %>
+            <% if mobile_device?  %>
+            <a  href="tel:02128425220" class="btn btn-blue call_kadro" > تماس با ما <span class="fa fa-phone"> </span> </a>
+            <% else %>
+            <a  href="https://www.kadro.co/contact/" target="_blank" class="btn btn-blue more-info-btn call_kadro" > تماس با ما <span class="fa fa-phone"> </span> </a>
+            <% end %>
+            <% end %>
+            <% end %>
+          </div>
+          <div title="" class= logo" style="text-align: -webkit-center">
+            <div class="col-xs-12">
+              <% if user_signed_in? %>
+              <h5 class="text-right">
+                اعتبار:
+                <%=  number(current_user.credit.value, 'fa').to_s + (current_user.credit.value < 0 ? "-" : "+") %>
+                <span style="font-size: 10px">
+                  تومان
+                </span>
+              </h5>
+              <% else %>
+              <a href="https://kadro.co" title="" class="logo" target="_blank">
+                <img src="/img/logo.png" alt="title">
+              </a>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <% if user_signed_in? %>
+    <%= react_component 'Main' ,
+    mobile_number: current_user.mobile_number ,
+    full_name: current_user.full_name ,
+    link: @kadro,
+    signed: true,
+    direct: @direct,
+    shootTypeSelectedId:@shoot_type,
+    shootTypeSelectedTitle: @shoot_type_title,
+    photographerUid: @photographer_uid,
+    studioLat: @studio_lat,
+    studioLng: @studio_lng,
+    hasStudio: @has_studio
+    %>
+    <% else %>
+    <%= react_component 'Main' ,
+    mobile_number: "" ,
+    full_name: "" ,
+    link: @kadro,
+    signed: false,
+    direct:@direct,
+    shootTypeSelectedId:@shoot_type,
+    shootTypeSelectedTitle: @shoot_type_title,
+    photographerUid: @photographer_uid,
+    studioLat: @studio_lat,
+    studioLng: @studio_lng,
+    hasStudio: @has_studio
+    %>
+    <% end %>
+
+  </header>
+
+</body>

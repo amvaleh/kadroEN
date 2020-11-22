@@ -1,0 +1,223 @@
+<div class="container">
+  <div class="row">
+    <% if @city.present? && @expertise.present? %>
+
+    <div class="col-md-12" style="padding: 3% 0 0 0">
+      <div class="col-xs-12 col-md-6 text-center">
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn btn btn-glass">
+            <span class="fa fa-th-list">  </span>&nbsp;
+            <%= @city.name %>
+            <span class="caret"></span>
+          </button>
+          <div id="myDropdown" class="dropdown-content text-right">
+            <input type="text" placeholder="جستجو ..." id="myInput" onkeyup="filterFunction()" style="width: 156px;">
+            <% @cities.each do |c| %>
+            <%= link_to c.name , city_expertise_path(c.name,@expertise.shoot_type.title),class: "popup-city"%>
+            <% end %>
+          </div>
+        </div>
+        <%= link_to "تمام شهرها", expertise_only_path(@expertise.shoot_type.title), class: "btn btn-glass popup-city" %>
+      </div>
+      <div class="col-xs-12 col-md-6 text-center">
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-glass dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-camera">  </span>&nbsp;
+            عکاسی <%=@expertise.shoot_type.title%>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" style="width: 100%;">
+            <li><%= link_to "تمام موارد", city_path(@city.name), class: "btn-default" %></li>
+            <% @shoot_type_ids.each do |shid| %>
+            <% if shid.first == @expertise.shoot_type.id %>
+            <li><%= link_to "#{ShootType.find(shid.first).title}", city_expertise_path(@city.name,ShootType.find(shid.first).title), class: "btn-blue popup-city" %></li>
+            <% else %>
+            <li><%= link_to "#{ShootType.find(shid.first).title}",  city_expertise_path(@city.name,ShootType.find(shid.first).title), class: "btn-default popup-city" %></li>
+            <% end %>
+            <% end %>
+          </ul>
+          <button onclick="filter($(this).val()); return false;" value="true" id="only_with_studio" class="btn btn-glass ">
+            نمایش آتلیه دارها
+          </button>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 text-center" style="margin-top: 10px;">
+        <div class="btn-group" role="group">
+          <button onclick="filter_gender($(this).val()); return false;" value="male" id="male_button" class="btn btn-glass" style="width: 100px;">
+            مرد
+          </button>
+          <button onclick="filter_gender($(this).val()); return false;" value="female" id="female_button" class="btn btn-glass" style="width: 100px;">
+            زن
+          </button>
+          <input id="gender_input" hidden>
+        </div>
+      </div>
+    </div>
+
+    <% elsif @city.present? %>
+    <div class="col-md-12" style="padding: 3% 0 0 0">
+      <div class="col-xs-12 col-md-6 text-center">
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn btn btn-glass">
+            <span class="fa fa-th-list">  </span>&nbsp;
+            <%= @city.name %>
+            <span class="caret"></span>
+          </button>
+          <div id="myDropdown" class="dropdown-content text-right">
+            <input type="text" placeholder="جستجو ..." id="myInput" onkeyup="filterFunction()" style="width: 156px;">
+            <% @cities.each do |c| %>
+            <%= link_to c.name , city_path(c.name), class: "popup-city"%>
+            <% end %>
+          </div>
+        </div>
+        <a href="/" class="popup-city">
+          <button type="button" class="btn btn-glass">
+            تمام شهرها
+          </button>
+        </a>
+      </div>
+      <div class="col-xs-12 col-md-6 text-center">
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-glass dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-camera">  </span>&nbsp;
+            رشته های عکاسی
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" style="width: 100%;">
+            <li><%= link_to "تمام موارد", city_path(@city.name), class: "btn-default" %>
+            </li>
+            <% @shoot_type_ids.each do |shid| %>
+            <li>
+              <%= link_to "#{ShootType.find(shid.first).title}", city_expertise_path(@city.name,ShootType.find(shid.first).title), class: "btn-default popup-city" %>
+            </li>
+            <% end %>
+          </ul>
+          <button onclick="filter($(this).val()); return false;" value="true" id="only_with_studio" class="btn btn-glass ">
+            نمایش آتلیه دارها
+          </button>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 text-center" style="margin-top: 10px;">
+        <div class="btn-group" role="group">
+          <button onclick="filter_gender($(this).val()); return false;" value="male" id="male_button" class="btn btn-glass" style="width: 100px;">
+            آقا
+          </button>
+          <button onclick="filter_gender($(this).val()); return false;" value="female" id="female_button" class="btn btn-glass" style="width: 100px;">
+            خانم
+          </button>
+          <input id="gender_input" hidden>
+        </div>
+      </div>
+    </div>
+    <% elsif @expertise.present? %>
+    <div class="col-md-12" style="padding: 3% 0 0 0">
+      <div class="col-xs-12 col-md-6 text-center">
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn btn btn-glass">
+            <span class="fa fa-th-list">  </span>&nbsp;
+            لیست شهرهای فعال
+            <span class="caret"></span>
+          </button>
+          <div id="myDropdown" class="dropdown-content text-right">
+            <input type="text" placeholder="جستجو ..." id="myInput" onkeyup="filterFunction()" style="width: 156px;">
+            <% @cities.each do |c| %>
+            <%= link_to c.name , city_expertise_path(c.name,@expertise.shoot_type.title),class: "popup-city"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 text-center">
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-glass dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-camera">  </span>&nbsp;
+            عکاسی <%=@expertise.shoot_type.title%>
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" style="width: 100%;">
+            <li><%= link_to "تمام موارد",all_pros_path, class: "btn-default" %></li>
+            <% @shoot_types_ids.each do |shid| %>
+            <% if shid.first == @expertise.shoot_type.id %>
+            <li><%= link_to "#{ShootType.find(shid.first).title}", expertise_only_path(ShootType.find(shid.first).title), class: "btn-blue popup-city" %></li>
+            <% else %>
+            <li><%= link_to "#{ShootType.find(shid.first).title}",  expertise_only_path(ShootType.find(shid.first).title), class: "btn-default popup-city" %></li>
+            <% end %>
+            <% end %>
+          </ul>
+          <button onclick="filter($(this).val()); return false;" value="true" id="only_with_studio" class="btn btn-glass ">
+            نمایش آتلیه دارها
+          </button>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 text-center" style="margin-top: 10px;">
+        <div class="btn-group" role="group">
+          <button onclick="filter_gender($(this).val()); return false;" value="male" id="male_button" class="btn btn-glass" style="width: 100px;">
+            آقا
+          </button>
+          <button onclick="filter_gender($(this).val()); return false;" value="female" id="female_button" class="btn btn-glass" style="width: 100px;">
+            خانم
+          </button>
+          <input id="gender_input" hidden>
+        </div>
+      </div>
+    </div>
+
+    <% else %>
+    <div class="col-md-12" style="padding: 3% 0 0 0">
+      <div class="col-xs-12 col-md-6 text-center">
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn btn btn-glass">
+            <span class="fa fa-th-list">  </span>&nbsp;
+            لیست شهرهای فعال
+            <span class="caret"></span>
+          </button>
+          <div id="myDropdown" class="dropdown-content text-right">
+            <input type="text" placeholder="جستجو ..." id="myInput" onkeyup="filterFunction()" style="width: 156px;">
+            <% @cities.each do |c| %>
+            <%= link_to c.name , city_path(c.name), class: "popup-city"%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 text-center">
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-glass  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="fa fa-camera">  </span>&nbsp;
+            رشته های عکاسی
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" style="width: 100%;">
+            <li>
+              <%= link_to "تمام موارد", all_pros_path, class: "btn-default" %>
+            </li>
+            <% @shoot_type_ids.each do |shid| %>
+            <li>
+              <%= link_to "#{ShootType.find(shid.first).title}",expertise_only_path(ShootType.find(shid.first).title), class: "btn-default popup-city" %>
+            </li>
+            <% end %>
+          </ul>
+          <button onclick="filter($(this).val()); return false;" value="true" id="only_with_studio" class="btn btn-glass ">
+            نمایش آتلیه دارها
+          </button>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6 text-center" style="margin-top: 10px;">
+        <div class="btn-group" role="group">
+          <button onclick="filter_gender($(this).val()); return false;" value="male" id="male_button" class="btn btn-glass" style="width: 100px;">
+            آقا
+          </button>
+          <button onclick="filter_gender($(this).val()); return false;" value="female" id="female_button" class="btn btn-glass" style="width: 100px;">
+            خانم
+          </button>
+          <input id="gender_input" hidden>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(".popup-city").on('click', function(event){
+  $("#waiting").addClass("open");
+});
+</script>

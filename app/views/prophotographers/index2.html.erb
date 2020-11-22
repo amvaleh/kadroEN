@@ -1,0 +1,260 @@
+<% halfner = @photographers.count %>
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main photographer" role="main">
+      <div class="header-bg"></div>
+      <div class="entry-content top_head" style="background-image: url('/img/header.jpg');background-size:cover">
+        <div class="container">
+          <h1 class="text-right">
+            لیست عکاسان و آتلیه های عکاسی کادرو
+          </h1>
+          <p class="text-right">
+            کادرو شما را به بهترین عکاسان منتخب و آتلیه های عکاسی برتر
+            در سراسر شهر های ایران
+            وصل می کند.
+          </p>
+
+          <br>
+        </div>
+      </div><!-- .container -->
+      <div id="home-photographers" style="padding:0;">
+        <%= render partial: "filter_pro_page", locals: {:@cities=> @cities,:@shoot_type_ids=> @shoot_type_ids} %>
+        <div class="container-fluid">
+          <div class="row">
+<!--            <p class="text-center text-muted">-->
+<!--              به ترتیب مهارت-->
+<!--            </p>-->
+            <div class="col-md-12" id="photographers_list">
+              <%= render "replace_photographers" %>
+            </div>
+            <!-- feedbacks -->
+            <% if @good_feedbacks.count > 0 %>
+            <div class="col-md-12" >
+              <div class="col-xs-12" style="background: #1d1d1d;">
+                <br>
+                <h3 class="text-center" style="color:white;">
+                  نظرات کاربران درباره
+                  عکاسان کادرو
+                </h3>
+                <div id="slider-container" style="margin: 6% 0px 4% 0;" >
+                  <% @good_feedbacks.each do |r| %>
+                  <div class="cbp-item">
+                    <div class="cbp-item-wrapper">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-xs-12 col-sm-5">
+                            <span style="color: white;">
+                              <%= r.ph_display_name %> <small style="color:gray">(عکاسی <%=r.title%>):</small>
+                            </span>
+                          </div>
+                          <div class="col-xs-12 col-sm-12">
+                            <p class="text-center" style="color: #2a87f9;">
+                              <!-- <span class="fa fa-quote-left" style="color: #186DFA;"></span> -->
+                              <%= r.description %>
+                              <!-- <span class="fa fa-quote-right pull-left" style="color: #186DFA;"></span> -->
+                            </p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <!-- <div class="col-sm-3 hidden-xs">
+                          <%#= image_tag r.shoot_type.avatar_url , class: "img-rounded img-responsive" %>
+                        </div> -->
+                      </div>
+                      <div class="row" style="font-size: 13px;">
+                        <div class="col-xs-12" style="margin-top:15%">
+                          <!-- <p style="text-align: center;font-size: 12px;color: #afafaf;" >
+                          رشته <%#= r.shoot_type.title %>
+                        </p> -->
+                      </div>
+                      <div class="col-xs-3 text-center">
+                        <p style="color: white;">
+                          <span class="fa fa-picture-o"></span><br>
+                          <%= r.total_frames %> عکس نهایی
+                        </p>
+                      </div>
+                      <div class="col-xs-3 text-center">
+                        <p style="color: white;">
+                          <span class="fa fa-hourglass-2"></span><br>
+                          <% if r.order.present?%>
+                    				<%= r.order + r.extend_hours %>
+                    				<% else %>
+                    				2
+                            <% end %>
+                          ساعت عکاسی
+                        </p>
+                      </div>
+                      <div class="col-xs-3 text-center">
+                        <p style="color: white;">
+                          <span class="fa fa-calendar-check-o"></span><br>
+                          <%=r.start_time.to_date.to_pdate.strftime("%b %Y") %>
+                        </p>
+                      </div>
+                      <div class="col-xs-3 text-center">
+                        <p style="color: white;">
+                          <%for lp in 1..r.qrate/2 do %>
+                          <span class="fa fa-star" style="color:yellow"></span>
+                          <% end %>
+                          <br>
+                          <%=r.qrate%> از 10
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cbp-l-grid-slider-testimonials-footer">
+                    <span class="fa fa-arrow-right" ></span>
+                    ورق بزنید
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+            <script type="text/javascript">
+              jQuery(document).ready( function() {
+                jQuery('#slider-container').cubeportfolio({
+                  layoutMode: 'slider',
+                  drag: true,
+                  auto: true,
+                  autoTimeout: 5000,
+                  autoPauseOnHover: true,
+                  showNavigation: true,
+                  showPagination: false,
+                  rewindNav: true,
+                  scrollByPage: true,
+                  gridAdjustment: 'responsive',
+                  mediaQueries: [{
+                    width: 0,
+                    cols: 1,
+                  }],
+                  gapHorizontal: 0,
+                  gapVertical: 0,
+                  caption: '',
+                  displayType: 'default',
+                });
+              });
+            </script>
+          </div>
+        </div>
+        <% end %>
+        <!-- .feedbacks -->
+
+      </div>
+    </div>
+      </div>
+  </main><!-- #main -->
+</div>
+</div>
+
+
+
+<div id="" class="site-content">
+  <div id="" class="content-area">
+    <main id="main" class="site-main photographer" role="main">
+      <div class="entry-content">
+        <div class="container-fluid" style="margin: 3% 0 10% 0;">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="text-muted text-center">
+                میخواهی راحت تر پیدا کنی؟
+              </h2>
+              <h5 class="text-center">
+                مشاهده عکاسان
+                در شهر های مختلف
+              </h5>
+              <div class="row">
+                <% @cities.each do |city| %>
+                <%= link_to city_path(city.name) , class: "btn-link" do %>
+                <div class="col-xs-12 col-sm-5" style="
+                background: none;
+                border: solid 0.001em #8080804a;
+                box-shadow: none;
+                padding:10px;margin:3%;">
+                <div class="col-xs-3 text-center">
+                  <%= image_tag "/img/kadroMapMarker.png", class:"img-responsive"%>
+                </div>
+                <div class="col-xs-9">
+                  <h5>
+                    بهترین عکاسان
+                    <%= city.name %>
+                  </h5>
+                  <hr>
+                  <p style="font-size:10px;">
+                    مشاهده لیست
+                  </p>
+                </div>
+              </div>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script type="text/javascript">
+  function filter(value){
+    console.log(value);
+    if (value=="true") {
+      //  block of code to be executed if the condition is true
+      $("#only_with_studio").val("false");
+      $("#only_with_studio").html('همه عکاسها')
+    } else {
+      //  block of code to be executed if the condition is false
+      $("#only_with_studio").val("true");
+      $("#only_with_studio").html('نمایش آتلیه دارها')
+    }
+    $("#waiting").addClass("open");
+    gender = $("#gender_input").val();
+    sendToServer(value,gender);
+  }
+
+  function filter_gender(gender){
+    console.log(gender);
+    studio = $("#only_with_studio").val()
+    if (studio == "true"){
+      studio = "false"
+    } else{
+      studio = "true"
+    }
+    if (gender=="male") {
+      if ($("#male_button").hasClass("selected-gender")) {
+        $("#male_button").removeClass("selected-gender");
+        gender = null;
+      } else {
+        $("#female_button").removeClass("selected-gender");
+        $("#male_button").addClass("selected-gender");
+      }
+
+    } else if (gender=="female") {
+      if ($("#female_button").hasClass("selected-gender")) {
+        $("#female_button").removeClass("selected-gender");
+        gender = null;
+      } else {
+        $("#male_button").removeClass("selected-gender");
+        $("#female_button").addClass("selected-gender");
+      }
+
+    }
+    $("#waiting").addClass("open");
+    $("#gender_input").val(gender);
+    sendToServer(studio, gender);
+  }
+
+  function sendToServer(studio,gender) {
+    jQuery.ajax({
+      data: {
+        <% if params[:shoot_type].present? %>
+        shoot_type: "<%=params[:shoot_type]%>",
+        <% end %>
+        <% if params[:city_name].present? %>
+        city_name: "<%=params[:city_name]%>",
+        <% end %>
+        has_studio: studio,
+        gender: gender
+      },
+      type: 'POST',
+      url: '<%= query_pro_photographers_path %>',
+    })
+  }
+</script>

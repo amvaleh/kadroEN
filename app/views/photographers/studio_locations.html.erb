@@ -1,0 +1,789 @@
+<script src="//maps.google.com/maps/api/js?key=AIzaSyBqAlo6eTQeSbkOn3xYIjJ4e1zr4ewrSxU"></script>
+<%= javascript_include_tag "locationpicker.jquery"  %>
+<%= javascript_include_tag "plupload.full.min.js" %>
+<%= javascript_include_tag "jquery.plupload.queue.min.js" %>
+<%= stylesheet_link_tag "jquery.plupload.queue.css" %>
+<%= stylesheet_link_tag  'gallery/cubeportfolio.min' %>
+<%= javascript_include_tag 'gallery/jquery.cubeportfolio.min'%>
+<%= stylesheet_link_tag "semantic.min" %>
+<%= javascript_include_tag "semantic.min" %>
+
+<% @top_title = "استودیوی شما" %>
+<%= render 'shared/studio_header' , title: "مدیریت آتلیه" %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <div class="row">
+            <h3 class="text-center">
+              مدیریت آتلیه
+            </h3>
+          </div>
+          <br>
+          <br>
+          <% if @shoot_location.present? %>
+            <%= form_for :photographer, url: submit_studio_locations_photographer_path, method: "post" , html: {class: "form form-group" , :id => "studio_location_form"} do |f| %>
+              <input type="text" id="geolocation_status" name="geolocation_status" style="display:none"  />
+              <input type="text" id="lattitude" name="shoot_location[lattitude]" value="<%= @shoot_location.address.lattitude%>" style="display:none"  />
+              <input type="text" id="longtitude" name="shoot_location[longtitude]" value="<%= @shoot_location.address.longtitude%>" style="display:none" />
+              <input type="text" id="address_id" name="shoot_location[address_id]" value="<%= @shoot_location.address.id%>" style="display:none"  />
+              <input type="text" id="approved" name="shoot_location[approved]" value="<%= @photographer.approved%>" style="display:none"  />
+
+
+
+              <div class="col-md-12 col-md-offset-0">
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <label for="title">
+                      نام آتلیه:
+                    </label>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <input class="form-control mytextbox" type="text" name="shoot_location[title]" id="title" value="<%= @shoot_location.title%>" required="">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <label for="detail">
+                      آدرس دقیق:
+                    </label>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <input class="form-control mytextbox" type="text" id="detail" name="shoot_location[detail]"  value="<%= @shoot_location.address.detail%>" required="">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <label for="form-check-input">
+                      رشته های فعال در آتلیه :
+                      <p style="color: #b2bcc7; font-size: 0.9em;">
+                        رشته هایی که قادر هستید در آتلیه سرویس دهی داشته باشید را انتخاب نمایید.
+                      </p>
+                    </label>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <% shoot_location = ShootLocation.find_by(photographer_id: @photographer.id, is_studio: true) %>
+                      <% if shoot_location.present? %>
+                        <% shoot_location.shoot_type_locations.each do |shl| %>
+                          <div class="form-check shoot_type_select">
+                            <input class="form-check-input" type="checkbox" name="shoot_types[<%= shl.shoot_type_id %>]" value="<%= shl.shoot_type_id %>e" id="<%= shl.shoot_type_id %>" <%= shl.active ? "checked" : "" %>>
+                            <label class="form-check-label" for="<%= shl.shoot_type_id %>">
+                              <%= shl.shoot_type.title %>
+                            </label>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <% @photographer.expertises.approved.each do |e| %>
+                          <div class="form-check shoot_type_select">
+                            <input class="form-check-input" type="checkbox" name="shoot_types[<%= e.shoot_type.id %>]" value="<%= e.shoot_type.id %>" id="<%= e.shoot_type.id %>" <%= e.approved ? "checked" : "" %>>
+                            <label class="form-check-label" for="<%= e.shoot_type.id %>">
+                              <%= e.shoot_type.title %>
+                            </label>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-12 col-md-offset-0">
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="work_map">
+                      لوکیشن دقیق آتلیه:
+                      <p style="color: #b2bcc7; font-size: 0.9em;">
+                        لوکیشن آتلیه شما در صفحه شما نمایش داده می شود. و به صورت مستقیم کاربر می تواند آتلیه شما را رزرو کند.
+                      </p>
+                    </label>
+                    <div id="work_map" value=" " style="width: 100%; height: 400px;"></div>
+                    <br>
+                    <input  type="text" name="shoot_location[input]" class="form-control" id="input"
+                            placeholder="آدرس محل کار شما" style="display: none;" value="<%= @shoot_location.address.input%>" >
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-12">
+                  <div class="col-xs-3" id="show-div-filelist">
+                    <div class="">
+                      <a id="show-div-filelist-button" class="btn btn-success btn-block" name="button" onclick="show_div_file_list();">افزودن تصویر آتلیه</a>
+                    </div>
+                  </div>
+                </div>
+                <div id="div-file-list" hidden>
+                  <div class="col-xs-12 col-md-12">
+                    <hr>
+                    <div id="direct_upload" class="basic_form">
+                      <h2 class="text-right">
+                        نحوه آپلود
+                      </h2>
+                      <div class="col-xs-12">
+                        <p>
+                        <span style="color:red">
+                          *
+                          حجم هر فایل حداکثر ۱ مگابایت می تواند باشد.
+                        </span>
+                          <br>
+                          اگر عکسی کیفیت خوبی ندارد، حتما ابتدا ادیت و سپس آپلود شود.
+                          <br>
+                          ابتدا فایل های خود را اضافه نمایید سپس توسط دکمه شروع آپلود عکس ها را آپلود کنید.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <hr>
+                    <div class="col-xs-12" id="filelist">
+                      <div id="uploader">
+                        <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12" id="grid-container" style="padding-top: 5%;">
+                  <div id="js-grid-masonry" class="cbp">
+                    <% if @shoot_location_attachments.present? %>
+                      <% @shoot_location_attachments.each do |f| %>
+                        <div class="cbp-item identity" id="div-<%= f.id %>">
+                          <a href='<%=f.photo_url(:medium)%>' class="cbp-caption cbp-lightbox" data-title="<%=f.shoot_location.title%><br>توسط <%=f.shoot_location.photographer.display_name%>">
+                            <div class="cbp-caption-defaultWrap">
+                              <%= cl_image_tag(f.photo_url(:medium), :height => 300,:width=> 300, :crop => :fit, :quality => 50)%>
+                            </div>
+                            <div class="cbp-caption-activeWrap">
+                              <div class="cbp-l-caption-alignCenter">
+                                <div class="cbp-l-caption-body">
+                                  <div class="cbp-l-caption-title"> <%= f.id %>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                          <button id="remove-button-<%= f.id %>" class="btn btn-danger btn-block" type="button" name="button" onclick="remove_photo(<%= f.id %>,'/shoot_location_attachments/<%=f.id %>');">حذف</button>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+            <% end %>
+          <% else %>
+            <%= form_for :photographer, url: submit_studio_locations_photographer_path, method: "post" , html: {class: "form form-group" , :id => "studio_location_form"} do |f| %>
+              <input type="text" id="geolocation_status" name="geolocation_status" style="display:none"  />
+              <input type="text" id="lattitude" name="shoot_location[lattitude]" style="display:none"  />
+              <input type="text" id="longtitude" name="shoot_location[longtitude]" style="display:none" />
+              <input type="text" id="approved" name="shoot_location[approved]" value="<%= @photographer.approved%>" style="display:none"  />
+
+
+              <div class="col-md-12 col-md-offset-0">
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <label for="title">
+                      نام آتلیه:
+                    </label>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <input class="form-control mytextbox" type="text" name="shoot_location[title]" id="title" required="">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <label for="detail">
+                      آدرس دقیق:
+                    </label>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <input class="form-control mytextbox" type="text" id="detail" name="shoot_location[detail]" required="">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <label for="form-check-input">
+                      رشته های فعال در آتلیه :
+                      <p style="color: #b2bcc7; font-size: 0.9em;">
+                        رشته هایی که قادر هستید در آتلیه سرویس دهی داشته باشید را انتخاب نمایید.
+                      </p>
+                    </label>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <% shoot_location = ShootLocation.find_by(photographer_id: @photographer.id, is_studio: true) %>
+                      <% if shoot_location.present? %>
+                        <% shoot_location.shoot_type_locations.each do |shl| %>
+                          <div class="form-check shoot_type_select">
+                            <input class="form-check-input" type="checkbox" name="shoot_types[<%= shl.shoot_type_id %>]" value="<%= shl.shoot_type_id %>e" id="<%= shl.shoot_type_id %>" <%= shl.active ? "checked" : "" %>>
+                            <label class="form-check-label" for="<%= shl.shoot_type_id %>">
+                              <%= shl.shoot_type.title %>
+                            </label>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <% @photographer.expertises.approved.each do |e| %>
+                          <div class="form-check shoot_type_select">
+                            <input class="form-check-input" type="checkbox" name="shoot_types[<%= e.shoot_type.id %>]" value="<%= e.shoot_type.id %>" id="<%= e.shoot_type.id %>" <%= e.approved ? "checked" : "" %>>
+                            <label class="form-check-label" for="<%= e.shoot_type.id %>">
+                              <%= e.shoot_type.title %>
+                            </label>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-12 col-md-offset-0">
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <label for="work_map">
+                      لوکیشن دقیق آتلیه:
+                      <p style="color: #b2bcc7; font-size: 0.9em;">
+                        لوکیشن آتلیه شما در صفحه شما نمایش داده می شود. و به صورت مستقیم کاربر می تواند در آتلیه رزرو کند.
+                      </p>
+                    </label>
+                    <div id="work_map" value=" " style="width: 100%; height: 400px;"></div>
+                    <br>
+                    <input  type="text" name="shoot_location[input]" class="form-control" id="input"
+                            placeholder="آدرس محل کار شما" style="display: none;" required="" >
+
+                  </div>
+                  <div class="col-xs-12 col-md-12">
+                    <div class="col-xs-3" id="show-div-filelist">
+                      <div class="actions">
+                        <a id="show-div-filelist-button" class="btn btn-success btn-block" name="button" onclick="show_div_file_list();">
+                          <span class="fa fa-plus-circle"></span>
+                          افزودن تصویر آتلیه</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="div-file-list" hidden>
+                    <div class="col-xs-12 col-md-12">
+                      <hr>
+                      <div id="direct_upload" class="basic_form">
+                        <h2 class="text-right">
+                          نحوه آپلود
+                        </h2>
+                        <div class="col-xs-12">
+                          <p>
+                          <span style="color:red">
+                            *
+                            حجم هر فایل حداکثر ۱ مگابایت می تواند باشد.
+                          </span>
+                            <br>
+                            <span style="color:red">
+                            *
+                            عرض هر عکس باید حداقل ۳۰۰۰ پیکسل باشد.
+                          </span>
+                            <br>
+                            اگر عکسی کیفیت خوبی ندارد، حتما ابتدا ادیت و سپس آپلود شود.
+                            <br>
+                            لطفا
+                            <span class="text-primary">
+                            همه
+                          </span>
+                            عکس هایی که گرفته اید را آپلود کنید.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <hr>
+                      <div class="col-xs-12" id="filelist">
+                        <div id="uploader">
+                          <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="col-xs-12 col-md-6 col-md-offset-3" style="margin-top: 30px;">
+            <button type="submit" id ="submit_page_form" class="btn btn-blue btn-block ">
+              ثبت و ذخیره
+            </button>
+          </div>
+          </div>
+        </div>
+      </div><!-- /.main -->
+    </div><!-- /.container -->
+  </div>
+</section>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('#js-grid-masonry').cubeportfolio({
+            filters: '#js-filters-masonry',
+            layoutMode: 'grid',
+            defaultFilter: '*',
+            animationType: 'slideDelay',
+            gapHorizontal: 20,
+            gapVertical: 20,
+            gridAdjustment: 'responsive',
+            mediaQueries: [{
+                width: 1500,
+                cols: 5,
+            }, {
+                width: 1100,
+                cols: 4,
+            }, {
+                width: 800,
+                cols: 3,
+            }, {
+                width: 480,
+                cols: 2,
+                options: {
+                    caption: '',
+                    gapHorizontal: 3,
+                    gapVertical: 3,
+                }
+            }],
+            caption: 'overlayBottomAlong',
+            displayType: 'bottomToTop',
+            displayTypeSpeed: 100,
+
+            // lightbox
+            lightboxDelegate: '.cbp-lightbox',
+            lightboxGallery: true,
+            lightboxTitleSrc: 'data-title',
+            lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
+        });
+
+
+        $('#submit_page_form').click(function(){
+            var uploader = $('#uploader').pluploadQueue();
+            uploader.bind('StateChanged', function() {
+                if (uploader.files.length === (uploader.total.uploaded + uploader.total.failed)) {
+                    $('form')[0].submit();
+                }
+            });
+            uploader.start();
+            setTimeout(() => {  document.getElementById("studio_location_form").submit(); }, 100000);
+
+        });
+
+
+        $('#studio_location_form').parsley().on('field:validated', function () {
+            $('button').prop('disabled', false);
+        }).on('form:submit', function () {
+        });
+        var mapStyle = [
+            {
+                "featureType": "water",
+                "stylers": [
+                    {
+                        "saturation": 43
+                    },
+                    {
+                        "lightness": -11
+                    },
+                    {
+                        "hue": "#0088ff"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "hue": "#ff0000"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 99
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#808080"
+                    },
+                    {
+                        "lightness": 54
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.man_made",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ece2d9"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ccdca1"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "color": "#767676"
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape.natural",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#EBE5E0"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.sports_complex",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    }
+                ]
+            }
+        ]
+        <% if @shoot_location.present? %>
+        var latitude = <%= @shoot_location.address.lattitude %>;
+        var longitude = <%= @shoot_location.address.longtitude %>;
+        <% else %>
+        var latitude = 35.7745054;
+        var longitude = 51.3967018;
+        <% end %>
+
+        $('#work_map').locationpicker({
+            location: {
+                latitude: latitude,
+                longitude: longitude
+            },
+            markerIcon: "https://app.kadro.co/img/studio-logo.png",
+            radius: 10,
+            zoom: 13,
+            inputBinding: {
+                longitudeInput: $('#longtitude'),
+                latitudeInput: $('#lattitude'),
+                locationNameInput: $('#input')
+            },
+            markerInCenter: true,
+            autocompleteOptions: {
+                types: ['geocode'],
+                componentRestrictions: {country: 'ir'}
+            },
+            onchanged: function (currentLocation, radius, isMarkerDropped) {
+                // alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+            },
+            styles: mapStyle
+        });
+    });
+
+
+
+    // $("form").submit(function(e) {
+    // 	var uploader = $("#uploader").pluploadQueue();
+    //
+    // 	// Validate number of uploaded files
+    // 	if (uploader.total.uploaded == 0) {
+    // 		// Files in queue upload them first
+    // 		if (uploader.files.length > 0) {
+    // 			// When all files are uploaded submit form
+    // 			uploader.bind("StateChanged", function() {
+    // 				if (uploader.total.uploaded == uploader.files.length)
+    // 					$("form").submit();
+    // 			});
+    //
+    // 			uploader.start();
+    // 		} else
+    // 			alert("You must at least upload one file.");
+    //
+    // 		e.preventDefault();
+    // 	}
+    // });
+
+
+
+    $(function() {
+
+        $("#uploader").pluploadQueue({
+            // General settings
+            runtimes : 'html5,flash,silverlight,html4',
+            url : '/shoot_location_attachments',
+            chunk_size : '5mb',
+            unique_names : true,
+
+
+            filters : {
+                max_file_size : '1mb',
+                mime_types: [
+                    {title : "Image files", extensions : "jpg,jpeg"}
+                ]
+            },
+            multipart_params : {
+                <% if @shoot_location.present? %>
+                "shoot_location_id" : <%= @shoot_location.id %>,
+                <% end %>
+                "photographer_id" : <%= @photographer.id %>,
+                "is_studio" : true,
+                "approved" : false
+            },
+
+            // Flash settings
+            flash_swf_url : '/plupload/js/Moxie.swf',
+
+            // Silverlight settings
+            silverlight_xap_url : '/plupload/js/Moxie.xap',
+
+            // PreInit events, bound before any internal events
+            preinit : {
+                Init: function(up, info) {
+                    log('[Init]', 'Info:', info, 'Features:', up.features);
+                },
+
+                UploadFile: function(up, file) {
+                    log('[UploadFile]', file);
+
+                    // You can override settings before the file is uploaded
+                    // up.setOption('url', 'upload.php?id=' + file.id);
+                    // up.setOption('multipart_params', {param1 : 'value1', param2 : 'value2'});
+                }
+            },
+
+            // Post init events, bound after the internal events
+            init : {
+                PostInit: function() {
+                    // Called after initialization is finished and internal event handlers bound
+                    log('[PostInit]');
+
+                    // document.getElementById('uploadfiles').onclick = function() {
+                    //   uploader.start();
+                    //   return false;
+                    // };
+                },
+
+                Browse: function(up) {
+                    // Called when file picker is clicked
+                    log('[Browse]');
+                },
+
+                Refresh: function(up) {
+                    // Called when the position or dimensions of the picker change
+                    log('[Refresh]');
+                },
+
+                StateChanged: function(up) {
+                    // Called when the state of the queue is changed
+                    log('[StateChanged]', up.state == plupload.STARTED ? "STARTED" : "STOPPED");
+                },
+
+                QueueChanged: function(up) {
+                    // Called when queue is changed by adding or removing files
+                    log('[QueueChanged]');
+                },
+
+                OptionChanged: function(up, name, value, oldValue) {
+                    // Called when one of the configuration options is changed
+                    log('[OptionChanged]', 'Option Name: ', name, 'Value: ', value, 'Old Value: ', oldValue);
+                },
+
+                BeforeUpload: function(up, file) {
+                    // Called right before the upload for a given file starts, can be used to cancel it if required
+                    log('[BeforeUpload]', 'File: ', file);
+                },
+
+                UploadProgress: function(up, file) {
+                    // Called while file is being uploaded
+                    log('[UploadProgress]', 'File:', file, "Total:", up.total);
+                },
+
+                FileFiltered: function(up, file) {
+                    // Called when file successfully files all the filters
+                    log('[FileFiltered]', 'File:', file);
+                },
+
+                FilesAdded: function(up, files) {
+                    // Called when files are added to queue
+                    log('[FilesAdded]');
+
+                    plupload.each(files, function(file) {
+                        log('  File:', file);
+                    });
+                },
+
+                FilesRemoved: function(up, files) {
+                    // Called when files are removed from queue
+                    log('[FilesRemoved]');
+
+                    plupload.each(files, function(file) {
+                        log('  File:', file);
+                    });
+                },
+
+                FileUploaded: function(up, file, info) {
+                    // Called when file has finished uploading
+                    log('[FileUploaded] File:', file, "Info:", info);
+                },
+
+                ChunkUploaded: function(up, file, info) {
+                    // Called when file chunk has finished uploading
+                    log('[ChunkUploaded] File:', file, "Info:", info);
+                },
+
+                UploadComplete: function(up, files) {
+                    // Called when all files are either uploaded or failed
+                    log('[UploadComplete]');
+                },
+
+                Destroy: function(up) {
+                    // Called when uploader is destroyed
+                    log('[Destroy] ');
+                },
+
+                Error: function(up, args) {
+                    // Called when error occurs
+                    console.log(args.status);
+                    if (args.status == 406){
+                        alert("حجم فایل بیشتر از حد مجاز است.")
+                    }
+                    if (args.status == 401){
+                        alert("اگزیف عکس موجود نیست و یا اگزیف دارای سریال نامبر نمی باشد. لطفا عکس دارای اگزیف را آپلود کنید.")
+                    }
+                }
+            }
+        });
+        function log() {
+            var str = "";
+
+            plupload.each(arguments, function(arg) {
+                var row = "";
+
+                if (typeof(arg) != "string") {
+                    plupload.each(arg, function(value, key) {
+                        // Convert items in File objects to human readable form
+                        if (arg instanceof plupload.File) {
+                            // Convert status to human readable
+                            switch (value) {
+                                case plupload.QUEUED:
+                                    value = 'QUEUED';
+                                    break;
+
+                                case plupload.UPLOADING:
+                                    value = 'UPLOADING';
+                                    break;
+
+                                case plupload.FAILED:
+                                    value = 'FAILED';
+                                    break;
+
+                                case plupload.DONE:
+                                    value = 'DONE';
+                                    break;
+                            }
+                        }
+
+                        if (typeof(value) != "function") {
+                            row += (row ? ', ' : '') + key + '=' + value;
+                        }
+                    });
+
+                    str += row + " ";
+                } else {
+                    str += arg + " ";
+                }
+            });
+
+            var log = $('#log');
+            log.append(str + "\n");
+            // log.scrollTop(log[0].scrollHeight);
+        }
+    });
+
+
+    function remove_photo(id, url){
+        console.log(url)
+        $.ajax({
+            data: {
+                id: id,
+            },
+            dataType: 'json',
+            async: false,
+            success: function(){
+                document.getElementById("remove-button-" + id).innerHTML = 'حذف شد !' ;
+                document.getElementById("remove-button-" + id).classList.remove("btn-danger");
+                document.getElementById("remove-button-" + id).classList.add("btn-gray");
+                document.getElementById("remove-button-" + id).disabled = true
+                document.getElementById("div-" + id).remove();
+            },
+            type: 'DELETE',
+            url: url,
+        })
+    }
+
+    function show_div_file_list(){
+        div = document.getElementById("div-file-list");
+        if (div.hidden == true){
+            div.hidden = false;
+        } else {
+            div.hidden = true;
+        }
+    }
+
+
+
+</script>

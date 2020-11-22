@@ -1,0 +1,152 @@
+<div style="direction:rtl !important; ">
+  <% if !rows.any? %>
+  متاسفانه برای شما پروژه ای ثبت نشده
+  <% else %>
+  <table class="table table-hover table-bordered">
+    <tr>
+      <th class="text-center">نام سفارش دهنده</th>
+      <th class="text-center">تاریخ سفارش</th>
+      <th class="text-center">نام عکاس</th>
+      <th class="text-center">پکیج انتخابی</th>
+      <th class="text-center">مبلغ واریز شده (تومان)</th>
+      <th class="text-center">سود حاصله (تومان)</th>
+    </tr>
+    <% rows.each do |row| %>
+    <tr>
+      <td>
+        <%= row.user.display_name %>
+        <% if row.user.business == current_admin_user.business %>
+        <br>
+        <small class="text-muted">
+          کاربر شما
+        </small>
+        <% end %>
+      </td>
+
+      <td>
+        <%= time = row.created_at %>
+        <%#= convert_persian_day(time.strftime("%A")).to_s + " " + time.to_date.to_pdate.strftime("%e %b").to_s +  " ساعت " + time.strftime("%H:%M") %>
+      </td>
+
+      <td>
+        <% if row.photographer.present? %>
+        <%= row.photographer.display_name %>
+        <% if row.photographer.business == current_admin_user.business %>
+        <br>
+        <small class="text-muted">
+          عکاس شما
+        </small>
+        <% end %>
+        <% end %>
+      </td>
+
+      <td>
+        <% if row.package.present? %>
+        <%= row.package.duration %>
+        <br>
+        <small class="text-muted">
+
+          <% if row.package.is_full? %>
+          تمام عکس ها
+          <% else %>
+          <%= row.package.digitals %>
+          عکس انتخابی
+          <% end %>
+        </small>
+        <% end %>
+      </td>
+
+      <td>
+        <% if row.receipt.present? %>
+        <%= row.package.price %>
+        <% end %>
+        <% if row.is_payed? %>
+        پرداخت شده
+        <% else %>
+        پرداخت نشده
+        <% end %>
+      </td>
+
+      <td>
+        <% if row.is_payed? %>
+        <% if current_admin_user.business.user_share > 0 && current_admin_user.business.photographer_share > 0 %>
+        <% if row.user.business == current_admin_user.business && row.photographer.business == current_admin_user.business %>
+        <%# total_pur = current_admin_user.business.user_share + current_admin_user.business.photographer_share %>
+        <%= row.receipt.business_total %>
+        <br>
+        <small class="text-muted">
+          هم کاربر هم عکاس
+          <% if row.receipt.business_checkout? %>
+          (پرداخت شده)
+          <% else %>
+          (پرداخت نشده)
+          <% end %>
+        </small>
+        <% elsif row.user.business == current_admin_user.business %>
+        <%# total_pur = current_admin_user.business.user_share %>
+        <%= row.receipt.business_total %>
+        <br>
+        <small class="text-muted">
+          فقط کاربر
+          <% if row.receipt.business_checkout? %>
+          (پرداخت شده)
+          <% else %>
+          (پرداخت نشده)
+          <% end %>
+        </small>
+        <% elsif row.photographer.business == current_admin_user.business %>
+        <%# total_pur = current_admin_user.business.photographer_share %>
+        <%= row.receipt.business_total %>
+        <br>
+        <small class="text-muted">
+          فقط عکاس
+          <% if row.receipt.business_checkout? %>
+          (پرداخت شده)
+          <% else %>
+          (پرداخت نشده)
+          <% end %>
+        </small>
+        <% end %>
+        <% elsif current_admin_user.business.user_share > 0 %>
+        <% if row.user.business == current_admin_user.business %>
+        <%# total_pur = current_admin_user.business.user_share %>
+        <%= row.receipt.business_total %>
+        <br>
+        <small class="text-muted">
+          فقط کاربر
+          <% if row.receipt.business_checkout? %>
+          (پرداخت شده)
+          <% else %>
+          (پرداخت نشده)
+          <% end %>
+        </small>
+        <% end %>
+        <% elsif current_admin_user.business.photographer_share > 0 %>
+        <% if row.photographer.business == current_admin_user.business %>
+        <%# total_pur = current_admin_user.business.photographer_share %>
+        <%= row.receipt.business_total %>
+        <br>
+        <small class="text-muted">
+          فقط عکاس
+          <% if row.receipt.business_checkout? %>
+          (پرداخت شده)
+          <% else %>
+          (پرداخت نشده)
+          <% end %>
+        </small>
+        <% end %>
+        <% else %>
+        0
+        <% end %>
+
+
+        <% else %>
+        0
+        <% end %>
+      </td>
+
+    </tr>
+    <% end %>
+  </table>
+  <% end %>
+</div>

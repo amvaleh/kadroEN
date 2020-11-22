@@ -1,0 +1,83 @@
+<!--        <div class="col-12">-->
+<!--          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-pause="true" data-ride="false">-->
+<!--            <div id="carusel-inner" class="carousel-inner box-shadow fixwidth radius">-->
+<%# index = 0 %>
+<%# if @photos.present? %>
+<%# @photos.each do |f| %>
+<%# if f.image_type == "Photo" and Photo.where(id: f.image_id).any? %>
+<%# p = Photo.find(f.image_id) %>
+<%# url = assets_url(p.file_url(:medium))%>
+<%# ph_name = p.expertise.present? ? p.expertise.photographer.abbrv_name : "آرشیوی" %>
+<%# elsif f.image_type == "Frame" and Frame.where(id: f.image_id).any? %>
+<%# p = Frame.find(f.image_id) %>
+<%# url = assets_url(p.file_url(:light))%>
+<%# ph_name = p.gallery.present? ? p.gallery.project.photographer.abbrv_name : "آرشیوی" %>
+<%# end %>
+<%# if p.present? %>
+<!--                    <div class="carousel-item <%#if index==0%>active<%#end%> fixwidth" style="height: 500px !important;">-->
+<!--                      <img id="<%#= p.id.to_s + "-img-tag" %>" src="<%#= url %>" class="d-block move"-->
+<!--                           alt="عکاسی <%#=@shoot_type.title%> - شماره <%#=index%>" onload="checkCookie('<%#= f.id %>-sample'); ">-->
+<!--                      <div class="heart love1" id="heart-<%#= f.id %>" hidden></div>-->
+<!--                      <div class="carousel-caption d-block col-12 col-md-8 col-lg-4 offset-lg-8 one-radius mx-auto">-->
+<!--                        <div class="row">-->
+<!--                          <div class="col-6 col-6-padding">-->
+<!--                            <button type="button" id="<%#= f.id %>-sample-like" class="btn btn-default btn-xl btn-block btn-circle" onclick="likephoto(<%#= f.id %>,'like','<%= kd_like_url %>');">-->
+<!--                              <div class="text-center">-->
+<!--                                <i class="fa fa-heart-o" id="like-<%#= f.id %>" data-value="false" style="color: #767575;"></i>-->
+<!--                                <span id="<%#= f.id %>-span-like-number" class="number-text text-center"><%#= f.like_number.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %></span>-->
+<!--                              </div>-->
+<!--                            </button>-->
+<!--                          </div>-->
+<!--                          <div class="col-6 col-6-padding">-->
+<!--                            <div class="text-center">-->
+<!--                              <button type="button" id="<%#= f.id %>-sample-dislike" class="btn btn-default btn-xl btn-block btn-circle" onclick="likephoto(<%#= f.id %>,'dislike','<%= kd_like_url %>');">-->
+<!--                                <div class="text-center">-->
+<!--                                  <i class="fa fa-times" id="dislike-<%#= f.id %>" data-value="false" style="color: #767575;"></i>-->
+<!--                                  <span id="<%#= f.id %>-span-dislike-number" class="number-text text-center"><%#= f.dislike_number.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %></span>-->
+<!--                                </div>-->
+<!--                              </button>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                        <h4 class="text-center" style="margin:0.5em 0em; margin-bottom: 7%; color: black;">-->
+<!--                          عکاس: <%#= ph_name %> </h4>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<%# index = index + 1 %>
+<%# end %>
+<%# end %>
+<%# elsif @samples.present? %>
+<%# @samples.each do |p| %>
+<!--                  <div class="carousel-item <%#if index==0%>active<%#end%>">-->
+<!--                    <img src="<%#=assets_url(p.url(:optimum))%>" class="d-block w-100" alt="عکاسی <%#=@shoot_type.title%> - شماره <%#=index%>">-->
+<!--                    <div class="carousel-caption d-block col-12 col-md-8 col-lg-9">-->
+<!--                      <h4 class="text-right">عکاسی <%#=@shoot_type.title%>  </h4>-->
+<!--                      <p class="text-right" > نمونه کار دستچین شده از عکاسان کادرو </p>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<%# index = index + 1 %>
+<%# end %>
+<%# elsif @expertise_photos.present? %>
+<%# @expertise_photos.order("created_at DESC").last(50).each do |p| %>
+<!--                  <div class="carousel-item <%#if index==0%>active<%#end%>">-->
+<!--                    <img src="<%#=assets_url(p.file_url(:large))%>" class="d-block w-100"-->
+<!--                         alt="عکاسی <%#=@shoot_type.title%> - شماره <%#=index%>">-->
+<!--                    <div class="carousel-caption d-block col-12 col-md-8 col-lg-9">-->
+<!--                      <h4 class="text-right">عکاسی <%#=@shoot_type.title%>  </h4>-->
+<!--                      <p class="text-right"> نمونه کار عکاسی از <%#=p.expertise.photographer.abbrv_name %> </p>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<%# index = index + 1 %>
+<%# end %>
+<%# end %>
+<!--            </div>-->
+<!--            <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">-->
+<!--              <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--              <span class="sr-only">Previous</span>-->
+<!--            </a>-->
+<!--            <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">-->
+<!--              <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--              <span class="sr-only">Next</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </div>-->

@@ -1,0 +1,45 @@
+<div class="wrapper calendar container-fluid" hidden style="background:black;">
+  <div class="row">
+    <div class="col-xs-12">
+      <p style="text-align:justify">
+        <i style="font-size: x-large; color: mediumvioletred">*</i>
+        در صورتی که نیاز به تغییر تاریخ پروژه دارید
+        از این تقویم تاریخ جدید را ثبت کنید.
+        <strong> تاریخ جدید به صورت خودکار برای کارفرما پیامک می شود. </strong>
+      </p>
+      <br>
+      <p class="text-center text-warning">
+        تاریخ کنونی پروژه:
+        <%= @time %>
+        </p>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <div id="" class="">
+      تاریخ:
+      <div id="date-picker"></div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-xs-12">
+    ساعت:
+    <div id="time-picker" class="">
+      <header class="gdate"></header>
+      <div class="input-group">
+        <div id="demo"></div>
+      </div>
+      <p id="time-in-words" class="text-center" style="margin-top: 28px; font-size: xx-large; color: #8d8c9b">
+        <%= "ساعت " + @project.start_time.strftime("%H:%M") %>
+      </p>
+    </div>
+  </div>
+  <input type="hidden" id="date_field">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3" style="margin-top: 5px;" id="regist-time">
+    <a id="register-new-time" class="btn btn-block btn-success">
+      ثبت و ارسال برای
+      <strong>
+        کارفرما
+        <i class="fa fa-check fa-2x pull-left"></i>
+      </strong>
+    </a>
+  </div>
+</div>

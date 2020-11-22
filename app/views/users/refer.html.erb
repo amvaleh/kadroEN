@@ -1,0 +1,73 @@
+<% free_credit = Setting.find_by(var: 'free_credit').value %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+    <div class="wrapper">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+          <div class="row">
+            <h1 class="text-center">
+              <%= number_with_delimiter(free_credit.to_i , :delimiter => ',').to_s.tr('-0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+              تومان
+              <br><small>
+                اعتبار رایگان دریافت کنید!
+              </small>
+            </h1>
+          </div>
+          <br>
+          <div class="row" >
+            <p style="line-height: 2.5em;text-align:justify">
+              کادرو را به دوستان خود معرفی کنید تا
+              <strong class="text-info" style="font-size: 15px;">
+                <%= number_with_delimiter(free_credit.to_i , :delimiter => ',').to_s.tr('-0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                تومان </strong>
+                <br>
+                اعتبار دریافت کنند و با اولین سفارش آنها، شما نیز
+                <strong class="text-info" style="font-size: 15px;">
+                  <%= number_with_delimiter(free_credit.to_i , :delimiter => ',').to_s.tr('-0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                  تومان</strong><br>
+                  اعتبار هدیه بگیرید.
+                </p>
+              </div>
+              <div class="row">
+                <p class="text-center text-info">
+                  کافیست دوست شما هنگام ثبت سفارش کد تخفیف زیر را وارد کند:
+                  <span class="fa fa-arrow-down"></span>
+                </p>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                  <input type="text" class="form form-control" style="font-size:2rem;min-height: 4rem;min-width:3rem;text-align:center;margin:0.5em 0em 1em 0em;" value="<%= @user.refer_key %>" id="key-text" readonly>
+                  <button class="btn btn-xs btn-block btn-blue" onclick="copyText()">
+                    کپی کن!
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12  col-sm-12 col-md-6" style="background: url(/img/free_photography_bg.jpg);
+            background-repeat: no-repeat;
+            background-size: 50em;
+            background-position: center;min-height: 400px;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript" charset="utf-8">
+
+    function copyText() {
+      var copyText = document.getElementById("key-text");
+
+      /* Select the text field */
+      copyText.select();
+
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+
+      /* Alert the copied text */
+      alert("کد تخفیف شما با موفقیت کپی شد:   (" + copyText.value + ")   برای دوستت ارسال کن :دی");
+    }
+
+  </script>

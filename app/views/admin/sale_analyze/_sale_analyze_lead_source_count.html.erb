@@ -1,0 +1,60 @@
+<style>
+.horizontal-scrollable > .row {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.horizontal-scrollable > .row > .col-xs-2 {
+  display: inline-block;
+  float: none;
+}
+</style>
+<div class="row">
+    <div class="col-xs-2">
+            <span>
+            Lead Source Confirmed Projects
+            </span>
+            <br>
+            <br>
+            <br>
+            <p>New USer</p>
+    </div>
+    <div class="col-xs-10">
+        <div class="horizontal-scrollable">
+            <div class="row" style="margin-bottom:10px;">
+                    <% lead_sources.each do |lead_source| %>
+                        <% if params[:type] == "confirmed" %>
+                            <% count = LeadSources::ConfirmedCountProjects.call(lead_source_id: lead_source.id, start_date: start_date, end_date: end_date).count %>
+                        <% elsif params[:type] == "canceled" %>
+                            <% count = LeadSources::CanceledCountProjects.call(lead_source_id: lead_source.id, start_date: start_date, end_date: end_date).count %>
+                        <% end %>
+                        <% user_count = Users::NewUserWithLeadSource.call(lead_source_id: lead_source.id, start_date: start_date, end_date: end_date).count %>
+                        <div class="col-xs-2">
+                            <p><%= lead_source.title %></p>
+                            <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= count %></p>
+                            <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= user_count %></p>
+                        </div>
+                    <% end %>
+                    <div class="col-xs-2">
+                        <% if params[:type] == "confirmed" %>
+                            <% unkown_count = Projects::ConfirmedCountProjectsWithoutLeadSource.call( start_date: start_date, end_date: end_date).count %>
+                        <% elsif params[:type] == "canceled" %>
+                            <% unkown_count = Projects::CancelCountProjectsWithoutLeadSource.call( start_date: start_date, end_date: end_date).count %>
+                        <% end %>
+                        <p>نامشخص</p>
+                        <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= unkown_count %></p>
+                        <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= Users::NewUserCountWithoutLeadSource.call(start_date: start_date, end_date: end_date).count %></p>
+                    </div>
+                    <div class="col-xs-2">
+                        <% if params[:type] == "confirmed" %>
+                            <% total_count = Projects::ConfirmedCountProjects.call( start_date: start_date, end_date: end_date).count %>
+                        <% elsif params[:type] == "canceled" %>
+                            <% total_count = Projects::CancelCountProjects.call( start_date: start_date, end_date: end_date).count %>
+                        <% end %>
+                        <p>مجموع</p>
+                        <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= total_count %></p>
+                        <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= Users::NewUserCount.call(start_date: start_date, end_date: end_date).count %></p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

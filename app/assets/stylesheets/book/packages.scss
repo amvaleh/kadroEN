@@ -1,0 +1,357 @@
+$primaryColor: #4286f5;
+#header{
+    .header{
+        .container{
+            #main{
+                .container{
+                    .main{
+                        .wrapper{
+                            #price_selection{
+                                .pricing{
+                                    .shoot-package{
+                                        #packages{
+                                            .packages {
+                                                width: 96%;
+                                                margin: 0 auto;
+                                                display: flex;
+                                                flex-direction: column;
+                                                align-items: right;
+                                                /*margin-bottom: 10em;*/
+                                                // overflow: hidden;
+                                                h2 {
+                                                    text-align: center;
+                                                    font-size: 1.5em;
+                                                    b {
+                                                        line-height: 1.5em;
+                                                        color: $primaryColor;
+                                                        font-size: 1.5em;
+                                                    }
+                                                    margin-bottom: 1em;
+                                                }
+                                                p {
+                                                    margin-block-start: 0;
+                                                    margin-block-end: 0;
+                                                }
+                                                ul {
+                                                    list-style: none;
+                                                    padding: unset;
+                                                    margin: unset;
+                                                }
+                                                a {
+                                                    text-decoration: none;
+                                                    color: #111;
+                                                    &:active {
+                                                        color: #111;
+                                                    }
+                                                    &:visited {
+                                                        color: #111;
+                                                    }
+                                                }
+                                                h1,
+                                                h2,
+                                                h3,
+                                                h4,
+                                                h5,
+                                                h6,
+                                                p {
+                                                    margin: 0;
+                                                    padding: 0;
+                                                }
+                                                h4 {
+                                                    margin: 1em auto;
+                                                    text-align: center;
+                                                }
+                                                .options {
+                                                    border-radius: 0.5em;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: flex-start;
+                                                    padding: 1em;
+                                                    // justify-content: space-between;
+                                                    width: calc(100% -4em);
+                                                    margin: 1em auto;
+                                                    .item {
+                                                        flex: 1;
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        padding: 0.25em 0;
+                                                        font-weight: lighter;
+                                                        .icon {
+                                                            width: 1em;
+                                                            height: 1em;
+                                                            background-color: $primaryColor;
+                                                            margin-left: 0.4rem;
+                                                            border-radius: 0.3em;
+                                                        }
+                                                        p {
+                                                            font-weight: lighter;
+                                                            b {
+                                                                font-weight: bold;
+                                                            }
+                                                        }
+                                                    }
+                                                    &.bg-blue {
+                                                        background-color: rgba($primaryColor, 0.05);
+                                                    }
+                                                }
+                                                .selection-bar { 
+                                                    display: inline-block; 
+                                                    overflow-x: auto;
+                                                    white-space: nowrap;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    margin: 1em 0;
+                                                    // padding: 0.4em;
+                                                    position: relative;
+                                                    flex-wrap: wrap;
+                                                    // overflow-x: scroll;
+                                                    .item-select {
+                                                        box-shadow: 0 0.1rem 0.2rem rgba(#000000, 0.1);
+                                                        border: 0.05em solid #ddd;
+                                                        padding: 0.9em 0.7em;
+                                                        background-color: #fff;
+                                                        border-radius: 0.5em;
+                                                        margin: 0.4em;
+                                                        align-items: center;
+                                                        cursor: pointer;
+                                                        transition: all 200ms ease;
+                                                        font-size: 1.2em;
+                                                        width: calc(50% - 2em);
+                                                        display: inline-flex;
+                                                        position: relative;
+                                                        &.active {
+                                                            box-shadow: 0 0.25rem 0.5rem rgba(#000000, 0.25);
+                                                            border: 0.05em solid $primaryColor;
+                                                        }
+                                                        .popular-icon {
+                                                            position: absolute;
+                                                            width: 2em;
+                                                            height: 2em;
+                                                            left: 0;
+                                                            opacity: 0.5;
+                                                        }
+                                                        .circle {
+                                                            width: 1em;
+                                                            height: 1em;
+                                                            border: 0.2em solid #ddd;
+                                                            border-radius: 50%;
+                                                            margin-left: 0.5em;
+                                                            position: relative;
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            transition: all 600ms ease;
+                                                            &.active {
+                                                                border: 0.2em solid $primaryColor;
+                                                                &::after {
+                                                                    position: absolute;
+                                                                    content: "";
+                                                                    z-index: 1;
+                                                                    width: 0.5em;
+                                                                    height: 0.5em;
+                                                                    border-radius: 50%;
+                                                                    background-color: $primaryColor;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                .packages-cards {
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    align-items: center;
+                                                    justify-content: center;
+                                                    width: 100%;
+                                                    flex-wrap: wrap;
+                                                }
+                                                @keyframes bright {
+                                                    0% {
+                                                        left: -100%;
+                                                    }
+                                                    50% {
+                                                        left: 100%;
+                                                    }
+                                                    100% {
+                                                        left: -100%;
+                                                    }
+                                                }
+                                            }
+                                           
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+        
+@media only screen and (max-width: 767px) {
+    
+    #header{
+        .header{
+            .container{
+                #main{
+                    .container{
+                        .main{
+                            .wrapper{
+                                #price_selection{
+                                    .pricing{
+                                        .shoot-package{
+                                            #packages{
+                                                .packages {
+                                                    .selection-bar{
+                                                        .item-select{
+                                                            font-size: 0.9em;
+
+                                                            .popular-icon {
+                                                                width: 1.5em;
+                                                                height: 1.5em;
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 600px) {}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width: 768px) {
+    #header{
+        .header{
+            .container{
+                #main{
+                    .container{
+                        .main{
+                            .wrapper{
+                                #price_selection{
+                                    .pricing{
+                                        .shoot-package{
+                                            #packages{
+                                                
+                                                .packages {
+                                                    .packages-cards {
+                                                        flex-direction: row;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {
+    
+    #header{
+        .header{
+            .container{
+                #main{
+                    .container{
+                        .main{
+                            .wrapper{
+                                #price_selection{
+                                    .pricing{
+                                        .shoot-package{
+                                            #packages{
+                                                
+                                                .packages {
+                                                    .options {
+                                                        flex-direction: row;
+                                                        width: 80%;
+                                                    }
+                                                    
+                                                    .selection-bar{
+                                                        
+                                                        display: flex;
+                                                        flex-direction: row;
+                                                        .item-select{  
+                                                            width: auto;
+                                                            padding: 0.9em 0.9em 0.9em 3em;                                       
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {
+    
+        
+    #header{
+        .header{
+            .container{
+                #main{
+                    .container{
+                        .main{
+                            .wrapper{
+                                #price_selection{
+                                    .pricing{
+                                        .shoot-package{
+                                            #packages{
+                                                .packages {
+                                                    max-width: 1200px;
+                                                    
+                                                    .selection-bar {
+                                                        .item-select {
+                                                            margin: 0.2em;
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

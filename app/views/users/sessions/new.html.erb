@@ -1,0 +1,118 @@
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-md-offset-3">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form form-group"}) do |f| %>
+              <!-- pass business params for campaigns  -->
+              <% if params[:business_name].present? %>
+                <%= f.hidden_field :business_name, :value => params[:business_name], autofocus: true, class: "form-control" %>
+                <input type="hidden" name="b" value="<%= params[:business_name] %>">
+              <% end %>
+              <% if params[:package_id].present? %>
+                <input type="hidden" name="package_id" id="package_id" value="<%= params[:package_id] %>">
+              <% end %>
+              <% if params[:price].present? %>
+                <input type="hidden" name="price" id="price" value="<%= params[:price] %>">
+              <% end %>
+              <% if params[:shoot_type_id].present? %>
+                <input type="hidden" name="shoot_type_id" id="speciality-id" value="<%= params[:shoot_type_id] %>">
+              <% end %>
+              <% if params[:photographer_id].present? %>
+                <input type="hidden" name="photographer_id" id="photographer_id" value="<%= params[:photographer_id] %>">
+              <% end %>
+              <!-- end of pass business params for campaigns  -->
+              <%= f.hidden_field :mobile_number, :value => @mobile_number, autofocus: true, class: "form-control" %>
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-xs-5">
+                    <%= f.label t(:'users.mobile') %> <br/> (<%= link_to t(:'users.change_mobile'), :back %>) 
+                  </div>
+                  <div class="col-xs-7">
+                    <%= link_to('دریافت توسط تماس', check_number_again_path(slug: @slug), remote: true,
+                                style: 'display: none; float: left;', id: 'send_again_link', class: '') %>
+                    <div class="text-left"><span id="time">00:30</span></div>
+                  </div>
+                </div>
+                <input class="form-control text-center" type="number" style="height: 65px;font-size: 35px;" id="mobile_number" name="mobile_number" placeholder="شماره موبایل تون" value="<%= @mobile_number %>" required="" data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" disabled>
+                <br>
+                <%= f.label "رمز ارسال شده را وارد نمایید:" %><br/>
+                <%= f.password_field :password, autofocus: true, class: "form-control text-center", :style => 'height:65px;font-size: 35px;' %>
+              </div>
+
+              <div class="col-sm-12 text-center" style="margin-top: 30px;">
+                <%= f.submit "ادامه", class: "btn btn-blue btn-block" %>
+              </div>
+            <% end %>
+            <div class="col-sm-12 text-center" style="margin-top: 5px;">
+              <!-- <div class="col-sm-6 text-center" style="margin-top: 20px;">
+                <%#= link_to "ارسال دوباره رمز موقت"  , users_check_number_path(mobile_number: params[:mobile_number]), method: :post , class: "btn btn-primary btn-block"%>
+              </div> -->
+              <!--              <div class="col-sm-6 col-sm-offset-3 text-center" style="margin-top: 20px;">-->
+              <%#= link_to "تغییر شماره" , :back , class: "btn btn-danger btn-block"%>
+              <!--              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<script>
+    $(document).ready(function () {
+        let type;
+        let message;
+        setTimeout(function () {
+            console.log('<%= notice %>');
+            <% if notice %>
+            type = 'info';
+            message = '<%= notice %>';
+            <% elsif alert %>
+            type = 'warning';
+            message = '<%= alert %>';
+            <% else %>
+            type = 'danger';
+            message = '<%= t(:'users.authenticate_error') %>';
+            <% end %>
+
+            $.notify({
+                message: message
+            }, {
+                type: type,
+                placement: {
+                    from: "top",
+                    align: "center"
+                },
+            });
+        }, 300);
+
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            var refreshId = setInterval(function () {
+                minutes = parseInt(timer / 60, 10)
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = 0;
+                    $('#send_again_link').show();
+                    $('#time').hide();
+                    clearInterval(refreshId);
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var fiveMinutes = 60,
+                display = document.querySelector('#time');
+            startTimer(fiveMinutes, display);
+        };
+    })
+</script>

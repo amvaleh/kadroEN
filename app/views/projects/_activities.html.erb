@@ -1,0 +1,28 @@
+<% date = "" %>
+<% activities.each do |activity| %>
+  <div class="row text-center">
+    <% unless date.present? %>
+
+      <% date = activity.created_at.to_date %>
+      <strong style="font-size: large; color: coral"><%= activity.created_at.to_date.to_pdate %></strong>
+
+    <% end %>
+    <% unless activity.created_at.to_date == date %>
+      <strong style="font-size: large; color: coral"><%= activity.created_at.to_date.to_pdate %></strong>
+
+      <% date = activity.created_at.to_date %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-12" style="direction: rtl !important; ">
+
+      <div style="font-size: 14px">
+        <small style="color: #003751; font-size: 14px"> <%= activity.created_at.strftime("%I:%M%p") %> </small>
+        -
+        <%= render_activity(activity) %>
+      </div>
+    </div>
+    <br>
+  </div>
+  <hr style="width: 30%; margin-right: 0px; margin-bottom: 0px">
+<% end %>

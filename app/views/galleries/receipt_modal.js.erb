@@ -1,0 +1,2 @@
+jQuery('#modal-receipt').html("<%= escape_javascript render partial: 'galleries/invoice_receipt_dashboard' ,locals: {cart_id: @cart_id} %>");
+jQuery('#modal-receipt').modal('show');

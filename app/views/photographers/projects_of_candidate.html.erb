@@ -1,0 +1,66 @@
+<% @top_title = "رقبای شما" %>
+<%= render 'shared/studio_header', title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <br>
+          <div class="col-xs-12 text-center">
+            <p>
+              پروژه های عکاسی یک ماه اخیر که به عنوان کاندید در آنها به کارفرما معرفی شده اید:
+            </p>
+          </div>
+        </div>
+        <div class="row" id="projects_you_candidated_section">
+          <% @projects.each do |project|%>
+            <% if project.photographer.uid != "bagheri" %>
+              <%= render 'project_you_candidated_cart', project: project, photographer_rivals: @photographer_rivals.where('project_candidates.project_id = ?', project.id) %>
+            <% end %>
+          <% end %>
+        </div>
+        <input hidden id="showed_projects" value="<%= @first_load %>">
+        <input hidden id="projects_size" value="<%= @size %>">
+        <div class="row text-center" style="text-align: -webkit-center;">
+          <button id="load-more-button" class="btn btn-default">بیشتر
+          </button>
+          <div class="simple-loader" hidden></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+</section>
+
+
+
+<script>
+    jQuery('#load-more-button').click(function () {
+        var showed_projects = jQuery('#showed_projects').val();
+        var total_projects = parseInt(jQuery('#projects_size').val());
+        jQuery('#load-more-button').hide();
+        jQuery('.simple-loader').show();
+        if (parseInt(showed_projects)< parseInt(total_projects)) {
+            jQuery.ajax({
+                data: {
+                    showed_projects: showed_projects,
+                    show_number: <%= @show_number %>
+                },
+                dataType: 'script',
+                type: 'GET',
+                url: '<%= load_more_photographer_path %>',
+                success: function(){
+                    jQuery('.simple-loader').hide();
+                    jQuery('#load-more-button').show();
+                    jQuery('#showed_projects').val(parseInt(showed_projects) + <%= @show_number %>);
+                    if ((parseInt(showed_projects) + <%= @show_number %>) >= parseInt(total_projects)){
+                        jQuery('#load-more-button').hide();
+                    }
+                }
+            })
+        } else {
+            jQuery('#load-more-button').hide();
+            jQuery('.simple-loader').hide();
+        }
+    })
+</script>

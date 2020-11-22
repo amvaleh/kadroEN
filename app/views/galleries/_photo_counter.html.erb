@@ -1,0 +1,12 @@
+<div class="container">
+  <div id="filters-container" class=" cbp-l-filters-alignRight">
+    <!-- '*' means shows all item elements -->
+    <div data-filter="*" class="cbp-filter-item cbp-filter-item-active"><div class=""></div> همه عکسها </div>
+    <div data-filter=".retouched" class="cbp-filter-item"><div class=""></div> روتوش شده </div>
+    <div data-filter=".downloaded" class="cbp-filter-item"><div class=""></div> دانلود شده </div>
+    <div data-filter=".liked" class="cbp-filter-item"><div class=""></div> لایک شده </div>
+    <% if @gallery.frames.share_requested.any? and current_user == @gallery.project.user %>
+    <a href="<%=permission_gallery_path(@gallery)%>" class="cbp-filter-item"> اجازه انتشار </a>
+    <% end %>
+  </div>
+</div>

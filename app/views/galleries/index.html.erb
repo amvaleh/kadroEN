@@ -1,0 +1,226 @@
+
+<style>
+  #options p span{
+    color: gray;
+    font-color: 20px;
+  }
+</style>
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main photographer" role="main">
+      <% if current_user.birthday_date.nil? %>
+      <article class="post-921 photographer type-photographer status-publish has-post-thumbnail hentry">
+        <header class="entry-header birthday">
+          <div class="container-fluid" style="">
+            <div class="row" style="">
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <h1 class="text-right" style="color: white;">
+                  کی بدنیا اومدی؟
+                </h1>
+                <p class="text-right" style="color: white;">
+                  تاریخ تولدت رو ثبت کن و از کادرو هدیه بگیر!
+                </p>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-8">
+                <div class="row" >
+                  <div class="col-xs-12">
+                    <%= form_tag set_birthday_date_path do %>
+                    <div class="col-xs-12">
+                      <span style="color: white;"> روز: </span>
+                      <%=select_tag :day, options_for_select(1..31) %>
+                      <span style="color: white;"> ماه: </span>
+                      <%=select_tag :month, options_for_select(1..12) %>
+                      <span style="color: white;">سال:</span>
+                      <%=select_tag :year, options_for_select(1340..1399) %>
+                    </div>
+                    <div class="col-xs-12 text-center" style="padding: 1em;">
+                      <%= submit_tag "ثبت و دریافت هدیه", class:"btn btn-lg btn-default" %>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </article>
+      <% end %>
+      <article class="post-921 photographer type-photographer status-publish has-post-thumbnail hentry">
+        <header class="entry-header projects_cover">
+          <!-- گالری عکس های شما -->
+          <div id="js-filters-tabs" class="cbp-l-filters-big entry-title">
+            <div data-filter=".about" class="cbp-filter-item-active cbp-filter-item">
+              <h4 class="entry-title" style="color: white; line-height: 0px;">
+                پروژه های تکمیل شده
+              </h4>
+            </div>
+            <div data-filter=".service" class="cbp-filter-item">
+              <h4 class="entry-title" style="color: white; line-height: 0px;">
+                در دست انجام
+              </h4>
+            </div>
+            <div data-filter=".pages" class="cbp-filter-item">
+              <h4 class="entry-title" style="color: white; line-height: 0px;">
+                پرداخت نشده
+              </h4>
+            </div>
+          </div>
+        </header><!-- .entry-header -->
+      </article>
+      <div class="container-fluid" style="padding-top: 10px; ">
+        <div id="js-grid-tabs" class="cbp cbp-l-grid-tabs">
+          <div class="cbp-item about">
+            <div class="row">
+              <% @projects.order("created_at DESC").where(:reserve_step_id => 13..17).each do |project| %>
+              <% if project.gallery.present? and project.gallery.frames.count > 0 %>
+              <%= render 'galleries/projects/shooted', project: project %>
+              <% else %>
+              <%= render 'galleries/projects/delivered_shooted', project: project %>
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="cbp-item service">
+            <div class="row">
+              <% @projects.order("created_at DESC").where(:reserve_step_id => 7..13).each do |project| %>
+              <%= render 'galleries/projects/to_shoot', project: project %>
+              <% end %>
+            </div>
+          </div>
+          <div class="cbp-item pages">
+            <div class="row">
+              <% @projects.order("created_at DESC").where(:reserve_step_id => 5..6).each do |project| %>
+              <%= render 'galleries/projects/pending', project: project %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <main id="main" class="site-main photographer" role="main">
+      <div class="container" style="min-height: 400px;padding-top: 10px;margin-bottom:20px; ">
+        <h3 class="text-center">
+          به آلبوم شخصی تان خوش آمدید.
+          <br>
+          <br>
+        </h3>
+        <div class="row">
+          <div class="col-xs-12 col-md-6 " id="options" style="line-height: 30px;">
+            <h4>
+              ویژگی های آلبوم شخصی شما:
+            </h4>
+            <p>
+              <span class="fa fa-eye"></span>
+              دسترسی امن فقط برای شما با شماره موبایل تان
+            </p>
+            <p>
+              <span class="fa fa-send"></span> امکان اشتراک گذاری عکس های آلبوم به دوستان و آشنایان
+            </p>
+            <p>
+              <span class="fa fa-lock"></span> امکان رمز گذاری روی آلبوم عکس هایتان
+            </p>
+            <p>
+              <span class="fa fa-print"></span> امکان سفارش چاپ عکس بعد از عکاسی
+            </p>
+            <p>
+              <span class="fa fa-eraser"></span> امکان سفارش روتوش حرفه ای روی هر عکس
+            </p>
+            <p>
+              <span class="fa fa-file-movie-o"></span> امکان ساخت کلیپ از مجموعه عکسهای هر پروژه
+            </p>
+          </div>
+          <div class="col-xs-12 col-md-6 " style="
+          background-image: url(/img/booknow.jpg);
+          background-size: cover;
+          height: 25em;
+          padding: 9em 1em 1em 1em;">
+          <h5 class="text-center" style="color:white">
+            اگر هنوز عکاس تان را انتخاب نکرده اید، همین الان شروع کنید.
+          </h5>
+          <!-- <div class="col-xs-6 col-xs-offset-3" style="margin-bottom: 10px;"> -->
+          <%#= image_tag "/img/booknow.jpg" , class: "img-responsive img-rounded" %>
+          <!-- </div> -->
+          <div class="col-xs-6 col-xs-offset-3">
+            <%= link_to "رزرو عکاس" , "https://app.kadro.co/book" , class: "btn btn-blue btn-block" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+
+<%= render 'shared/modal_sm' %>
+
+<script>
+
+  (function ($, window, document, undefined) {
+    'use strict';
+
+    // init cubeportfolio
+    $('#js-grid-tabs').cubeportfolio({
+      filters: '#js-filters-tabs',
+      defaultFilter: '.about',
+      animationType: 'fadeOut',
+      gridAdjustment: 'default',
+      displayType: 'default',
+      caption: '',
+    });
+  })(jQuery, window, document);
+
+
+  <% if @permission_error %>
+  setTimeout(function () {
+    swal({
+      title: 'هشدار',
+      text: '<%= t(:'messages.permission_denied') %>',
+      type: 'error',
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'تایید',
+      closeOnConfirm: false,
+      closeOnCancel: false
+    });
+  }, 200);
+  <% end %>
+  <% if @res && @ok_res == '0' %>
+  setTimeout(function () {
+    swal({
+      title: 'هشدار',
+      text: '<%= @res %>',
+      type: 'error',
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'تایید',
+      closeOnConfirm: false,
+      closeOnCancel: false
+    });
+    jQuery('.loading-spinner').hide();
+  }, 200);
+  <% elsif @ok_res == '1' %>
+  setTimeout(function () {
+    swal({
+      title: 'تبریک!',
+      text: '<%= "#{@res}: #{@track_code}" %>',
+      type: 'info',
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'تایید',
+      closeOnConfirm: false,
+      closeOnCancel: false
+    });
+    jQuery('.loading-spinner').hide();
+  }, 200);
+  <% elsif @ok_res == '2' %>
+  setTimeout(function () {
+    swal({
+      title: 'تبریک!',
+      text: '<%= "#{@res}" %>',
+      type: 'info',
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'تایید',
+      closeOnConfirm: false,
+      closeOnCancel: false
+    });
+    jQuery('.loading-spinner').hide();
+  }, 200);
+  <% end %>
+
+</script>

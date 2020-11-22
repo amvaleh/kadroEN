@@ -1,0 +1,55 @@
+<% @top_title = "فقط برای حرفه ای ها" %>
+<%= render 'shared/join_dynamic_header' , title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-md-6 col-sm-offset-3 col-sm-12">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form form-group"} , method: :put ) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="col-sm-12">
+              <%= f.label "شماره موبایل" %><br />
+              <%= f.number_field :mobile_number, autofocus: true , class: "form-control" , :disabled => true %>
+            </div>
+
+            <div class="col-sm-12">
+              <%= f.label "رمز فعلی" %> <i>(برای تایید)</i><br />
+              <%= f.password_field :current_password, autocomplete: "off", class: "form-control"%>
+            </div>
+
+            <div class="col-sm-12">
+              <%= f.label "رمز عبور جدید" %> <i> (حداقل ۶ کاراکتر)</i><br />
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="col-sm-12">
+              <%= f.label "رمز عبور جدید را دوباره وارد نمایید" %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+            </div>
+            <div class="col-sm-12">
+
+            <div class="col-sm-12 text-center" style="margin-top: 30px;">
+              <%= f.submit "ثبت" , class: "btn btn-blue btn-block" %>
+            </div>
+
+
+          </div>
+            <% end %>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+</div><!-- /.container -->
+</section>
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "استودیو" , studio_photographer_path(@photographer) ,class: "btn btn-default "%>
+      <%= link_to "بازگشت", :back , class: "btn btn-blue" %>
+    </div>
+  </div>
+</footer>

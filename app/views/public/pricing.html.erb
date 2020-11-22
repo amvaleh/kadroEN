@@ -1,0 +1,135 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/raychat' %>
+<% end %>
+  <title>
+    مناسب ترین تعرفه قیمت عکاسی | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="قیمت های عکاسی مناسب و مقرون به صرفه در همه رشته های عکاسی">
+  <meta name="keywords" content="قیمت ها و تعرفه های عکاسی, مناسب ترین قیمت">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+  <link rel="icon" type="image/png" href="">
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"تعرفه قیمت عکاسی به چه صورت است؟","acceptedAnswer":{"@type":"Answer","text":"قیمت عکاسی بر اساس ساعت است. هیچ محدودیتی در تعداد عکسی که عکاس در یک ساعت میگیرد وجود ندارد و شما همه فایل های اصلی را میتوانید دریافت کنید لذا این حالت بسیار مقرون به صرفه تر از قیمت های شاتی یا فریمی است. تا ۴ برابر ارزان تر.\n\n"}}
+  ,{"@type":"Question","name":"تعداد میانگین هر پکیج یعنی چه؟","acceptedAnswer":{"@type":"Answer","text":"این عدد یعنی در پروژه های عکاسی مشابه عکاسان دیگر به صورت میانگین چند عکس نهایی تحویل مشتری داده اند.\nمعمولا برای پروژه های عکاسی جدید، این عدد یا ۱۰ تا بیشتر یا ۱۰ تا کمتر از عدد میانگین درج شده روی هر پکیج است."}}
+    ,{"@type":"Question","name":"آیا می توانیم چند نفری هم عکاسی کنیم؟","acceptedAnswer":{"@type":"Answer","text":"بله، هر پکیجی که خریداری کنید می توانید <strong> هر چند نفری </strong> که هستید با هم عکاسی کنید. هیچ محدودیتی در تعداد افراد نیست."}}
+  ,{"@type":"Question","name":"آیا تعرقه ساعتی از تعرقه فریمی ارزان تر است؟","acceptedAnswer":{"@type":"Answer","text":"بدلیل عدم وجود محدودیت در تعداد عکسی که عکاسی می شود، قیمت ساعتی تا ۴ برابر ارزان تر از قیمت فریمی یا شاتی برای مشتریان تمام می شود که موجب صرفه جویی در هزینه ها می شود."}},
+  {"@type":"Question","name":"تفاوت پکیج های قیمت عکاسی اقتصادی و استاندارد چیست؟","acceptedAnswer":{"@type":"Answer","text":"در اقتصادی تعداد مشخصی (عدد روی پکیج ) را می توانید از گالری خصوصی انتخاب و دانلود کنید اما در استاندارد همه عکسها را می توانید انتخاب و دانلود کنید.\n\n"}},{"@type":"Question","name":"آیا می توانم همه عکس های گرفته شده را ببینم؟","acceptedAnswer":{"@type":"Answer","text":"بله. هر عکسی که عکاس بگیرد بعد از ادیت نور و رنگ در گالری خصوصی تان آپلود می شود؛ چه در اقتصادی چه در استاندارد."}},{"@type":"Question","name":"آیا ادیت نور و رنگ در قیمت ها دیده شده است؟","acceptedAnswer":{"@type":"Answer","text":"بله. تمامی عکس ها، بدون توجه به پکیجی که گرفته اید، توسط عکاس ادیت نور و رنگ می شوند. باید بدانید که ادیت نور و رنگ با رتوش عکس متفاوت است و در صورت نیاز می توانید همراه با قیمت عکاسی، با پرداخت هزینه روتوش از این سرویس نیز بهره مند شوید.\n\n"}},{"@type":"Question","name":"آیا عکسها را چاپ هم می کنید؟","acceptedAnswer":{"@type":"Answer","text":"بله! بعد از اینکه فایل عکس هایتان را از گالری خصوصی دریافت کردید، می توانید آنلاین سفارش چاپ عکس نیز بدهید. مشاهده قیمت های چاپ عکس در سایت."}},{"@type":"Question","name":"آیا قیمت عکاسی در کادرو ارزان است؟","acceptedAnswer":{"@type":"Answer","text":"باید بدانید که یکی از مراجع قیمت عکاسی در کشورمان، انجمن عکاسان کشور می باشد. اگر سری به تعرفه قیمت عکاسی در وبسایت این انجمن بزنید و قیمت عکاسی انجمن را با قیمت عکاسی در کادرو مقایسه کنید، متوجه خواهید شد که قیمت عکاسی در کادرو کاملا مقرون به صرفه است."}},{"@type":"Question","name":"اگر عکس اضافه بخواهم قیمت آن به چه شکل خواهد بود؟","acceptedAnswer":{"@type":"Answer","text":"در صورت استفاده از پکیج قیمت عکاسی اقتصادی، شما می توانید برای دانلود هر عکس اضافه، با پرداخت ۱۰ هزار تومان اضافه بر قیمت عکاسی در نظر گرفته شده، عکس بیشتری دانلود کنید."}},{"@type":"Question","name":"آیا می توان زمان عکاسی را تمدید کرد؟","acceptedAnswer":{"@type":"Answer","text":"بله، هزینه تمدید برای هر رشته عکاسی در پایین پکیج های آن رشته درج شده است."}},{"@type":"Question","name":"آیا می توان به صورت آزمایشی رزرو کرد ولی پرداخت نکرد؟","acceptedAnswer":{"@type":"Answer","text":"بله، شما می توانید از قسمت رزرو عکاس یک سفارش بسازید و با مراحل رزرو عکاس آشنا شوید. هر زمان تمایل داشتید می توانید آنلاین مبلغ را بپردازید و پروژه تان را ثبت نهایی کنید."}}]}</script>
+</head>
+<%= render "public/shared/wordpress_header" %>
+
+<%= render "public/pricing/intro" %>
+
+<%= render "public/pricing/features" %>
+
+<%= render "public/pricing/shoot_type_prices" %>
+
+<%= render "public/pricing/pricing_testimonial" %>
+
+<%= render "public/pricing/faq" %>
+
+<%= render "public/shared/section_of_call_request" , dest_url: create_call_request_path %>
+
+<section class="fdb-block py-0">
+  <div class="container py-5 my-5 bg-r" style="background-image: url(/types/imgs/shapes/9.svg);">
+    <div class="row text-left py-5">
+      <div class="col-12 col-md-8 col-lg-6 ml-sm-auto">
+        <div class="fdb-box fdb-touch">
+          <div class="row justify-content-center">
+            <div class="col-12 col-xl-8 text-center">
+              <h2>
+                قیمت چاپ عکس
+              </h2>
+              <p class="lead">
+                قیمت های چاپ عکس کادرو در مقایسه با بازار بسیار رقابتی است و شما میتوانید بعد از عکاسی تان به تعداد دلخواه از عکس هایتان سفارش چاپ عکس و شاسی بدهید.
+              </p>
+              <p class="h3 mt-4">
+                <%= link_to "قیمت چاپ عکس" , print_prices_path , class:"btn btn-dark"%>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fdb-block py-2">
+  <div class="container " style="background-image: url(/types/imgs/shapes/9.svg);">
+    <div class="row text-right pt-5 justify-content-end">
+      <div class="col-12 col-md-8 col-lg-6 pull-left ml-0">
+        <div class="fdb-box fdb-touch rounded-bottom-0">
+          <h2>
+            <strong>
+            تعرفه قیمتی انجمن عکاسان
+          </strong>
+          </h2>
+          <p class="lead">
+            در مقایسه تعرفه قیمت عکاسی کادرو  با تعرفه قیمتی انجمن عکاسان‌، متوجه این امر خواهید شد که کادرو به دلیل طراحی سیستم عکاسی ساعتی و مبتنی بر زمان آزاد عکاس، توانسته است تعرفه قیمت مقرون به صرفه ای را برای داشتن یک عکاس حرفه ای و ارزان یا رزرو آتلیه عکاسی در نظر بگیرد.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fdb-block mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center">
+        <h3 class="text-right"> دسترسی سریع </h3>
+      </div>
+    </div>
+    <div class="row-70"></div>
+    <div class="row text-center justify-content-sm-center no-gutters">
+      <% ShootType.all.active.order("shoot_types.order").each do |sh| %>
+        <div class="col-3 my-3">
+          <%= link_to  "قیمت عکاسی #{sh.title}" , types_show_path(title: sh.w_url) + '/#prices' %>
+        </div>
+      <%end %>
+    </div>
+  </div>
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        //DOM manipulation code
+        console.log("inside");
+        $('#personal').click(function () {
+                console.log("personal clicked.");
+                $(this).removeClass("btn-outline-primary");
+                $(this).addClass("btn-primary");
+                $('#business').removeClass("btn-primary").addClass("btn-outline-primary");
+                $("#personal_types").removeClass("d-none");
+                $("#business_types").addClass("d-none");
+            }
+        );
+        $('#business').click(function () {
+                console.log("business clicked.");
+                $(this).removeClass("btn-outline-primary");
+                $(this).addClass("btn-primary");
+                $('#personal').removeClass("btn-primary").addClass("btn-outline-primary");
+                $("#business_types").removeClass("d-none");
+                $("#personal_types").addClass("d-none");
+            }
+        )
+    });
+</script>

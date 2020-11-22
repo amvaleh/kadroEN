@@ -1,0 +1,28 @@
+<% expertise_widget.expertise_widget_attachments.each do |data| %>
+<div id="a-div-<%= data.id %>" class="cbp-item identity">
+  <img src="<%= data.photo_url(:medium) %>" style="height: 150px;">
+      <%#= cl_image_tag(a.photo_url(:medium), :height => 100,:width=> 100, :crop => :fit, :quality => 50, :angle=>"ignore")%>
+  <button id="remove-button-attachment-<%= data.id %>" class="btn btn-gray btn-block" type="button" name="button" onclick="remove_attachment(<%= data.id %>,'/expertise_widget_attachments/<%=data.id %>');">حذف عکس</button>
+</div>
+<% end %>
+
+<script type="text/javascript">
+  function remove_attachment(id, url) {
+    $.ajax({
+      data: {
+        id: id,
+      },
+      dataType: 'json',
+      async: false,
+      success: function(){
+        document.getElementById("remove-button-attachment-" + id).innerHTML = 'حذف شد !';
+        document.getElementById("remove-button-attachment-" + id).classList.remove("btn-danger");
+        document.getElementById("remove-button-attachment-" + id).classList.add("btn-gray");
+        document.getElementById("remove-button-attachment-" + id).disabled = true;
+        document.getElementById("a-div-" + id).remove()
+      },
+      type: 'DELETE',
+      url: url,
+    })
+  }
+</script>

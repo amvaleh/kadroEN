@@ -1,0 +1,225 @@
+<%= javascript_include_tag "bootstrap.min" %>
+<!-- dropdown -->
+<%= stylesheet_link_tag "semantic.min" %>
+<%= javascript_include_tag "semantic.min" %>
+<!-- dropdown -->
+<% @top_title = "تجهیزات عکاسیت چیست؟" %>
+<%= render 'shared/join_dynamic_header', title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="tracker">
+        <div class="process-tabs-line w-hidden-tiny">
+          <span class="step-line step-line-package active" style="width: 33.3333%; right: 0%;"></span>
+          <span class="step-line step-line-datetime " style="width: 33.3333%; right: 33.3333%;"></span>
+          <span class="step-line step-line-details" style="width: 33.3333%; right: 66.6667%;"></span>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 0%;">
+          <div class="tracker-text">
+            اطلاعات اولیه
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle selected " style="right: 33.3333%;">
+          <div class="tracker-text">
+            تجهیزات عکاسی
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle" style="right: 66.6667%;">
+          <div class="tracker-text">
+            نمونه کارها
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle" style="right: 100%;">
+          <div class="tracker-text">
+            تجربه کاری
+          </div>
+        </div>
+      </div><!-- /.tracker -->
+      <div class="wrapper">
+        <%= form_for @photographer, :url => submit_equipment_photographer_path, html: {class: "form form-group page_form"}, method: :post do |f| %>
+          <fieldset class="fieldset-form">
+            <div class="row" style="margin-bottom: 30px;">
+              <div class="col-sm-12">
+                <p class="text-center">
+                  به ما بگویید تجهیزات عکاسی چه دارید.
+                  <br>
+                  این به ما کمک می کند بدانیم شما
+                  از پس چه کارهایی بر می آیید.
+                </p>
+                <hr>
+              </div>
+              <div class="col-sm-6">
+                <div class="col-sm-12">
+                  <label for="name">
+                    دوربین
+                  </label>
+                  <div class="cameras ui fluid multiple search normal selection dropdown" style="direction: ltr !important;">
+                    <input id="camera_input" type="hidden" name="camera" required>
+                    <i class="dropdown icon"></i>
+                    <% @photographer.equipment.equip_cameras.each do |c| %>
+                    <a class="camera_selected ui label transition visible" data-value="<%= c.camera.id %>" style="display: inline-block !important;"><%= c.camera.display_name %><i class="delete icon"></i></a>
+                    <% end %>
+                    <div class="default text">
+                      انتخاب ...
+                    </div>
+                    <div class="menu">
+                      <% Camera.all.each do |c| %>
+                        <div class="item" data-value="<%= c.id %>" data-text="<%= c.brand %> <%= c.model %>" style="direction: ltr;">
+                          <%= c.brand %> <%= c.model %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="col-sm-12">
+                  <label for="name">
+                    لنز
+                  </label>
+                  <div class="lenzes ui fluid multiple search normal selection dropdown" style="direction: ltr !important;">
+                    <input id="lenz_input" type="hidden" name="lenz" required>
+                    <i class="dropdown icon"></i>
+                    <% @photographer.equipment.equip_lenzs.each do |l| %>
+                      <a class="lenz_selected ui label transition visible" data-value="<%= l.lenz.id %>" style="display: inline-block !important;"><%= l.lenz.display_name %><i class="delete icon"></i></a>
+                    <% end %>
+                    <div class="default text">
+                      انتخاب ...
+                    </div>
+                    <div class="menu">
+                      <% Lenz.all.each do |l| %>
+                        <div class="item" data-value="<%= l.id %>" data-text="<%= l.brand %> <%= l.model %>" style="direction: ltr;">
+                          <%= l.brand %> <%= l.model %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <label for="name">
+                  لوازم جانبی
+                </label>
+                <% equipment = @photographer.equipment %>
+                <% d = 2 %>
+                <% Kit.all.each do |k| %>
+                <% if d % 2 == 0 %>
+                  <div class="row">
+                <% end %>
+                    <div class="col-sm-6">
+                        <div class="col-sm-6">
+                                <div class="checkbox-control">
+                                    <% if k.title == "dont_have" %>
+                                      <input class="<%= equipment.kits.find_by(title: k.title).present? ? "box_checked" : "box_not_checked" %>" type="checkbox" id="<%= k.title %>" value="1" name="<%= k.title %>">
+                                    <% else %>
+                                      <input class="<%= equipment.kits.find_by(title: k.title).present? ? "box_checked" : "box_not_checked" %>" type="checkbox" id="<%= k.title %>" value="1" name="kit[<%= k.title %>]">
+                                    <% end %>
+                                      <label for="<%= k.title %>">
+                                        <%= k.persian_title %>
+                                      </label>
+                                      <span data-html="true" data-toggle="tooltip-sm-prod" data-placement="top"><img src="/img/information.png" alt=""></span>
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                                <small>
+                                  <% i = 1 %>
+                                  <% k.kit_photography_tools.each do |kp| %>
+                                    <%= i %>)<%= kp.photography_tool.name %>
+                                    <br>
+                                    <% i = i + 1 %>
+                                  <% end %>
+                                </small>
+                        </div>
+                    </div>
+                <% if d % 2 != 0 %>
+                  </div>
+                  <hr>
+                <% end %>
+                <% d = d + 1 %>
+                <% end %>
+              </div>
+            </div>
+          </fieldset>
+        <% end %>
+      </div>
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "تکمیل فورم جدید", destroy_photographer_session_path, class: "btn btn-gray" %>
+      <button type="submit" id="submit_page_form" class="btn btn-blue">ذخیره و ادامه
+      </button>
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(function () {
+            $('[data-toggle="tooltip-sm-prod"]').tooltip({
+                title: "light box - کوچکتر از 40cm <br> ۲ عدد نور ثابت یا فلاش <br> ۲ عدد پایه نور <br> ۲ عدد Diffuser"
+            })
+            $('[data-toggle="tooltip-bg-prod"]').tooltip({
+                title: "light box - بزرگتر از 40cm <br> ۲ عدد نور ثابت یا فلاش <br> ۲ عدد پایه نور <br> ۲ عدد Diffuser"
+            })
+            $('[data-toggle="tooltip-portable-light"]').tooltip({
+                title: "فلش اکسترنال (External Flash) <br> پایه <br> ریموت (Remote) <br> Diffuser"
+            })
+            $('[data-toggle="tooltip-light-std-kit"]').tooltip({
+                title: "۲ عدد فلاش <br> ۲ عدد پایه <br> ۲ عدد Diffuser"
+            })
+            $('[data-toggle="tooltip-portal-std-kit"]').tooltip({
+                title: "پرده فون <br> ۲ عدد فلاش <br> ۲ عدد پایه <br> ۲ عدد Diffuser"
+            })
+        });
+
+        $(function () {
+            $('.cameras').dropdown({});
+            $('.lenzes').dropdown({});
+        });
+
+        $('#submit_page_form').click(function () {
+            $('#edit_photographer_<%=@photographer.id%>').submit();
+        })
+
+        $('#edit_photographer_<%=@photographer.id%>').parsley().on('field:validated', function () {
+            // $('#submit_page_form').prop('disabled', false);
+            //            $('.name, .phone, .map').removeClass('hidden');
+        }).on('form:submit', function () {
+        });
+    });
+
+    function add_value(id,type){
+      value = document.getElementById(type + "_input").value
+      if (value == ""){
+        document.getElementById(type + "_input").value = id
+      } else {
+        document.getElementById(type + "_input").value = value + "," + id
+      }
+    }
+
+    last_cameras = document.getElementsByClassName("camera_selected")
+    for(var i=0, len=last_cameras.length; i<len; i++){
+      id = last_cameras[i].dataset.value
+      add_value(id,"camera")
+    }
+
+    last_lenzs = document.getElementsByClassName("lenz_selected")
+    for(var i=0, len=last_lenzs.length; i<len; i++){
+      id = last_lenzs[i].dataset.value
+      add_value(id,"lenz")
+    }
+
+    checkbox_input = document.getElementsByClassName("box_checked")
+    for(var i=0, len=checkbox_input.length; i<len; i++){
+      checkbox_input[i].checked = true
+    }
+</script>

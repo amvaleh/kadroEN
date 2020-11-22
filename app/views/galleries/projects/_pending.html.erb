@@ -1,0 +1,39 @@
+<div class="col-md-12 col-xs-12 well" style="margin-bottom: 2%;">
+  <div class="col-md-6 pull-right col-xs-12 text-center">
+    <img src="/img/toshoot.jpg" class="img-thumbnail">
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <p style="text-align: right;">
+      <% if project.start_time.present?%>
+      <span class="fa fa-calendar fa-lg" style="font-size:20px;"></span>
+      <%= project.start_time.to_date.to_pdate.strftime("%A - %d %b ") %>
+      <br>
+      <% end%>
+
+      <% if project.photographer.present?%>
+      <span class="fa fa-user fa-lg" style="font-size:20px;"></span>
+      <%= project.photographer.display_name %>
+      <br>
+      <% end %>
+
+      <% if project.package.present? %>
+
+      <span class="fa fa-image fa-lg" style="font-size:20px;"></span>
+      ( <%= project.package.duration %> -
+      <% if project.package.is_full%>
+      تمام فریم ها
+      <% else %>
+      <%= project.package.digitals %>
+      فریم
+      دانلود
+      <% end %>
+      )
+      <br>
+      <% end %>
+
+    </p>
+  </div>
+  <div class= "col-xs-12 ">
+    <%= link_to "پیش فاکتور و پرداخت" , receipt_project_path(project) , class: "btn btn-lg btn-default pull-left" , target: "_blank" %>
+  </div>
+</div>

@@ -1,0 +1,229 @@
+<% expertises = Expertise.order(order: :asc).joins(:shoot_type).where(:photographer_id => @photographer.id, :approved => true) %>
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main photographer" role="main">
+      <article id="post-921"
+      class="post-921 photographer type-photographer status-publish has-post-thumbnail hentry">
+      <header class="entry-header"
+      style="background-color: #2b86f9; padding: 9%">
+      <h1 class="entry-title" style="color: white; line-height: 0px;">
+        <%= @photographer.abbrv_name %>
+      </h1>
+      <% if @photographer.join_step.name=="تایید نهایی" %>
+      <p class="entry-desc" style="color: #fdff00">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+        تائید شده
+      </p>
+      <% end %>
+      <div class="photographer-profile" style="cursor: pointer" id="ph-profile">
+        <img src="<%= @photographer.avatar_url(:mini)%>" class="img-replace"
+        alt="<%= @photographer.display_name %> - عکاس کادرو" id="<%= @photographer.avatar_url(:large)%>" title="<%= @photographer.display_name %> - عکاس <%= @photographer.location.city_name %>"/>
+        <% if @photographer.photographer_attachments.any? %>
+        <i class="fa fa-expand" style="color: #2382fc;
+        position: absolute;
+        left: 7%;
+        top: 18%;
+        z-index: 2;
+        background: #ffffff;
+        border-radius: 8px;
+        font-size: 20px;
+        padding: 4px;" aria-hidden="true"></i>
+        <svg class="svg-class" viewbox="0 0 100 100">
+          <circle cx="50" cy="50" r="47"/>
+        </svg>
+        <% else %>
+        <svg class="svg-empty" viewbox="0 0 100 100">
+          <circle cx="50" cy="50" r="47"/>
+        </svg>
+        <% end %>
+      </div>
+    </header><!-- .entry-header -->
+  </article>
+  <div class="entry-content">
+    <nav class="navbar navbar-default navbar-fixed-bottom navbar-inverse">
+      <div class="container">
+        <div class="row" style="padding: 2% 0% 0 0;color:white">
+          <div class="col-xs-5">
+            <!-- Large button group -->
+            <div class="btn-group btn-block dropup">
+              <button class="btn btn-success btn-xs btn-block dropdown-toggle"  style="background: #23b14b" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                رزرو با این عکاس
+              </button>
+              <ul class="dropdown-menu" style="font-size: 12px;padding: 12px;max-height: 400px;overflow:scroll;min-width: 20rem;">
+                <li>
+                  <h5 class="text-primary text-center">
+                    از
+                    <%=expertises.count %>
+                    رشته
+                    <strong><%=@photographer.last_name%></strong> انتخاب کنید:
+                  </h5></li>
+                  <% expertises.order("expertises.order ASC").each_with_index do |ex,index|%>
+                  <li style="color:black;">
+                    <%= link_to "https://app.kadro.co/book?direct=true&shoot_type=#{ex.shoot_type.id}&photographer=#{@photographer.uid}",style:"padding: 5px", :rel => 'nofollow' do%>
+                    <div class="row" style="display: flex;
+                    align-items: center;">
+                    <div class="col-xs-9">
+                      <%=index+1%>)
+                      عکاسی <%=ex.shoot_type.title%>
+                    </div>
+                    <div class="col-xs-3">
+                      <%= image_tag ex.shoot_type.avatar_url(:mini),class:"pull-left img-responsive"%>
+                    </div>
+                  </div>
+                  <% end %>
+                </li>
+                <li role="separator" class="divider"></li>
+                <% end %>
+              </ul>
+            </div>
+            <p class="text-left" style="font-size: 12px;
+            color: gray;margin:0px">
+            با <%=@photographer.abbrv_name %>
+            در زمان های خالی اش رزرو کنید.
+          </p>
+        </div>
+        <div class="col-xs-1">
+          <h4 class="text-center" style="margin-top: 0px;">
+            یا
+          </h4>
+        </div>
+        <div class="col-xs-6 ">
+          <%=  link_to "رزرو با پیشنهاد کادرو" , "https://app.kadro.co/book",class:"btn btn-blue btn-xs btn-block"%>
+          <p class="text-left" style="font-size: 12px;
+          color: gray;margin:0px">
+          اجازه دهید کادرو به شما پیشنهاد دهد.
+        </p>
+      </div>
+    </div>
+  </div><!-- .container -->
+</nav>
+    <div class="container">
+      <% if @photographer.callable %>
+      <div class="row">
+        <div class="col-xs-12 text-center " style="margin-top:3rem;">
+          <h5 class="text-right">
+            <i style="color:orange" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            از تبادل اطلاعات شخصی پیش از ثبت پروژه عکاسی جدا خورداری فرمایید.
+          </h5>
+          <h5 class="text-right">
+            <i style="color:orange"  class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+              جهت افزایش کیفیت خدمات، تمام مکالمات شما با عکاس تان ضبط می شود.
+          </h5>
+          <p class="alert alert-warning">
+            <label id="i_accept">
+              <input type="checkbox">
+              متعهد می شوم شرایط و قوانین تماس در کادرو را رعایت کنم.
+            </label>
+          </p>
+        </div><!-- /input-group -->
+      </div><!-- /input-group -->
+      <div class="row">
+        <div id="call_info" class="col-xs-12 well text-center hidden">
+          <h3  style="margin-top:0px; text-align:right">
+            برای تماس با
+            <%=@photographer.abbrv_name %>،
+            <br>
+            با شماره
+            ۰۲۱۲۸۴۲۵۲۲۰
+            تماس بگیرید و سپس داخلی
+            <strong style="font-size:120%;">
+              <%=@photographer.internal_number %>
+            </strong>
+            را شماره گیری نمایید.
+          </h3>
+          <% if mobile_device? %>
+          <a href="tel:02128425220" class="btn btn-default call_ph">
+            تماس با داخلی <%=@photographer.internal_number%>
+            <span class="fa fa-phone"></span>
+          </a>
+          <% end %>
+        </div>
+        <div id="call_feedback" class="col-xs-12 text-center alert alert-success hidden">
+          <h3 class="text-right">
+            نظر دهی به تماس:
+          </h3>
+          <p class="text-right" style="margin-top:0rem;">
+            کیفیت پاسخگویی و مشاوره تلفنی عکاس چطور بود؟
+          </p>
+          <%= render 'calls/form', call: @call %>
+          <p class="text-right" style="margin-top:0rem;">
+            نمره شما در
+            <strong> رتبه بندی عکاس </strong>
+            تاثیر مستقیم دارد.
+          </p>
+        </div>
+      </div>
+      <%else%>
+      <h3 class="alert alert-warning text-center">
+        متاسفانه امکان تماس تلفنی پیش از پروژه با این عکاس فعال نیست!
+        <%= link_to "تماس با ما", "https://www.kadro.co/contact",class: "btn btn-default"%>
+      </h3>
+      <% end %>
+      <%= link_to  pro_url(@photographer.uid) ,class: "btn btn-default pull-left" do %>
+      بازگشت
+       <span class="fa fa-arrow-left"></span>
+      <% end %>
+
+    </div>
+  </div><!-- .entry-content -->
+</main>
+</div>
+</div>
+<script>
+
+  $("#i_accept").on('click', function () {
+    $("#call_info").removeClass("hidden");
+    $("#call_feedback").removeClass("hidden");
+  })
+
+
+  $(".photographer-profile").css("width", "200px");
+  $(".photographer-profile").css("height", "200px");
+
+  var first_time = true;
+
+  $("#ph-profile").on('click', function () {
+    <% if @photographer.photographer_attachments.any? %>
+    $("#profile-modal").modal('toggle');
+    $(".svg-class").css("animation", "none");
+    $(".svg-class").css("stroke", "#bf2bf9");
+    $(".svg-class").css("stroke-width", "3px");
+    <% end %>
+    setTimeout(function (e) {
+      $(window).resize();
+      if (first_time) {
+        $('#js-grid-slider-thumbnail').cubeportfolio({
+          layoutMode: 'slider',
+          drag: true,
+          auto: true,
+          autoTimeout: 5000,
+          autoPauseOnHover: true,
+          showNavigation: false,
+          showPagination: false,
+          rewindNav: true,
+          scrollByPage: true,
+          gridAdjustment: 'responsive',
+          mediaQueries: [{
+            width: 0,
+            cols: 1,
+          }],
+          gapHorizontal: 10,
+          gapVertical: 10,
+          caption: '',
+          displayType: 'fadeIn',
+          displayTypeSpeed: 400,
+          plugins: {
+            slider: {
+              pagination: '#js-pagination-slider',
+              paginationClass: 'cbp-pagination-active',
+            }
+          },
+        });
+        first_time = false;
+      }
+    }, 600);
+  });
+
+</script>
+<%= render 'profile_modal' %>

@@ -1,0 +1,269 @@
+
+
+<style>
+table {
+
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+  clear: right;
+
+}
+</style>
+
+<h2>ظرفیت عکاسان</h2>
+<div class="table table-responsive">
+  <table class="table table-hover table-bordered">
+    <tr>
+      <th class="text-center">رشته ها</th>
+      <th class="text-center">شنبه</th>
+      <th class="text-center">یکشنبه</th>
+      <th class="text-center">دوشنبه</th>
+      <th class="text-center">سه شنبه</th>
+      <th class="text-center">چهارشنبه</th>
+      <th class="text-center">پنج شنبه</th>
+      <th class="text-center">جمعه</th>
+      <th class="text-center">جمع</th>
+    </tr>
+    <% shoot_types = ShootType.all %>
+    <% shoot_types.each do |shoot_type| %>
+    <tr>
+      <td>
+        <h4 class="text-center">
+          <%= shoot_type.title %>
+        </h4>
+      </td>
+      <td>
+        <% info_day_type(1 , shoot_type.id) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </td>
+      <td>
+        <% info_day_type(2 , shoot_type.id) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </td>
+      <td>
+        <% info_day_type(3 , shoot_type.id) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </td>
+
+      <td>
+        <% info_day_type(4 , shoot_type.id) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </td>
+
+      <td>
+        <% info_day_type(5 , shoot_type.id) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </td>
+      <td>
+        <% info_day_type(6 , shoot_type.id) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </td>
+
+      <td>
+        <% info_day_type(7 , shoot_type.id) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </td>
+
+
+      <td>
+        <% info_day_type(8 , shoot_type.id) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <th class="text-center">
+        <h3>
+          جمع
+        </h3>
+      </th>
+      <th>
+        <% info_day_type(1 , 0) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </th>
+      <th>
+        <% info_day_type(2 , 0) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </th>
+      <th>
+        <% info_day_type(3 , 0) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </th>
+      <th>
+        <% info_day_type(4 , 0) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </th>
+      <th>
+        <% info_day_type(5 , 0) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </th>
+      <th>
+        <% info_day_type(6 , 0) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </th>
+      <th>
+        <% info_day_type(7 , 0) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </th>
+      <th>
+        <% info_day_type(8 , 0) %>
+        <p class="text-center">
+          [
+          <%= @data.first %>
+          'h ]
+        </P>
+        <br>
+        <p class="text-center">
+
+          <%= @data.second %>
+        </P>
+      </th>
+    </tr>
+  </table>
+</div>

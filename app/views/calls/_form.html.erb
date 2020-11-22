@@ -1,0 +1,22 @@
+<%= form_for(call) do |f| %>
+<% if call.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(call.errors.count, "error") %> prohibited this call from being saved:</h2>
+
+  <ul>
+    <% call.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<%= f.hidden_field :photographer_id %>
+<%= f.hidden_field :user_id %>
+<div class="field" style="margin: 1rem 0rem 1rem 0rem;">
+<%= f.select :rate,options_for_select([ ["۱: عکاس پاسخگو نبود","1"] , ["۲: مشاوره مناسبی ارائه نشد!","2"], ["۳: به اندازه ای که می توانست راهنمایی کرد.","3"], ["۴: مشاوره عکاس خوب بود.","4"], ["۵: عکاسی بسیار عالی مشاوره داد و راهنمایی کرد.","5"] ]), class:"form-control form-bg", :prompt => 'از یک تا پنج'  %>
+</div>
+
+<div class="actions">
+  <%= f.submit "ثبت نمره" ,  class: "btn btn-blue" %>
+</div>
+<% end %>

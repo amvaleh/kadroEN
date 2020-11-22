@@ -1,0 +1,16 @@
+fa:
+  galleries:
+    empty_password: 'مقدار رمز عبور نمیتواند خالی باشد.'
+    password_and_confirm_not_equal: 'رمز عبور و تایید آن یکسان نیستند.'
+    password_is_short: 'رمز عبور کوتاه است. حداقل 6 کارکتر'
+    password_title: 'تنظیم رمز عبور برای گالری'
+    password: 'رمز عبور'
+    password_new: 'رمز عبور جدید'
+    password_confirmation: 'تایید رمز عبور'
+    password_confirmation_new: 'تایید رمز عبور جدید'
+    set_password: 'تعریف رمز عبور'
+    change_password: 'تنظیمات رمز عبور'
+    authenticate: 'ورود به گالری'
+    password_message_1: 'میتوانید برای امنیت گالری خود رمز عبور تعریف کنید.'
+    password_message_2: 'در صورت اشتراک گذاری گالری، کاربر باید رمز عبور گالری را وارد کند.'
+    password_message_3: 'می توانید رمز عبور گالری خود را تغییر داده و یا حذف نمایید.'

@@ -1,0 +1,227 @@
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyBqAlo6eTQeSbkOn3xYIjJ4e1zr4ewrSxU&sensor=false&libraries=places'>
+</script>
+<%= javascript_include_tag "locationpicker.jquery" %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div class="" id="final-details">
+            <% hour = @project.receipt.extrahour_total - @project.receipt.extrahour_paid %>
+            <h2 class="text-center">
+              <span>
+                <%= number_with_delimiter(@project.extra_hour_requested , :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                ساعت
+              </span>
+              تمدید پروژه
+            </h2>
+            <p class="text-center">
+              برای ثبت نهایی لطفا پرداخت کنید
+            </p>
+            <div class="row ">
+              <div class="col-xs-12 col-md-6 col-md-offset-3">
+                <div class="detail-row">
+                  <% if alert %>
+                    <div class="alert alert-warning">
+                      <p style="">
+                        <%= alert %>
+                      </p>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="detail-row">
+                  <span><img src="/img/email.png" alt=""></span>
+                  <h4>
+                    <%= @project.user.display_name %>
+                  </h4>
+                </div>
+                <div class="detail-row">
+                  <span><img src="/img/mobile.png" alt=""></span>
+                  <h4>
+                    <%= @project.user.mobile_number %>
+                  </h4>
+                </div>
+                <div class="detail-row">
+                  <span><img src="/img/date.png" alt=""></span>
+                  <h4>
+                    <% time = convert_persian_day(@project.start_time.strftime("%A")).to_s + " " + @project.start_time.to_date.to_pdate.strftime("%e %b").to_s + " ساعت " + @project.start_time.strftime("%H:%M") %>
+                    <%= time %>
+                  </h4>
+                </div>
+                <div class="detail-row">
+                  <span><img src="/img/price.png" alt=""></span>
+                  <h4 style="display: contents">
+                    مبلغ:
+                    <%= number_with_delimiter(cost.to_i, :delimiter => ',').to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %> تومان
+                  </h4>
+                </div>
+                <% if current_user.present? %>
+                  <div class="detail-row" style="display: none" id="credit-usage">
+                    <span><i class="fa fa-credit-card" style="color: grey"></i> </span>
+                    <h4 style="display: contents">
+                      اعتبار:
+                      <%= number_with_delimiter(current_user.credit.value.to_i, :delimiter => ',').to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %>
+                      تومان
+                    </h4>
+                  </div>
+                <% end %>
+                <% if current_user.present? %>
+                  <div class="row" style="margin: 1em 0em;">
+                  <div class="col-md-6 col-xs-12 text-right" style="color: black;">
+                    <p style="margin-bottom: 0px;color:#2B87F9" >
+                      - اعتبار شما:
+                      <%= number_with_delimiter(current_user.credit.value.to_i, :delimiter => ',').to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %>
+                      تومان
+                    </p>
+                  </div>
+                  <div class="col-md-6 col-xs-12 text-left">
+                    <button class="btn btn-default" style="color:#2B87F9" id="i-use-credit">استفاده از اعتبار <i class="fa fa-credit-card"></i>
+                    </button>
+                  </div>
+                  </div>
+              <% end %>
+              </div>
+            </div>
+            <div class="row">
+              <h3 class="text-center" style="color: black">
+                قابل پرداخت:
+                <span id="final-price">
+                  <%= number_with_delimiter(cost.to_i, :delimiter => ',').to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %>
+                </span>
+                تومان
+              </h3>
+            </div>
+<!--            <div class="row" style="padding: 1em 0em;">
+              <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-2">
+                <div class="col-xs-12 col-sm-8 col-md-10"  >
+                  <div class="collapse" id="collapseExample">
+                    <div class="well">
+                      <p class="text-center" style="font-size: 11px">
+                        میتونی مبلغ
+                        <strong> فاکتور </strong>
+                        را به شماره کارت کادرو واریز کنی تا تمدید پروژه ات سریع ثبت نهایی شود.
+                      </p>
+                      <h4 class="text-center" >
+                        <strong> 6219-8610-3871-8960  </strong>
+                      </h4>
+                      <h6 class="text-center">
+                        <span> بانک سامان - امیرمهدی واله</span>
+                      </h6>
+                      <p class="text-center text-primary" style="font-size: 11px">
+                        سپس اسکرین شات پرداخت تان را در
+                        چت پشتیبانی برای ما ارسال کنید.
+                      </p>
+                      <p class="text-center">
+                        <button class="btn btn-default" onclick="$crisp.push(['do', 'chat:open'])">
+                          چت پشتیبانی
+                        </button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <div class="row">
+              <div class="btn-wrap">
+                <%#= form_tag extrahour_pay_path , id:"extrahour_payment" do %>
+                <%= form_for(:transaction, url: initial_send_transactions_path) do |f| %>
+                  <%= f.hidden_field "amount", value: cost %>
+                  <%= f.hidden_field "description", value: "extra hour: #{@project.user.email} #{@project.user.mobile_number}  | #{@project.package.title} - #{ @project.package.photos_count} - #{time} - #{@project.photographer.first_name} #{@project.photographer.last_name}" %>
+                  <%= f.hidden_field "email", value: @project.user.email %>
+                  <%= f.hidden_field "mobile_number", value: @project.user.mobile_number %>
+                  <%= f.hidden_field "type", value: "extra-payment" %>
+                  <%= f.hidden_field "credit_usage", value: 0 %>
+                  <%= f.hidden_field "model_id", value: @project.slug %>
+                  <%= f.hidden_field(:afterwards_url, value: verify_extra_hour_pay_path + '?') %>
+                  <div class=" text-center">
+                    <div class="btn-group" style="margin-top: 0.5em;">
+<!--                    <a class="btn btn-primary " role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      رمز دوم پویا نداری؟
+                    </a> -->
+                    <button class="btn btn-blue">
+                      ثبت و پرداخت آنلاین
+                    </button>
+                  </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </div>
+        <footer id="footer">
+          <div class="container">
+            <div class="wrap">
+              <%= link_to "انصراف", thank_you_project_path(@project), class: "btn btn-gray btn-sm pull-left" %>
+              <%= link_to "بازگشت به فاکتور ", thank_you_project_path(@project), class: "btn btn-default  pull-left" %>
+            </div>
+          </div>
+        </footer>
+      </div><!-- /.wrapper -->
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<script>
+    $(document).ready(function () {
+
+        $('#submit_page_form').click(function () {
+            $('#pay_form').submit();
+        });
+        $('#map').locationpicker({
+            location: {
+                latitude: <%= @project.address.lattitude %>,
+                longitude: <%= @project.address.longtitude %>
+            },
+            radius: 10,
+            zoom: 16,
+            markerDraggable: false
+        });
+    });
+
+    $('#i-use-credit').click(function () {
+        <% if current_user.present? %>
+        var credit = parseInt(<%= current_user.credit.value %>);
+        var total = parseInt(<%= cost.to_i %>);
+
+        if (credit > total) {
+            credit = total
+        }
+
+        jQuery('#credit-usage').slideDown();
+
+        jQuery('#final-price').html(numberWithCommas(total - credit));
+
+        jQuery('#transaction_amount').val(total - credit);
+        jQuery('#transaction_credit_usage').val(credit);
+        var url = jQuery('#transaction_afterwards_url').val();
+        jQuery('#transaction_afterwards_url').val(url + 'credit=true&');
+
+        persian_number();
+        <% end %>
+    });
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function persian_number() {
+        persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
+        function traverse(el) {
+            if (el.nodeType == 3) {
+                var list = el.data.match(/[0-9]/g);
+                if (list != null && list.length != 0) {
+                    for (var i = 0; i < list.length; i++)
+                        el.data = el.data.replace(list[i], persian[list[i]]);
+                }
+            }
+            for (var i = 0; i < el.childNodes.length; i++) {
+                traverse(el.childNodes[i]);
+            }
+        }
+
+        traverse(document.body);
+    }
+</script>

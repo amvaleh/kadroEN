@@ -1,0 +1,36 @@
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main photographer" role="main">
+      <article class="post-921 photographer type-photographer status-publish has-post-thumbnail hentry">
+
+      </article>
+      <br/>
+      <br/>
+      <div class="container-fluid"  style="min-height: 400px;padding-top: 10px; ">
+        <div class="panel panel-success">
+          <div class="panel-heading text-center">
+            <h3><%= t(:'galleries.authenticate') %> <i class="fa fa-lock fa-lg"></i></h3>
+          </div>
+          <div class="panel-body">
+            <div class="col-md-6 col-md-offset-3">
+              <%= render 'shared/flash_messages' %>
+              <h4 class="text-center">برای ورود رمز گالری خود را وارد کنید</h4>
+              <hr/>
+              <%= form_for(:gallery, url: check_password_gallery_path) do |f| %>
+                <div class="form-group">
+                  <%= f.password_field(:password, value: '', placeholder: 'کلمه عبور', class: 'form-control') %>
+                  <%= f.hidden_field(:id, value: @id) %>
+                </div>
+                <div class="form-group">
+                  <%= f.submit('ورود', class: 'btn btn-success btn-block') %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+

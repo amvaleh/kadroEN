@@ -1,0 +1,5 @@
+<% if @like %>
+jQuery('.frame_<%=@frame.id%>').addClass("liked");
+<% else %>
+jQuery('.frame_<%=@frame.id%>').removeClass("liked");
+<% end %>

@@ -1,0 +1,77 @@
+<main id="main" class="site-main photographer" role="main">
+  <div class="col-md-8 col-md-offset-2 col-xs-12">
+    <div class="panel panel-info">
+      <div class="panel-heading text-center"><h3>فاکتور فروش</h3></div>
+      <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-3 text-center cart-table"></div>
+            <div class="col-xs-3 text-center cart-table text-info">
+              <strong><%= t(:'invoices.title') %></strong>
+            </div>
+            <div class="col-xs-2 text-center cart-table text-info">
+              <strong><%= t(:'invoices.unit_price') %></strong>
+            </div>
+            <div class="col-xs-2 text-center cart-table text-info">
+              <strong><%= t(:'invoices.quantity') %></strong>
+            </div>
+            <div class="col-xs-2 text-center cart-table text-info">
+              <strong><%= t(:'invoices.price') %></strong>
+            </div>
+          </div>
+          <hr/>
+
+          <% invoice.each do |i| %>
+            <div class="row">
+              <div class="col-xs-3 text-center cart-table invoice-items">
+                <% frame = frames.detect {|f| f.id == i.frame_id} %>
+                <img src="<%= frame.file_address(true, 'light') %>" class="img-thumbnail" alt=""/>
+              </div>
+              <div class="col-xs-3 text-center cart-table invoice-items">
+                <p><%= i.title %></p>
+              </div>
+              <div class="col-xs-2 text-center cart-table invoice-items">
+                <p><%= i.unit_price %></p>
+              </div>
+              <div class="col-xs-2 text-center cart-table invoice-items">
+                <p><%= i.quantity %></p>
+              </div>
+              <div class="col-xs-2 text-center cart-table invoice-items">
+                <p><%= i.price %></p>
+              </div>
+            </div>
+            <br/>
+          <% end %>
+        </div>
+      <div class="panel-footer  text-info">
+        <%= "#{t(:'invoices.net_price')}: #{net_price} #{t(:'invoices.currency')}" %>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+    function persian_number() {
+        persian={0:'۰',1:'۱',2:'۲',3:'۳',4:'۴',5:'۵',6:'۶',7:'۷',8:'۸',9:'۹'};
+        function traverse(el){
+            if(el.nodeType==3){
+                var list=el.data.match(/[0-9]/g);
+                if(list!=null && list.length!=0){
+                    for(var i=0;i<list.length;i++)
+                        el.data=el.data.replace(list[i],persian[list[i]]);
+                }
+            }
+            for(var i=0;i<el.childNodes.length;i++){
+                traverse(el.childNodes[i]);
+            }
+        }
+        traverse(document.body);
+    }
+
+    var ready;
+    ready = function () {
+        setTimeout(function () {
+            persian_number();
+        }, 100);
+    };
+    jQuery(document).ready(ready);
+</script>

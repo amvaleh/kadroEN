@@ -1,0 +1,13 @@
+<div class="row" style="margin-bottom:10px;">
+    <div class="col-xs-2">
+        <span>
+        Sales:
+        </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <% data = Projects::ProjectsCountPerLeadSources.call(start_date: start_date, end_date: end_date, lead_sources: lead_sources).result %>
+        <%= pie_chart data, library: {backgroundColor: "#eee"} %>
+    </div>
+</div>

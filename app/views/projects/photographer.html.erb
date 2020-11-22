@@ -1,0 +1,216 @@
+<% if @project.photographer.present? %>
+<% direct_reserve=true %>
+<% end %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="tracker">
+        <div class="process-tabs-line w-hidden-tiny">
+          <span class="step-line step-line-package active" style="width: 33.3333%; right: 0%;"></span>
+          <span class="step-line step-line-datetime active " style="width: 33.3333%; right: 33.3333%;"></span>
+          <span class="step-line step-line-details" style="width: 33.3333%; right: 66.6667%;"></span>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 0%;">
+          <div class="tracker-text">
+            پکیج
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 33.3333%;">
+          <div class="tracker-text">
+            کی و کجا؟
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 66.6667%;">
+          <div class="tracker-text">
+            عکاس
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle" style="right: 100%;">
+          <div class="tracker-text">
+            جزئیات
+          </div>
+        </div>
+      </div><!-- /.tracker -->
+      <div class="wrapper">
+        <div id="photographer">
+          <h3>
+            عکاسی را که دوست دارید انتخاب کنید:
+          </h3>
+          <p>
+            این عکاسان بهترین گزینه ها با توجه به زمان و مکان و مشخصات
+            عکاسی مورد نیاز شما هستند.
+          </p>
+          <div class="shoot-slider owl-carousel">
+            <!-- if direct_reserve and photographer has the expertises for this shoot type -->
+            <% if Expertise.all.where(:photographer=>@project.photographer,:shoot_type=>@project.shoot_type).any? %>
+            <div class="item selected">
+              <header>
+                <%= @project.photographer.first_name %> <%=@project.photographer.last_name %>
+              </header>
+              <div class="img"
+              style="background-image: url('<%=@project.photographer.avatar.thumb.url%>');"></div>
+              <div class="stars rating">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+              <p>
+                متخصص در
+                عکاسی
+                <%= @project.shoot_type.title %>
+              </p>
+              <button class="portfolio-example btn btn-sm btn-default" onclick="$(this).handleClickShoot('p<%=@project.photographer.expertises.first.id%>')">
+                نمونه کارها
+              </button>
+              <button class="btn btn-blue choice " data-shooter="<%=@project.photographer.id%>">
+                انتخاب شد
+              </button>
+            </div>
+            <!-- end of if direct_reserve and photographer has the expertises for this shoot type -->
+            <% else %>
+            <!-- quering through photographers  -->
+            <% @photographers.each do |p|%>
+            <div class="item">
+              <header>
+                <%= p.first_name %> <%=p.last_name %>
+              </header>
+              <div class="img"
+              style="background-image: url('<%=p.avatar.mini.url%>');"></div>
+              <div class="stars rating">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+              <p>
+                متخصص در
+                عکاسی
+                <%= @project.shoot_type.title %>
+              </p>
+              <button class="portfolio-example btn btn-sm btn-default" onclick="$(this).handleClickShoot('p<%=p.expertises.first.id%>')">
+                نمونه کارها
+              </button>
+              <button class="btn btn-blue choice" data-shooter="<%=p.id%>">انتخاب</button>
+            </div>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        <%= form_tag reserve_submit_photographer_path  , id: "form1" do %>
+        <%= hidden_field_tag "project_id" ,  @project.id %>
+        <input type="hidden" name="photographer" id="shooter" value="" required="">
+        <% end %>
+        <footer id="footer">
+          <div class="container">
+            <div class="wrap">
+              <%= link_to "بازگشت" , where_and_when_project_path(@project) , class: "btn btn-gray" %>
+              <button type="submit" id = "submit_page_form" class="btn btn-blue" disabled="">ذخیره و ادامه
+              </button>
+            </div>
+          </div>
+        </footer>
+      </div><!-- /.wrapper -->
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+</div>
+
+<script>
+$(document).ready(function () {
+
+  $('#submit_page_form').click(function(){
+    $('#form1').submit();
+  })
+
+  $('.portfolio').owlCarousel({
+    items        : 1,
+    navText      : [],
+    margin       : 0,
+    smartSpeed   : 150,
+    loop         : true,
+    nav          : true,
+    autoplay     : true,
+    rtl          : true,
+    autoplaySpeed: 500
+  });
+
+  $('.shoot-slider').owlCarousel({
+    navText        : [],
+    nav            : true,
+    rtl            : true,
+    responsiveClass: true,
+    responsive     : {
+      0   : {
+        items : 1
+      },
+      600 : {
+        items : 3
+      },
+      1000: {
+        items : 3
+      }
+    }
+  });
+
+  var portfolios        = $('#portfolios');
+  $.fn.handleClickShoot = function (element) {
+    $('#page').addClass('blur');
+    portfolios.addClass('open');
+    portfolios.find('#' + element).removeClass('hidden');
+  };
+
+  portfolios.find('.close').on('click', function () {
+    $('#page').removeClass('blur');
+    portfolios.removeClass('open');
+    portfolios.find('.portfolio').addClass('hidden');
+  });
+
+  $('button.choice').on('click', function () {
+    $('button.choice').html('انتخاب');
+    $(this).html('انتخاب شد');
+    $('#photographer').find('.item').removeClass('selected');
+    $(this).parent().addClass('selected');
+    $('#shooter').val($(this).attr('data-shooter'));
+    $('#submit_page_form').prop("disabled", false);
+  });
+
+  jQuery(document).keyup(function (e) {
+    if (e.keyCode === 27) {
+      $('#page').removeClass('blur');
+      portfolios.removeClass('open');
+      portfolios.find('.portfolio').addClass('hidden');
+    }
+  });
+
+});
+
+</script>
+
+<section id="portfolios">
+  <div class="inner">
+    <span class="btn close">بستن</span>
+    <% @photographers.each do |p| %>
+    <div class="portfolio hidden owl-carousel" id="p<%=p.expertises.first.id%>">
+      <% exp =  p.expertises.find_by_shoot_type_id(@project.shoot_type.id) %>
+      <% exp.samples.each do |s|%>
+      <div class="item">
+        <a href="<%=s.url%>">
+          <img src="<%=s.url%>" alt="">
+        </a>
+      </div>
+      <% end %>
+      <% exp.photos.each do |p| %>
+      <div class="item">
+        <a href="<%=p.file.url(:large)%>" target="_blank">
+          <img src="<%=p.file_url(:large)%>" alt="">
+        </a>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</section>

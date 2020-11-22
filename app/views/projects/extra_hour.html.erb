@@ -1,0 +1,210 @@
+<style>
+  h4 {
+    color: black;
+  }
+
+  #main .pricing .block {
+    line-height: 165px;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #eaeaea;
+    transition: border-color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  }
+
+  #main .pricing .block .img-box {
+    width: 200px;
+    margin-right: 15px;
+    text-align: center;
+  }
+</style>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper" id="detail">
+        <div class="pricing">
+          <div class="row" id="extension-options">
+            <div id="half-hour" class="col-xs-12 col-md-offset-3 col-md-6" onclick="$(this).delivery('half-hour')">
+              <div class="col-xs-6 col-md-4" style="border-left: solid 2px">
+                <img src="/img/half_hour.png">
+              </div>
+              <div class="col-xs-6 col-md-8">
+                <h4 class="" style="text-align: right;">
+                  هر نیم ساعت
+                </h4>
+                <% if not @project.package.is_full %>
+                  <!-- selection packages -->
+                  <h5 class="" style="text-align: right;">
+                    +
+                    <%= (@project.package.digitals / 2).round.to_s.tr('-0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                    عکس بیشتر
+                  </h5>
+                <% end %>
+                <hr>
+                <h4 class="" style="text-align: right;font-size: 21px;">
+                  <%= number_with_delimiter(@project.shoot_type.half_hour_extend_cost , :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                    تومان
+                </h4>
+              </div>
+            </div>
+            <div class="col-xs-10 col-xs-offset-1 col-md-offset-4 col-md-4">
+              <div class="row">
+                <br>
+                <br>
+                <h4>
+                  چند ساعت می خواهید تمدید کنید؟
+                </h4>
+                <div class="input-group input-group-sm" style="margin-top: 5%">
+                  <span class="input-group-btn">
+                      <%= button_to('#', onclick: "updateQuantityInc()",
+                                    class: 'btn btn-success btn-sm cart-btn dark-blue', style: 'height: 52px;
+    border-radius: 0px;background-color: #1872e6;
+  border-color: #72b0ff; font-size: x-large', remote: true) do %>
+                        <i class='fa fa-plus'></i>
+                      <% end %>
+                  </span>
+
+                  <input type="number" class="form-control" value="0.5" id="quantity" style="text-align: center; width: 99%; height: 52px; font-size: x-large" readonly>
+                  <span class="input-group-btn">
+                      <%= button_to('#', onclick: "updateQuantityDec()",
+                                    class: 'btn btn-danger cart-btn light-blue', style: 'height: 52px;
+    border-radius: 0px;background-color: #2b87f9;
+  border-color: #72b0ff; font-size: x-large', remote: true) do %>
+                        <i class='fa fa-minus'></i>
+                      <% end %>
+                  </span>
+                </div>
+
+              </div>
+              <div class="row text-center" style="margin-top: 2%">
+                <p class="">
+                  شامل
+                  <strong id="extra-hours">
+                    نیم
+                  </strong>
+                  ساعت تمدید
+                  <% if not @project.package.is_full %>
+                    و
+                    <strong id="extra-frames">
+                      <%= (@project.package.digitals / 2).round.to_s.tr('-0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                    </strong>
+                    عکس بیشتر
+                  <% end %>
+                </p>
+              </div>
+              <div class="row text-center">
+                <h3>
+                  هزینه تمدید:
+                  <span id="extend-cost">
+                    <%= number_with_delimiter(@project.shoot_type.half_hour_extend_cost , :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                  </span>
+                  تومان
+                </h3>
+              </div>
+            </div>
+          </div>
+          <%= form_tag reserve_submit_extra_hour_path, class: "form", id: "extend-form" do |f| %>
+            <%= hidden_field_tag "project_id", @project.id %>
+            <input type="hidden" name="half-hour" id="half-hour" value="0.5">
+          <% end %>
+        </div>
+      </div>
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+  <footer id="footer">
+    <div class="container">
+      <div class="wrap">
+        <%= link_to "انصراف", thank_you_project_path(@project), class: "btn btn-gray" %>
+        <button type="submit" id="submit_page_form" class="btn btn-blue btn-lg ">
+          ادامه
+        </button>
+      </div>
+    </div>
+  </footer>
+</section>
+
+<script>
+
+    function updateQuantityInc() {
+        if ($('#quantity').val() == "") {
+            $('#quantity').val(0.5);
+        } else {
+            var old = $('#quantity').val();
+            $('#quantity').val(parseFloat(old) + 0.5);
+        }
+        showResult();
+    }
+
+    function updateQuantityDec() {
+        if ($('#quantity').val() == "" || $('#quantity').val() == "0") {
+            $('#quantity').val(0);
+        } else {
+            var old = $('#quantity').val();
+            $('#quantity').val(parseFloat(old) - 0.5);
+        }
+        showResult();
+    }
+
+    function showResult() {
+        var halfs = parseFloat($('#quantity').val());
+        var hours = halfs;
+        var frames = halfs * <%= (@project.package.digitals) %>;
+        var price = halfs * <%= @project.shoot_type.half_hour_extend_cost %> * 2;
+        $('#extra-hours').html(hours);
+        $('#extra-frames').html(frames);
+        $('#extend-cost').html(numberWithCommas(price));
+        checkResult();
+        setHalfHours();
+    }
+
+    function checkResult() {
+        if ($('#quantity').val() == "" || $('#quantity').val() == "0") {
+            $('#submit_page_form').prop("disabled", true);
+        } else {
+            var old = $('#quantity').val();
+            $('#submit_page_form').prop("disabled", false);
+        }
+    }
+
+    function setHalfHours() {
+        $('input[name=half-hour]').val($('#quantity').val());
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    // delivery click function *******
+
+    $.fn.delivery = function (selectClassName) {
+        $('#extension-options .block').removeClass('selected');
+        $(this).addClass('selected');
+        $('figure.pricing.selected #low-price').removeClass('hidden');
+        $('figure.pricing.selected').removeClass('hidden');
+        if (selectClassName == "one-hour") {
+            $('figure.pricing.selected #low-price').addClass('hidden');
+            $('figure.pricing.selected #low-price').removeClass('selected');
+            $('figure.pricing.selected #high-price').addClass('selected');
+            $('figure.pricing.selected #package-box-low').addClass('hidden');
+            $('figure.pricing.selected #package-box-high').removeClass('hidden');
+            $('input[name=half-hour]').val('0');
+            $('input[name=one-hour]').val('1');
+        }
+        ;
+        if (selectClassName == "half-hour") {
+            $('input[name=half-hour]').val('1');
+            $('input[name=one-hour]').val('0');
+        }
+        console.log(selectClassName);
+    };
+
+
+    $('#submit_page_form').click(function (e) {
+        e.preventDefault();
+        if (window.confirm("آیا مطمئن هستید که می خواهید تمدید کنید؟")) {
+            $('#extend-form').submit();
+        };
+    });
+
+</script>

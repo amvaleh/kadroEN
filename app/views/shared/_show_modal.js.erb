@@ -1,0 +1,42 @@
+<% modal_id ||= 'modal_form' %>
+jQuery(document).ready(function ($) {
+    $('#' + '<%= modal_id %>').on('show.bs.modal', function (e) {
+        $(this).removeAttr('tabindex');
+    });
+
+    $('#' + '<%= modal_id %>').modal('show');
+    <% local_vars ||= {} %>
+    var ready = function() {
+        <% if modal_id == 'modal_form' %>
+          $('#modal_content').html("<%= j(render partial: modal_partial, locals: local_vars) %>");
+          $('#modal_title').text("<%= modal_title %>");
+          <% elsif modal_id == 'modal_form_lg' %>
+        $('#modal_content_lg').html("<%= j(render partial: modal_partial, locals: local_vars) %>");
+        $('#modal_title_lg').text("<%= modal_title %>");
+        <% else %>
+          $('#modal_content_sm').html("<%= j(render partial: modal_partial, locals: local_vars) %>");
+          $('#modal_title_sm').text("<%= modal_title %>");
+        <% end %>
+    };
+
+    setTimeout(function () {
+        persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
+        function traverse(el) {
+            if (el.nodeType == 3) {
+                var list = el.data.match(/[0-9]/g);
+                if (list != null && list.length != 0) {
+                    for (var i = 0; i < list.length; i++)
+                        el.data = el.data.replace(list[i], persian[list[i]]);
+                }
+            }
+            for (var i = 0; i < el.childNodes.length; i++) {
+                traverse(el.childNodes[i]);
+            }
+        }
+
+        traverse(document.body);
+    }, 200);
+
+    $(document).ready(ready);
+});

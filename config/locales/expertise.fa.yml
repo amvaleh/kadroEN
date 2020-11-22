@@ -1,0 +1,6 @@
+fa:
+  expertises:
+    messages:
+      success_message: "با موفقیت ایجاد شد."
+      not_found: "تخصصی یافت نشد."
+      deleted_successfully: "تخصص انتخابی با موفقیت حذف شد."

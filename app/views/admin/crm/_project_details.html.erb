@@ -1,0 +1,17 @@
+<div class="row" >
+  <%= link_to "Show", admin_project_path(project.slug), class: 'btn btn-default', style: 'color: white; background-color: red; margin-left: 6%' %>
+  <%= link_to "Edit", edit_admin_project_path(project.slug), class: 'btn btn-default', style: 'color: white; background-color: orange; margin-left: 1%' %>
+  <% if project.gallery.present? %>
+    <%= link_to "Gallery", admin_gallery_path(project.gallery.slug), class: 'btn btn-default', style: 'color: white; background-color: dodgerblue; margin-left: 1%' %>
+  <% end %>
+</div>
+
+<div class="row" style="overflow-y: scroll;overflow-x: hidden ; height: 250px; margin: 5px 5% 0px 5%; border: 2px #ffebf8 outset; padding: 2%; background-color: #fff1ff">
+  <%= render partial: 'projects/activities', locals: {activities: activities} %>
+</div>
+
+<div class="row" style="padding-left: 5%; padding-right: 1%; ">
+  <div class="col-md-11" style="overflow-y: scroll; height: 200px; margin: 2% 5% 0px 2%; background-color: #e8e9ff" %>
+    <%= render partial: 'admin/active_admin_comments/project_comments', locals: {comments: comments} %>
+  </div>
+</div>

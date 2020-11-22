@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if Rails.env.production? %>
+  <%= render 'shared/externals/yandex' %>
+  <%= render 'shared/externals/gallery/gtag_header' %>
+  <%= render 'shared/externals/gallery/analytics' %>
+  <%= render 'shared/externals/addthis' %>
+    <%#= render 'shared/externals/whatsapp' %>
+    <%= render 'shared/externals/raychat' %>
+  <%= render 'shared/yektanet_header' %>
+  <% end %>
+
+  <title>
+    آلبوم شخصی
+    <%= @user.display_name %>
+  </title>
+  <meta name="theme-color" content="RGB(41, 135, 249)" />
+
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="NOINDEX, FOLLOW">
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    <%= stylesheet_link_tag 'gallery/gallery', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'gallery/gallery', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyBqAlo6eTQeSbkOn3xYIjJ4e1zr4ewrSxU&sensor=false&libraries=places&language=fa&region=IR'></script>
+    <%= javascript_include_tag "locationpicker.jquery" %>
+
+    <%= csrf_meta_tags %>
+
+    
+  </head>
+
+  <body class="spinit">
+    <% if Rails.env.production? %>
+    <%= render 'shared/externals/gallery/gtag_body' %>
+    <% end %>
+    <div id="page" class="site">
+      <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+      <%= render "gallery/header" %>
+      <% if alert %>
+      <br>
+      <br>
+      <div class="row text-center" style="margin: 2% 0 0.5% 0;">
+        <p class=" alert alert-danger text-danger" style="margin:0px;"><%= alert %></p>
+      </div>
+      <% end %>
+      <% if notice %>
+        <br>
+        <br>
+        <div class="row text-center" style="margin: 2% 0 0.5% 0;">
+          <p class=" alert alert-success" style="margin:0px;"><%=notice%></p>
+        </div>
+      <% end %>
+      <%= yield %>
+      <% unless @gallery.nil? or @gallery.download_limit == 0 %>
+      <%= render "gallery/capacity_counter" %>
+      <% end %>
+      <%= render "gallery/footer" %>
+      <!-- new footer -->
+    </div><!-- #page -->
+  </body>
+  </html>

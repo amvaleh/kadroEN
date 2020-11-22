@@ -1,0 +1,47 @@
+<%= track(@photographer.id, "Project Information" , @photographer.email, 0 ,"project") %>
+<h1> سلام
+  <%= @photographer.display_name %>
+  عزیز
+</h1>
+
+<p>
+  اطلاعات پروژه جدید عکاسی شما بدین ترتیب است:
+</p>
+
+<pr>
+  لینک سایت:
+  <br>
+  <%= link_to "جزئیات" , project_information_project_url(@project) %>
+</pr>
+
+<p>
+  رشته:
+  <br>
+  <%= @project.shoot_type.title %>
+</p>
+
+<p>
+  زمان:
+  <br>
+  <% time = convert_persian_day(@project.start_date.strftime("%A")).to_s + " " + @project.start_date.to_date.to_pdate.strftime("%e %b").to_s +  " ساعت " + @project.start_time.strftime("%H:%M") %>
+  <%= time %>
+</p>
+
+<p>
+  آدرس:
+  <br>
+  <%= @project.address.input %>
+  <%= @project.address.detail %>
+  <br>
+  <%= link_to "https://www.google.com/maps/dir/Current+Location/#{@project.address.lattitude},#{@project.address.longtitude}", target: :_blank do  %>
+  برای مسیریابی اینجا کلیک کنید.
+  <% end %>
+</p>
+
+<p>
+  کارفرما:
+  <br>
+  <%= @project.user.display_name %>
+  <br>
+  <%= @project.user.mobile_number %>
+</p>

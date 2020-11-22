@@ -1,0 +1,7 @@
+<% if projects.any? %>
+  <% projects.confirmed.order(created_at: :desc).each do |project| %>
+    <div class="col-xs-3 alert alert-success" >
+      <%=render "project_box" , :p => project, sms: true %>
+    </div>
+  <% end %>
+<% end %>

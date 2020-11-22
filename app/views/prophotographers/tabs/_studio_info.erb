@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @photographer.active_studio.present? and @photographer.active_studio.shoot_location_attachments.any? %>
+        <h2 class="text-right">
+          فضای داخلی آتلیه
+          <%= @photographer.abbrv_name%>
+        </h2>
+        <div class="row" style="margin: 1em 0em;">
+          <% attachments = @photographer.active_studio.shoot_location_attachments %>
+          <div id="studio_gallery"
+               data-responsive="<%=attachments.each do |at|%>img/<%=at.photo_url%> 375 ,<%end %>" >
+            <% attachments.each do |at| %>
+              <div class="item col-xs-6 col-md-4 col-lg-3" style="margin-bottom: 3px" data-src="<%=at.photo_url(:large)%>">
+                <img alt="" src="<%=at.photo_url%>" />
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#studio_gallery").lightGallery({
+            selector: '.item'
+        });
+    });
+</script>

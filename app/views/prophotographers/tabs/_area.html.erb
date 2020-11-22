@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-right ">
+        محدوده فعالیت
+        <%= @photographer.last_name %>:
+        <% if @photographer.location.area_name.present?%>
+          <small>
+            محدوده <%= @photographer.location.area_name %>
+          </small>
+        <% end %>
+      </h2>
+      <div class="well" id="map" style="width: 100%;height:250px;">
+      </div>
+      <p style="font-size: 14px;color: #aeaeae;">
+        <i data-html="true" data-toggle="transportation_cost_tooltip" data-placement="top">
+          <i class="fa fa-info-circle fa-2x"></i>
+          رزرو این عکاس برای مناطق دورتر شامل هزینه ایاب ذهاب می شود.
+        </i>
+      </p>
+      <% if @photographer.has_studio %>
+        <h3>
+    <span class="label" style="padding:10px;color:black;background-color: #f8faff;">
+      <i class="fa fa-check-circle" aria-hidden="true" style="padding: 10px;
+          background-color: #f8faff;
+          color: #2a42df;;"></i>
+      آتلیه دار
+    </span>
+        </h3>
+        <p style="font-size: 14px;margin-top: 5px;color: #aeaeae;">
+          <i data-html="true" data-toggle="in_studio_book_tooltip" data-placement="top">
+            <i class="fa fa-info-circle fa-2x"></i>
+            برای رفتن به آتلیه این عکاس هنگام
+            <span> رزرو مستقیم با این عکاس </span>
+            گزینه
+            <span style="color:#23b14b;">
+              میخواهم بروم به آتلیه
+            </span>
+            را انتخاب کنید.
+          </i>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

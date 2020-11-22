@@ -1,0 +1,27 @@
+<% if @error %>
+  setTimeout(function () {
+      console.log('');
+      swal({
+          title: 'هشدار',
+          text: '<%= @error %>',
+          type: 'error',
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'تایید',
+          closeOnConfirm: false,
+          closeOnCancel: false
+      });
+  }, 200);
+<% else %>
+  setTimeout(function () {
+      console.log('');
+      swal({
+          title: 'اطلاع',
+          text: '<%= @message %>',
+          type: 'info',
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'تایید',
+          closeOnConfirm: false,
+          closeOnCancel: false
+      });
+  }, 200);
+<% end %>

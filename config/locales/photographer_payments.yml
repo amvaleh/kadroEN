@@ -1,0 +1,8 @@
+fa:
+  activerecord:
+    errors:
+      models:
+        photographer_payment:
+          attributes:
+            track_code:
+              taken: 'کد پیگیری تکراری است.'

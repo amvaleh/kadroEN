@@ -1,0 +1,6 @@
+<% case @gallery.download_limit %>
+<% when 0 %>
+jQuery('#grid-container').cubeportfolio('appendItems','<%= escape_javascript render "full_frame_each" %>')
+<% else %>
+jQuery('#grid-container').cubeportfolio('appendItems','<%= escape_javascript render "selection_frame_each" %>')
+<% end %>

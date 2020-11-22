@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/externals/raychat' %>
+    <%= render 'shared/yektanet_header' %>
+  <% end %>
+
+  <% if @photographer.present? %>
+    <!-- Photographer Pages -->
+    <title>
+      <%= @photographer.abbrv_name %> -
+      عکاس حرفه ای در
+      <%= @photographer.location.city_name %>
+      |
+      کادرو
+    </title>
+    <meta  content="
+  <%= @photographer.last_name %>
+  یک عکاس حرفه ای ساکن
+  <%= @photographer.location.city_name %>
+  در کادرو
+  است.
+  فقط عکاسان با استعدادی مانند
+  <%= @photographer.last_name %>
+  برای عکاسی در کادرو
+  پذیرفته شده اند.
+  عکاسی آتلیه ای
+  <% @photographer.expertises.approved.first(3).each do |e| %>
+  <%= e.shoot_type.title %> -
+  <% end %>
+  الان رزرو کنید." name="description">
+    <meta property="og:title" content="
+  <%= @photographer.last_name %>
+  عکاس حرفه ای
+  در کادرو
+  ">
+    <meta property="og:description" content="
+  <%= @photographer.abbrv_name %>
+  یک عکاس حرفه ای ساکن
+  <%= @photographer.location.city_name %>
+  در کادرو
+  است.
+  فقط عکاسان با استعدادی مانند
+  <%= @photographer.last_name %>
+  برای عکاسی در کادرو
+  پذیرفته شده اند.
+  الان رزرو کنید.
+  ">
+    <meta property="og:image" content="https://app.kadro.co<%=@photographer.avatar_url(:medium)%>">
+    <meta property="og:url" content="<%=@photographer.pro_url%>">
+    <meta name="twitter:card" content="عکاس حرفه ای در کادرو">
+    <meta name="theme-color" content="RGB(41, 135, 249)" />
+
+  <% else %>
+    <!-- Pho Photographer index Page -->
+    <% if params[:city_name].present? && params[:shoot_type] %>
+      <title>
+        برترین عکاسی و آتلیه عکاسی <%= params[:shoot_type] %>
+        در <%= params[:city_name] %>
+
+        |
+        کادرو
+      </title>
+      <meta  content="عکاس در<%= params[:city_name] %> رشته <%= params[:shoot_type] %> در کمتر از 2 دقیقه آنلاین عکاس حرفه ای تان را رزرو کنید ✓ شروع قیمت از ۶۹ هزار تومان ✓ تجهیزات عکاسی کامل ✓ فقط عکاسان گزیده شده ✓ عکاسی در خانه و منزل شما  "
+             name="description">
+    <% elsif params[:city_name].present? %>
+      <title>
+        لیست برترین آتلیه های عکاسی و عکاسان <%= params[:city_name] %> |
+        رزرو آنلاین وقت
+        |
+        کادرو
+      </title>
+      <meta  content="برترین عکاس ها در شهر <%= params[:city_name] %>،
+  آتلیه عکاسی در محل با قیمت ارزان و مناسب - یک عکاس بگیرید و در محل عکاسی کنید."
+             name="description">
+    <% elsif params[:shoot_type].present? %>
+      <title>
+        برترین عکاسان <%= params[:shoot_type] %> و استودیو عکاسی های
+        <%= params[:shoot_type] %>
+        |
+        کادرو
+      </title>
+      <link rel="canonical" href="https://www.kadro.co"/>
+      <meta  content="عکاس حرفه ای رشته <%= params[:shoot_type] %> در کمتر از 2 دقیقه آنلاین عکاس حرفه ای تان را رزرو کنید ✓ شروع قیمت از ۱۵۹ هزار تومان ✓ تجهیزات عکاسی کامل ✓ فقط عکاسان گزیده شده ✓ عکاسی در خانه و منزل شما  "
+             name="description">
+    <% else %>
+      <title>
+        لیست برترین عکاسان و آتلیه های عکاسی ایران
+        |
+        آفیش عکاس کادرو
+      </title>
+      <meta  content=" در کمتر از 2 دقیقه آنلاین عکاس حرفه ای تان را رزرو کنید ✓ شروع قیمت از ۱۵۹ هزار تومان ✓ تجهیزات عکاسی کامل ✓ فقط عکاسان گزیده شده ✓ عکاسی در خانه و منزل شما  "
+             name="description">
+    <% end %>
+  <% end %>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag  'kadro/kadro', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'kadro/kadro' %>
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+</head>
+
+<body class="rtl photographer-template-default single single-photographer logged-in admin-bar no-customize-support group-blog">
+<% if Rails.env.production? %>
+  <%= render 'shared/externals/gtag_body' %>
+<% end %>
+<div id="page" class="site">
+  <section id="waiting">
+    <div class="inner">
+      <img src="/img/finalkadrogif.gif" alt="Please Wait" class="waiting-style">
+    </div>
+  </section>
+  <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+  <%= render "kadro/header" %>
+  <%= yield %>
+  <%= render "kadro/footer" %>
+
+</div><!-- #page -->
+<script type="text/foobox">/* Run FooBox FREE (v1.2.27) */
+      (function( FOOBOX, $, undefined ) {
+        FOOBOX.o = {wordpress: { enabled: true }, images: { showCaptions:false }, excludes:'.fbx-link,.nofoobox,.nolightbox,a[href*="pinterest.com/pin/create/button/"]', affiliate : { enabled: false }, error: "Could not load the item"};
+        FOOBOX.init = function() {
+          $(".fbx-link").removeClass("fbx-link");
+          $(".foogallery-container.foogallery-lightbox-foobox, .foogallery-container.foogallery-lightbox-foobox-free, .gallery, a:has(img[class*=wp-image-]), .foobox").foobox(FOOBOX.o);
+        };
+      }( window.FOOBOX = window.FOOBOX || {}, FooBox.$ ));
+
+      FooBox.ready(function() {
+
+        jQuery("body").append("<span style=\"font-family:'foobox'; color:transparent; position:absolute; top:-1000em;\">f</span>");
+        FOOBOX.init();
+
+      });
+    </script>
+<script type="text/javascript">
+    if (window.addEventListener){
+        window.addEventListener("DOMContentLoaded", function() {
+            var arr = document.querySelectorAll("script[type='text/foobox']");
+            for (var x = 0; x < arr.length; x++) {
+                var script = document.createElement("script");
+                script.type = "text/javascript";
+                script.innerHTML = arr[x].innerHTML;
+                arr[x].parentNode.replaceChild(script, arr[x]);
+            }
+        });
+    } else {
+        console.log("FooBox does not support the current browser.");
+    }
+    
+    $(document).ready(function() {
+      setTimeout(function (e) {
+         $('.img-replace').each(function(i, obj) {
+             console.log(i);
+             newUrl = $(this).attr('id');
+             console.log(newUrl);
+             $(this).attr('src', newUrl);
+         });
+         }, 4000);
+    });
+</script>
+
+</body>
+<script async  src="https://script.cashineh.com/tracker/js?id=CA-856475218-1"></script>
+</html>

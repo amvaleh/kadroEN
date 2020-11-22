@@ -1,0 +1,67 @@
+<% @top_title = "داشبورد شما" %>
+<%= render 'shared/studio_header', title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <% if @photographer.join_step.name == 'تایید نهایی' and @photographer.approved_at > (Time.now-30.days)%>
+            <div class="row">
+              <%= render 'photographers/messages/contract' %>
+            </div>
+          <% end %>
+          <%= render partial: 'photographers/analyze/statistics', locals: {projects_number: projects_number, total_income: total_income, customers_number: customers_number, duration_total: duration_total, frames_number: frames_number, download_number: download_number, suggestion_times: suggestion_times, arate: arate, qrate: qrate, bought_frames: bought_frames} %>
+        </div>
+        <div class="row">
+          <%= render partial: 'photographers/updates/last_updates' %>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <!-- <a href="https://kadro.co" class="btn btn-gray"> خانه </a> -->
+      <!-- <button type="submit" id = "submit_page_form" class="btn btn-blue">ذخیره و ادامه -->
+      <!-- </button> -->
+      <%#= link_to "/updates" , class: "btn btn-info " do %>
+      <!--        <i class="fa fa-bullhorn face"></i>-->
+      <!--        اخبار و به روزرسانی ها-->
+      <%# end %>
+
+      <% if @photographer.confirmed? %>
+        <span>
+          <i class="fa fa-check text-blue"></i>
+          ایمیل تایید شده
+        </span>
+      <% else %>
+        <%= render :partial => 'confirm_email_form' %>
+      <% end %>
+
+      <%= link_to "#" do %>
+        <span>
+          مرحله: <%=@photographer.join_step.name%>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</footer>
+
+<script>
+    <% if @permission_error %>
+    setTimeout(function () {
+        swal({
+            title: 'هشدار',
+            text: '<%= t(:'messages.permission_denied') %>',
+            type: 'error',
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'تایید',
+            closeOnConfirm: false,
+            closeOnCancel: false
+        });
+    }, 200);
+    <% end %>
+</script>

@@ -1,0 +1,19 @@
+<%= form_for(:selectable_image_search, url: search_image_admin_selectable_images_path ) do |f| %>
+  <%= f.select(:shoot_types,
+               options_from_collection_for_select(ShootType.all,
+                                                  :id, :title, nil),
+               {include_blank: "None"}, {id: 'shoot_types', class: 'form-control', multiple: 'multiple'}) %>
+  <%= f.submit('جستجو', class: 'btn btn-success') %>
+
+<% end %>
+
+<script>
+    $("#shoot_types").select2({
+        placeholder: "جست و جوی شوت تایپ",
+        theme: "classic",
+        width: "100%",
+        dir: "rtl",
+        language: "fa",
+        multiple: true
+    });
+</script>

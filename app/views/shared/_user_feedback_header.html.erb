@@ -1,0 +1,35 @@
+<header id="header">
+  <nav class="nav">
+    <div class="container">
+      <div class="wrap">
+        <a href="https://kadro.co" title="" class="logo" target="_blank">
+          <img src="/img/logo.png" alt="title"></a>
+          <div class="btn-group">
+            <% if photographer_signed_in? %>
+            <%= link_to "صفحه شما" , current_photographer.page_url , :class => "btn btn-blue btn-lg" %>
+            <% else %>
+            <%= link_to "ورود"  , new_photographer_session_path , class: " btn btn-default " %>
+            <%= link_to "رزرو عکاس"  , root_path , class: "btn btn-blue" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="header " style="">
+      <div class="container">
+        <% if notice %>
+        <div class="header-message">
+          <%= notice %>
+        </div>
+        <% elsif alert %>
+        <div class="header-message">
+          <%= alert %>
+        </div>
+        <%else%>
+        <div class="header-message ">
+          <%= title %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </header>

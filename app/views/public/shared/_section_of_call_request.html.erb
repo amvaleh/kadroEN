@@ -1,0 +1,33 @@
+<section class="fdb-block" id="#callus" style="padding-top: 40px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-7 col-md-5 text-center">
+        <div class="fdb-box fdb-touch">
+          <%= render "public/shared/inputs_of_call_request" %>
+          <%=render '/public/shared/tanks_for_call_request' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  function submit() {
+    $.ajax({
+      type: "POST",
+      url:"<%=dest_url%>",
+      async: false,
+      data: {
+        name: $('#name').val(),
+        phone_number: $('#phone_number').val(),
+        call_time: $('#call_time').val(),
+        description: $('#description').val(),
+        max_budget: $('#max_budget').val()
+      },
+      success: function(data) {
+        $("#inputs").css('display','none');
+        $("#tanks_call_request").css('display','block')
+    }
+    });
+  }
+</script>

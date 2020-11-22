@@ -1,0 +1,124 @@
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <% if alert %>
+          <div class="row text-center alert alert-danger ">
+            <strong>
+              <%= alert %>
+            </strong>
+          </div>
+        <% end %>
+        <div class="row">
+          <h2 class="text-center">انتخاب عکاس جایگزین</h2>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+          <p class="text-justify">
+            - شما می توانید
+            <strong>
+              عکاس جدید
+            </strong>
+            را
+            <strong style="color: #d52481">
+              خودتان
+            </strong>
+            انتخاب کنید و یا این انتخاب را به
+            <strong style="color: rgb(50, 138, 246)">
+              کادرو
+            </strong>
+            بسپارید.
+          </p>
+          <p class="text-justify">- تفاوت هزینه ایاب و ذهاب عکاس جدید میزان اعتبار شما را
+            تغییر می دهد.</p>
+          <% credit = @project.user.credit %>
+          <% if credit.present? %>
+            <% credit = credit.value %>
+            <p class="text-right <%= credit < 0 ? 'text-danger' : 'text-success' %>">
+              <span class="fa fa-credit-card"></span>
+              اعتبار فعلی شما:
+              <% unless credit == 0 %>
+                <%= number(credit, 'fa').to_s + (credit < 0 ? "-" : "+") %>
+              <% else %>
+                صفر
+              <% end %>
+              تومان
+            </p>
+          <% else %>
+            <% Credit.create(value: 0, owner: @project.user) %>
+          <% end %>
+        </div>
+        <br>
+        <div class="row" id="dilemma-decision">
+          <div class="col-xs-12 col-sm-5" style="margin-top: 10px">
+            <input type="submit" value="خودم انتخاب می کنم!" style="font-size: x-large; border-color: #d52481; border-width: 3px" class="btn btn-block btn-default" id="own-choice">
+          </div>
+          <div class="col-xs-12  col-sm-offset-1 col-sm-5" style="margin-top: 10px">
+            <input type="submit" value="به انتخاب کادرو" style="background-color: rgb(50, 138, 246);
+                border-color: rgb(50, 138, 246);
+                color: white; font-size: x-large" class="btn btn-block btn-default" id="let-kadro-choose">
+          </div>
+        </div>
+        <br>
+        <div class="row" id="photographer-alternates" hidden>
+          <%= render "alternate_photographers" %>
+        </div>
+      </div>
+
+      <br>
+      <div class="row" id="submit-row" hidden>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <button type="submit" id="submit_page_form" class="btn btn-success btn-large btn-lg" style="width: 100%;">ثبت <i class="fa fa-spinner fa-spin" style="display: none;"></i></button>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+    $('#let-kadro-choose').click(function () {
+        var prior = <%= @photographers.minimum(:priority) %>;
+        var name = '<%= @photographers.first.display_name %>';
+        $('#kadro-suggested-photographer').html(name);
+        var item = $('#photographer').find(parse('#%s', prior));
+        $(".shoot-slider").trigger("to.owl.carousel", [0, 0]);
+        var button = item.find('.choice');
+        $('button.choice').html('انتخاب');
+        button.trigger('click');
+        $('#kadro-selected-warning').slideDown();
+        $('#photographer-alternates').slideDown();
+        $('#submit-row').slideDown();
+        $('html,body').animate({
+                scrollTop: $("#photographer-choose-section").offset().top
+            },
+            'slow');
+    });
+
+    $('#own-choice').click(function () {
+        $('button.choice').removeClass('btn-selected');
+        $('#photographer').find('.item').removeClass('selected light-green');
+        $('button.choice').html('انتخاب');
+        $('#photographer_id').val('');
+        $('#price').val('');
+        $('#submit_page_form').prop("disabled", true);
+        $('#kadro-selected-warning').slideUp();
+        $('#photographer-alternates').slideDown();
+        $('#submit-row').slideDown();
+        $('html,body').animate({
+                scrollTop: $("#dilemma-decision").offset().top
+            },
+            'slow');
+    });
+
+    function parse(str) {
+        var args = [].slice.call(arguments, 1),
+            i = 0;
+
+        return str.replace(/%s/g, () => args[i++]);
+    }
+</script>

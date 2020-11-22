@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<link rel="icon" type="image/png" href="/img/logo.png">
+<meta name="theme-color" content="RGB(41, 135, 249)" />
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://www.kadro.co",
+      "logo": "https://www.kadro.co/img/logo.png",
+        "sameAs": [
+        "https://www.facebook.com/kadro.official",
+        "https://www.instagram.com/kadro.official",
+        "https://www.linkedin.com/company/kadro-photography",
+        "https://www.twitter.com/kadro_co"
+        ]
+    }
+    </script>
+<%= yield %>
+<%= render "types/sections/footer"%>
+
+<script>
+    $(document).ready(function() {
+        $('.img-replace').each(function(i, obj) {
+            console.log(i);
+            newUrl = $(this).attr('id');
+            console.log(newUrl);
+            $(this).attr('src', newUrl);
+        });
+    });
+</script>
+</html>

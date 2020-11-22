@@ -1,0 +1,23 @@
+fa:
+  transactions:
+    messages:
+      not_created: "fuck"
+  carts:
+    main_title: 'سبد خرید'
+    new_cart: 'اضافه کردن عکس به سبد خرید'
+    cart_items: 'سبد خرید'
+    title: 'عنوان'
+    price: 'قیمت'
+    quantity: 'تعداد'
+    row_total: 'جمع'
+    item_total: 'مجموع این آیتم'
+    cart_total: 'مجموع'
+    cart_count: 'تعداد کل'
+    buttons:
+      save: 'ذخیره'
+      update_cart: 'بروزرسانی'
+      clear_cart: 'خالی کردن سبد'
+    messages:
+      delete: 'آیا مایل به خالی کردن سبد خرید هستید؟'
+      cart_is_empty: 'سبد خرید خالی است.'
+      download_quantity: 'دانلود فایل مقداری بیش از 1 نمیتواند داشته باشد.'

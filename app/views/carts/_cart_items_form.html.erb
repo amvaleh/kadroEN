@@ -1,0 +1,77 @@
+<div class="row modal-section">
+  <div class="col-md-12 col-xs-12">
+    <div class="row">
+      <div class="col-xs-3 col-md-3 text-center cart-table"></div>
+      <div class="col-xs-2 col-md-2 text-center cart-table">
+        <span><%= t(:'carts.title') %></span>
+      </div>
+      <div class="col-xs-2 hidden-xs col-md-2 text-center cart-table">
+        <span><%= t(:'carts.price') %></span>
+      </div>
+      <div class="col-xs-2 col-md-2 text-center cart-table">
+        <span><%= t(:'carts.quantity') %></span>
+      </div>
+      <div class="col-xs-3 col-md-2 text-center cart-table">
+        <span><%= t(:'carts.row_total') %></span>
+      </div>
+      <div class="col-xs-1 col-md-2 text-center cart-table">
+      </div>
+    </div>
+    <hr/>
+
+    <div id="cart_items">
+      <%= render partial: 'cart_items', locals: {cart_items: cart_items, current_frames: current_frames} %>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <%= link_to("<i class='fa fa-refresh'></i> #{t('carts.buttons.update_cart')}".html_safe, '#', onclick: "return updateQuantity()",
+                class: 'btn btn-default', remote: true) %>
+  </div>
+</div>
+<hr style="margin-top: 0px"/>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 cart-table" id="total">
+    <%= render partial: 'cart_items_total', locals: {total: total} %>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <div class="pull-left">
+      <%= link_to("<i class='fa fa-trash-o'></i> #{t('carts.buttons.clear_cart')}".html_safe,
+                  cart_clear_path, data: {confirm: t(:'carts.messages.delete')},
+                  remote: true, method: :delete, class: 'text-danger modal-btn cart-table', style: 'font-size: 15px') %>
+
+      <%= link_to("<i class='fa fa-credit-card'></i> #{t('invoices.buttons.save_payment')}".html_safe,
+                  invoice_form_path(cart_id: cart_items[0].cart_id),
+                  class: 'btn btn-success modal-btn', remote: true, onclick: "return invoiceForm()")  %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    function updateQuantity() {
+        console.log('1');
+    }
+
+    function quantityChange(item_id, quantity, category) {
+        console.log('2');
+        var q = jQuery(item_id).val();
+        console.log(q);
+        jQuery('.loading-spinner').show();
+        if (category === 'download' && parseInt(q) >= 1) {
+            console.log('3');
+            jQuery(item_id).val('1');
+        }
+    }
+
+    function invoiceForm() {
+        jQuery('.loading-spinner').show();
+    }
+
+    function clearCart() {
+        jQuery('.loading-spinner').show();
+    }
+
+    function deleteItem() {
+        jQuery('.loading-spinner').show();
+    }
+</script>

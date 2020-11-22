@@ -1,0 +1,8 @@
+<%= link_to("<span class='badge badge-success' style='font-size:15px;'>#{@cart_count}</span> <span class='fa fa-shopping-cart fa-lg' style='font-size:20px;' ></span>".html_safe, cart_items_list_dashboard_path,
+            class: 'btn btn-blue btn-sm', remote: true, onclick: 'return cartItemForm();') %>
+
+<script>
+    function cartItemForm() {
+        jQuery('.loading-spinner').show();
+    }
+</script>

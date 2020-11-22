@@ -1,0 +1,46 @@
+<style>
+.horizontal-scrollable > .row {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.horizontal-scrollable > .row > .col-xs-2 {
+  display: inline-block;
+  float: none;
+}
+</style>
+<div class="row">
+    <div class="col-xs-2">
+            <span>
+            Admin User Set On Confirmed Project
+            </span>
+            <br>
+            <br>
+            <br>
+            <p>Project CallStatus</p>
+    </div>
+    <div class="col-xs-10">
+        <div class="horizontal-scrollable">
+            <div class="row" style="margin-bottom:10px;">
+                    <% admins.each do |admin| %>
+                        <% user_count = Projects::CountProjectWithCallStatusForAdmin.call(admin_user_id: admin.id, start_date: start_date, end_date: end_date).count %>
+                        <% count = Admins::ConfirmedCountProjects.call(admin_user_id: admin.id, start_date: start_date, end_date: end_date).count %>
+                        <div class="col-xs-2">
+                            <p><%= admin.display_name %></p>
+                            <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= count %></p>
+                            <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= user_count %></p>
+                        </div>
+                    <% end %>
+                    <div class="col-xs-2">
+                        <p>فروش خودکار</p>
+                        <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= Projects::ConfirmedCountProjectsWithoutAdmin.call( start_date: start_date, end_date: end_date).count %></p>
+                        <p style="border: 1px solid;padding: 5px;border-radius: 10px;">0</p>
+                    </div>
+                    <div class="col-xs-2">
+                        <p>مجموع</p>
+                        <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= Projects::ConfirmedCountProjects.call( start_date: start_date, end_date: end_date).count %></p>
+                        <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= Projects::CountProjectWithCallStatus.call(start_date: start_date, end_date: end_date).count %></p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

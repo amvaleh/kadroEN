@@ -1,0 +1,245 @@
+<% @top_title = "نظر شما در مورد پروژه" %>
+<%= render 'shared/user_feedback_header' , title: @top_title %>
+<div>
+  <% @photographer = @project.photographer %>
+  <!-- <main id="main" class="site-main photographer" role="main">
+  <article id="post-921"
+  class="post-921 photographer type-photographer status-publish has-post-thumbnail hentry">
+</main> -->
+  <div class="container" style="padding-top: 10px;">
+    <div class="row">
+      <h4 class="text-right">
+        از ۱ تا ۱۰ سوالات زیر را پاسخ دهید:
+        <br>
+      </h4>
+      <h6 class="text-right">
+        پاسخ شما در جهت بهبود پروژه هایی که برایتان
+        می آید در نظر گرفته خواهد شد.
+        <hr>
+      </h6>
+      <div class="row ">
+        <% if !@project.user_feedback.present? %>
+          <div class="col-xs-12 col-sm-3">
+            <h3 class="text-center">
+              <%= image_tag @project.shoot_type.avatar_url , class: "img-rounded imge-responsive", width:"200px" %>
+              <br>
+              <span class="badge">
+              عکاسی
+                <%= @project.shoot_type.title %>
+            </span>
+            </h3>
+          </div>
+          <div class="col-xs-12 col-sm-9">
+            <%= form_for :user_feedback , url: create_user_feedbacks_path , method: "post" , html: {class: "form form-group" , :id => "create"} do |f| %>
+              <div class="row">
+                <div class="col-sm-12">
+                  <% FeedbackQuestion.photographer_questions.each do |question| %>
+                    <div class="col-sm-10 col-xs-10" style="direction: ltr;" id="user_feedback[<%= question.name %>]">
+                      <h5 class="text-right" style="direction: rtl;">
+                        <%= question.question %>
+                      </h5>
+                      <fieldset class="rating2" id="user_feedback[<%= question.name %>]">
+                        <input type="radio" id="2star5_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="10" onclick="change_<%= question.name %>(this)" />
+                        <label class = "full" for="2star5_<%= question.name %>" title="10"></label>
+                        <input type="radio" id="2star4half_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="9" onclick="change_<%= question.name %>(this)"/>
+                        <label class="half" for="2star4half_<%= question.name %>" title="9"></label>
+                        <input type="radio" id="2star4_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="8" onclick="change_<%= question.name %>(this)"/>
+                        <label class = "full" for="2star4_<%= question.name %>" title="8"></label>
+                        <input type="radio" id="2star3half_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="7" onclick="change_<%= question.name %>(this)"/>
+                        <label class="half" for="2star3half_<%= question.name %>" title="7"></label>
+                        <input type="radio" id="2star3_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="6" onclick="change_<%= question.name %>(this)"/>
+                        <label class = "full" for="2star3_<%= question.name %>" title="6"></label>
+                        <input type="radio" id="2star2half_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="5" onclick="change_<%= question.name %>(this)"/>
+                        <label class="half" for="2star2half_<%= question.name %>" title="5"></label>
+                        <input type="radio" id="2star2_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="4" onclick="change_<%= question.name %>(this)"/>
+                        <label class = "full" for="2star2_<%= question.name %>" title="4"></label>
+                        <input type="radio" id="2star1half_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="3" onclick="change_<%= question.name %>(this)"/>
+                        <label class="half" for="2star1half_<%= question.name %>" title="3"></label>
+                        <input type="radio" id="2star1_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="2" onclick="change_<%= question.name %>(this)"/>
+                        <label class = "full" for="2star1_<%= question.name %>" title="2"></label>
+                        <input type="radio" id="2starhalf_<%= question.name %>" name="user_feedback_question[<%= question.name %>]" value="1" onclick="change_<%= question.name %>(this)"/>
+                        <label class="half" for="2starhalf_<%= question.name %>" title="1"></label>
+                      </fieldset>
+                    </div>
+                    <div class="col-sm-2 col-xs-2 text-center" style="font-size: 10px;">
+                      <br>
+                      <label id="value_<%= question.name %>"> - </label>
+                      از
+                      ۱۰
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row">
+                <hr>
+                <div class="col-md-12">
+                  <h4 class="text-center">
+                    توضیحات بیشتر
+                  </h4>
+                </div>
+                <div class="col-sm-12">
+                  <%= f.text_area "description" , class: "form-control" ,placeholder: "هر چیزی که به نظر شما جالب است و کادرو باید بداند، نکته ای از سمت مشتری، اتفاق غیر منتظره ای در پروژه و ..."%>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                  <button type="submit" id ="submit_page_form" class="btn btn-blue btn-lg btn-block">ذخیره
+                  </button>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                  <%= link_to "بازگشت" , :back , class: "btn btn-default btn-lg btn-block"%>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <h3 class="text-center">
+            شما قبلا برای این پروژه امتیاز وارد نموده ایید.
+          </h3>
+          <div class="col-sm-3 col-xs-12">
+            <h3 class="text-center">
+              <%= image_tag @project.shoot_type.avatar_url , class: "img-rounded imge-responsive", width:"200px" %>
+              <br>
+              <span class="badge">
+              عکاسی
+                <%= @project.shoot_type.title %>
+            </span>
+            </h3>
+          </div>
+          <div class="col-sm-9 col-xs-12">
+            <% FeedbackQuestion.photographer_questions.each do |question| %>
+              <% user_feedback_question = UserFeedbackQuestion.find_by(user_feedback_id: @project.user_feedback.id, feedback_question_id: question.id) %>
+              <% if user_feedback_question.present? %>
+                <% value = user_feedback_question.value %>
+                <div class="col-xs-12" style="direction: ltr;">
+                  <h5 class="text-right" style="direction: rtl;">
+                    <%= question.question %>
+                  </h5>
+                  <fieldset class="rating" id="user_feedback[<%= question.name %>]" disable>
+                    <% if value == 10 %>
+                      <input type="radio" value="10" checked />
+                    <% else %>
+                      <input type="radio" value="10" />
+                    <% end %>
+                    <label class = "full" for="star5_<%= question.name %>" title="5"></label>
+                    <% if value == 9 %>
+                      <input type="radio" value="9" checked />
+                    <% else %>
+                      <input type="radio" value="9" />
+                    <% end %>
+                    <label class="half" for="star4half_<%= question.name %>" title="4.5"></label>
+                    <% if value == 8 %>
+                      <input type="radio" value="8" checked />
+                    <% else %>
+                      <input type="radio" value="8" />
+                    <% end %>
+                    <label class = "full" for="star4_<%= question.name %>" title="4"></label>
+                    <% if value == 7 %>
+                      <input type="radio" value="7" checked />
+                    <% else %>
+                      <input type="radio" value="7" />
+                    <% end %>
+                    <label class="half" for="star3half_<%= question.name %>" title="3.5"></label>
+                    <% if value == 6 %>
+                      <input type="radio" value="6" checked />
+                    <% else %>
+                      <input type="radio" value="6" />
+                    <% end %>
+                    <label class = "full" for="star3_<%= question.name %>" title="3"></label>
+                    <% if value == 5 %>
+                      <input type="radio" value="5" checked />
+                    <% else %>
+                      <input type="radio" value="5" />
+                    <% end %>
+                    <label class="half" for="star2half_<%= question.name %>" title="2.5"></label>
+                    <% if value == 4 %>
+                      <input type="radio" value="4" checked />
+                    <% else %>
+                      <input type="radio" value="4" />
+                    <% end %>
+                    <label class = "full" for="star2_<%= question.name %>" title="2"></label>
+                    <% if value == 3 %>
+                      <input type="radio" value="3" checked />
+                    <% else %>
+                      <input type="radio" value="3" />
+                    <% end %>
+                    <label class="half" for="star1half_<%= question.name %>" title="1.5"></label>
+                    <% if value == 2 %>
+                      <input type="radio" value="2" checked />
+                    <% else %>
+                      <input type="radio" value="2" />
+                    <% end %>
+                    <label class = "full" for="star1_<%= question.name %>" title="1"></label>
+                    <% if value == 1 %>
+                      <input type="radio" value="1" checked />
+                    <% else %>
+                      <input type="radio" value="1" />
+                    <% end %>
+                    <label class="half" for="starhalf_<%= question.name %>" title="0.5"></label>
+                  </fieldset>
+                </div>
+              <% else %>
+                <div class="col-xs-12" style="direction: ltr;">
+                  <h5 class="text-right" style="direction: rtl;">
+                    <%= question.question %>
+                  </h5>
+                  <fieldset class="rating" id="user_feedback[<%= question.name %>]" disable>
+                    <input type="radio" value="10" />
+                    <label class = "full" for="star5_<%= question.name %>" title="5"></label>
+                    <input type="radio" value="9" />
+                    <label class="half" for="star4half_<%= question.name %>" title="4.5"></label>
+                    <input type="radio" value="8" />
+                    <label class = "full" for="star4_<%= question.name %>" title="4"></label>
+                    <input type="radio" value="7" />
+                    <label class="half" for="star3half_<%= question.name %>" title="3.5"></label>
+                    <input type="radio" value="6" />
+                    <label class = "full" for="star3_<%= question.name %>" title="3"></label>
+                    <input type="radio" value="5" />
+                    <label class="half" for="star2half_<%= question.name %>" title="2.5"></label>
+                    <input type="radio" value="4" />
+                    <label class = "full" for="star2_<%= question.name %>" title="2"></label>
+                    <input type="radio" value="3" />
+                    <label class="half" for="star1half_<%= question.name %>" title="1.5"></label>
+                    <input type="radio" value="2" />
+                    <label class = "full" for="star1_<%= question.name %>" title="1"></label>
+                    <input type="radio" value="1" />
+                    <label class="half" for="starhalf_<%= question.name %>" title="0.5"></label>
+                  </fieldset>
+                </div>
+              <% end %>
+            <% end %>
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                <h4 class="text-center">
+                  توضیحات بیشتر
+                </h4>
+              </div>
+              <div class="col-sm-12">
+                <textarea class="form-control" placeholder="<%= @project.user_feedback.description %>" disabled></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4 col-md-offset-4">
+                <%= link_to "بازگشت" , :back , class: "btn btn-default btn-lg btn-block"%>
+              </div>
+            </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% FeedbackQuestion.photographer_questions.each do |question| %>
+    <script>
+        function change_<%=question.name%>(o) {
+            var x = o.value;
+            document.getElementById('value_<%=question.name%>').innerHTML = x;
+        }
+    </script>
+  <% end %>
+</div>

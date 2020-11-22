@@ -1,0 +1,22 @@
+<div class="projectbox <%= u.call_date <= Time.now.to_date ? 'alert alert-danger' : 'well' %>" id="u<%= u.id %>">
+  <%= render "shared_user" , :u => u %>
+
+  <p id="show-result<%= u.id %>" style="color: orangered; font-size: x-large"></p>
+</div>
+<script type="text/javascript">
+  function is_called(id){
+    var result = $.ajax({
+      data: {
+        id: id,
+      },
+      dataType: 'json',
+      async: false,
+      success: function(){
+        btn = document.getElementById(id + "-submit");
+        btn.disabled = true
+      },
+      type: 'POST',
+      url: "/users/is_called",
+    })
+  }
+</script>

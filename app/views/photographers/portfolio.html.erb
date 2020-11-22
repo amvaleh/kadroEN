@@ -1,0 +1,600 @@
+<%= stylesheet_link_tag "jquery.fileupload" %>
+<%= stylesheet_link_tag "jquery.fileupload-ui" %>
+<%= javascript_include_tag "bootstrap.min" %>
+<%= javascript_include_tag "jquery-fileupload" %>
+<style>
+  input[type='file'] {
+    opacity: 0
+  }
+
+  .bar {
+    height: 18px;
+    background: green;
+  }
+
+  .ltr {
+    direction: ltr !important;
+  }
+</style>
+<% @top_title = "نمونه کارهات رو ببینیم!" %>
+<%= render 'shared/join_dynamic_header', title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="tracker">
+        <div class="process-tabs-line w-hidden-tiny">
+          <span class="step-line step-line-package active" style="width: 33.3333%; right: 0%;"></span>
+          <span class="step-line step-line-datetime active" style="width: 33.3333%; right: 33.3333%;"></span>
+          <span class="step-line step-line-details " style="width: 33.3333%; right: 66.6667%;"></span>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 0%;">
+          <div class="tracker-text">
+            اطلاعات اولیه
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle selected " style="right: 33.3333%;">
+          <div class="tracker-text">
+            تجهیزات عکاسی
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 66.6667%;">
+          <div class="tracker-text">
+            نمونه کارها
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle " style="right: 100%;">
+          <div class="tracker-text">
+            تجربه کاری
+          </div>
+        </div>
+      </div><!-- /.tracker -->
+
+      <div class="wrapper">
+        <div class="row" style="margin-bottom: 30px;">
+          <div class="col-sm-12">
+            <p class="text-center">
+              بهترین نمونه عکس های تان را آپلود کنید،
+              <br>
+              تا
+              مشتریان
+              با سبک و سلیقه کاری شما آشنا شوند.
+              <br>
+              آپلود عکس های غیر تکراری برای ارزیابی شما مفیدتر می باشد.
+              <br>
+              <small>
+                (
+                عکس ها در صفحه شما نمایش داده خواهند شد
+                )
+              </small>
+            </p>
+            <hr>
+          </div>
+          <%= form_for @photographer, :url => submit_portfolio_photographer_path, html: {class: "form form-group", multipart: true}, method: :post do |f| %>
+            <div class="col-sm-6">
+              <div class="col-sm-12">
+                <h5>
+                <span style="color:red">
+                  *
+                </span>
+                  یک آی دی برای صفحه خود انتخاب کنید:
+                  <small class="pull-left">
+                    به عنوان مثال:
+                    <span style="font-size: 15px;">
+                    <%= link_to "sample.kadro.co", "http://sample.kadro.co/", target: :blank %>
+                  </span>
+                  </small>
+                </h5>
+                <div class="input-group">
+                  <span class="input-group-addon" style="font-size:20px;" id="uid"> kadro.co. </span>
+                  <%= f.text_field "uid", class: "form-control text-center ltr mytextbox", 'required' => "", 'aria-describedby' => "uid", placeholder: "فقط یک نام یکتا وارد کنید" %>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <h5>
+                  آی دی اینستاگرام شما
+                </h5>
+                <div class="input-group">
+                  <%= f.text_field "instagram", class: "form-control ltr", 'aria-describedby' => "instagram", placeholder: "فقط آی دی را وارد کنید" %>
+                  <span class="input-group-addon" style="font-size:20px;" id="instagram">/https://instagram.com</span>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <h5>
+                  آیدی توییتر
+                </h5>
+                <%#= f.text_field "twitter" , class: "form-control ltr"%>
+                <div class="input-group">
+                  <%= f.text_field "twitter", class: "form-control ltr", 'aria-describedby' => "twitter", placeholder: "فقط آی دی را وارد کنید" %>
+                  <span class="input-group-addon" style="font-size:20px;" id="instagram">/https://twitter.com</span>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <h5>
+                  لینک صفحه لینکداین شما
+                </h5>
+                <%= f.text_field "linkedin", class: "form-control ltr", placeholder: "https://www.linkedin.com/in/" %>
+                <!-- <input class="form-control" style="direction: ltr;" type="text" name="linkedin" id="linkedin" placeholder="https://www.linkedin.com/in/" > -->
+              </div>
+              <div class="col-sm-12">
+                <h5>
+                  وب سایت شخصی
+                </h5>
+                <%= f.text_field "online_portfolio", class: "form-control ltr", placeholder: "www.example.com" %>
+                <hr>
+              </div>
+
+              <div class="col-sm-12">
+                <h3>
+                  رشته های عکاسی
+                </h3>
+                <h5 style="line-height: 22px;">
+                  لطفا همه رشته هایی عکاسی ای که دوست دارید سفارش عکاسی دریافت کنید را انتخاب کنید.
+                  انتخاب هر چه بیشتر رشته ها منجر به پروژه های عکاسی بیشتری برای شما خواهد شد.
+                </h5>
+
+                <div class="wrapper " id="detail">
+                  <div id="specialities" class="specialties">
+                    <ul id="business" class="row row-m10">
+                      <% ShootType.all.order("shoot_types.order desc").each do |s| %>
+                        <li class="col-xs-4 col-sm-4 col-md-4">
+                          <div href="#" class="specialty
+                      <% if Expertise.where(:shoot_type => s, :photographer => @photographer).any? %>
+                      selected
+                      <% end %>" id="<%= s.id %>" onclick="$(this).animate_field('sp<%=s.id%>', <%=s.packages.count/2%>)">
+                            <img src="<%= s.avatar_url %>" alt="">
+                            <span>
+                        <%= s.title %>
+                      </span>
+                          </div>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <input type="file" id="imgInp" name="photographer[avatar]"
+            <% if not @photographer.avatar.present? %> required=""
+            <% else %> value=""
+            <% end %> > -->
+            <% if @photographer.avatar.present? %>
+              <%= f.file_field :avatar, id: "imgInp" %>
+              <%= f.hidden_field :avatar_cache %>
+            <% else %>
+              <%= f.file_field :avatar, id: "imgInp", 'required' => "" %>
+              <%= f.hidden_field :avatar_cache %>
+            <% end %>
+          <% end %>
+          <div class="col-sm-6">
+            <div class="col-sm-12">
+              <h5 for="">
+                عکس پرتره حرفه ای از خودتان
+                <span style="color:red">
+                *
+              </span>
+                <small class="text-muted">
+                  jpeg فقط-
+                  700px x 700px
+                </small>
+              </h5>
+              <div class="col-sm-9 text-center well">
+                <img id="blah" src="<%= @photographer.avatar_url if @photographer.avatar.present? %>" alt="your image" class="img-reponsive "/>
+              </div>
+              <div class="col-sm-3">
+                <div class="btn btn-blue" id="profile-pic">
+                  انتخاب
+                </div>
+              </div>
+            </div>
+            <div id="forms_holder">
+              <p>
+                <small>
+                  لطفا از رشته های سمت راست انتخاب کنید.
+                </small>
+              </p>
+              <% ShootType.all.order("shoot_types.order desc").each do |s| %>
+                <div class="col-sm-12
+            <% exp = Expertise.where(:shoot_type => s, :photographer => @photographer) %>
+            <% if not exp.any? %>hidden
+                  <% end %>" id="expertise_sp<%= s.id %>">
+                  <%= form_tag(receive_photo_photographer_path(@photographer), class: "fileupload", :multipart => true, method: 'post', remote: true) do %>
+                    <noscript>
+                      <input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/">
+                    </noscript>
+                    <div class="row fileupload-buttonbar">
+                      <div style="line-height: 30px;">
+                        <!-- The fileinput-button span is used to style the file input field as button -->
+                        <h2><%= s.title %></h2>
+                        <p>
+                    <span style="color:red">
+                      *
+                    </span>
+                          عرض و طول هر عکس بین ۱۵۰۰ پیکسل تا ۱۰.۰۰۰ پیکسل باشد
+                        </p>
+                        <p style="font-style: italic;">
+                    <span style="color:red">
+                      *
+                    </span>
+                          شما باید حداقل ۱۲ نمونه کار
+                          <strong style="text-decoration: underline;">
+                            بدون واترمارک
+                          </strong>
+                          آپلود کنید.
+                        </p>
+                      </div>
+                      <% if Expertise.where(:shoot_type => s, :photographer => @photographer).any? %>
+                        <% exp = Expertise.where(:shoot_type => s, :photographer => @photographer).first %>
+                        <%= link_to remove_expertise_photographer_path(expertise_id: exp.id), remote: true, class: "btn btn-xs text-danger " do %>
+                          <i class='fa fa-close fa-2x'></i>
+                          حذف
+                          رشته
+                          <%= exp.shoot_type.title %>
+                        <% end %>
+                        <table role="presentation" class="table table-hover">
+                          <tbody class="files" id="shoot_type_<%= s.id %>">
+                          <!-- current photos -->
+                          <% exp.photos.each do |p| %>
+                            <tr class="template-download" id="expertise_<%= exp.id %>">
+                              <td class="preview">
+                                <%= link_to p.file_url(:medium) do %>
+                                  <%= image_tag p.file_url(:thumb), rel: "gallery" %>
+                                <% end %>
+                              </td>
+                              <td class="name">
+                                <%= File.basename(p.file_url) %>
+                              </td>
+                              <td class="size"><span>
+                        <%= number_to_human_size(p.file.size) %>
+                      </span></td>
+                              <td colspan="2"></td>
+                              <td class="delete">
+                                <%= link_to p, class: "btn btn-xs text-danger ", method: :delete, :remote => true do %>
+                                  <i class='fa fa-close'></i>
+                                  حذف عکس
+                                <% end %>
+                              </td>
+                            </tr>
+                          <% end %>
+                      <% end %>
+                      <!--  -->
+                      </tbody>
+                      </table>
+                      <span class="btn fileinput-button btn-blue" style="padding: 25px 25px; background: black;">
+                  <i class="icon-plus icon-white"></i>
+                  <span>
+                    انتخاب نمونه کار
+                    <%= s.title %>
+                  </span>
+                        <%= hidden_field_tag :shoot_type_id, s.id %>
+                        <%= file_field_tag :file, multiple: true, id: 'upload-field' %>
+                </span>
+                      <div class="span5 fileupload-progress fade">
+                        <!-- The global progress bar -->
+                        <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                          <div class="bar" style="width:0%;"></div>
+                        </div>
+                        <!-- The extended global progress information -->
+                        <div class="progress-extended" style="direction: ltr !important;">&nbsp;</div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "بازگشت", equipments_photographer_path(@photographer), class: "btn btn-gray" %>
+      <button type="submit" id="submit_page_form" disabled class="btn btn-blue">ذخیره و ادامه
+      </button>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+    var fileUploadErrors = {
+        maxFileSize: 'File is too big',
+        minFileSize: 'File is too small',
+        acceptFileTypes: 'Filetype not allowed',
+        maxNumberOfFiles: 'Max number of files exceeded',
+        uploadedBytes: 'Uploaded bytes exceed file size',
+        emptyResult: 'Empty file upload result'
+    };
+</script>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+<tr class="template-upload fade">
+<td class="preview"><span class="fade"></span></td>
+<td class="name"><span>{%=file.name%}</span></td>
+<td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+{% if (file.error) { %}
+<td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+{% } else if (o.files.valid && !i) { %}
+<td>
+<div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
+</td>
+<td class="start">{% if (!o.options.autoUpload) { %}
+<button class="btn btn-primary">
+<i class="icon-upload icon-white"></i>
+<span>{%=locale.fileupload.start%}</span>
+</button>
+{% } %}</td>
+{% } else { %}
+<td colspan="2"></td>
+{% } %}
+<td class="cancel">{% if (!i) { %}
+<button class="btn btn-warning">
+<i class="icon-ban-circle icon-white"></i>
+<span>{%=locale.fileupload.cancel%}</span>
+</button>
+{% } %}</td>
+</tr>
+{% } %}
+
+</script>
+
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+<tr class="template-download fade">
+{% if (file.error) { %}
+<td></td>
+<td class="name"><span>{%=file.name%}</span></td>
+<td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+<td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+{% } else { %}
+<td class="preview">
+<a href="{%=file.url%}"  rel="gallery" ><img src="{%=file.url%}"></a>
+</td>
+<td class="name">
+<a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+</td>
+<td class="size"><span>{%=  o.formatFileSize(file.size)%}</span></td>
+<td colspan="2"></td>
+{% } %}
+<td class="delete">
+
+<a href="{%=file.delete_url%}" data-remote="true" rel="nofollow" data-method="delete" class="btn btn-xs text-danger " data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
+<i class='fa fa-close'></i><span> حذف عکس </span>
+</button>
+</td>
+</tr>
+{% } %}
+
+</script>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $.fn.animate_field = function (id, count) {
+            console.log('#expertise_' + id);
+            if ($(this).hasClass("selected")) {
+                $(this).removeClass('selected');
+                $('#expertise_' + id).addClass('hidden');
+            }
+            else {
+                $('#expertise_' + id).removeClass('hidden');
+                $("#forms_holder").append($('#expertise_' + id));
+                $(this).addClass('selected');
+            }
+        };
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+
+        $('#photographer_uid').keyup(function () {
+            $(this).val($(this).val().toLowerCase());
+        });
+
+        // check number of photo uploads:
+        var count_photos = function () {
+            var c = 0
+            var l = $("#forms_holder > div:not(.hidden) > .fileupload >  .fileupload-buttonbar > table > tbody").each(function () {
+                c = c + 1;
+            });
+            return c;
+        }
+        var check_photos = function () {
+            var enough = true
+            var l = $("#forms_holder > div:not(.hidden) > .fileupload >  .fileupload-buttonbar > table > tbody").each(function () {
+                console.log($(this).children('tr').length);
+                if ($(this).children('tr').length < 3) {
+                    enough = false;
+                }
+            });
+            return enough;
+        }
+
+        if (check_photos() == true && count_photos() > 0) {
+            $('#submit_page_form').prop('disabled', false);
+        }
+        // console.log(check_photos());
+        //
+
+        $('#profile-pic').click(function () {
+            $("#imgInp").trigger('click');
+        })
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                //
+                var preview = document.querySelector('#blah');
+                var file = document.querySelector('input[type=file]').files[0];
+                var reader = new FileReader();
+                var state = false
+                reader.addEventListener("load", function () {
+                    var img = new Image();
+                    img.onload = function () {
+                        console.log(img.width);
+                        if (img.width == 700 && img.height == 700) {
+                            preview.src = reader.result;
+                            console.log("done");
+                            state = true
+                        } else {
+                            console.log("not fit image");
+                            document.querySelector('input[type=file]').files[0].value = "";
+                            alert("اندازه عکس باید ۷۰۰ پیکسل در ۷۰۰ پیکسل باشد، لطفا مجدد آپلود کنید.");
+                        }
+                    };
+                    img.src = reader.result;
+                }, false);
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+
+        $('#submit_page_form').click(function () {
+            if (check_photos()) {
+                $('#edit_photographer_<%=@photographer.id%>').submit();
+            }
+            else {
+                alert("لطفا از هر رشته عکاسی که انتخاب کرده اید ۳ نمونه کار ارسال کنید.");
+            }
+        });
+
+        $('#edit_photographer_<%=@photographer.id%>').parsley().on('field:validated', function () {
+            $('#submit_page_form').prop('disabled', false);
+            //            $('.name, .phone, .map').removeClass('hidden');
+        }).on('form:submit', function () {
+        });
+
+        $(function () {
+            // Initialize the jQuery File Upload widget:
+            $('.fileupload').fileupload({
+                // var reader = new FileReader();
+                add: function (e, data) {
+                    var _URL = window.URL || window.webkitURL;
+                    var uploadErrors = [];
+                    var acceptFileTypes = /^image\/(jpe?g|png)$/i;
+                    console.log(data.originalFiles[0]);
+                    var file, img;
+                    file = data.originalFiles[0];
+                    img = new Image();
+                    img.uploadErrors = []
+                    if (data.originalFiles[0]['type'].length && !acceptFileTypes.test(data.originalFiles[0]['type'])) {
+                        img.uploadErrors.push('تایپ فایل درست نیست.');
+                    }
+                    if (data.originalFiles[0]['size'] && data.originalFiles[0]['size'] > 4000000) {
+                        img.uploadErrors.push('حجم فایل نباید بیش از ۴ مگابایت باشد.');
+                    }
+                    // if(data.originalFiles[0]['size'] && data.originalFiles[0]['size'] < 2000000) {
+                    //   uploadErrors.push('حجم فایل کمتر از حد مورد نیاز است.');
+                    // }
+                    img.onload = function () {
+                        console.log(this.width + " *** " + this.height);
+                        if (this.width < 1500 || this.width > 10000) {
+                            // alert("less width");
+                            this.uploadErrors.push('عرض عکس رعایت نشده است: ' + this.width + 'px');
+                        }
+                        // alert("less height");
+                        if (this.height < 1500 || this.height > 10000) {
+                            this.uploadErrors.push('طول عکس رعایت نشده است: ' + this.height + 'px');
+                        }
+                        console.log("ue length:" + this.uploadErrors.length);
+                        if (this.uploadErrors.length > 0) {
+                            alert(img.uploadErrors.join("\n"));
+                        } else {
+                            data.submit();
+                        }
+                    };
+                    img.src = _URL.createObjectURL(file);
+                    console.log("ue length outside:" + img.uploadErrors.length);
+                },
+                paramName: 'document[file]',
+                Type: 'Post',
+                autoUpload: 'true',
+            });
+            $('.fileupload').bind('fileuploaddone', function (e, data) {
+                if ((check_photos() == true) || ($(this).find('div > table > tbody > tr').length >= 2)) {
+                    $('#submit_page_form').prop('disabled', false);
+                }
+            })
+        });
+    })
+</script>
+<script>
+    $(".mytextbox").on("keypress", function (event) {
+
+
+        var key;
+        var keychar;
+
+        if (window.event)
+            key = window.event.keyCode;
+        else if (e)
+            key = e.which;
+        else
+            return true;
+
+        keychar = String.fromCharCode(key);
+
+        // control keys
+        if ((key == null) || (key == 0) || (key == 8) || (key == 9) || (key == 13) || (key == 27))
+            return true;
+
+        // numbers
+        else if ((("0123456789").indexOf(keychar) > -1))
+            return true;
+
+        // only one decimal point
+        else if ((keychar == ".")) {
+            alert("از این کاراکتر در آیدی استفاده نکنید.");
+            return false;
+            if (myfield.value.indexOf(keychar) > -1)
+                return false;
+        }
+
+        // Disallow anything not matching the regex pattern (A to Z uppercase, a to z lowercase and white space)
+        // For more on JavaScript Regular Expressions, look here: https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions
+        var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
+
+        // Retrieving the key from the char code passed in event.which
+        // For more info on even.which, look here: http://stackoverflow.com/q/3050984/114029
+        var key = String.fromCharCode(event.which);
+
+        //alert(event.keyCode);
+
+        // For the keyCodes, look here: http://stackoverflow.com/a/3781360/114029
+        // keyCode == 8  is backspace
+        // keyCode == 37 is left arrow
+        // keyCode == 39 is right arrow
+        // englishAlphabetAndWhiteSpace.test(key) does the matching, that is, test the key just typed against the regex pattern
+
+        if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+            if ((keychar == "." || keychar == " ")) {
+                alert("از این کاراکتر در آیدی استفاده نکنید.");
+                return false;
+                if (myfield.value.indexOf(keychar) > -1) {
+                    alert("از این کاراکتر در آیدی استفاده نکنید.");
+                }
+            }
+            return true;
+        }
+
+        // If we got this far, just return false because a disallowed key was typed.
+        alert("لطفا انگلیسی تایپ کنید.");
+        return false;
+    });
+
+    $('#mytextbox').on("paste", function (e) {
+        e.preventDefault();
+    });
+
+</script>

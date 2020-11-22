@@ -1,0 +1,15 @@
+<span>
+  سیستم به طور خودکار پروژه ی
+  <span class="owner">
+  <%= link_to activity.owner.display_name, admin_user_path(activity.owner.slug) %>
+  </span>
+ را به دلیل تعلل عکاس ریجکت کرد.
+  عکاس کاندید پروژه
+  <span class="recipient">
+  <%= link_to activity.recipient.display_name , admin_photographer_path(activity.recipient.slug) %>
+  </span>
+  بود.
+  <strong class="owner" style="color: dodgerblue !important;">
+  <%= link_to "پروژه", admin_project_path(activity.trackable.slug) %>
+  </strong>
+</span>

@@ -1,0 +1,179 @@
+<% @top_title = "تنظیمات صفحه شما" %>
+<%= render 'shared/studio_header', title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div style="margin-bottom: 50px">
+            <%= render 'shared/studio_top_navigation' %>
+          </div>
+          <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist" style="display: flex;
+                flex-direction: row;">
+              <li role="presentation" class="active">
+                <a href="#home" aria-controls="home" role="tab" data-toggle="tab">
+                  <h5>
+                    <span class="fa fa-user-plus" style="font-size: 20px;">
+                    </span>
+                    عکس بیشتر پروفایل
+                  </h5>
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#shoot_types" aria-controls="shoot_types" role="tab" data-toggle="tab">
+                  <h5>
+                    <span class="fa fa-cogs" style="font-size: 20px;">
+                    </span>
+                    نمونه کارها و اکسسوری (جدید)
+                  </h5>
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">
+                  <h5>
+                    <span class="fa fa-sort" style="font-size: 20px;">
+                    </span>
+                    ترتیب رشته ها
+                  </h5>
+                </a>
+              </li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="home">
+                <%= render 'profile_photos' %>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="profile">
+                <div class="col-xs-12">
+                  <h2 class="text-right">
+                    <span class="fa fa-sort" style="font-size: 30px;"></span>
+                    انتخاب ترتیب نمایش تخصص ها
+                  </h2>
+                  <br>
+                  <p style="text-align: justify; font-size: 20px">
+                    برای تغییر ترتیب نمایش تخصص ها در صفحه تان کافیست باکس رشته مورد نظر را نگه دارید و آن را به بالا
+                    و یا پایین بکشید.
+                    <br>
+                    با هر بار تغییر دادن شما صفحه سمت چپ به روز می شود.
+                  </p>
+                </div>
+                <div class="col-xs-12">
+                  <ul class="specialties col-md-3" id="specs" style="list-style: none">
+                    <div class="row" style="padding-bottom: 8px"><h4 class="text-right">
+                      <span style="font-size: 20px; color: #dd6d69; padding-right: 25px"><i class="fa fa-sort-amount-desc"></i></span>
+                      انتخاب اولویت</h4></div>
+                      <% @shoot_types.each do |s| %>
+                      <li class="col-md-12" id="<%= s.id %>">
+                        <div href="#" class="specialty" style="width: 250px; height: 200px">
+                          <img src="https://app.kadro.co/<%= s.avatar_url %>" alt="">
+                          <span>
+                            <%= s.title %>
+                          </span>
+                        </div>
+                      </li>
+                      <% end %>
+                    </ul>
+                    <div class="col-md-offset-1 col-md-8">
+                      <div class="row" style="padding-bottom: 8px">
+                        <h4 class="text-center"><i class="fa fa-user" style="font-size: 20px;color: #dd6d69"></i> صفحه شما در
+                          کادرو</h4></div>
+                          <div class="embed-responsive embed-responsive-16by9" style="height: 2000px; box-shadow: 2px 0px 5px 4px #9C9C9C">
+                            <iframe src="<%= pro_photographer_path(@photographer.uid) %>" class="embed-responsive-item" id="iframe" allowfullscreen></iframe>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="shoot_types">
+                      <div class="">
+                        <div class="row">
+                          <div class="col-xs-12" style="margin-bottom: 3rem;">
+                            <h2 class="text-right">
+                              <span class="fa fa-hand-o-down" style="font-size: 30px;"></span>
+                              رشته ای که میخواهی تغییر بدی رو انتخاب کن
+                            </h2>
+                          </div>
+                          <br>
+                          <div class="wrapper col-xs-12" id="detail">
+                            <div id="specialities" class="specialties">
+                              <ul id="business" class="row row-m10">
+                                <% @all_shoot_types.each do |s| %>
+                                <li class="col-xs-6 col-sm-4 col-md-3">
+                                  <a href="<%= edit_shoot_type_photographer_path(shoot_type_title: s.title) %>">
+                                    <% if Expertise.where(:shoot_type => s, :photographer => @photographer).any? %>
+                                      <% exp = Expertise.find_by(:shoot_type => s, :photographer => @photographer) %>
+                                    <% end %>
+                                    <div href="#" class="specialty <%if exp.present? %>selected<%end%>" id="<%= s.id %>">
+                                      <img src="<%= s.avatar_url %>" alt="">
+                                      <% if exp.present? %>
+                                        <small class="label label-primary">
+                                          آخرین آپدیت
+                                          <%= time_ago_in_words(exp.updated_at.to_pdate.to_date)%> پیش
+                                        </small>
+                                      <% else %>
+                                        <small class="label label-default">
+                                          اضافه کنید.
+                                        </small>
+                                      <% end %>
+                                      <span>
+                                        <%= s.title %>
+                                      </span>
+                                    </div>
+                                  </a>
+                                </li>
+                                <% end %>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><!-- /.main -->
+        </div><!-- /.container -->
+      </section>
+      <script>
+        (function () {
+          Sortable.create(specs, {
+            animation: 200, scroll: true,
+            onEnd: function (evt) {
+              var item = evt.item;
+              $.ajax({
+                data: {
+                  id: <%= @photographer.id %>,
+                  shoot_type_id: item.id,
+                  newIndex: evt.newIndex,
+                  oldIndex: evt.oldIndex
+                },
+                type: "POST",
+                url: "/page_setting/set_order_of_expertise"
+
+
+              }).done(function (result) {
+                document.getElementById('iframe').contentWindow.location.reload();
+              });
+            },
+          });
+
+
+        })();
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+        var header_id = getUrlVars()["id"];
+        if (header_id != null) {
+          $("[role=presentation]").removeClass("active")
+          $("[aria-controls=shoot_types]").parent().addClass("active")
+          $("#home").removeClass("active")
+          $("#shoot_types").addClass("active")
+        }
+        
+      </script>

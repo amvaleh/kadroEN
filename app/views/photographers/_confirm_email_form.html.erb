@@ -1,0 +1,13 @@
+<% if (Time.now - @photographer.confirmation_sent_at) < 3.minutes %>
+  <span>
+                  <%=image_tag "/img/loading.gif",width:"40px" %>
+    لینک تایید ایمیل ارسال شده است، لطفا ایمیل خود را چک کنید.
+                </span>
+<%else %>
+  <%= form_tag "/photographers/#{@photographer.slug}/confirm_my_email" do |f|  %>
+    <button type="submit" class="btn btn-link">
+      <i class="fa fa-arrow-right"></i>
+      تایید ایمیل من
+    </button>
+  <% end %>
+<% end %>

@@ -1,0 +1,155 @@
+
+<%= stylesheet_link_tag  'gallery/cubeportfolio.min' %>
+<%= javascript_include_tag 'gallery/jquery.cubeportfolio.min'%>
+<% @top_title = "استودیوی شما" %>
+<%= render 'shared/studio_header', title: "عکسهای اجازه داده شده" %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <div class="col-xs-12 text-center">
+            <h2 class="text-center">
+              اجازه داده شده برای نمونه کار
+            </h2>
+          </div>
+          <div class="col-xs-12 text-center">
+            <h4 class="text-center">
+              لیست عکسهایی که اجازه استفاده گرفته اند.
+            </h4>
+            <br>
+            <p class="alert alert-warning" style="font-size:14px;">
+              <strong class="text text-danger" style="font-size:20px;">
+                فقط
+              </strong>
+              از عکسهایی که در این قسمت توسط کارفرمایان به صورت
+              <span class="text text-danger" style="font-size:20px;">
+                امضای دیجیتال
+                <span data-html="true" data-toggle="allow-per" data-placement="top"><img src="/img/information.png" alt=""></span>
+              </span>
+              کسب اجازه شده است برای نمونه کار می توانید استفاده کنید.
+            </p>
+            <p class="alert alert-warning" style="font-size:14px;">
+              برای درخواست اجازه با
+              <span class="text text-danger" style="font-size:20px;">
+                امضای دیجیتال
+                <span data-html="true" data-toggle="allow-per" data-placement="top"><img src="/img/information.png" alt=""></span>
+              </span>
+              به بخش
+              پروژه ها -> مدیریت عکسها -> درخواست نمونه کار مراجعه کنید.
+            </p>
+            <!-- juicy-projects -->
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+              <div id="js-filters-juicy-projects" class="cbp-l-filters-button">
+                <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
+                  همه  <div class="cbp-filter-counter"></div>
+                </div>
+                <% Expertise.all.approved.where(:photographer_id=> current_photographer.id ).each do |ex| %>
+                <div data-filter=".shoot_<%=ex.shoot_type.id%>" class=" cbp-filter-item">
+                  <%=ex.shoot_type.title%>
+                  <div class="cbp-filter-counter"></div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-xs-12">
+              <div id="js-grid-masonry" class="cbp">
+                <% @frames.share_granted.each do |f| %>
+                <div class="cbp-item frame_<%=f.id%> shoot_<%=f.gallery.project.shoot_type.id%> ">
+                  <div class="cbp-caption">
+                    <div class="cbp-caption-defaultWrap">
+                      <% if f.public_id.present? %>
+                      <%= cl_image_tag(f.public_id, :height => 300,:width=> 300, :crop => :fill, :quality => 50)%>
+                      <% else %>
+                      <%= image_tag f.file_url(:light) %>
+                      <% end %>
+                    </div>
+                    <div class="cbp-caption-activeWrap">
+                      <div class="cbp-l-caption-alignCenter">
+                        <div class="cbp-l-caption-body">
+                          <a href='<%=f.file_address(false,"light")%>' class="cbp-caption cbp-lightbox" data-title="<%=f.gallery.project.shoot_type.title%><br>توسط <%=f.gallery.project.photographer.display_name%>" class="cbp-singlePage cbp-l-caption-buttonLeft" rel="nofollow">
+                            <%=f.gallery.project.shoot_type.title%>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cbp-l-grid-projects-title"
+                  style="color:green">
+                  <%= link_to portfolio_photographer_path(current_photographer) do |p|%>
+                  اضافه به نمونه کارها <span class="fa fa-plus"></span>
+                  <% end %>
+                </div>
+                <div class="cbp-l-grid-projects-desc">پروژه عکاسی <%=f.gallery.project.user.display_name %> </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "استودیو", studio_photographer_path(@photographer), class: "btn btn-default " %>
+      <button type="submit" id="submit_page_form" class="btn btn-blue">ذخیره
+      </button>
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+  // new uploader
+  $(document).ready(function(){
+
+    $(function () {
+      $('[data-toggle="allow-per"]').tooltip({
+        title: "امضای دیجیتال بدین معنی است که از لحاظ حقوقی کارفرما تایید کرده است که اجازه استفاده از عکس هایش به عکاس داده شده است. فقط در این صورت است که کادرو میتواند در صورت ایجاد مشکل و شکایت از عکاس دفاع کند، در صورت استفاده از عکسهایی که کارفرما اجازه انتشار آنها را به صورت دیجیتال در سایت کادرو نداده است، شکایت کارفرما نسبت به نقض محرمانگی صحیح بوده و کادرو مطابق قوانین و مقررات نسبت به جبران خسارت اقدام خواهد کرد."
+      });
+
+      $('#js-grid-masonry').cubeportfolio({
+        filters: '#js-filters-juicy-projects',
+        layoutMode: 'grid',
+        defaultFilter: '*',
+        animationType: 'quicksand',
+        gapHorizontal: 35,
+        gapVertical: 30,
+        gridAdjustment: 'responsive',
+        mediaQueries: [{
+          width: 1500,
+          cols: 5,
+        }, {
+          width: 1100,
+          cols: 4,
+        }, {
+          width: 800,
+          cols: 3,
+        }, {
+          width: 480,
+          cols: 2,
+          options: {
+            caption: '',
+            gapHorizontal: 3,
+            gapVertical: 3,
+          }
+        }],
+        caption: 'overlayBottomReveal',
+        displayType: 'sequentially',
+        displayTypeSpeed: 100,
+
+        // lightbox
+        lightboxDelegate: '.cbp-lightbox',
+        lightboxGallery: true,
+        lightboxTitleSrc: 'data-title',
+        lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
+      });
+    });
+  });
+
+</script>

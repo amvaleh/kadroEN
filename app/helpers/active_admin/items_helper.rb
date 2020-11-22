@@ -1,0 +1,2 @@
+module ActiveAdmin::ItemsHelper
+end

@@ -1,0 +1,316 @@
+<style>
+  h3{
+    color:black;}
+  .detail-row p{
+    color: #adadad !important;
+  }
+
+  @media screen and (max-width : 420px)
+  {
+    .manage .col-xs-4{
+      padding: 0 3px;
+    }
+    .manage .col-xs-4 .btn{
+      font-size: 0.6rem;
+    }
+  }
+  .btn-black{
+    background: black;
+    color: white;
+  }
+</style>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <% if notice %>
+            <div class="alert alert-success text-center">
+              <p style="font-size: x-large">
+                <%= notice %>
+              </p>
+            </div>
+          <% elsif alert %>
+            <div class="alert alert-warning text-center">
+              <p style="font-size: x-large">
+                <%= alert %>
+              </p>
+            </div>
+          <% end %>
+          <div class="" id="final-details">
+            <h1 class="text-center">
+              ثبت موفق سفارش
+            </h1>
+            <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-6 col-md-4">
+                <span id="myalbum" <%= @project.user.email.present? ? '' : 'hidden'%>>
+                      <%= link_to galleries_path, class: 'btn btn-link btn-xs text-blue' do %>
+                    <span class="fa fa-angle-right"></span>
+                  ورود به آلبوم
+                      <% end %>
+                </span>
+                </div>
+                <div class="col-xs-6 col-md-8">
+                  <%= link_to @project.photographer.pro_url, class: 'btn btn-black btn-xs pull-left btn-black' do %>
+                    سفارش مجدد با
+                    <%=@project.photographer.abbrv_name%>
+                    <span class="fa fa-angle-left"></span>
+                  <% end %>
+                  </div>
+                </div>
+            </div>
+            <% unless @project.user.email.present? %>
+              <div id="update-info">
+                <h3>
+                  تکمیل اطلاعات
+                </h3>
+                <div class="detail-row">
+                  <div class="col-xs-2">
+                    ایمیل
+                  </div>
+                  <div class="col-xs-10">
+                    <input type="email" id="email" class="form form-control" placeholder="example@gmail.com" value="<%= @project.user.email %>" style="height: 40px">
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <div class="col-xs-2">
+                    شرکت
+                  </div>
+                  <div class="col-xs-10">
+                    <input type="text" id="corporation" class="form form-control" value="<%= @project.user.company_name %>" style="height: 40px">
+                  </div>
+                </div>
+                <div class="detail-row">
+                  <div class="col-xs-12">
+                    <button class="btn btn-blue pull-left" id="update-user">
+                      ثبت اطلاعات
+                    </button>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <h3>
+              مدیریت پروژه
+            </h3>
+            <div class="row manage">
+              <div class="col-xs-4 col-sm-4" >
+                <%= link_to extra_hour_project_path(@project.slug), :class => "btn btn-blue btn-block", :style => '' do %>
+                  <i class="fa fa-clock-o"></i>
+                  تمدید زمان
+                <% end %>
+              </div>
+              <% if @project.package.is_full and @project.reserve_step_id > 6 and @project.reserve_step_id < 12 and not @project.delivery_at_location %>
+                <div class="col-xs-4 col-sm-4" >
+                  <%= link_to deliver_at_location_project_path, class: 'btn btn-default btn-block text-blue' do %>
+                    تحویل در محل
+                  <% end %>
+                </div>
+              <% end %>
+              <div class="col-xs-4 col-sm-4">
+                  <a class="btn btn-default btn-block text-blue" data-tel="<%= @project.photographer.mobile_number %>" data-name="تماس با عکاس">
+                    <i class="fa fa-phone"></i>
+                    عکاس
+                  </a>
+              </div>
+            </div>
+            <% if @project.extend_hours > 0 %>
+              <p class="text-blue" style="font-size: 80%">
+                تمدید زمان کنونی:
+                <span class="badge btn-blue">
+                        <%= @project.extend_hours %>
+                      </span>
+                ساعت
+              </p>
+            <% end %>
+            <hr>
+            <h3>
+              جزئیات پروژه
+              <%= image_tag @project.shoot_type.avatar_url(:thumb),class:"" %>
+            </h3>
+            <div class="detail-row">
+              <p>
+                عکاسی
+                <%= @project.shoot_type.title %>
+                با
+                <%= link_to @project.photographer.page_url do  %>
+                  <%=@project.photographer.abbrv_name%>
+                <%end %>
+              </p>
+            </div>
+
+            <div class="detail-row">
+              <p>
+                <%= @project.user.display_name %>
+                <%= @project.user.email.present? ? " - #{@project.user.email}" : "" %>
+              </p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-mobile"></span>
+              <p>
+                <%= @project.user.mobile_number %>
+              </p>
+            </div>
+            <h3>
+              پکیج عکاسی
+            </h3>
+            <div class="detail-row">
+              <p>
+                <%= @project.package.duration %>
+                <% if @project.package.name.present? %>
+                  <%= @project.package.name %>
+                  -
+                <% end %>
+                <br>
+                <%if @project.package.feature_2.present? %>
+                  <%= @project.package.feature_2 %>
+                  -
+                <% end %>
+                <%if @project.package.feature_3.present? %>
+                  <%= @project.package.feature_3 %>
+                  -
+                <% end %>
+                <%if @project.package.feature_4.present? %>
+                  <%= @project.package.feature_4 %>
+                  -
+                <% end %>
+                <% if @project.package.is_full %>
+                  دانلود تمام فریم ها
+                <% else %>
+                  دانلود
+                  <%= @project.package.digitals %>
+                  بعد از دریافت همه فایلها
+                <% end %>
+              </p>
+            </div>
+            <% if @project.delivery_at_location %>
+              <div class="">
+                <p class="text-blue">
+                  <span class="fa fa-files-o"></span>
+                  فایلها در محل تحویل داده می شود.
+                </p>
+              </div>
+            <% end %>
+            <h3>
+              استایل درخواستی
+            </h3>
+            <div class="detail-row">
+              <p>
+                <% if @project.shoot_detail.present? %>
+                  <%= h auto_link(simple_format(@project.shoot_detail), :html => {:target => '_blank'}) %>
+                <% else %>
+                  <i class="fa fa-bell-o text-muted"></i>
+                  برای عکاس درخواست استایلی ثبت نکرده اید، در تماس تلفنی به او نیاز های خود را بگویید.
+                <% end %>
+              </p>
+            </div>
+            <h3>
+              زمان پروژه
+            </h3>
+            <div class="detail-row">
+              <p>
+                <% time = convert_persian_day(@project.start_time.strftime("%A")).to_s + " " + @project.start_time.to_date.to_pdate.strftime("%e %b").to_s + " ساعت " + @project.start_time.strftime("%H:%M") %>
+                <%= time %>
+              </p>
+            </div>
+
+            <h3>
+              فاکتور
+            </h3>
+            <div class="detail-row">
+              <span class="fa fa-taxi"></span>
+              <h4>
+                ایاب ذهاب:
+                <%= number_with_delimiter(@project.receipt.transportion_cost.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                تومان
+              </h4>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-dollar"></span>
+              <h4>
+                پرداخت شده:
+                <%= number_with_delimiter(@project.receipt.subtotal.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                تومان
+              </h4>
+            </div>
+            <% credit = @project.user.credit %>
+            <% if credit.present? %>
+              <% credit = credit.value %>
+              <% unless credit == 0 %>
+                <div class="detail-row <%= credit < 0 ? 'text-warning' : 'text-info' %>">
+                  <span class="fa fa-credit-card text-blue"></span>
+                  <h4 class="text-blue">
+                    اعتبار:
+                    <%= number(credit, 'fa').to_s + (credit < 0 ? "-" : "+") %>
+                    تومان
+                  </h4>
+                </div>
+              <% end %>
+            <% else %>
+              <% Credit.create(value: 0, owner: @project.user) %><% end %>
+            <div class="detail-row">
+              <span class="fa fa-clock-o"></span>
+              <h4>
+                تمدید شده تا الان:
+                <%= @project.extend_hours %>
+                ساعت بیشتر
+              </h4>
+            </div>
+            <hr>
+            <h3>
+            <% if @project.search_for_studio %>
+              مکان آتلیه
+            <% else %>
+              مکان پروژه
+            <% end %>
+            </h3>
+            <div class="row">
+                <span></span>
+                <p style="direction: rtl;">
+                  <%= h auto_link(simple_format(@project.address.detail), :html => {:target => '_blank'}) %>
+                </p>
+              <div id="map" class="col-xs-12 col-sm-12" style="height: 200px;"></div>
+              <%= link_to "https://www.google.com/maps/dir/Current+Location/#{@project.address.lattitude},#{@project.address.longtitude}",class:"pull-left btn btn-default text-blue", target: :_blank do %>
+                مسیریابی سریع
+                <span class="fa fa-angle-left"></span>
+              <% end %>
+            </div>
+          </div>
+          <!--          <div class="col-xs-12 col-sm-6 col-sm-offset-3">-->
+          <!--            <div id="photographer">-->
+          <!--              <div class="shoot-slider">-->
+          <!--                <div class="item">-->
+          <!--                  <header>-->
+          <%#= @project.photographer.first_name %>
+          <%#= @project.photographer.last_name %>
+          <!--                  </header>-->
+          <!--                  <div class="img" style="background-image: url('<%#=@project.photographer.avatar_url(:medium)%>');"></div>-->
+          <!--                  <span style="font-style: italic;font-size: 13px;">-->
+          <%#= @project.photographer.location.city.name if @project.photographer.location.city.present? %>
+          <!--                      </span>-->
+          <!--                  <div class="stars rating">-->
+          <!--                    <span class="star"></span>-->
+          <!--                    <span class="star"></span>-->
+          <!--                    <span class="star"></span>-->
+          <!--                    <span class="star"></span>-->
+          <!--                    <span class="star"></span>-->
+          <!--                  </div>-->
+          <!--                  <p>-->
+          <!--                    متخصص در عکاسی-->
+          <%#= @project.shoot_type.title %>
+          <!--                  </p>-->
+          <!--                  <div class="portfolio-example">-->
+          <%#= link_to "مشاهده نمونه کارها", @project.photographer.page_url, target: "_blank" %>
+          <!--                  </div>-->
+          <!--                </div>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
+        </div>
+      </div>
+      <!-- /.wrapper -->
+    </div>
+    <!-- /.main -->
+  </div>
+  <!-- /.container -->
+</section>

@@ -1,0 +1,44 @@
+<%= form_tag(create_video_leads_path, format: :js ,method: :post, id: 'video_lead', remote: true) do |f| %>
+<div id="inputs">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <h2>ثبت درخواست فیلمبرداری و تیزر</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4 text-right">
+    <div class="col-12 col-md-6">
+      <label for="name">نام شما (الزامی)</label>
+      <input id="name" type="text" name="name" class="form-control" required>
+    </div>
+    <div class="col-12 col-md-6 mt-4 mt-md-0">
+      <label for="phone_number">ایمیل شما</label>
+      <input id="email" type="text" name="email" class="form-control">
+    </div>
+  </div>
+  <div class="row mt-4 text-right">
+    <div class="col-12 col-md-6">
+      <label for="phone_number">شماره تماس شما (الزامی)</label>
+      <input id="phone_number" type="text" name="phone_number" class="form-control" required>
+    </div>
+    <div class="col-12 col-md-6  mt-4 mt-md-0">
+      <label for="max_budget">میزان بودجه شما به تومان</label>
+      <input id="max_budget" type="number" name="max_budget" class="form-control mb-1">
+    </div>
+  </div>
+
+
+  <div class="row mt-4 text-right">
+    <div class="col">
+      <label for="description">جزئیات درخواست فیلمبرداری و تیزر شما</label>
+      <textarea id="detail" name="detail" class="form-control" rows="3" placeholder="مثال: ۱ ساعت فیلمبرداری + فیلمبرداری هوایی برای تولد و خروجی کلیپ ۱ دقیقه ای " form="video_lead"></textarea>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <button class="btn btn-block btn-warning" id="submit_form" type="submit">ثبت</button>
+    </div>
+  </div>
+</div>
+<% end %>

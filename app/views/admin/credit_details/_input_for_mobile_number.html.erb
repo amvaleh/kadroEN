@@ -1,0 +1,77 @@
+<li class="string input required stringish" id="user_mobile_number_input">
+  <label for="user_mobile_number" class="label">
+    Mobile number
+  </label>
+  <% if credit.present? %>
+    <% user = User.find_by(id: credit.owner_id) %>
+    <% if user.present? and user.mobile_number.present? %>
+      <input autocomplete="off" maxlength="11" id="user_mobile_number" type="text" name="user[mobile_number]" list="phone" value="<%= user.mobile_number %>">
+    <% else %>
+      <input autocomplete="off" maxlength="11" id="user_mobile_number" type="text" name="user[mobile_number]" list="phone">
+    <% end %>
+  <% elsif params["credit_detail"].present? and params["credit_detail"]["user_mobile_number"].present?%>
+    <input autocomplete="off" maxlength="11" id="user_mobile_number" type="text" name="user[mobile_number]" list="phone" value="<%= params["credit_detail"]["user_mobile_number"] %>">
+  <% else %>
+    <input autocomplete="off" maxlength="11" id="user_mobile_number" type="text" name="user[mobile_number]" list="phone">
+  <% end %>
+  <datalist id="phone">
+  </datalist>
+</li>
+<div id="search-users" class="input text-center">
+</div>
+<script>
+    $("#user_mobile_number").keyup(function(){
+        var value = $(this).val();
+        if ( value.length > 6 && value.length < 11 && value != "Default text" ) {
+            div = document.getElementById("search-users");
+            div.innerHTML = "";
+            var result = $.ajax({
+                data: {
+                    value: value,
+                },
+                dataType: 'json',
+                async: false,
+                success: function(){
+
+                },
+                type: 'POST',
+                url: "/api/v3/give_users",
+            });
+            phone = document.getElementById("phone")
+            phone.innerHTML = ""
+            for(var user in result.responseJSON.users) {
+                phone.innerHTML += "<option value=" + result.responseJSON.users[user].mobile_number + ">" + result.responseJSON.users[user].display_name + "</option>"
+            };
+        };
+
+        if ( value.length < 6 ) {
+            div = document.getElementById("search-users");
+            div.innerHTML = "";
+            phone = document.getElementById("phone")
+            phone.innerHTML = ""
+        };
+
+        if ( value.length == 11 && value != "Default text" ) {
+            var result = $.ajax({
+                data: {
+                    value: value,
+                },
+                dataType: 'json',
+                async: false,
+                success: function(){
+
+                },
+                type: 'POST',
+                url: "/api/v3/give_users",
+            });
+            if (result.statusText == "Accepted") {
+                div = document.getElementById("search-users");
+                div.innerHTML = "";
+                div.innerHTML = `<span>نام : ` + result.responseJSON.users[0].display_name + `</span><br><a class="btn btn-primary" style="margin-right:5px;" href="/admin/users/` + result.responseJSON.users[0].slug + `">نمایش</a><a class="btn btn-primary" style="margin-right:5px;" href="/admin/users/` + result.responseJSON.users[0].slug + `/edit">ویرایش</a>`
+            } else {
+                div = document.getElementById("search-users");
+                div.innerHTML = "";
+            }
+        };
+    });
+</script>

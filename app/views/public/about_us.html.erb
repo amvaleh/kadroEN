@@ -1,0 +1,416 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/raychat' %>
+
+<% end %>
+  <title>
+    درباره ما    | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="درباره ما">
+  <meta name="keywords" content="درباره تیم اجرایی و بنیان گذاران کادرو">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload'  %>
+  <% end %>
+  <link rel="icon" type="image/png" href="">
+</head>
+<%= render "public/shared/wordpress_header" %>
+<section class="fdb-block mt-0 mb-0 py-5 py-sm-0">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 col-lg-5">
+        <h1> درباره تیم کادرو </h1>
+        <p class="text-center"> ما در شبکه های اجتماعی هم کنارتان هستیم! </p>
+        <p class="text-center">
+          <a href="https://twitter.com/kadro_co" class="mx-2 text-primary"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/kadro.co" class="mx-2 text-primary"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/kadro.official/" class="mx-2 text-primary"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.pinterest.ch/kadro_co/" class="mx-2 text-primary"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+          <a href="https://api.whatsapp.com/send?phone=0989027048963" class="mx-2 text-primary"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+        </p>
+      </div>
+      <div class="col-12 col-md-6 ml-md-auto mt-4 mt-md-0">
+        <img alt="image" class="img-fluid" src="<%=assets_url("/img/aboutus.jpg")%>">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="fdb-block">
+  <div class="container">
+    <div class="row justify-content-center">
+    <div class="col col-md-8 text-center">
+      <h2> چرا ما هستیم؟ </h2>
+      <img alt="image" class="fdb-icon mb-4" src="<%=assets_url("/img/updateslogo.png")%>">
+      <p class="lead">
+        زندگی این روزها به قدری سریع جریان داره که یک روز چشمامونو باز می کنیم می بینیم سالها گذشته و از خاطرات ریز و درشت مون هاله ای بیش نمونده! ما برای این اینجا هستیم که خاطرات شما،
+        مهمترین لحظات و شادی هاتون رو به راحت ترین روش ثبت و ضبط کنیم تا هر وقت اراده کردید،
+        راحت برگردید به گذشته و خاطره ها رو مرور کنید.
+      </p>
+      <p class="lead text-center">
+        کادرو اینجاست تا شما بتوانید با یک نگاه،
+        <span style="color: rgb(61, 142, 185);"> خاطرات زندگی تان را لمس کنید.</span>
+      </p>
+    </div>
+  </div>
+  </div>
+</section>
+<section class="fdb-block team-8 fp-active" data-block-type="teams" data-id="1" draggable="true">
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-8" >
+        <h2>اعضای تیم کادرو</h2>
+        <p class="lead text-center">
+          ما بهترین های ایران رو دور خودمون جمع کرده ایم، این شامل
+          <%= Photographer.all.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+          عکاسی که تیم ما رو تشکیل داده اند هم میشه.
+        </p>
+      </div>
+    </div>
+    <div class="row-100"></div>
+    <div class="row justify-content-center text-left">
+      <% AdminUser.in_about.all.order("admin_users.created_at").each do|ad| %>
+        <div class="col-sm-6" >
+          <div class="row align-items-center">
+            <div class="col-4" >
+              <div class="fr-wrapper" dir="auto">
+                <div aria-disabled="false"  contenteditable="true" dir="auto" spellcheck="true">
+                  <p>
+                    <img alt="<%=ad.first_name %> <%= ad.last_name %> <%=ad.about_position %> " class="img-fluid rounded fr-fic fr-dii img-replace" src="<%=assets_url(ad.avatar_url(:medium))%>" id="<%=assets_url(ad.avatar_url(:large))%>">
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 " >
+              <div >
+                <div>
+                  <h3 class="text-right">
+                    <strong>
+                      <%=ad.first_name %> <%= ad.last_name %></strong></h3>
+                  <p class="lead">
+                    <%=ad.about_position %>
+                  </p>
+                  <p>
+                    <%=ad.about_description %>
+                  </p>
+                </div>
+                <p class="lead">
+                  <%if ad.about_twitter.present? %>
+                    <a href="<%= ad.about_twitter%>" class="mx-2"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <%end %>
+                  <%if ad.about_instagram.present? %>
+                    <a href="<%= ad.about_instagram%>" class="mx-2"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                  <% end %>
+                  <%if ad.about_linkedin.present? %>
+                    <a href="<%= ad.about_linkedin%>" class="mx-2"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="row-70"></div>
+  </div>
+</section>
+<section class="fdb-block">
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-8">
+        <h2>مشاورین ما</h2>
+        <p class="text-center">همه کسانیکه تا به اینجا ما را همراهی کرده اند.</p></div>
+    </div>
+
+    <div class="row-70"></div>
+
+    <div class="row text-center justify-content-center">
+      <div class="col-6 col-sm-2" >
+        <p>
+          <img alt="image" class="img-fluid rounded-circle" src=<%=assets_url("/img/mentors/rezajafari.jpg")%>>
+        </p>
+        <h3 class="text-right">
+          <strong> رضا جعفری </strong>
+        </h3>
+        <p class="text-right"> مشاوره فنی و امنیت وب </p>
+      </div>
+
+      <div class="col-6 col-sm-2" >
+        <p>
+          <img alt="image" class="img-fluid rounded-circle" src=<%=assets_url("/img/mentors/nima.jpeg")%>>
+        </p>
+        <h3 class="text-right">
+          <strong> نیما بهروان </strong>
+        </h3>
+        <p class="text-right"> مشاور حوزه توسعه کسب و کار</p>
+      </div>
+      <div class="col-6 col-sm-2" >
+        <p>
+          <img alt="image" class="img-fluid rounded-circle" src=<%=assets_url("/img/mentors/amirhosein.jpg")%>>
+        </p>
+        <h3 class="text-right">
+          <strong> امیرحسین ثقه الاسلامی </strong>
+        </h3>
+        <p class="text-right"> مشاور مارکتینگ و هک رشد </p>
+      </div>
+      <div class="col-6 col-sm-2" >
+        <p>
+          <img alt="image" class="img-fluid rounded-circle" src=<%=assets_url("/img/mentors/amin.jpg")%>>
+        </p>
+        <h3 class="text-right">
+          <strong> امین اسماعیلی </strong>
+        </h3>
+        <p class="text-right">مشاور دیجیتال مارکتینگ و seo  </p>
+      </div>
+    </div>
+
+    <div class="row justify-content-center text-center mt-5">
+
+      <div class="col-6 col-sm-2" >
+      <p>
+        <img alt="image" class="img-fluid rounded-circle" src=<%=assets_url("/img/mentors/alireza.jpg")%>>
+      </p>
+      <h3>
+        <strong> علیرضا نیک نژاد </strong>
+      </h3>
+      <p> مشاور حوزه آموزش عکاسی </p>
+    </div>
+
+      <div class="col-6 col-sm-2" >
+        <p>
+          <img alt="image" class="img-fluid rounded-circle" src=<%=assets_url("/img/mentors/jalal.jpg")%>>
+        </p>
+        <h3 class="text-right">
+          <strong> جلال برآبادی </strong>
+        </h3>
+        <p class="text-right"> مشاور حوزه دیجیتال مارکتینگ </p>
+      </div>
+
+      <div class="col-6 col-sm-2" >
+        <p>
+          <img alt="image" class="img-fluid rounded-circle" src=<%=assets_url("/img/mentors/omid.jpg")%>>
+        </p>
+        <h3 class="text-right">
+          <strong> امید ظریف پور </strong>
+        </h3>
+        <p class="text-right"> مشاور حوزه جذب سرمایه </p>
+      </div>
+
+      <div class="col-6 col-sm-2" >
+        <p>
+          <img alt="image" class="img-fluid rounded-circle" src=<%=assets_url("/img/mentors/foad.jpg")%>>
+        </p>
+        <h3 class="text-right">
+          <strong> فواد سعیدی نیک </strong>
+        </h3>
+        <p class="text-right"> مشاور مدیریت کسب و کار </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="fdb-block">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col col-md-8 text-center">
+        <h2> مسیری که طی کردیم </h2>
+        <img alt="image" class="fdb-icon mb-4" src="<%=assets_url("/img/updateslogo.png")%>">
+        <div class="timeline" style="direction: ltr !important;">
+          <h2 class="timeline__item timeline__item--year">۱۳۹۶</h2>
+          <div class="timeline__item">
+            <h3 class="timeline__title"> ایده "کادرو" متولد شد. </h3>
+            <p class="timeline__blurb">
+              "کادرو" ترجمه لاتین کلمه FRAME یا فریم است.
+            </p>
+          </div>
+
+          <div class="timeline__item">
+            <h3 class="timeline__title">
+              <%= link_to "http://stshow.ir/kadro/",target:"_blank" do %>
+                اولین نسخه سایت کادرو
+              <% end %>
+              بر بستر نیمی wordpress و نیمی
+              <%= link_to "https://en.wikipedia.org/wiki/Ruby_on_Rails",target:"_blank" do%>
+                ROR
+              <%end %>
+              بالا اومد.
+            </h3>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title">
+              وارد کمپ دو ماهه شتابدهی شتاب دهنده سریر شدیم.
+            </h3>
+            <%=image_tag "/img/sarir1.jpg",class:"img-fluid rounded",width:"100%" %>
+            <p class="timeline__blurb">
+              برای ارزشگذاری با سریر به تفاهم نرسیدیم و از آنجا خارج شدیم.
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title">
+              تغییر اعضاء تیم
+            </h3>
+            <%=image_tag "/img/mahdihoseininasab.jpg",class:"img-fluid rounded",width:"100%" %>
+            <p class="timeline__blurb">
+              در این زمان
+              <%= link_to "امیررضا استواری", "https://pro.kadro.co/ostovari", target:"_blank" %>
+              که ۳ ماه در کنار مون بود از تیم جدا شد و
+              محمد مهدی حسینی نسب به عنوان هم بنیان گذار وارد تیم شد.
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title">
+              دفتر کادرو در دزاشیب تاسیس شد.
+            </h3>
+            <%=image_tag "/img/dezashib_kadro_office.jpg",class:"img-fluid rounded",width:"100%" %>
+            <p class="timeline__blurb">
+              حاضرین در عکس: امیرمهدی واله، محمد مهدی حسینی نسب، امیرحسین زاهدی
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title">
+              مصاحبه شبکه سه با یکی از عکاسان سر پروژه عکاسی افطار در رمضان
+            </h3>
+            <%=image_tag "/img/channel3.jpg",class:"img-fluid rounded",width:"100%" %>
+            <p class="timeline__blurb">
+              عکاسی که می بینید آقای
+              <%= link_to "https://pro.kadro.co/mehranbakhtiari" , target:"_blank" do %>
+               م.بختیاری
+              <% end %>
+              از عکاسان برتر کادروست.
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title">
+              عقد قرارداد تیزر تبلیغاتی کادرو
+            </h3>
+            <div id="16121851597"><script type="text/JavaScript" src="https://www.aparat.com/embed/FyzA5?data[rnddiv]=16121851597&data[responsive]=yes"></script></div>
+            <p class="timeline__blurb">
+              پروژه فوق به کارگردانی آقای صالح عبدی در ۳ ماه فیلمبرداری، تدوین و تحویل داده شد.
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title">
+              کسب
+              <%= link_to "https://dmondgroup.com/%DA%AF%D8%B2%D8%A7%D8%B1%D8%B4-%D9%86%D9%87%D9%85%DB%8C%D9%86-%D8%AF%D9%88%D8%B1%D9%87-%D8%A7%D8%B2-%D8%B1%D9%88%DB%8C%D8%AF%D8%A7%D8%AF-dmond-pitches-%D8%A8%D8%A7-%D9%85%D9%88%D8%B6%D9%88%D8%B9/", target:"_blank" ,class:"text-link" do %>
+                مقام دوم
+                <% end %>
+              در رویداد Dmond Pitches حوزه
+              مد و فشن
+            </h3>
+            <%=image_tag "/img/kadro_dmondpitches_second.jpg",class:"img-fluid rounded",width:"100%" %>
+            <p class="timeline__blurb">
+              اینجا بود که
+              <%= link_to "Dmond Group", "https://dmondgroup.com/",target:"_blank" %>
+              به کادرو علاقه مند شد...
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title">
+              تا اینجا ۵۰ عکاس فعال عضو کادرو بوده و بیش از ۲۰۰ پروژه عکاسی انجام شده بود.
+            </h3>
+          </div>
+          <h2 class="timeline__item timeline__item--year">۱۳۹۷</h2>
+          <div class="timeline__item">
+            <h3 class="timeline__title"> جذب سرمایه از Dmond </h3>
+            <%=image_tag "/img/kadro_dmond_invetment.jpg",class:"img-fluid rounded",width:"100%" %>
+            <p class="timeline__blurb">
+              ۳ پیشنهاد سرمایه گذاری دیگر وجودد داشت، بعد از مشورت های فراوان کادرو به تیم بزرگ دیموند پیوست. لینک خبر و جزئيات
+              <%= link_to "برای مطالعه در اینجا","https://news.akhbarrasmi.com/news/13970825328287858/%D8%A7%D8%B1%D8%B2%D8%B4-%DA%AF%D8%B0%D8%A7%D8%B1%DB%8C-%DB%8C%DA%A9-%D9%85%DB%8C%D9%84%DB%8C%D8%A7%D8%B1%D8%AF%DB%8C-%DA%A9%D8%A7%D8%AF%D8%B1%D9%88-%D9%BE%DB%8C%D8%B4-%D8%A7%D8%B2-%D9%88%D8%B1%D9%88%D8%AF-%D8%A8%D9%87-%D8%A8%D8%A7%D8%B2%D8%A7%D8%B1-%D9%85%DB%8C%D9%84%DB%8C%D8%A7%D8%B1%D8%AF-%D8%AA%D9%88%D9%85%D8%A7%D9%86%DB%8C-%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C/",target:"_blank" %>
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title"> مشهد، شیراز، اصفهان وارد کادرو شدند. </h3>
+            <p class="timeline__blurb">
+              لیست همه شهرهایی که کادرو در آنها فعال است و عکاسان آماده به رزم دارد:
+              <%= link_to "لیست عکاسان","https://pro.kadro.co",target:"_blank" %>
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title"> سیاوش باقری وارد می شود. </h3>
+            <p class="timeline__blurb">
+              <%=image_tag "/img/siacashbagheri.jpg",class:"img-fluid rounded",width:"100%" %>
+              او که همین الان هم
+              <%= link_to "برترین عکاس","https://pro.kadro.co/bagheri",target:"_blank" %>
+              کادروست، به عنوان مدیر کنترل کیفیت کادرو وارد تیم اجرایی شد، تا مو را از ماست بکشد بیرون...
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title">اسپانسری کادرو در یلدای کارآفرینان استارتاپی ۹۷(برج میلاد)</h3>
+            <p class="timeline__blurb">
+              <%=image_tag "/img/kadroyalda97.jpg",class:"img-fluid rounded",width:"100%" %>
+              بیش از ۱۰ هزار عکس در این رویداد توسط ۱۰ عکاس حاضر ثبت شد که به صورت دسته بندی شده می تونید
+              <%= link_to "در اینجا ببینید.","https://www.kadro.co/y97/",target:"_blank" %>
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title"> ۹۷ سال ساخت زیرساخت های کادرو </h3>
+            <p class="timeline__blurb">
+              <%=image_tag "/img/kadro_tech_team.jpg",class:"img-fluid rounded",width:"100%" %>
+              تیم ۵ نفره فنی کادرو در سال ۹۷ اساسی ترین زیرساخت های فنی رو ایجاد کرد. شامل:
+            </p>
+            <p class="timeline__blurb">
+              قابلیت تحویل فایل ها در محل
+              <br>
+              آلبوم خصوصی امن و آنلاین و سفارش چاپ
+              <br>
+              تسریع فرآیند رزرو عکاس با تکنولوژی ReactJs
+              <br>
+              سیستم تشخیص خودکار خطا و عدم تطابق اطلاعات پروژه ها
+              <br>
+              رزرو مستقیم از صفحه عکاس
+              <br>
+              و خیلی چیزهای دیگه ...
+            </p>
+          </div>
+          <h2 class="timeline__item timeline__item--year">۱۳۹۸</h2>
+          <div class="timeline__item">
+            <h3 class="timeline__title">کادرو در برنامه میدون، شبکه سه  </h3>
+            <div id="75746486540"><script type="text/JavaScript" src="https://www.aparat.com/embed/nr69o?data[rnddiv]=75746486540&data[responsive]=yes"></script></div>
+            <p class="timeline__blurb">
+            برنامه میدون کادرو رو دعوت کرد برای معرفی خدماتش، توی فیلم همه چیز هست دیگه ...
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title"> نه فقط رزرو عکاس، بلکه رزرو آتلیه! </h3>
+            <p class="timeline__blurb">
+              <%=image_tag "/img/book_studio.jpg",class:"img-fluid rounded",width:"100%" %>
+              اینقدر درخواست ها زیاد شد که قابلیت رزرو آتلیه رو هم اضافه کردیم. به سادگی آب خوردن، میتونید
+              <%= link_to "از اینجا از بین همه آتلیه ها ببینید و رزرو کنید" , "https://pro.kadro.co" , target:"_blank" %> و
+              برید توی آتلیه عکاسی کنید.
+            </p>
+          </div>
+          <div class="timeline__item">
+            <h3 class="timeline__title"> "مکان" یک معضل همیشگی! کجا بریم عکاسی کنیم؟ </h3>
+            <p class="timeline__blurb">
+              <%=image_tag "/img/kadro_locations.jpg",class:"img-fluid rounded",width:"100%" %>
+              خدمت جدیدی که برای کاربران توسعه دادیم، لیستی از بهترین مکان های عکاسی در ایران (شروع با تهران). از
+              <%= link_to "این لینک می تونید ببینید همه مکان ها رو." , "https://locations.kadro.co",target:"_blank"%>
+            </p>
+          </div>
+          <h2 class="timeline__item timeline__item--year"> ۱۳۹۹ </h2>
+        </div>
+        <div class="linkedin">
+          <div class="linkedin__container text-center">
+            <p class="linkedin__text text-center">
+              سال ۹۹ قوی تر از همیشه، با همه سختی هایی که داره، در کنار تون هستیم، با خدمات جدیدی که به زودی خواهید دید.
+            </p>
+            <p class="timeline__blurb text-center">
+              این قسمت به صورت متداول به روز رسانی می گردد.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</section>

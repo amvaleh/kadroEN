@@ -1,0 +1,36 @@
+<% @top_title = "تغییر رمز عبور" %>
+<%= render 'shared/join_dynamic_header' , title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-md-6 col-sm-offset-3 col-sm-12">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+              <%= devise_error_messages! %>
+              <%= f.hidden_field :reset_password_token %>
+            <div class="col-sm-12">
+              <%= f.label "رمز عبور جدید" %><br />
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> حرف حداقل)</em><br />
+              <% end %>
+              <%= f.password_field :password, autofocus: true, autocomplete: "off" , class: "form-control" %>
+            </div>
+            <div class="col-sm-12">
+              <%= f.label "تکرار رمز عبور جدید" %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off" , class: "form-control"%>
+            </div>
+            <div class="col-sm-12 text-center" style="margin-top: 30px;">
+              <%= f.submit "رمز عبور جدیدم را ثبت کن" , class: "btn btn-blue btn-block" %>
+            </div>
+            <div class="col-sm-12" style="margin-top: 30px;">
+              <%= render "photographers/shared/links" %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /.main -->
+</div><!-- /.container -->
+</section>

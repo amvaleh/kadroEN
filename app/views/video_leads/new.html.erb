@@ -1,0 +1,28 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+  <% end %>
+  <title>
+    ثبت پروژه فیلمبرداری و تیزر | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="قیمت های عکاسی">
+  <meta name="keywords" content="قیمت ها و تعرفه های عکاسی">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+  <link rel="icon" type="image/png" href="">
+</head>
+<%= render "public/shared/wordpress_header" %>
+<%= render "video_leads/shared/section_form" %>

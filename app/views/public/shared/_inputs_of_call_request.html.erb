@@ -1,0 +1,51 @@
+<div id="inputs">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <h2>درخواست مشاوره</h2>
+        <h3 style="text-align: justify;">
+          نیاز به مشاوره داری ؟ درخواست یا سوالت رو ثبت کن تا کارشناس متخصص کادرو باهات تماس بگیره و بهترین پکیج را برایت ثبت کند.</h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-4 text-right">
+      <label for="name">نام</label>
+      <input id="name" type="text" name="name" class="form-control" required>
+    </div>
+  </div>
+  <div class="row mt-4 text-right">
+    <div class="col">
+      <label for="phone_number">شماره تماس</label>
+      <input id="phone_number" type="text" name="phone_number" class="form-control" required>
+    </div>
+  </div>
+  <div class="row mt-4 text-right">
+    <div class="col">
+      <label for="max_budget">سقف بودجه شما چقدر است ؟ (تومان)</label>
+      <input id="max_budget" type="number" name="max_budget" class="form-control mb-1" required>
+    </div>
+  </div>
+  <div class="row mt-4 text-right">
+    <div class="col">
+      <label for="call_time">چه زمانی با شما تماس بگیریم ؟</label>
+      <select id="call_time" name="call_time" class="form-control" id="exampleFormControlSelect1">
+        <option value="Morning">۹:۰۰ الی ۱۲:۰۰</option>
+        <option value="Noon">۱۲:۰۰ الی ۱۶:۰۰</option>
+        <option value="Evening">۱۶:۰۰ الی ۲۰:۰۰</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mt-4 text-right">
+    <div class="col">
+      <label for="description">نیازتان را شرح دهید:</label>
+      <textarea id="description" class="form-control" id="description" rows="3" placeholder="من ۴۰ عدد محصول دارم که می خواهم برای فروش آنلاین با زمینه سفید عکاسی کنم."></textarea>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <button class="btn btn-block btn-primary" id="submit_form" type="button" onclick="submit()">ثبت</button>
+    </div>
+  </div>
+</div>

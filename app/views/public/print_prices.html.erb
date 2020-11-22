@@ -1,0 +1,108 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/raychat' %>
+<% end %>
+  <title>
+    قیمت چاپ عکس و شاسی | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="قیمت های چاپ عکس و شاسی کادرو">
+  <meta name="keywords" content="قیمت ها و تعرفه های چاپ عکس">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+  <link rel="icon" type="image/png" href="">
+</head>
+<%= render "public/shared/wordpress_header" %>
+<section class="fdb-block py-1 my-1">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <img alt="image" class="img-fluid mt-0" src="<%=assets_url('/img/print_prices/intro.jpg') %>">
+      </div>
+    <div class="row">
+      <div class="col text-center">
+        <h1>
+          قیمت چاپ عکس
+        </h1>
+        <p class="lead text-center">
+          تمامی مشتریان کادرو می توانند با این قیمت ها سفارش چاپ عکس و شاسی بدهند.
+        </p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+<section class="fdb-block py-3">
+  <div class="container">
+    <div class="row my-3">
+      <div class="col-12  text-center">
+        <h3>
+          قیمت های چاپ و خدمات جانبی فروشگاه کادرو
+        </h3>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 text-center">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"> نوع </th>
+              <th scope="col"> عنوان </th>
+              <th scope="col"> توضیحات </th>
+              <th scope="col"> عرض (cm) </th>
+              <th scope="col"> طول (cm) </th>
+              <th scope="col"> قیمت(تومان) </th>
+            </tr>
+            </thead>
+            <tbody>
+            <% index = 1 %>
+            <% Item.active.order("items.item_type_id DESC,items.price").each.with_index(1) do |it, index| %>
+              <tr>
+                <th scope="row">
+                  <%=index.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                </th>
+                <td class="text-right">
+                  <%=it.item_type.title %>
+                </td>
+                <td class="text-right">
+                 <%= it.title.to_s  %>
+                </td>
+                <td class="text-right">
+                  <%= it.description.to_s  %>
+                </td>
+                <td>
+                  <%= it.width.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                </td>
+                <td>
+                  <%= it.height.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                </td>
+                <td>
+                  <%= number_with_delimiter(it.price.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render :partial => 'user_comments_prints' %>
+<%= render "types/sections/why_kadro"%>
+<%= render "public/shared/book_now" %>

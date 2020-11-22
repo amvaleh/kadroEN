@@ -1,0 +1,5 @@
+console.log("deleted");
+$('#<%=@shoot_type_id%>').removeClass('selected');
+$('#expertise_sp<%=@shoot_type_id%>').addClass('hidden');
+$('#expertise_'+<%=@expertise_id%>).addClass('hidden');
+$('#shoot_type_'+<%=@shoot_type_id%>).remove();

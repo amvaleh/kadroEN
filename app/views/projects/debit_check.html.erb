@@ -1,0 +1,231 @@
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyBqAlo6eTQeSbkOn3xYIjJ4e1zr4ewrSxU&sensor=false&libraries=places'>
+</script>
+<%= javascript_include_tag "locationpicker.jquery" %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div class="well text-center">
+            <strong class="text-justify">
+              <p style="color: indianred">
+                <i class="fa fa-star fa-2x" style="color: mediumvioletred"></i>
+                با توجه به اینکه
+                <span style="color: mediumvioletred; font-size: x-large">
+                    هزینه ایاب و ذهاب
+                  </span>
+                عکاس جدید بیشتر از عکاس قبل است. برای
+                <span style="color: mediumvioletred; font-size: x-large">
+                  ثبت نهایی
+                  </span>
+                عکاس جدید لطفا تفاوت این هزینه را پرداخت نمایید.
+              </p>
+            </strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6" id="final-details">
+            <h3>اطلاعات نهایی</h3>
+            <div class="detail-row">
+
+              <span class="fa fa-user"></span>
+              <p>
+                <%= @project.user.display_name %> -
+                <%= @project.user.email %>
+              </p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-mobile"></span>
+              <p>
+                <%= @project.user.mobile_number %></p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-map-pin"></span>
+              <p style="direction: rtl;">
+                <%= h auto_link(simple_format(@project.address.detail), :html => {:target => '_blank'}) %>
+              </p>
+            </div>
+
+            <div class="detail-row">
+              <span class="fa fa-calendar-times-o"></span>
+              <p>
+                <% time = convert_persian_day(@project.start_time.strftime("%A")).to_s + " " + @project.start_time.to_date.to_pdate.strftime("%e %b").to_s + " ساعت " + @project.start_time.strftime("%H:%M") %>
+                <%= time %>
+              </p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-camera-retro"></span>
+              <p>رشته:
+                <%= @project.shoot_type.title %>
+              </p>
+            </div>
+            <% if @project.delivery_at_location %>
+              <div class="detail-row">
+                <span class="fa fa-files-o"></span>
+                <p>
+                  تحویل فایل ها در محل
+                </p>
+              </div>
+            <% end %>
+            <div class="detail-row">
+              <span class="fa fa-camera"></span>
+              <p> پکیج:
+                <%= @project.package.duration %> -
+                <% if @project.package.is_full %>
+                  دانلود
+                  تمام فریم ها
+                <% else %>
+                  دانلود
+                  <%= @project.package.digitals %>
+                  فریم
+                  از همه
+                  فریم ها
+                <% end %>
+              </p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-camera"></span>
+              <p>
+                عکاس:
+                <%= @project.photographer.first_name %>
+                <%= @project.photographer.last_name %>
+              </p>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <div id="map" style="width: 100%; height: 400px;">
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6">
+            <h4 class="text-right text-success">
+              هزینه ایاب ذهاب
+              عکاس قبلی :
+              <%= number_with_delimiter(@old_price.to_i , :delimiter => ',') %>
+              تومان
+            </h4>
+          </div>
+          <div class="col-xs-6">
+            <h4 class="text-right text-success">
+              هزینه ایاب ذهاب
+              عکاس جدید :
+              <%= number_with_delimiter(@price.to_i , :delimiter => ',') %> تومان
+            </h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <h4 class="text-right text-success">
+              میزان اعتبار شما :
+              <%= number_with_delimiter(@project.user.credit.value.to_i.abs , :delimiter => ',') %> تومان
+            </h4>
+          </div>
+        </div>
+
+        <div class="row alert alert-info" style="color: mediumvioletred">
+          <div class="col-xs-6">
+            <h3 class="text-left">
+              قابل پرداخت:
+            </h3>
+          </div>
+          <div class="col-xs-6">
+            <h3 class="text-right">
+              <%= number_with_delimiter(@difference.to_i.abs , :delimiter => ',') %> تومان
+            </h3>
+          </div>
+        </div>
+
+
+        <hr>
+        <div class="row">
+          <div class="btn-wrap text-center">
+            <%= form_for(:transaction, url: initial_send_transactions_path, id: "pay_form") do |f| %>
+              <%= f.hidden_field "amount", value: @difference.to_i.abs %>
+              <%= f.hidden_field "afterwards_url", value: success_credit_settlement_project_path(@project.slug) + '?' %>
+              <input type="hidden" name="coupon_code" id="coupon-code">
+              <%= f.hidden_field "description", value: " #{@project.user.email} #{@project.user.mobile_number}  | #{@project.package.title} - #{ @project.package.photos_count} - #{time} - #{@project.photographer.first_name} #{@project.photographer.last_name}" %>
+              <%= f.hidden_field "email", value: @project.user.email %>
+              <%= f.hidden_field "mobile_number", value: @project.user.mobile_number %>
+              <%= f.hidden_field "project_id", value: @project.slug %>
+              <button class="btn btn-blue complete">
+                ثبت و پرداخت
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div><!-- /.wrapper -->
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<script>
+    $(document).ready(function () {
+
+
+        // check coupon code
+
+        $('#coupon_submit_button').click(function () {
+            code = document.getElementById('coupon_input').value
+            console.log(code);
+            var sendReq = $.fn.postReq(code);
+        })
+
+
+        $.fn.postReq = function (code) {
+            console.log('send request for ' + code);
+            var url = '<%=reserve_check_coupon_path %>';
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {'coupon[code]': code, 'project_slug': "<%=@project.slug%>"},
+                success: function (res) {
+                    console.log(res);
+                    var res = res;
+                    $('#coupon-result').removeClass('hidden');
+                    landing = $('#coupon-result');
+                    price = $('#cost');
+                    field_amount = $('#transaction_amount');
+                    if (res.response == 'ok') {
+                        landing.text(res.message);
+                        price.text(res.discounted_price);
+                        field_amount.val(res.discounted_price);
+                        price.css({
+                            "color": '#2B87F9'
+                        });
+                        $('#coupon-result').css({
+                            "color": 'green'
+                        });
+                        $("#coupon-code").val(code);
+                    }
+                    if (res.response == 'error') {
+                        landing.text(res.message);
+                        $('#coupon-result').css({
+                            "color": 'red'
+                        });
+                    }
+                },
+                error: function (e) {
+                    console.log('error on POST Method');
+                    console.log(e);
+                }
+            })
+        };
+
+
+        $('#submit_page_form').click(function () {
+            $('#pay_form').submit();
+        })
+        $('#map').locationpicker({
+            location: {
+                latitude: <%= @project.address.lattitude %>,
+                longitude: <%= @project.address.longtitude %>
+            },
+            radius: 10,
+            zoom: 16,
+            markerDraggable: false
+        });
+    });
+</script>

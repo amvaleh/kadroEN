@@ -1,0 +1,93 @@
+<% cart_items = Carts::CurrentCartItems.call(cart_id: cart_id).result %>
+<% cart = Cart.find(cart_id) %>
+<% address = cart.invoice.address if cart.invoice.present? %>
+<% user = cart.user %>
+<div class="container" style="background-color: white">
+  <div class="row" style="margin: 50px 15px 30px">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="top-right">
+            <img src="/img/logo.png" style="width: 40%">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div style="text-align: left; font-size: 24px; margin-top: 30px">
+            <div>شماره فاکتور </div>
+            <div style="margin-left: 50px"><%= cart.invoice.vch_number if cart.invoice.present? %></div>
+            <div style="font-size: 15px"> تاریخ
+            <em><%= cart_items.first.created_at if cart_items.first.present? %></em>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <span>
+            <strong><%= user.display_name if user.present?%></strong>
+          </span>
+          <address>
+            <%= address.input if address.present? %>
+          </address>
+        </div>
+      </div>
+      <div class="row">
+        </span>
+        <table class="table table-hover">
+          <thead>
+          <tr style=" font-size: 12px">
+            <th class="text-right">آی دی</th>
+            <th class="text-right">محصول</th>
+            <th class="text-center">#</th>
+            <th class="text-center">قیمت واحد(تومن)</th>
+            <th class="text-center">قیمت کل(تومن)</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% total = 0 %>
+          <% cart_items.each do |cart_item| %>
+            <tr >
+              <td class="col-md-3 text-right"><em><%= link_to cart_item.frame_id, admin_frame_path(cart_item.frame_id) %></em></td>
+              <td class="col-md-3 text-right"><h4><em><%= cart_item.title %></em></h4></td>
+              <td class="col-md-1 text-center" style="text-align: center"> <%= cart_item.quantity.to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %> </td>
+              <td class="col-md-2 text-center"><%= cart_item.price.to_i.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %></td>
+              <td class="col-md-2 text-center"><%= (cart_item.price * cart_item.quantity).to_i.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %></td>
+            </tr>
+            <% total = cart_item.price * cart_item.quantity + total %>
+          <% end %>
+          <tr>
+            <td>  </td>
+            <td>  </td>
+            <td class="text-right col-md-3">
+              <p>
+                <strong>جمع: </strong>
+              </p>
+              <p>
+                <strong>حمل و نقل: </strong>
+              </p>
+            </td>
+            <td class="text-center">
+              <p>
+                <strong><%= total.to_i.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %></strong>
+              </p>
+              <p>
+                <strong></strong>
+              </p></td>
+          </tr>
+          <tr>
+            <td>  </td>
+            <td>  </td>
+            <td class="text-right"><h4><strong>مبلغ کل: </strong></h4></td>
+            <td class="text-right text-danger"><h4><strong><%= total.to_i.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹')  %></strong></h4></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to(t(:'invoices.buttons.download_zip'), create_zip_path(order_type: 1, id: cart_id)) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

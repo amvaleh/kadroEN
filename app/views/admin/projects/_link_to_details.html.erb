@@ -1,0 +1,11 @@
+<% if ActiveAdminComment.all.where(resource_type: 'Project', resource_id: project.id).any? %>
+<%= link_to "Details", project_details_admin_projects_path(project_id: project.id), class: 'btn btn-danger btn-large', remote: true, style: 'float: right; background-color: #274c8e; color: white' %>
+<% else %>
+<%= link_to "Details", project_details_admin_projects_path(project_id: project.id), class: 'btn btn-default btn-large', remote: true, style: 'float: right; background-color: grey; color: white' %>
+<% end %>
+<%= render 'shared/large_modal' %>
+<% if project.user.lead_source.present? %>
+<strong class="text-center"> Source : <%= project.user.lead_source.title %></strong>
+<br>
+<% end %>
+<strong class="text-center"> projects : <%= project.user.projects.confirmed.count %></strong>

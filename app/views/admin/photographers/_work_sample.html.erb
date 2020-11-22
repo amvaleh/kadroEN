@@ -1,0 +1,17 @@
+<% photos.each do |photo| %>
+<br>
+<br>
+<div class="well">
+<%= link_to photo.file_url(:medium) do %>
+<%= image_tag photo.file.url(:thumb) %>
+<br>
+<br>
+<%= link_to "exif" , admin_exif_path(photo.exif) , target: "_blank" , :class => "btn btn-info btn-xs" if photo.exif.present?  %>
+<%= link_to "Show" , admin_photo_path(photo.id) , :class => "btn btn-default btn-xs" %>
+<%= link_to "Edit" , edit_admin_photo_path(photo.id) , :class => "btn btn-default btn-xs" %>
+<%= link_to "Delete" , admin_photo_path(photo.id) ,:method => :delete , :class => "btn btn-default btn-xs" %>
+<%= link_to('انتخاب تصویر', select_frame_form_admin_galleries_path(image_id: photo.id, image_type: "Photo"), class: 'btn btn-success btn-large', remote: true) %>
+
+</div>
+<%end%>
+<%end%>

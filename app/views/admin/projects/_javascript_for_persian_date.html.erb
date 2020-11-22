@@ -1,0 +1,107 @@
+<script type="text/javascript">
+  a = $('#project_start_time').persianDatepicker({
+    "format": "YYYY/MM/DD HH:mm",
+    "inline": false,
+    "viewMode": "day",
+    <% if @project.start_time.present? %>
+    "initialValue": true,
+    "initialValueType": false,
+    <% else %>
+    "initialValue": false,
+    <% end %>
+    "autoClose": false,
+    "position": "auto",
+    "altFormat": "lll",
+    "altField": "#altfieldExample",
+    "onlyTimePicker": false,
+    "onlySelectOnDate": false,
+    "calendarType": "persian",
+    "inputDelay": 800,
+    "observer": false,
+    "calendar": {
+      "persian": {
+        "locale": "fa",
+        "showHint": true,
+        "leapYearMode": "algorithmic"
+      },
+      "gregorian": {
+        "locale": "en",
+        "showHint": true
+      }
+    },
+    "navigator": {
+      "enabled": true,
+      "scroll": {
+        "enabled": true
+      },
+      "text": {
+        "btnNextText": "<",
+        "btnPrevText": ">"
+      }
+    },
+    "toolbox": {
+      "enabled": true,
+      "calendarSwitch": {
+        "enabled": true,
+        "format": "MMMM"
+      },
+      "todayButton": {
+        "enabled": true,
+        "text": {
+          "fa": "امروز",
+          "en": "Today"
+        }
+      },
+      "submitButton": {
+        "enabled": true,
+        "text": {
+          "fa": "تایید",
+          "en": "Submit"
+        }
+      },
+      "text": {
+        "btnToday": "امروز"
+      }
+    },
+    "timePicker": {
+      "enabled": true,
+      "step": 1,
+      "hour": {
+        "enabled": true,
+        "step": null
+      },
+      "minute": {
+        "enabled": true,
+        "step": null
+      },
+      "second": {
+        "enabled": true,
+        "step": null
+      },
+      "meridian": {
+        "enabled": false
+      }
+    },
+    "dayPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY MMMM"
+    },
+    "monthPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    },
+    "yearPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    }
+  });
+  <% if @project.start_time.present? %>
+  <% input_val = @project.start_time.to_date.to_pdate.to_s %>
+  <% hour = @project.start_time.to_time.strftime('%H:%M') %>
+  <% final = input_val + " " + hour %>
+  $("#project_start_time").val("<%= final %>")
+  <% else %>
+  $("#project_start_time").val("")
+  <% end %>
+
+</script>

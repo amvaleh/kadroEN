@@ -1,0 +1,1 @@
+jQuery('#non-tehran').html('<% @photographers.each do |ph| %> <%= escape_javascript render partial: 'photographer_join_box', locals: {photographer: ph} %><% end %>')

@@ -1,0 +1,51 @@
+<% unless (@frames.present? or (defined?(frame).nil?)) %>
+  <% @frames = [] %>
+  <% @frames << frame %>
+<% end %>
+<% if @frames.present? %>
+  <% @frames.each do |frame| %>
+    <% unless frame.nil? %>
+      <div class="cbp-item frame_<%=frame.id%> <%="requested" if frame.requested_for_share%> <%="downloaded" if frame.downloaded? %> <%="liked" if frame.like%> <%="retouched" if frame.retouched %> col-xs-2 col-md-4">
+        <a href="<%= frame.file_address(false, "light") %>" class="cbp-lightbox" data-cbp-lightbox="<%= @gallery.slug %>">
+          <div class="cbp-caption" id="<%= frame.id %>" onclick="cbp_clicked(event)">
+            <div class="cbp-caption-defaultWrap">
+              <img
+                src="<%= frame.file_address(false, "light") %>" data-cbp-src="<%= frame.file_address(false, "light") %>" width="<%= frame.width %>" height="<%= frame.height %>" id="<%= frame.id %>">
+              <div class="heart love1" id="heart-<%= frame.id %>" hidden></div>
+            </div>
+            <!-- kadro_logo_origin_printable_white_pibhro -->
+            <div class="cbp-caption-activeWrap">
+              <div class="cbp-l-caption-alignCenter">
+                <div class="cbp-l-caption-body">
+                  <span style="color: white;">
+                    <%= frame.original_filename %>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <div class="cbp-l-grid-masonry-projects-desc">
+          <div class="row">
+            <div class="col-6 p-2 p-4 text-right">
+              <%= link_to download_frame_path(frame.id), id: frame.id, remote: true , class: "desc-link action-font" do %>
+                <small style="color: #2B87F9"> دانلود <i class="fa fa-download cursor_pointer"></i> </small>
+              <% end %>
+              <%= link_to("<small style='color: #2B87F9'>خرید <i class='fa fa-shopping-cart'></i></small>".html_safe, cart_form_dashboard_path(frame_id: frame.id), remote: true, class: "action-font") %>
+            </div>
+            <div class="col-6 p-2 p-4 text-left">
+              <a href="<%= single_frame_gallery_path(frame.gallery, :frame_id => frame.id) %>" class="cbp-singlePage desc-link hidden-xs action-font" rel="nofollow">
+                <i class="fa fa-eye">
+                </i>
+              </a>
+              <a onclick="likephoto(<%= frame.id %>); return false;" class="desc-link action-font" style="cursor: pointer">
+                <i class="fa <%= frame.like ? 'fa-heart' : 'fa-heart-o' %>" id="like-<%= frame.id %>" data-value="<%= frame.like ? 'true' : 'false' %>" id="like-icon"  style="color: red;"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <% @frames = [] %>
+<% end %>

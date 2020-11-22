@@ -1,0 +1,7 @@
+fa:
+  galleries:
+    select_frame_title: 'انتخاب عکس'
+  active_admin:
+    comments:
+      delete: "حذف"
+      created_at: "تاریخ ساخت"

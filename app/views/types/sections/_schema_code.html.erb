@@ -1,0 +1,76 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+  "name": "عکاسی <%=@shoot_type.title%>",
+  "image": "<%=@shoot_type.avatar_url(:mini)%>",
+  "description": "<%=@shoot_type.w_subtitle %>",
+  "aggregateRating" : {
+    "@type" : "AggregateRating",
+    "ratingValue" : "<%= @average_rating %>",
+    "bestRating" : "10",
+    "worstRating" : "1",
+    "ratingCount" : "<%=@all_feedbacks_count%>"
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "عکاسی حرفه ای کادرو"
+  },
+  "sku": "<%=@photographers.count %>",
+  "mpn": "<%=@shoot_type.id%>",
+  "offers" : {
+  "@type" : "AggregateOffer",
+  "lowPrice" : "<%=@cheapest_package.price.to_i*10%>",
+  "highPrice": "<%=@expensivest_package.price.to_i*10 %>",
+  "priceCurrency": "IRR",
+  "offerCount": "<%=@photographers.count%>",
+  "availability": "InStock"
+  },
+    "review" : [
+  <% @good_feedbacks.each_with_index do |gf , index| %>
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "<%=gf.project.user.display_name %>"
+        },
+        "datePublished": "<%=gf.created_at.to_pdate.to_date %>",
+        "reviewBody": "<%=gf.description %>",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "<%= (gf.qrate+gf.arate)/2 %>",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "@type": "Product",
+          "name": "عکاسی <%=@shoot_type.title%>",
+          "url": "<%= types_show_path(title: @shoot_type.w_url)%>",
+          "brand": "عکاسی حرفه ای کادرو",
+          "description": "عکاسی <%=@shoot_type.title%> توسط عکاس <%=gf.project.photographer.abbrv_name%>",
+          "image": "<%=assets_url(gf.project.photographer.avatar_url(:thumb))%>",
+          "sku": "<%=@photographers.count %>",
+          "mpn": "<%=gf.project.photographer.uid%>"
+          ,
+          "offers": {
+            "@type": "Offer",
+            "url": "<%= types_show_path(title: @shoot_type.w_url)%>",
+            "priceCurrency": "IRR",
+            "price": "<%=gf.project.package.price%>",
+            "priceValidUntil": "<%=Date.today + 6.months%>",
+            "itemCondition": "https://schema.org/NewCondition",
+            "availability": "https://schema.org/InStock",
+              "seller": {
+                "@type": "Organization",
+                "name": "Kadro"
+              }
+            }
+          }
+      }
+        <% if index != @good_feedbacks.count-1 %>
+              ,
+        <% end %>
+  <% end %>
+  ]
+}
+</script>

@@ -1,0 +1,7 @@
+<span>
+  ایمیل پروفایل ناقص به عکاس
+  <span class="owner">
+    <% if activity.trackable.present? %> <%= link_to activity.trackable.first_name + " " + activity.trackable.last_name, admin_photographer_path(activity.trackable.slug) %>     <% else %>       با آیدی       <%= activity.trackable_id %>     که دیگر موجود نیست     <% end %>
+  </span>
+  ارسال شد.
+</span>

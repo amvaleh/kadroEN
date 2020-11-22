@@ -1,0 +1,321 @@
+<div>
+  <% @photographer = @project.photographer %>
+
+</div>
+<div style="background-color: rgba(236, 236, 236, 0.95); padding: 5%">
+  <div class="container" style="padding-top: 80px;">
+    <div class="row">
+      <h2 class="text-center text-muted">
+        عکاسی <%= @project.shoot_type.title %>
+      </h2>
+      <div class="row well">
+        <% if !@project.feed_back.present? %>
+          <h3 class="text-center">
+            آیا از
+            عملکرد
+            <%= @photographer.abbrv_name %>
+            راضی بودید؟
+          </h3>
+          <hr>
+          <%= form_for :feed_back, url: create_feed_backs_path, method: "post", html: {class: "form form-group", :id => "create"}, remote: @remote do |f| %>
+            <div class="row">
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <h4 class="text-center">
+                    نظم و اجرا
+                  </h4>
+                </div>
+                <div class="col-xs-8">
+                  <div class="col-xs-12 text-center" id="feed_back[arate]">
+                    <%= f.select :arate,[ ["۱","1"] , ["۲","2"], ["۳","3"], ["۴","4"], ["۵","5"], ["۶","6"], ["۷","7"], ["۸","8"], ["۹","9"], ["۱۰","10"] ], { :include_blank => 'نمره دهید' }, {:class => 'form-control' , :required => true}   %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <hr>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <h4 class="text-center">
+                    کیفیت
+                    عکسها
+                  </h4>
+                </div>
+                <div class="col-xs-8">
+                  <div class="col-xs-12 text-center" id="feed_back[qrate]">
+                    <%= f.select :qrate,[ ["۱","1"] , ["۲","2"], ["۳","3"], ["۴","4"], ["۵","5"], ["۶","6"], ["۷","7"], ["۸","8"], ["۹","9"], ["۱۰","10"] ], { :include_blank => 'نمره دهید' }, {:class => 'form-control' , :required => true}   %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <hr>
+              <div class="col-md-12">
+                <h4 class="text-center">
+                  اگر بخواهید به دیگران
+                <strong style="font-si"> <%= @photographer.abbrv_name%> </strong>
+                را معرفی کنید چه می گویید؟
+              </h4>
+              </div>
+              <div class="col-md-8 col-md-offset-2">
+                <%= f.text_area "description", class: "form-control", style: "height: 230px; font-size: 25px;", required: true ,
+                placeholder: "مثال: #{@photographer.last_name} را بدلیل انرژی زیاد و حضور به موقع در محل و ادیت خوبی که روی عکس ها زد به دیگران توصیه می کنم." %>
+                <%= hidden_field_tag "is_remote", @remote %>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <button type="submit" id="submit_page_form" class="btn btn-blue btn-lg btn-block">ذخیره
+                </button>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4 col-md-offset-4">
+                <%= link_to "بازگشت", :back, class: "btn btn-default btn-lg btn-block" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <h3 class="text-center">
+            شما قبلا برای این پروژه امتیاز وارد نموده ایید.
+          </h3>
+          <div class="col-sm-12">
+            <h4 class="text-center">
+              سرویس دهی
+              عکاس
+            </h4>
+            <div class="col-sm-4 col-sm-offset-4 col-xs-12" style="direction: ltr;">
+              <fieldset class="rating" id="feed_back[qrate]" disable>
+                <% if @project.feed_back.arate == 10 %>
+                  <input type="radio" value="10" checked/>
+                <% else %>
+                  <input type="radio" value="10"/>
+                <% end %>
+                <label class="full" for="star5" title="5"></label>
+                <% if @project.feed_back.arate == 9 %>
+                  <input type="radio" value="9" checked/>
+                <% else %>
+                  <input type="radio" value="9"/>
+                <% end %>
+                <label class="half" for="star4half" title="4.5"></label>
+                <% if @project.feed_back.arate == 8 %>
+                  <input type="radio" value="8" checked/>
+                <% else %>
+                  <input type="radio" value="8"/>
+                <% end %>
+                <label class="full" for="star4" title="4"></label>
+                <% if @project.feed_back.arate == 7 %>
+                  <input type="radio" value="7" checked/>
+                <% else %>
+                  <input type="radio" value="7"/>
+                <% end %>
+                <label class="half" for="star3half" title="3.5"></label>
+                <% if @project.feed_back.arate == 6 %>
+                  <input type="radio" value="6" checked/>
+                <% else %>
+                  <input type="radio" value="6"/>
+                <% end %>
+                <label class="full" for="star3" title="3"></label>
+                <% if @project.feed_back.arate == 5 %>
+                  <input type="radio" value="5" checked/>
+                <% else %>
+                  <input type="radio" value="5"/>
+                <% end %>
+                <label class="half" for="star2half" title="2.5"></label>
+                <% if @project.feed_back.arate == 4 %>
+                  <input type="radio" value="4" checked/>
+                <% else %>
+                  <input type="radio" value="4"/>
+                <% end %>
+                <label class="full" for="star2" title="2"></label>
+                <% if @project.feed_back.arate == 3 %>
+                  <input type="radio" value="3" checked/>
+                <% else %>
+                  <input type="radio" value="3"/>
+                <% end %>
+                <label class="half" for="star1half" title="1.5"></label>
+                <% if @project.feed_back.arate == 2 %>
+                  <input type="radio" value="2" checked/>
+                <% else %>
+                  <input type="radio" value="2"/>
+                <% end %>
+                <label class="full" for="star1" title="1"></label>
+                <% if @project.feed_back.arate == 1 %>
+                  <input type="radio" value="1" checked/>
+                <% else %>
+                  <input type="radio" value="1"/>
+                <% end %>
+                <label class="half" for="starhalf" title="0.5"></label>
+              </fieldset>
+            </div>
+            <br>
+            <div class="col-sm-12">
+              <h4 class="text-center">
+                کیفیت
+                عکسها
+              </h4>
+            </div>
+            <div class="col-sm-4 col-sm-offset-4 col-xs-12" style="direction: ltr;">
+              <fieldset class="rating" id="feed_back[qrate]" disabled>
+                <% if @project.feed_back.qrate == 10 %>
+                  <input type="radio" value="10" checked/>
+                <% else %>
+                  <input type="radio" value="10"/>
+                <% end %>
+                <label class="full" for="star5" title="5"></label>
+                <% if @project.feed_back.qrate == 9 %>
+                  <input type="radio" value="9" checked/>
+                <% else %>
+                  <input type="radio" value="9"/>
+                <% end %>
+                <label class="half" for="star4half" title="4.5"></label>
+                <% if @project.feed_back.qrate == 8 %>
+                  <input type="radio" value="8" checked/>
+                <% else %>
+                  <input type="radio" value="8"/>
+                <% end %>
+                <label class="full" for="star4" title="4"></label>
+                <% if @project.feed_back.qrate == 7 %>
+                  <input type="radio" value="7" checked/>
+                <% else %>
+                  <input type="radio" value="7"/>
+                <% end %>
+                <label class="half" for="star3half" title="3.5"></label>
+                <% if @project.feed_back.qrate == 6 %>
+                  <input type="radio" value="6" checked/>
+                <% else %>
+                  <input type="radio" value="6"/>
+                <% end %>
+                <label class="full" for="star3" title="3"></label>
+                <% if @project.feed_back.qrate == 5 %>
+                  <input type="radio" value="5" checked/>
+                <% else %>
+                  <input type="radio" value="5"/>
+                <% end %>
+                <label class="half" for="star2half" title="2.5"></label>
+                <% if @project.feed_back.qrate == 4 %>
+                  <input type="radio" value="4" checked/>
+                <% else %>
+                  <input type="radio" value="4"/>
+                <% end %>
+                <label class="full" for="star2" title="2"></label>
+                <% if @project.feed_back.qrate == 3 %>
+                  <input type="radio" value="3" checked/>
+                <% else %>
+                  <input type="radio" value="3"/>
+                <% end %>
+                <label class="half" for="star1half" title="1.5"></label>
+                <% if @project.feed_back.qrate == 2 %>
+                  <input type="radio" value="2" checked/>
+                <% else %>
+                  <input type="radio" value="2"/>
+                <% end %>
+                <label class="full" for="star1" title="1"></label>
+                <% if @project.feed_back.qrate == 1 %>
+                  <input type="radio" value="1" checked/>
+                <% else %>
+                  <input type="radio" value="1"/>
+                <% end %>
+                <label class="half" for="starhalf" title="0.5"></label>
+              </fieldset>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <h4 class="text-center">
+                  توضیحات بیشتر
+                </h4>
+              </div>
+              <div class="col-md-8 col-md-offset-2">
+                <%#= f.text_area "description" , class: "form-control" , style: "height: 230px; font-size: 25px;" %>
+                <textarea style="height: 230px; font-size: 25px;" rows="7" required="" class="form-control" placeholder="<%= @project.feed_back.description %>" disabled></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4 col-md-offset-4">
+                <%= link_to "بازگشت", :back, class: "btn btn-default btn-lg btn-block" %>
+              </div>
+            </div>
+
+
+        <% end %>
+
+        </div>
+      </div>
+    </div>
+    <%#= link_to 'Edit', edit_gallery_path(@gallery) %>
+    <%#= link_to 'Back', galleries_path %>
+  </div>
+</div>
+<%= render 'shared/large_modal' %>
+
+  <script type="text/javascript">
+
+
+      jQuery(document).ready(function () {
+
+
+          jQuery('#grid-container').cubeportfolio({
+
+              // gapHorizontal: 20,
+              // gapVertical: 20,
+              gridAdjustment: 'responsive',
+              caption: 'overlayBottomReveal',
+              // displayType: 'sequentially',
+              displayTypeSpeed: 2,
+
+              caption: 'minimal',
+
+              lightboxDelegate: '.cbp-lightbox',
+              lightboxGallery: true,
+              lightboxTitleSrc: 'data-title',
+              lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
+
+              singlePageAnimation: 'fade',
+              singlePageDelegate: '.cbp-singlePage',
+              // singlePageDeeplinking: true,
+              singlePageStickyNavigation: true,
+              singlePageCounter: '<div class="cbp-popup-singlePage-counter">{{current}} of {{total}}</div>',
+
+              singlePageCallback: function (url, element) {
+                  // to update singlePage content use the following method: this.updateSinglePage(yourContent)
+                  var t = this;
+                  jQuery.ajax({
+                      url: url,
+                      type: 'GET',
+                      dataType: 'html',
+                      timeout: 30000
+                  })
+                      .done(function (result) {
+                          t.updateSinglePage(result);
+                      })
+                      .fail(function () {
+                          t.updateSinglePage('خطایی رخ داده است، لطفا صفحه را دوباره بارگذاری کنید!');
+                      });
+              }
+              // options
+          });
+      });
+
+  </script>
+
+  <script>
+      function change_a(o) {
+          var x = o.value;
+          document.getElementById('value_a').innerHTML = x;
+      }
+
+      jQuery(document).ready(function () {
+          jQuery('.gallery-capacity-footer').hide();
+      })
+  </script>
+
+  <script>
+      function change_q(o) {
+          var x = o.value;
+          document.getElementById('value_q').innerHTML = x;
+      }
+  </script>

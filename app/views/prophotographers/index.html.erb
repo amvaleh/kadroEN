@@ -1,0 +1,307 @@
+<style media="screen">
+  input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+  }
+
+  .radio-group label {
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px 10px;
+    margin-bottom: 0px;
+    font-size: 10px;
+    height: 40px;
+  }
+
+  input[type=radio]:checked + label{
+    color: white;
+    background: #206fff;
+  }
+
+  label + input[type=radio] + label {
+    /*border-left: solid 1px #206fff;*/
+  }
+  .radio-group {
+    border: solid 1px #d0d0d0;
+    display: inline-block;
+    margin: 0px;
+    border-radius: 10px;
+    overflow: hidden;
+    direction: rtl;
+  }
+  .svgc {
+    margin: 0px 0 0 0px;
+    display: inline-block;
+    position: absolute;
+    width: 98px;
+    height: 96px;
+    fill: none;
+    stroke: #f92b6c;
+    stroke-width: 3px;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    stroke-linecap: round;
+    animation: loading 3500ms ease-in-out infinite alternate;
+  }
+
+  @media only screen and (min-width: 100px) {
+    .svg_size {
+      top: 7%;
+      left: 35%;
+    }
+  }
+
+  @media only screen and (min-width: 390px) {
+    .svg_size {
+      top: 9%;
+      left: 37%;
+    }
+  }
+
+  @media only screen and (min-width: 500px) {
+    .svg_size {
+      top: 9%;
+      left: 40%;
+    }
+  }
+
+  @media only screen and (min-width: 700px) {
+    .svg_size {
+      top: 11%;
+      left: 43%;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .svg_size {
+      top: 7%;
+      left: 36%;
+    }
+  }
+
+  @media only screen and (min-width: 990px) {
+    .svg_size {
+      left: 30%;
+      top: 5%;
+    }
+  }
+
+  @media only screen and (min-width: 1200px) {
+    .svg_size {
+      left: 34%;
+      top: 7%;
+    }
+  }
+</style>
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main photographer" role="main">
+      <article id="post-921" class="post-921 photographer type-photographer status-publish has-post-thumbnail hentry">
+        <div class="entry-content">
+          <div class="container">
+            <% if params[:city_name].present? && params[:shoot_type].present? %>
+            <h1 class="text-center">
+              عکاس
+              <%= params[:shoot_type] %>
+            </h1>
+            <h2 class="text-center">
+              در
+              <%= params[:city_name] %>
+            </h2>
+            <h5 style="padding-top: 5px;text-align: center;">
+              عکاس در<%= params[:city_name] %>
+              برای رشته عکاسی
+              <%= params[:shoot_type] %>.
+              در کمتر از 2 دقیقه آنلاین عکاس حرفه ای تان را رزرو کنید ✓ شروع قیمت از 99 هزار تومان ✓ تجهیزات عکاسی
+              کامل ✓ فقط عکاسان گزیده شده ✓ عکاسی در خانه و منزل شما
+            </h5>
+            <% elsif params[:city_name].present? %>
+            <h1 class="text-center">
+              بهترین عکاسان
+            </h1>
+            <h2 class="text-center">
+              در
+              <%= params[:city_name] %>
+            </h2>
+            <h5 style="padding-top: 5px;text-align: center;">
+              لیست بهترین عکاسان حرفه ای کادرو در
+              <%= params[:city_name] %>
+            </h5>
+            <% elsif params[:shoot_type].present? %>
+            <h1 class="text-center text-muted">
+              عکاسان حرفه ای
+              <%= params[:shoot_type] %>
+            </h1>
+            <% else %>
+            <h1 class="text-center">
+              تمام شهر ها
+            </h1>
+            <h2 class="text-center text-muted" style="padding-top: 5px;">
+              تمام رشته های عکاسی
+            </h2>
+            <% end %>
+          </div><!-- .container -->
+        </div><!-- .entry-content -->
+        <div id="home-photographers">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-6 col-xs-12">
+                  <div class="btn-group pull-right btn-group-justified" role="group" aria-label="..." style="direction: rtl;">
+                    <div class="btn-group" role="group">
+                      <button id="btnGroupDrop1" type="button" class="btn btn-blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <% if params[:city_name].present? %>
+                        <!-- شهر -->
+                        <span class="fa fa-map-marker"></span>&nbsp;
+                        <%= params[:city_name] %>
+                        <% else %>
+                        شهر ها
+                        <% end %>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" style="width: 100%;">
+                        <% if params[:shoot_type].present? %>
+                        <li><%= link_to "تمام موارد", "https://pro.#{environment_url}/expertise/#{params[:shoot_type]}", class: "btn-default" %></li>
+                        <% else %>
+                        <li><%= link_to "تمام موارد", "https://pro.#{environment_url}/", class: "btn-default" %></li>
+                        <% end %>
+                        <% @cities.each do |city| %>
+                        <% if params[:shoot_type].present? %>
+                          <% if city.name == params[:city_name] %>
+                          <li><%= link_to "#{city.name}", "https://pro.#{environment_url}/city/#{city.name}/expertise/#{params[:shoot_type]}", class: "btn-blue" %></li>
+                          <% else %>
+                          <li><%= link_to "#{city.name}", "https://pro.#{environment_url}/city/#{city.name}/expertise/#{params[:shoot_type]}", class: "btn-default" %></li>
+                          <% end %>
+                        <% else %>
+                        <% if city.name == params[:city_name] %>
+                        <li><%= link_to "#{city.name}", "https://pro.#{environment_url}/city/#{city.name}", class: "btn-blue" %></li>
+                        <% else %>
+                        <li><%= link_to "#{city.name}", "https://pro.#{environment_url}/city/#{city.name}", class: "btn-default" %></li>
+                        <% end %>
+                        <% end %>
+                        <% end %>
+                      </ul>
+                    </div>
+                    <div class="btn-group" role="group">
+                      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <% if params[:shoot_type].present? %>
+                        <span class="fa fa-camera">  </span>&nbsp;
+                        <%= params[:shoot_type] %>
+                        <% else %>
+                        رشته ها
+                        <% end %>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" style="width: 100%;">
+                        <% if params[:city_name].present? %>
+                        <li><%= link_to "تمام موارد", "https://pro.#{environment_url}/city/#{params[:city_name]}", class: "btn-default" %></li>
+                        <% else %>
+                        <li><%= link_to "تمام موارد", "https://pro.#{environment_url}/", class: "btn-default" %></li>
+                        <% end %>
+                        <% @shoot_types.each do |shoot_type| %>
+                        <% if params[:city_name].present? %>
+                        <% if shoot_type.title == params[:shoot_type] %>
+                        <li><%= link_to "#{shoot_type.title}", "https://pro.#{environment_url}/city/#{params[:city_name]}/expertise/#{shoot_type.title}", class: "btn-blue" %></li>
+                        <% else %>
+                        <li><%= link_to "#{shoot_type.title}", "https://pro.#{environment_url}/city/#{params[:city_name]}/expertise/#{shoot_type.title}", class: "btn-default" %></li>
+                        <% end %>
+                        <% else %>
+                        <% if shoot_type.title == params[:shoot_type] %>
+                        <li><%= link_to "#{shoot_type.title}", "https://pro.#{environment_url}/expertise/#{shoot_type.title}", class: "btn-blue" %></li>
+                        <% else %>
+                        <li><%= link_to "#{shoot_type.title}", "https://pro.#{environment_url}/expertise/#{shoot_type.title}", class: "btn-default" %></li>
+                        <% end %>
+                        <% end %>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-xs-12 text-left">
+                  <div class="radio-group">
+                    <input type="radio" id="payed_work_no" checked name="payed_work" value="no"><label onclick="$('#projects_payed_for').addClass('hidden');" for="payed_work_no">عکاسی در محل </label><input type="radio" name="payed_work" value="yes" id="payed_work_yes" name="selector"><label onclick="$('#projects_payed_for').removeClass('hidden');" for="payed_work_yes">عکاسی در آتلیه</label>
+                  </div>
+                  <!-- <p class="text-left">
+                    <i style="color:red" class="fa fa-heart"></i>
+                    به ترتیب محبوبیت
+                  </p> -->
+                </div>
+              </div>
+            </div>
+            <br>
+            <% if @photographers.any? %>
+            <% @photographers.sort_by  {|ph| [ -ph.projects.checked_out.count , -(ph.qrate + ph.arate) ]}.each do |p| %>
+            <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4 ">
+              <div class="photographer">
+                <a href="<%= p.pro_url %>" class="wrap">
+                  <span class="profile-img"
+                  style="background-image: url('<%=p.avatar_url(:medium)%>');"></span>
+                  <h3>
+                    <%= p.abbrv_name %>
+                  </h3>
+                  <span class="w100"><em>
+                    <%= p.location.city.name if p.location.city.present? %>
+                  </em></span>
+                  <div class="photographer-rating">
+                    <% art = ((p.qrate + p.arate) / 4).round %>
+                    <% if art != 0 %>
+                    <% remain = (5 - art) %>
+                    <% remain.to_i.times do %>
+                    <i class="fa fa-star-o"></i>
+                    <% end %>
+                    <% art.to_i.times do %>
+                    <i class="fa fa-star"></i>
+                    <% end %>
+                    <% else %>
+                    <% 5.times do %>
+                    <i class="fa fa-star"></i>
+                    <% end %>
+                    <% end %>
+                  </div>
+                  <span class="camera">
+                    <strong style="font-size: 13px;direction:ltr!important;text-align: left;">
+                      <% if p.equipment.present? %>
+                      <% p.equipment.cameras.each_with_index do |c, index| %>
+                      <span class="fa fa-camera">
+                      </span>
+                      <span style="font-size: 10px;"><%= c.brand %>
+                        <%= c.model %>
+                      </span>
+                      <% if not index == p.equipment.cameras.size %>
+                      <br>
+                      <% end %>
+                      <% end %>
+                      <% end %>
+                    </strong>
+                  </span>
+                </a>
+                <p style="font-size: 12px;
+                color: gray;
+                text-align: justify;max-height: 100px;">
+                <% if p.experience.present? %>
+                <%= truncate(p.experience.bio, length: 100) %>
+                <% end %>
+              </p>
+              <div class="exp-wrap">
+                <a href="<%= p.pro_url %>" style="font-size: 16px;background: black;">
+                  مشاهده و رزرو
+                </a>
+              </div>
+            </div>
+          </div>
+          <% end %>
+          <% else %>
+          <div class="text-center">
+            متاسفانه فعلا عکاسی برای شما موجود نیست.
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </article><!-- #post-## -->
+
+  </main><!-- #main -->
+</div><!-- #primary -->
+
+</div>

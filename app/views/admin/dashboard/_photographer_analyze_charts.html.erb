@@ -1,0 +1,21 @@
+<div style="direction:rtl !important;">
+  
+  <h4 style="direction: rtl; text-align: right;">
+    تعداد عکاسان
+    <B style="font-size: 20px;">
+      (مراحل ثبت نام)
+    </B>
+  </h4>
+  <%= pie_chart Photographer.all.where("photographers.join_step_id != ? ", 0).group(:join_step_id).count.map{|s, total| [ "#{JoinStep.find(s).name}" ,total] } , library: {backgroundColor: "#eee"} %>
+
+
+  <h4 style="direction: rtl; text-align: right;">
+    ثبت نام عکاسان تایید شده
+    <B style="font-size: 20px;">
+      (ماهانه)
+    </B>
+  </h4>
+
+  <%= column_chart Photographer.all.approved.group_by_month(:created_at).count.map{|s, total| [ s.to_date.to_pdate.to_s ,total] } , library: {backgroundColor: "#eee"} %>
+
+</div>

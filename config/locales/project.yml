@@ -1,0 +1,13 @@
+fa:
+  projects:
+    messages:
+      failed_pay: 'تراکنش از طرف شما متوقف شد، درصورت علاقه مجددا اقدام کنید.'
+      success_pay: 'تمدید با موفقیت انجام شد. با تشکر از شما'
+      sms_message: 'پرداخت تمدید پروژه با موفقیت انجام شد. کد پیگیری: %{ref_id} تیم کادرو'
+    filter_panel:
+      title: 'جستجو در پروژه ها'
+      customer_name: 'نام کارفرما'
+      from_date: 'از تاریخ'
+      to_date: 'تا تاریخ'
+      do_filter: 'فیلتر کن'
+    project_details: 'جزئیات پروژه'

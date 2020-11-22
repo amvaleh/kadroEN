@@ -1,0 +1,139 @@
+.card-stat {
+    min-height:60px;
+    margin-bottom: 5px;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+}
+
+#left-border {
+    border-left: 2px solid #f8f8f8;
+}
+
+#bottom-border {
+    border-bottom: 2px solid #f8f8f8;
+}
+
+.card-stat .card-body {
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    -webkit-box-flex: 1;
+    flex: 1 1 auto;
+}
+
+.stat-widget {
+    min-height: 60px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.stat-widget .stat-icon {
+    font-size: 55px;
+    line-height: 50px;
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    display: inline-block;
+}
+.stat-widget .stat-icon, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.stat-widget .stat-content {
+    margin-left: 80px;
+    margin-top: 6px;
+    box-sizing: border-box;
+}
+
+.stat-widget .stat-text {
+    color: #32708e;
+    font-size: 20px;
+}
+
+.stat-widget .stat-heading {
+    color: #99abb4;
+    font-size: 14px;
+}
+
+.flat-color-1 {
+    color: #5f7efb;
+}
+
+.flat-color-2 {
+    color: #50ccfb;
+}
+
+.flat-color-3 {
+    color: #05ca26;
+}
+.flat-color-4 {
+    color: #ef31cf;
+}
+
+.flat-color-5 {
+    color: #ee6096;
+}
+
+.flat-color-6 {
+    color: #ff66a2;
+}
+.flat-color-7 {
+    color: #777ec7;
+}
+.primary-card {
+    color: white;
+    background-color:#2bbbff;
+    height: 60px;
+    border-radius: 2px;
+    padding-top: 15px;
+
+}
+
+.secondary-card {
+    color: white;
+    background-color:#2bbbff;
+    height: 100px;
+    border-radius: 2px;
+    padding-top: 25px;
+}
+
+.card-font {
+    color: #4D7198;
+}
+
+#big-card {
+    font-size: medium;
+}
+
+#second-card {
+    font-size: 12px;
+}
+
+.stat-rows {
+    padding-top: 5px;
+}
+
+.stat-font {
+    font-size: 25px;
+    color: #bb39a0;
+}
+
+.cursor_pointer{
+    cursor: pointer;
+}
+
+.input-form {
+    height: 45px !important;
+}
+
+.datepicker-plot-area {
+    font-family: "iranyekan-bold",sans-serif !important;
+}
+/*progress bar styles: */

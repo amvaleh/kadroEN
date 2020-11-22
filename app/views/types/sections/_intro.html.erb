@@ -1,0 +1,52 @@
+<style>
+  .fittme{
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+  }
+  .fdb-block{
+    overflow: unset !important;
+  }
+</style>
+<section class="fdb-block pb-2 pt-5 pb-5">
+  <div class="container align-items-end justify-content-center d-flex">
+    <div class="row align-items-top text-left mamobile">
+      <div class="col-12 mx-auto  my-5 px-2">
+        <h1>
+          <%= image_tag assets_url(@shoot_type.avatar_url(:mini)) ,alt:"عکاسی #{@shoot_type.title}",height: "100"%>
+          عکاسی <%=@shoot_type.title%>
+        </h1>
+        <p class="mb-5 mt-5 text-center">
+        </p>
+        <p class="mx-auto col-11 col-md-6">
+          <%=@shoot_type.w_subtitle %>
+        </p>
+        <div class="mt-4 text-center">
+          <div class="btn-group btn-group-lg dropdown">
+            <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="sr-only">Toggle Dropdown</span>
+              یا
+            </button>
+            <a href="<%=book_url %>" class="btn btn-primary">
+              همین الان رزرو کن
+            </a>
+            <div class="dropdown-menu text-right">
+              <a class="dropdown-item" href="#portfolios"> مشاهده نمونه کارهای
+                <%=@shoot_type.title %>
+              </a>
+              <a class="dropdown-item" href="#prices">
+                مشاهده قیمت های
+                <%=@shoot_type.title %>
+              </a>
+              <a class="dropdown-item" href="<%=call_request_url%>">
+                درخواست مشاوره تلفنی
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="<%=galleries_url%>">ورود</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

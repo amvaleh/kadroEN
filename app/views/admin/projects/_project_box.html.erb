@@ -1,0 +1,21 @@
+<div class="well projectbox">
+  <%= render "shared" , :p => p , timer: timer , sms: sms%>
+</div>
+
+<script>
+    $('#<%= p.id %>sms').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: "<%= CGI.unescape sms_link_path(p.id) %>",
+            dataType: 'script',
+            success: function () {
+                $('#<%= p.id %>sms').hide();
+                $('#show-result<%= p.id %>').html('SMS sent')
+
+            }
+
+        });
+    })
+</script>

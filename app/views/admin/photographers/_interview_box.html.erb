@@ -1,0 +1,51 @@
+<div class="alert alert-success" id="p<%= photographer.id %>">
+
+  <strong class="text-center" style="margin-top: 0px">
+    <%= photographer.display_name %>
+    <br>
+    <%= photographer.last_step_at.to_date.to_pdate.strftime("%e %b") if photographer.last_step_at.present? %>
+  </strong>
+  <% if photographer.location.present? and photographer.location.city.present? %>
+    <h5 class="text-right">
+      <%= photographer.location.city.name.to_s + " " + photographer.location.area_name.to_s %> -
+    </h5>
+  <% end %>
+  <h5 class="text-left">
+    - <%= photographer.mobile_number %>
+  </h5>
+  <h5 class="text-right" style="color: rebeccapurple">
+     تاریخ مصاحبه:
+    <%= photographer.interview_date.to_date.to_pdate.to_s.tr('-','/') if photographer.interview_date.present? %> -
+  </h5>
+  <h5 class="text-right" style="color: rebeccapurple">
+    ساعت:
+    <%= photographer.interview_date.strftime("%H:%M") if photographer.interview_date.present? %> -
+  </h5>
+
+  <div class="text-left">
+    <%= link_to "show", admin_photographer_path(photographer.slug), class: 'btn btn-default', style: 'color: white; background-color: dodgerblue; text-decoration: none; width: 30%', target: :_blank %>
+    <%= link_to "edit", edit_admin_photographer_path(photographer.slug), class: 'btn btn-default', style: 'color: white; background-color: orange; text-decoration: none; width: 25%', target: :_blank %>
+    <input  value="Reject" style=" background-color: #d62525; width: 39%; color: white" id="<%= photographer.id %>2" class="btn btn-default">
+    <br>
+  </div>
+</div>
+
+<script>
+
+    $('#<%= photographer.id %>2').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: "<%= CGI.unescape reject_photographer_path(photographer.id) %>",
+            dataType: 'script',
+            data: {
+                reject_photographer: 'true'
+            },
+            success: function () {
+                $('#p<%= photographer.id %>').hide();
+            }
+
+        });
+    })
+</script>

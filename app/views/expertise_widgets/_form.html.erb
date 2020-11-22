@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-ls-12" id="div-form_<%= counter %>">
+    <%= form_for expertise, :url => "/expertise_widgets", html: {:class =>"md-form", :id => "new_widget_form"}, method: :post , remote: true do |f| %>
+    <input type="hidden" name="expertise[id]" value="<%= expertise.id %>"/>
+    <input type="hidden" name="counter" value="<%= counter %>"/>
+    <div class="form-group">
+      <div class="col-xs-1">
+        <%=counter%>
+      </div>
+      <div class="col-xs-4">
+        <input id="widget_name_<%=counter%>" class="form-control" type="text" list="widgets" name="widget[name]" placeholder="نام اکسسوری :" required/>
+        <datalist id="widgets">
+          <% Widget.all.each do |w| %>
+          <option><%= w.name %></option>
+          <% end %>
+        </datalist>
+      </div>
+    </div>
+    <div class="col-xs-3" id="div-submit_<%=counter%>">
+      <div class="actions">
+        <%#= f.submit %>
+        <button id="new-widget-submit-button_<%=counter%>" class="btn btn-primary btn-block" type="submit" name="button">انتخاب</button>
+      </div>
+    </div>
+    <% end %>
+    <div class="col-xs-3" id="show-div-filelist_<%=counter%>" hidden>
+      <div class="actions">
+        <button id="show-div-filelist-button_<%=counter%>" class="btn btn-success btn-block" name="button" onclick="show_div_file_list(<%= counter %>);">افزودن تصویر اکسسوری</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12" id="filelist_<%=counter%>" hidden>
+    <div class="alert alert-warning">
+        <p>حداکثر سایز هر عکس ۱ مگابایت باید باشد.</p>
+    </div>
+    <div id="uploader_<%=counter%>">
+      <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+    </div>
+  </div>
+</div>

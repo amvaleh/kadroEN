@@ -1,0 +1,15 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<div class="row">
+  <div class="col-sm-6">
+    <h4 style="direction: rtl; text-align: right;">
+      تعداد عکاسان فعال در هر رشته
+    </h4>
+    <%= pie_chart ShootType.all.joins("LEFT OUTER JOIN expertises ON shoot_types.id = expertises.shoot_type_id").joins("JOIN photographers ph ON expertises.photographer_id= ph.id").where(:expertises => {:approved=>true},:ph => {:approved=>true}).group("shoot_types.id").count.map{|s, total| [ ShootType.find(s).title ,total] } , library: {backgroundColor: "#eee"} , download: true %>
+  </div>
+  <div class="col-sm-6">
+    <h4 style="direction: rtl; text-align: right;">
+      تعداد نمونه کارهای هر رشته
+    </h4>
+    <%= pie_chart Photo.all.joins(:expertise=>:photographer).where(:photographers => {:approved=>true},:expertises => {:approved=>true}).group(:shoot_type_id).count.map{|s, total|[ ShootType.find(s).title ,total]} , library: {backgroundColor: "#eee"} , download: true %>
+  </div>
+</div>

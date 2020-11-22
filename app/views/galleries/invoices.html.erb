@@ -1,0 +1,55 @@
+<% carts = @user.carts %>
+<br>
+<br>
+<br>
+<br>
+
+<div class="row" style="min-height: 643px">
+  <div class="col-md-10 col-md-offset-1 col-xs-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead style="background: #2B87F9; color: white; font-size: 20px; border-radius: 25%">
+        <tr>
+          <th style="padding: 10px 20px 10px 0px; vertical-align: inherit;">#</th>
+          <th style="padding: 10px 0px 10px 0px; vertical-align: inherit;text-align: center">شماره فاکتور</th>
+          <th></th>
+          <th style="padding: 10px 10px 10px 0px; vertical-align: inherit;">
+            <div style="margin-right: 20%">تاریخ</div>
+          </th>
+          <th class="col-xs-hidden" style="padding: 20px">وضعیت</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <% carts.each_with_index do |cart, index| %>
+          <% unless cart.status == 1 %>
+            <% next %>
+          <% end %>
+          <tr>
+            <td class="col-xs-hidden" style="padding: 10px 20px 10px 0px; vertical-align: inherit; font-size: 20px; vertical-align: inherit"><%= index + 1 %></td>
+            <td style="padding: 10px 0px 10px 0px; vertical-align: inherit; font-size: 20px; vertical-align: inherit; text-align: center"><%= cart.invoice.vch_number if cart.invoice.present? %></td>
+            <td style="padding: 10px 0px 10px 0px; vertical-align: inherit;">
+              <%= link_to "نمایش فاکتور", {:controller => "galleries", :action => "receipt_modal", :cart_id => cart.id}, remote: true, class: 'btn btn-primary btn-lg' %>
+            </td>
+            <td style="padding: 10px 10px 10px 0px; vertical-align: inherit; font-size: 20px; vertical-align: inherit"><%= cart.created_at.to_pdate %></td>
+            <td style="padding: 10px 0px 10px 0px; vertical-align: inherit;">
+              <div style="font-size: 20px">
+                <i class="<%= cart.status == 1 ? 'fa fa-check fa-2x' : 'fa fa-close fa-2x' %>" style="color: <%= cart.status == 1 ? 'green' : 'purple' %>"></i>
+                <%= cart.status == 1 ? 'پرداخت شده' : 'ثبت اولیه' %>
+              </div>
+            </td>
+          </tr>
+
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-receipt" style="margin-top: 5%">
+  <div class="modal-dialog" style="margin-left: 45%">
+    <div class="modal-body">
+    </div>
+  </div>
+</div>

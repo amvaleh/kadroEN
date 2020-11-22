@@ -1,0 +1,153 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+  <% end %>
+  <title>
+    <%= @video.title %> -
+    <%= @video.eng_title %>
+    | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="<%=@video.title%>">
+  <meta name="keywords" content="<%=@video.title%>,<%=@video.eng_title%>">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload'  %>
+  <% else %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload'  %>
+  <% end %>
+  <link rel="icon" type="image/png" href="">
+</head>
+<%= render "public/shared/videography_header" %>
+
+<style>
+  .fdb-touch{
+    border-top: solid 0.3125rem #fec106 !important;
+  }
+    h3{
+      color: #fea80f;
+    }
+    h4{
+      color:black;
+    }
+</style>
+<section class="fdb-block py-5">
+  <div class="container">
+    <div class="row justify-content-start">
+      <div class="col-12 col-sm-10 mx-auto my-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb ">
+            <li class="breadcrumb-item text-muted">
+              <a href="<%=root_path %>"> کادرو  </a>
+            </li>
+            <li class="breadcrumb-item text-muted">
+              <a href="<%=videography_path %>"> فیلمبرداری و تیزر</a>
+            </li>
+            <li class="breadcrumb-item active text-dark" aria-current="page">
+              <%= @video.title %>
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div class="col-12">
+        <div class="row justify-content-center ">
+          <div class="col-12 text-center">
+            <h1>
+              <%= @video.title %>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-8 col-md-6">
+        <video title="<%= @video.title %>" width="100%" controls="controls" class="img-fluid rounded shadow-lg" src="<%= @video.video_source.url %>" poster="<%= @video.video_poster.present? ? @video.video_poster.url(:large) : "" %>"></video>
+        <%#= video_tag @video.video_source.url, title: @video.title , width:"100%", :controls => true ,class:"img-fluid rounded shadow-lg"%>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="fdb-block fp-active py-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="row justify-content-center pb-5">
+          <div class="col-12 col-lg-8 text-center">
+            <h2>
+              ویژگی های کلیپ
+              "<%= @video.title %>"
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center justify-content-start no-gutters">
+      <div class="col-6 p-3 col-md-4 m-auto fdb-box fdb-touch">
+        <h3><strong>سناریو نویسی</strong></h3>
+        <h4 class="text-center">
+          <%=@video.scenario ? "دارد" : "ندارد"%>
+        </h4>
+      </div>
+
+      <div class="col-6 p-3 col-md-4 m-auto fdb-box fdb-touch">
+        <h3><strong> هلی شات </strong></h3>
+        <h4 class="text-center">
+          <%=@video.helishot ? "دارد" : "ندارد" %>
+        </h4>
+      </div>
+
+      <div class="col-6 p-3 col-md-4 m-auto fdb-box fdb-touch">
+        <h3><strong> خروجی کلیپ </strong></h3>
+        <h4 class="text-center">
+          <%=@video.output_length.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
+          دقیقه
+        </h4>
+      </div>
+      <div class="col-6 p-3 col-md-4 m-auto fdb-box fdb-touch">
+        <h3><strong> سطح تدوین </strong></h3>
+        <h4 class="text-center">
+          <%= @video.edit_level %>
+        </h4>
+      </div>
+
+      <div class="col-6 p-3 col-md-4 m-auto fdb-box fdb-touch">
+        <h3><strong> مدت پروژه </strong></h3>
+        <h4 class="text-center">
+          <%= @video.project_length %>
+        </h4>
+      </div>
+
+      <div class="col-6 p-3 col-md-4 m-auto fdb-box fdb-touch">
+        <h3><strong> تعداد دوربین  </strong></h3>
+        <h4 class="text-center">
+          <%= @video.cameras_count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
+          دوربین
+        </h4>
+      </div>
+    </div>
+
+    <div class="row text-center justify-content-center pt-3 pt-md-5">
+      <div class="col-12 col-sm-6 col-md-8 m-auto fdb-box fdb-touch bg-dark">
+        <h4 class="text-light text-center">
+          هزینه تمام شده
+        </h4>
+        <h2 class="text-center text-light">
+          <%= number_with_delimiter(@video.price.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
+          تومان
+        </h2>
+        <p class="mt-4 text-center">
+          <a class="btn btn-warning" href="/submit-project"> ثبت درخواست </a>
+        </p>
+      </div>
+    </div>
+    </div>
+</section>
+<%= render "/videography/shared/submit_now" %>

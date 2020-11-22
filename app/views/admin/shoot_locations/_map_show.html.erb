@@ -1,0 +1,35 @@
+<script src="//maps.google.com/maps/api/js?key=AIzaSyBqAlo6eTQeSbkOn3xYIjJ4e1zr4ewrSxU"></script>
+<%= javascript_include_tag "locationpicker.jquery"  %>
+
+<div id="work_map" value=" " style="width: 100%; height: 400px;"></div>
+<script type="text/javascript">
+  $(document).ready(function () {
+      var mapStyle =[ { "featureType": "all", "elementType": "labels.text.fill", "stylers": [ { "saturation": 36 }, { "color": "#000000" }, { "lightness": 40 } ] }, { "featureType": "all", "elementType": "labels.text.stroke", "stylers": [ { "visibility": "on" }, { "color": "#000000" }, { "lightness": 16 } ] }, { "featureType": "all", "elementType": "labels.icon", "stylers": [ { "visibility": "off" } ] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [ { "color": "#000000" }, { "lightness": 20 } ] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [ { "color": "#000000" }, { "lightness": 17 }, { "weight": 1.2 } ] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 20 } ] }, { "featureType": "poi", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 21 } ] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [ { "color": "#000000" }, { "lightness": 17 } ] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [ { "color": "#000000" }, { "lightness": 29 }, { "weight": 0.2 } ] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 18 } ] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 16 } ] }, { "featureType": "transit", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 19 } ] }, { "featureType": "water", "elementType": "geometry", "stylers": [ { "color": "#000000" }, { "lightness": 17 } ] } ];
+
+    <% if object.address.present? %>
+    var latitude = <%= object.address.lattitude %>;
+    var longitude = <%= object.address.longtitude %>;
+    <% else %>
+    var latitude = 35.7745054;
+    var longitude = 51.3967018;
+    <% end %>
+    $('#work_map').locationpicker({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      radius: 10,
+      zoom: 13,
+      // markerInCenter: true,
+      enableAutocomplete: true,
+      autocompleteOptions: {
+        types: ['geocode'],
+        componentRestrictions: {country: 'ir'}
+      },
+      styles: mapStyle,
+      markerDraggable: false,
+      draggable: false
+    });
+  });
+
+</script>

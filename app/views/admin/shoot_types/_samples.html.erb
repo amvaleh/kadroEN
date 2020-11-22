@@ -1,0 +1,9 @@
+<div class="row">
+  <% samples.each do |sample| %>
+  <div class="col-xs-3 well">
+    <%= image_tag sample.url(:optimum),class:"img-responsive" %>
+    <%= link_to "original", sample.url  %>
+    <%= link_to "optimum" ,sample.url(:optimum) %>
+  </div>
+  <%end%>
+</div>

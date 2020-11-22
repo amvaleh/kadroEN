@@ -1,0 +1,240 @@
+
+<section class="fdb-block" id="portfolios" style="background-image: url(/types/imgs/shapes/11.svg);overflow: initial !important;">
+  <div class="container">
+    <div class="row pt-1">
+      <div class="col-12">
+        <h2 class="text-white"> برخی نمونه کارها </h2>
+        <% if @photos.present? and @photos.count > 0 %>
+          <p class="text-center">
+            دوست داری در رتبه بندی عکاسان سهیم باشی؟
+            به نمونه کارها رای بده.
+          </p>
+          <div id="js-grid-lightbox-gallery" class="cbp">
+              <% @photos.each do |f| %>
+                <% if f.image_type == "Photo" and Photo.where(id: f.image_id).any? %>
+                  <% type = "Photo" %>
+                  <% p = Photo.find(f.image_id) %>
+                  <% url = assets_url(p.file_url(:medium))%>
+                  <% original_url =  assets_url(p.file_url) %>
+                  <% ph_name = p.expertise.present? ? p.expertise.photographer.abbrv_name : "آرشیوی" %>
+                <% elsif f.image_type == "Frame" and Frame.where(id: f.image_id).any? %>
+                  <% type = "Frame" %>
+                  <% p = Frame.find(f.image_id) %>
+                  <% url = assets_url(p.file_url(:light))%>
+                  <% original_url =  assets_url(p.file_url) %>
+                  <% ph_name = p.gallery.present? ? p.gallery.project.photographer.abbrv_name : "آرشیوی" %>
+                <% end %>
+                <div class="cbp-item">
+                  <a href="<%=single_photo_path(:st=> @shoot_type.id , :f=>f.id ,:file=>f.image_id , :type=>type, :file_url=> url,:ph_name=>ph_name)%>" class="cbp-caption cbp-singlePageInline" data-title="عکس نوزاد توسط عکاس کادرو" rel="nofollow">
+                    <div class="cbp-caption-defaultWrap">
+                      <img src="<%=url %>"  alt="نمونه عکس <%=@shoot_type.title%>">
+                    </div>
+                    <div class="cbp-caption-activeWrap">
+                      <div class="cbp-l-caption-alignLeft">
+                        <div class="cbp-l-caption-body">
+                          <div class="cbp-l-caption-title text-right">
+                            نمونه کار عکاسی
+                            <%=@shoot_type.title%>
+                          </div>
+                          <div class="cbp-l-caption-desc text-right">
+                            عکس از
+                            عکاس تایید شده کادرو
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              <%end %>
+              </div>
+            <% else %>
+              <p class="text-center">
+                 قادر به نمایش نمونه کارهای این رشته نیستیم، لطفا
+                برای درخواست مشاوره
+                <%= link_to " در این لینک" , call_request_url %>
+                پیام بگذارید.
+              </p>
+            <% end %>
+
+            <!--        <div id="js-loadMore-lightbox-gallery" class="cbp-l-loadMore-button">-->
+            <!--          <a href="ajax-lightbox-gallery/loadMore.html" class="cbp-l-loadMore-link" rel="nofollow">-->
+            <!--            <span class="cbp-l-loadMore-defaultText">LOAD MORE</span>-->
+            <!--            <span class="cbp-l-loadMore-loadingText">LOADING...</span>-->
+            <!--            <span class="cbp-l-loadMore-noMoreLoading">NO MORE WORKS</span>-->
+            <!--          </a>-->
+            <!--        </div>-->
+
+            <script>
+                (function($, window, document, undefined) {
+                    'use strict';
+
+                    // init cubeportfolio
+                    $('#js-grid-lightbox-gallery').cubeportfolio({
+                        // loadMore: '#js-loadMore-lightbox-gallery',
+                        loadMoreAction: 'click',
+                        layoutMode: 'grid',
+                        mediaQueries: [{
+                            width: 1500,
+                            cols: 5,
+                        }, {
+                            width: 1100,
+                            cols: 4,
+                        }, {
+                            width: 800,
+                            cols: 3,
+                        }, {
+                            width: 480,
+                            cols: 2,
+                        }],
+                        defaultFilter: '*',
+                        animationType: 'flipOutDelay',
+                        gapHorizontal: 10,
+                        gapVertical: 10,
+                        gridAdjustment: 'responsive',
+                        caption: 'overlayBottomAlong',
+                        displayType: 'sequentially',
+                        displayTypeSpeed: 100,
+
+                        // lightbox
+                        lightboxDelegate: '.cbp-lightbox',
+                        lightboxGallery: true,
+                        lightboxTitleSrc: 'data-title',
+                        lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} از {{total}}</div>',
+
+                        // singlePageInline
+                        singlePageInlineDelegate: '.cbp-singlePageInline',
+                        singlePageInlinePosition: 'below',
+                        singlePageInlineInFocus: true,
+                        singlePageInlineCallback: function(url, element) {
+                            // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
+                            var t = this;
+
+                            $.ajax({
+                                url: url,
+                                type: 'GET',
+                                dataType: 'html',
+                                timeout: 30000
+                            })
+                                .done(function(result) {
+
+                                    t.updateSinglePageInline(result);
+
+                                })
+                                .fail(function() {
+                                    t.updateSinglePageInline('AJAX Error! Please refresh the page!');
+                                });
+                        },
+                    });
+                })(jQuery, window, document);
+            </script>
+            </div>
+            </div>
+            </div>
+            </section>
+<script>
+
+    function toPersianNum( num, dontTrim ) {
+        var i = 0,
+            dontTrim = dontTrim || false,
+            num = dontTrim ? num.toString() : num.toString().trim(),
+            len = num.length,
+            res = '',
+            pos,
+            persianNumbers = typeof persianNumber == 'undefined' ?
+                ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'] :
+                persianNumbers;
+        for (; i < len; i++)
+            if (( pos = persianNumbers[num.charAt(i)] ))
+                res += pos;
+            else
+                res += num.charAt(i);
+        return res;
+    }
+
+
+    function fix_css_animation(){
+        move_cover = document.getElementsByClassName('move');
+        z = document.getElementById('carusel-inner').style.width.replace(/(^\d+)(.+$)/i,'$1');
+        var style = document.createElement('style');
+        style.type = 'text/css';
+        for(var i=0, len=move_cover.length; i<len; i++)
+        {
+            if (( move_cover[i].width != null ) && (move_cover[i].height != null )){
+                id = move_cover[i].id.replace(/(^\d+)(.+$)/i,'$1');
+                var final;
+                var type;
+                if (move_cover[i].width > move_cover[i].height) {
+                    x = 500 / move_cover[i].height;
+                    y = move_cover[i].width * x;
+                    if (y > z-1) {
+                        final = y - z;
+                        move_cover[i].classList.add('fix-height');
+                        type = 'left';
+                    } else {
+                        x = z / move_cover[i].width;
+                        y = move_cover[i].height * x;
+                        final = y - 500;
+                        move_cover[i].classList.add('fix-width');
+                        type = 'bottom';
+                    }
+                } else if (move_cover[i].width <= move_cover[i].height){
+                    x = z / move_cover[i].width;
+                    y = move_cover[i].height * x;
+                    if (y > 499) {
+                        final = y - 500;
+                        move_cover[i].classList.add('fix-width');
+                        type = 'bottom';
+                    } else {
+                        x = 500 / move_cover[i].height;
+                        y = move_cover[i].width * x;
+                        final = y - z;
+                        move_cover[i].classList.add('fix-height');
+                        type = 'left';
+                    }
+                }
+                move_cover[i].style = '--type: ' + type + id + ';';
+                if (final > 20) {
+                    style.innerHTML = style.innerHTML + '@keyframes '+ type + id + '{0% {' + type + ':0px;}  100% {' + type +': ' + final +'px;}}';
+                }
+            }
+        }
+        document.getElementsByTagName('head')[0].appendChild(style);
+    }
+    // $(document).ready(
+    //     function(){
+    //         //do stuff
+    //         var size = window.innerWidth || document.body.clientWidth;
+    //         if (size > 991 ){
+    //             add = ( size - 992 - 4 )/4 + 600
+    //             div_cover_threads = document.getElementsByClassName('carousel-item')
+    //             for(var i=0, len=div_cover_threads.length; i<len; i++)
+    //             {
+    //                 div_cover_threads[i].style.width = add + 'px';
+    //             }
+    //             document.getElementById('carusel-inner').style.width = add + 'px';
+    //         } else if (size > 767) {
+    //             add = 540
+    //             div_cover_threads = document.getElementsByClassName('carousel-item')
+    //             for(var i=0, len=div_cover_threads.length; i<len; i++)
+    //             {
+    //                 div_cover_threads[i].style.width = add + 'px';
+    //             }
+    //             document.getElementById('carusel-inner').style.width = add + 'px';
+    //         } else if (size > 575) {
+    //             add = 390
+    //             div_cover_threads = document.getElementsByClassName('carousel-item')
+    //             for(var i=0, len=div_cover_threads.length; i<len; i++)
+    //             {
+    //                 div_cover_threads[i].style.width = add + 'px';
+    //             }
+    //             document.getElementById('carusel-inner').style.width = add + 'px';
+    //         } else {
+    //             div_cover_threads = document.getElementsByClassName('carousel-item')
+    //             for(var i=0, len=div_cover_threads.length; i<len; i++)
+    //             {
+    //                 div_cover_threads[i].style.width = size - 70 + "px";
+    //             }
+    //             document.getElementById('carusel-inner').style.width = size - 70 + "px";
+    //         }
+    //     });
+</script>

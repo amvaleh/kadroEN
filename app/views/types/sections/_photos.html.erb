@@ -1,0 +1,25 @@
+<section class="fdb-block bg-dark" id="portfolio" style="background-image: url(/types/imgs/hero/blue.svg);">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col text-center pb-5">
+        <h2>
+          نمونه کارهای عکاسان در عکاسی <%= @shoot_type.title %>
+        </h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      
+    </div>
+    <p class="lead text-center">
+      برای دیدن نمونه کارهای بیشتر
+      عکاسان <%=@shoot_type.title%> در
+      <strong> منطقه خود </strong>
+      کلیک کنید:
+      <br>
+      <a href="<%=book_url(direct:true,:shoot_type=>@shoot_type.id)%>" class="mx-3 mt-5 btn btn-outline-light">
+        نمونه کارهای بیشتر
+        <i class="fas fa-angle-right"></i>
+      </a>
+    </p>
+  </div>
+</section>

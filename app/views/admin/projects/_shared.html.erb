@@ -1,0 +1,95 @@
+<% if p.direct_book %>
+<button type="button" name="button" class="pull-right btn btn-xs btn-danger">رزرو مستقیم</button>
+<% end %>
+<% if p.package.present? %>
+  <% if p.package.vip %>
+  <button type="button" name="button" class="pull-left btn btn-xs btn-warning"> VIP </button>
+  <% end %>
+<% end %>
+<div class="row text-center" >
+  <% if p.shoot_type.present? && p.package.present? %>
+  <p>
+    <span class="badge badge-default"><%= p.shoot_type.title%></span> <span class="badge badge-success"><%= p.package.display_name %></span><%= "M+" if p.delivery_at_location %>
+  </p>
+  <% end %>
+  <% if p.start_time.present? %>
+  <p class="text-center">
+    <lable><%= p.start_time.to_date.to_pdate.strftime("%e %b")%></lable>
+  </p>
+  <% end %>
+
+  <% if p.user.present? %>
+  <div class="col-xs-12">
+    <p>
+      <%= link_to p.user.display_name ,admin_user_path(p.user), target: :_blank, class:"btn btn-default btn-block" %>
+    </p>
+  </div>
+  <% end %>
+  <div class="col-xs-6">
+    <p>
+      <%= link_to "#{p.slug}" ,admin_project_path(p), target: :_blank, class:"btn btn-default btn-block" %>
+    </p>
+    <p>
+      <%= link_to "ویرایش #{p.slug}" ,edit_admin_project_path(p), target: :_blank, class:"btn btn-default btn-block" %>
+    </p>
+
+    <% if p.receipt.present? %>
+    <p>
+      <%= link_to "نمایش فاکتور" , admin_receipt_path(p.receipt), target: :_blank, class:"btn btn-default btn-block" %>
+    </p>
+    <p>
+      <%= link_to "ویرایش فاکتور" , edit_admin_receipt_path(p.receipt), target: :_blank, class:"btn btn-default btn-block" %>
+    </p>
+    <p>
+      <% if sms %>
+      <input type="submit" value="SMS" style="float: left;
+      background-color: #a6a6a6;
+      border-color: #ccc !important;
+      color: #f7f9fb;" id="<%= p.id %>sms" class="btn btn-block btn-danger">
+      <% end %>
+    </p>
+    <p id="show-result<%= p.id %>" style="color: orangered; font-size: x-large"></p>
+    <% end %>
+  </div>
+  <div class="col-xs-6 ">
+    <% if p.photographer.present? %>
+    <p>
+      <%=link_to p.photographer.display_name,admin_photographer_path(p.photographer) , target: :_blank , class:"btn btn-info btn-block" %>
+      <% if p.photographer.join_step.name=="حقوقی" %>
+      <span class="btn btn-danger"> بدون قرارداد </span>
+      <% end %>
+    </p>
+
+    <% end %>
+    <p>
+      <%=link_to "تغیر عکاس",alternate_photographers_project_path(p.slug) , target: :_blank , class:"btn btn-default btn-block" %>
+    </p>
+    <p>
+      <%= link_to "thankyou" ,thank_you_project_path(p), target: :_blank, class:"btn btn-default btn-block" %>
+    </p>
+    <p>
+      <%= link_to "project_info" ,project_information_project_path(p), target: :_blank, class:"btn btn-default btn-block" %>
+    </p>
+    <p>
+      <% if ActiveAdminComment.all.where(resource_type: 'Project', resource_id: p.id).any? %>
+      <%= link_to "Details", project_details_admin_projects_path(project_id: p.id), class: 'btn btn-danger btn-block', remote: true, style: 'float: right; background-color: #274c8e; color: white' %>
+      <% else %>
+      <%= link_to "Details", project_details_admin_projects_path(project_id: p.id), class: 'btn btn-default btn-block', remote: true, style: 'float: right; background-color: grey; color: white' %>
+      <% end %>
+    </p>
+  </div>
+</div>
+<% if timer.present? %>
+<p>
+  <% second = Time.now - p.start_time %>
+  <% hour = ((second/60)/60).to_i %>
+  <% left_over = 72 - hour %>
+  فرصت باقی مانده : <%= left_over %> ساعت
+</p>
+<% end %>
+
+<% if p.user.lead_source.present? %>
+<strong class="text-center"> Source : <%= p.user.lead_source.title %></strong>
+<br>
+<% end %>
+<strong class="text-center"> projects : <%= p.user.projects.confirmed.count %></strong>

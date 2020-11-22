@@ -1,0 +1,62 @@
+<div class="alert alert-<%= photographer.first_call_at.present? ? 'success' : 'danger' %>" id="p<%= photographer.id %>">
+
+  <strong class="text-center" style="margin-top: 0px">
+    <%= photographer.display_name %>
+    <br>
+    <%= photographer.last_step_at.to_date.to_pdate.strftime("%e %b") if photographer.last_step_at.present? %>
+  </strong>
+  <% if photographer.location.present? and photographer.location.city.present? %>
+    <h5 class="text-right">
+      <%= photographer.location.city.name.to_s + " " + photographer.location.area_name.to_s %> -
+    </h5>
+  <% end %>
+  <h5 class="text-left">
+    - <%= photographer.mobile_number %>
+  </h5>
+  <% if photographer.first_call_at.present? %>
+    <h5 class="text-right" style="direction: rtl !important; color: mediumvioletred">
+      <% second = Time.now - photographer.first_call_at %>
+      <% hour = ((second / 60) / 60).to_i %>
+- تماس در
+      <%= hour %>
+      ساعت قبل
+    </h5>
+  <% end %>
+  <% if photographer.last_step_at.present? %>
+  <h5 class="text-right" style="direction: rtl !important; color: mediumvioletred">
+    <% second = Time.now - photographer.last_step_at %>
+    <% hour = ((second / 60) / 60).to_i %>
+    -
+    <%= hour %>
+    ساعته اینجاست
+  </h5>
+  <% end %>
+  <div class="text-left">
+    <%= link_to "show", admin_photographer_path(photographer.slug), class: 'btn btn-default', style: 'color: white; background-color: dodgerblue; text-decoration: none; width: 30%', target: :_blank %>
+    <%= link_to "edit", edit_admin_photographer_path(photographer.slug), class: 'btn btn-default', style: 'color: white; background-color: orange; text-decoration: none; width: 25%', target: :_blank %>
+    <% unless photographer.first_call_at.present? %>
+      <input value="I Called" style=" background-color: indianred; width: 39%; color: white" id="<%= photographer.id %>2" class="btn btn-default">
+    <% end %>
+    <br>
+  </div>
+</div>
+
+<script>
+
+    $('#<%= photographer.id %>2').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: "<%= CGI.unescape i_called_photographer_path(photographer.id) %>",
+            dataType: 'script',
+            data: {
+                first_call: 'true'
+            },
+            success: function () {
+                $('#<%= photographer.id %>2').hide();
+            }
+
+        });
+    })
+</script>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% if Rails.env.production? %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+      <%#= render 'shared/externals/whatsapp' %>
+      <%= render 'shared/externals/raychat' %>
+
+      <%#= render 'shared/externals/hotjar_recorder' %>
+    <%#= render 'shared/externals/heap_analytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <% end %>
+    <title>
+      کادرو -
+      کسب درآمد با عکاسی حرفه ای
+    </title>
+    <meta charset="UTF-8">
+    <meta name="description" content="رزرو آنلاین عکاس حرفه ای، برای هر زمان و هر مکان یک عکاس حرفه ای انتخاب و رزرو کنید، عکاسی کنید، لذت ببرید.">
+    <meta name="keywords" content="استخدام عکاس, پروژه عکاسی, ">
+    <meta name="author" content="تیم کادرو">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    <meta name="theme-color" content="RGB(41, 135, 249)" />
+
+    <%= csrf_meta_tags %>
+      <%= stylesheet_link_tag    'join', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+      <%= javascript_include_tag 'join', 'data-turbolinks-track': 'reload' %>
+
+      <link rel="icon" type="image/png" href="/img/favicon.png">
+
+      <%= javascript_include_tag "bootstrap.min"  %>
+        <!-- dropdown -->
+      <%= stylesheet_link_tag      "semantic.min"  %>
+      <%= javascript_include_tag   "semantic.min"  %>
+      <!-- dropdown -->
+      <%= stylesheet_link_tag "jquery.fileupload"  %>
+      <%= stylesheet_link_tag "jquery.fileupload-ui"  %>
+      <%= javascript_include_tag "jquery-fileupload"  %>
+
+  </head>
+
+  <%= yield %>
+
+<script>
+function scrollToId(selector){
+  if( selector.length ) {
+    $('html, body').stop().animate({
+        scrollTop: selector.offset().top
+    }, 1000);
+  }
+}
+function baseName(str)
+{
+   var base = new String(str).substring(str.lastIndexOf('/') + 1);
+    if(base.lastIndexOf(".") != -1)
+        base = base.substring(0, base.lastIndexOf("."));
+   return base;
+}
+String.prototype.toEnglishDigits = function () {
+    var id = { '۰': '0', '۱': '1', '۲': '2', '۳': '3', '۴': '4', '۵': '5', '۶': '6', '۷': '7', '۸': '8', '۹': '9' };
+    return this.replace(/[^0-9.]/g, function (w) {
+        return id[w] || w;
+    });
+};
+function chunkArrayBySize(arr,size){
+  let chunks = [];
+  for (var i = 0; i < arr.length; i+=size) {
+    chunks.push(arr.slice(i,i+size));
+  }
+
+
+  return chunks;
+}
+function readable_size(size) {
+  if(size < 1024)
+    return size + ' بایت';
+  else if(size < 1024.0 * 1024.0)
+    return (size / 1024.0).toFixed(2) + ' کیلوبایت'
+  else
+    return (size / 1024.0 / 1024.0).toFixed(2) + ' مگابایت'
+
+}
+  function readURL(input) {
+  if (input.files && input.files[0]) {
+    //
+    var preview = document.querySelector('#avatar_upload_preview');
+    var file    = document.querySelector('input[type=file]').files[0];
+    var acceptFileTypes = /^image\/(jpe?g|png)$/i;
+    if(!acceptFileTypes.test(file.type))
+    {
+        $("#photoError").css('display', 'block');
+        $("#photoError p").text('تایپ فایل درست نیست.' );
+        return;
+    }
+    else{
+      $("#photoError").css('display', 'none');
+    }
+    var reader  = new FileReader();
+    reader.onload = function (e) {
+
+          var img = new Image();
+          img.onload = function(){
+              if (img.width == 700 && img.height == 700) {
+                $("#photoError").css('display', 'none');
+                preview.src= e.target.result;
+              } else {
+                document.querySelector('input[type=file]').files[0].value = "";
+                $("#photoError").css('display', 'block');
+                $("#photoError p").text('اندازه عکس باید ۷۰۰ پیکسل در ۷۰۰ پیکسل باشد، لطفا مجدد آپلود کنید.' );
+              }
+            };
+          img.src = reader.result;
+    }
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  }
+  var neshanMap;
+  var neshanMarker;
+  var myIcon = L.icon({
+      iconUrl: 'https://www.kadro.co/kadroMapMarker.png',
+      iconSize: [46, 46],
+
+  });
+  const neshanMapInitialize = (lat,lng) =>{
+
+          neshanMap = new L.Map('work_map', {
+              key: 'web.2M27zXdjareLTDP2FNaKoy3pdHdXoi0r43yD0MXb',
+              maptype: 'neshan',
+              poi: true,
+              traffic: false,
+              center: [lat, lng],
+              zoom: 14,
+              fullscreenControl: true,
+          });
+          neshanMarker= L.marker([lat, lng], {
+              icon: myIcon,
+              draggable: true
+          }).addTo(neshanMap);
+    }
+
+    function myMap(latitude,longitude) {
+      let mapCanvas = document.getElementById("work_map");
+      let myCenter=new google.maps.LatLng(latitude,longitude);
+      let mapOptions = {center: myCenter, zoom: 15};
+      let map = new google.maps.Map(mapCanvas, mapOptions);
+      let geocoder = new google.maps.Geocoder;
+
+
+      let marker = new google.maps.Marker({
+        map: map,
+        draggable: false,
+        animation: google.maps.Animation.DROP,
+        position: {lat: latitude, lng: longitude},
+        icon: "https://www.kadro.co/kadroMapMarker.png"
+      });
+      $('#latt').val( marker.position.lat() ).trigger('change');
+      //console.log('jquery'+$('#latt').val());
+      $('#long').val( marker.position.lng() ).trigger('change');
+      //console.log('jquery'+$('#long').val());
+      map.addListener('center_changed', function() {
+        marker.setPosition(map.getCenter());
+        setLocationName(marker.getPosition().lat(),marker.getPosition().lng());
+        $('#latt').val(marker.getPosition().lat()).trigger('change');
+        $('#long').val(marker.getPosition().lng()).trigger('change');
+
+      });
+      ////////////////////////////
+      let workingLocationInput = document.getElementById('working_address');
+      let options = {
+        types: ['address'],
+        componentRestrictions: {country: 'ir'}
+      };
+      let autoComplete= new google.maps.places.Autocomplete(workingLocationInput,options);
+      //console.log('working_address : '+$('#working_address').val());
+      autoComplete.bindTo('bounds', map);
+      autoComplete.addListener('place_changed', function() {
+        let place = autoComplete.getPlace();
+
+        if (!place.geometry) {
+          // User entered the name of a Place that was not suggested and
+          // pressed the Enter key, or the Place Details request failed.
+          window.alert("آدرس مورد انتخابی شما نا معتبر است");
+          return;
+        }
+        if (place.geometry.viewport) {
+          map.fitBounds(place.geometry.viewport);
+        }
+        else{
+          map.setCenter(place.geometry.location);
+          map.setZoom(15);
+        }
+        marker.setPosition(place.geometry.location);
+        $('#latt').val(marker.getPosition().lat()).trigger('change');
+        $('#long').val(marker.getPosition().lng()).trigger('change');
+        setLocationName(marker.getPosition().lat(),marker.getPosition().lng());
+      });
+      ////////////////////////////
+    }
+    function setLocationName(lat,lng)
+    {
+      let geocoder = new google.maps.Geocoder;
+      let latlng = {
+        lat: lat,
+        lng: lng
+      };
+      geocoder.geocode({
+        'location': latlng
+      }, function(results, status) {
+        if (status === 'OK') {
+          if (results[0]) {
+            //This is your formatted address
+            //console.log('input : '+results[0].formatted_address);
+            $('#working_address').val(results[0].formatted_address).trigger('change');
+          }
+          else {
+            console.log('No results found');
+          }
+        }
+        else {
+          console.log('Geocoder failed due to: ' + status);
+        }
+      });
+    }
+    function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+  </script>
+<script async  src="https://script.cashineh.com/tracker/js?id=CA-856475218-1"></script>
+</html>

@@ -1,0 +1,26 @@
+<% @top_title = "پروژه های شما" %>
+<%= render 'shared/studio_header', title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <div class="col-xs-12" style="margin-top: 3%">
+            <%= render 'filter_panel' %>
+            <div id="project_section"><%= render 'project_section' %></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+
+<script>
+    $(function () {
+        if ($.fn.cloudinary_fileupload !== undefined) {
+            $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+        }
+    });
+</script>

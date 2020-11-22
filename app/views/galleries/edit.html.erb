@@ -1,0 +1,621 @@
+<%= javascript_include_tag "plupload.full.min.js" %>
+<%= javascript_include_tag "jquery.plupload.queue.min.js" %>
+<%= stylesheet_link_tag "jquery.plupload.queue.css" %>
+
+<%= stylesheet_link_tag  'gallery/cubeportfolio.min' %>
+<%= javascript_include_tag 'gallery/jquery.cubeportfolio.min'%>
+
+<% @top_title = "مدیریت عکسها" %>
+<%= render 'shared/studio_header' , title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <div class="col-xs-12 col-md-12">
+            <nav aria-label="breadcrumb" style="margin-top: 10px;">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/photographers/<%= current_photographer.mobile_number %>/projects">پروژه ها</a></li>
+                <li class="breadcrumb-item active">گالری  <%= @gallery.project.user.display_name %></li>
+              </ol>
+            </nav>
+            <div id="accordion">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button class="btn btn-block btn-gray" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <h4 class="text-center">
+                        مشاهده قالب های لایت روم
+                      </h4>
+                    </button>
+                  </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                  <div class="card-body">
+                    <div class="col-xs-12" style="direction: rtl;">
+                      <p class="text-right">
+                        برای خروجی گرفتن در نرم افزار
+                        Lightroom
+                        از این قالب ها استفاده کنید.
+                        <br>
+                        برای مطالعه اینکه
+                        <%= link_to "https://app.kadro.co/updates/articles/lightroom-presets-for-you" ,target: "_blank" do %>
+                          چرا باید از این قالب ها استفاده کنیم؟
+                        <% end %>
+                        کلیک کنید.
+                      </p>
+                      <div style="height:200px" class="alert col-xs-12 col-sm-6">
+                        <div class="col-xs-5 text-center">
+                          <%= link_to "https://app.kadro.co/uploads/lines/article/document/4/kadro_presets.zip", target:"_blank" do %>
+                            <%=image_tag "/uploads/presets/event_kadro_preset.jpg" , class: "img-responsive img-rounded" %>
+                          <% end %>
+                          <br>
+                        </div>
+                        <div class="col-xs-7 text-right">
+                          <p>
+                            بعد از دانلود این فایل، برای خروجی گرفتن از
+                            عکسهای ادیت شده،
+                            هنگام export از این
+                            preset استفاده کنید.
+                            <span class="label label-default"> فقط عکاسی خبری و رویداد</span>
+                          </p>
+                        </div>
+                      </div>
+                      <div style="height:200px" class="alert col-xs-12 col-sm-6">
+                        <div class="col-xs-5 text-center">
+                          <%= link_to "https://app.kadro.co/uploads/lines/article/document/4/kadro_presets.zip", target:"_blank" do %>
+                            <%=image_tag "/uploads/presets/all_kadro_preset.jpg" , class: "img-responsive img-rounded" %>
+                          <% end %>
+                          <br>
+                        </div>
+                        <div class="col-xs-7 text-right">
+                          <p>
+                            بعد از دانلود این فایل، برای خروجی گرفتن از
+                            عکسهای ادیت شده،
+                            هنگام export از این
+                            preset استفاده کنید.
+                            <span class="label label-default"> باقی رشته های عکاسی </span>
+                          </p>
+                        </div>
+                      </div>
+                      <div style="height:200px" class="alert col-xs-12 col-sm-6">
+                        <div class="col-xs-5 text-center">
+                          <%= link_to "https://app.kadro.co/uploads/lines/article/document/4/kadro_presets.zip", target:"_blank" do %>
+                            <%=image_tag "/uploads/presets/copyright.jpg" , class: "img-responsive img-rounded" %>
+                          <% end %>
+                        </div>
+                        <div class="col-xs-7 text-right">
+                          <p>
+                            برای ثبت
+                            <strong>کپی رایت</strong>
+                            عکس های پروژه های کادرو به نام عکاسان و محافظت حقوقی از آنها، این قالب را اعمال کنید.
+                            <span class="label label-danger"> کپی رایت </span>
+                          </p>
+                        </div>
+                      </div>
+                      <div style="height:200px" class="alert col-xs-12 col-sm-6">
+                        <div class="col-xs-5 text-center">
+                          <%= link_to "https://www.mikkolagerstedt.com/blog/2014/1/29/how-to-install-lightroom-presets", target:"_blank" do %>
+                            <%=image_tag "/uploads/presets/preset_installation.jpg" , class: "img-responsive img-rounded" %>
+                          <% end %>
+                        </div>
+                        <div class="col-xs-7 text-right">
+                          <p>
+                            برای مشاهده آموزش نصب قالب لایت روم کلیک کنید.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+            <div class="col-xs-12 col-md-12">
+              <hr>
+              <div id="direct_upload" class="basic_form">
+                <h2 class="text-right">
+                  نحوه آپلود
+                </h2>
+                <div class="col-xs-12">
+                  <p>
+                  <span style="color:red">
+                    *
+                    حجم هر فایل حداکثر
+                    <%= @gallery.project.shoot_type.max_frame_size %>
+                    مگابایت می تواند باشد.
+                  </span>
+                    <br>
+                    <span style="color:red">
+                    *
+                    حجم هر فایل حداقل
+                      <%= @gallery.project.shoot_type.min_frame_size %>
+                      مگابایت می تواند باشد.
+                  </span>
+                    <br>
+                    <span style="color:red">
+                    *
+                    عرض هر عکس باید حداقل ۳۰۰۰ پیکسل باشد.
+                  </span>
+                    <br>
+                    اگر عکسی کیفیت خوبی ندارد، حتما ابتدا ادیت و سپس آپلود شود.
+                    <br>
+                    لطفا
+                    <span class="text-primary">
+                    همه
+                  </span>
+                    عکس هایی که گرفته اید را آپلود کنید.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <hr>
+            <div class="col-xs-12" id="filelist">
+              <div id="uploader">
+                <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <hr>
+            <div class="col-xs-12 col-sm-6 well">
+              <h2 class="text-right text-info">
+                عکس های آپلود شده
+                <br>
+              </h2>
+              <h4>
+                تعداد عکس ها:
+                <%= @gallery.frames.count %>
+              </h4>
+              <%= link_to  edit_gallery_path(@gallery),class: "btn  btn-primary btn-xs pull-left" do %>
+                <i class="fa fa-refresh"></i>
+                به روز رسانی
+              <% end %>
+            </div>
+            <div class="col-xs-12 col-sm-6 well">
+              <% if not @gallery.project.is_uploaded %>
+                <h2 class="text-right">
+                  تائیدیه
+                </h2>
+                <div class="col-xs-12">
+                  <div class="form-group" style="margin-top: 30px;">
+                    <div class="checkbox-control">
+                      <input type="checkbox" id="check2" value="1" required="" data-parsley-multiple="check2"  onclick="checkbox_set()">
+                      <label for="check1">
+                        همه عکس های پروژه را به صورت کامل و ادیت شده آپلود کردم.
+                        <br>
+                        (پس از تایید دیگر امکان حذف عکسها وجود ندارد.)
+                      </label>
+                    </div>
+                  </div>
+                  <button id="show_approved_modal" class="btn btn-blue pull-left" data-toggle="modal" data-target="#myModal4" style="width: 50%;display: none;">
+                    ادامه
+                  </button>
+                  <style>
+
+                  </style>
+                  <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModal4Label" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                      <div class="modal-content" style="overflow: hidden;">
+                        <%= form_tag upload_done_gallery_path(@gallery) do %>
+                          <div class="modal-body" style="max-height: 123px; overflow-y: auto;">
+                            <p>لطفا توجه فرمایید پس از تایید به هیچ عنوان امکان حذف عکس برای شما وجود ندارد و گالری برای کارفرما ارسال خواهد شد.</p>
+                            <input type="checkbox" id="check1" value="1" required="" data-parsley-multiple="check1" name="uploaded">
+                            <label for="check1">
+                              تایید می کنم که عکس ها را به صورت کامل و ادیت شده آپلود نموده ام.
+                            </label>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">انصراف</button>
+                            <%= submit_tag "تایید" , class: "btn btn-blue pull-left" , style: "width: 50%;margin-top: 0px;" %>
+                          </div>
+
+                        <% end %>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              <% else %>
+                <h2 class="text-right text-warning">
+                  درخواست نمونه کار
+                </h2>
+                <div class="col-xs-12">
+                  <p>
+                    شما می توانید تا
+                    <span style="font-size:30px"><%=Setting.find_by_var("max_share_request").value.to_i%></span>
+                    عکس از این پروژه را از کافرما
+                    <strong>
+                      درخواست دهید
+                    </strong>
+                    تا در صورت رضایت او، به عنوان نمونه کار استفاده کنید.
+                  </p>
+                  <p>
+                    تعداد درخواست ارسال شده:
+                    <span class="badge"style="background:orange"><%=@gallery.frames.share_requested.count%></span>
+                    -
+                    تعداد قبول شده:
+                    <span class="badge" style="background:green"><%=@gallery.frames.share_granted.count%></span>
+                  </p>
+                  <p>
+
+                  </p>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-xs-12" id="grid-container" style="padding-top: 5%;">
+              <div id="js-grid-masonry" class="cbp">
+                <% @gallery.frames.order("created_at DESC").each do |f| %>
+                  <div class="cbp-item identity" id="frame-div-<%= f.id %>">
+                    <a href='<%=f.file_address(false,"light")%>' class="cbp-caption cbp-lightbox" data-title="<%=f.gallery.project.shoot_type.title%><br>توسط <%=@gallery.project.photographer.display_name%>">
+                      <div class="cbp-caption-defaultWrap">
+                        <% if f.public_id.present? %>
+                          <%= cl_image_tag(f.public_id, :height => 300,:width=> 300, :crop => :fill, :quality => 50)%>
+                        <% else %>
+                          <%= image_tag f.file_url(:light) %>
+                        <% end %>
+                      </div>
+                      <div class="cbp-caption-activeWrap">
+                        <div class="cbp-l-caption-alignCenter">
+                          <div class="cbp-l-caption-body">
+                            <div class="cbp-l-caption-title"> <%= f.id %> </div>
+                            <div class="cbp-l-caption-desc" style="direction:ltr !important;"> <%= f.size.to_i / 1024 %> kb </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <div id="share_control_<%=f.id%>" class="text-center share_control">
+                      <% if f.share_control.present? %>
+                        <% if f.share_control.permit %>
+                          <span class="btn btn-success btn-xs">
+                            رضایت کارفرما در انتشار
+                            <span style="color:white" class="fa fa-check"></span>
+                          </span>
+                        <% else %>
+                          <%= render "share_controll/request_sent" %>
+                        <% end %>
+                      <% elsif @gallery.frames.share_requested.count < Setting.find_by_var("max_share_request").value.to_i %>
+                        <%= form_tag share_controll_create_path,remote:true, class: "form-inline" do %>
+                          <%= hidden_field_tag :frame_id , f.id %>
+                          <%= submit_tag "اجازه برای نمونه کار" , class: "btn btn-blue btn-xs"%>
+                        <% end %>
+                      <% else %>
+                  <span class="btn btn-danger btn-xs">
+                  <span style="color:white" class="fa fa-times"></span>  اتمام ظرفیت درخواست
+                  </span>
+                      <% end %>
+                      <% if !@gallery.project.is_uploaded %>
+                        <button class="btn btn-danger" onclick="remove_frames(<%= f.id %>)">حذف</button>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <!-- <div class="col-xs-12 well">
+            <%#= form_for Frame.new , :method=> :post,html: { multipart: true },class: "form-group" do |f| %>
+            <%#= f.file_field :file %>
+            <%#= f.hidden_field :gallery_id,value: @gallery.id %>
+            <%#= f.submit %>
+            <%# end %>
+          </div> -->
+          </div>
+        </div>
+      </div><!-- /.main -->
+    </div><!-- /.container -->
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "استودیو" , studio_photographer_path(@photographer) ,class: "btn btn-default "%>
+      <%= link_to "بازگشت" , projects_photographer_path(@photographer) ,class: "btn btn-default "%>
+    </div>
+  </div>
+</footer>
+
+
+<script type="text/javascript">
+
+    function checkbox_set(){
+        var checkBox = document.getElementById("check2");
+        var text = document.getElementById("show_approved_modal");
+        if (checkBox.checked == true){
+            text.style.display = "block";
+        } else {
+            text.style.display = "none";
+        }
+    }
+    // new uploader
+    $(document).ready(function(){
+
+        $('#js-grid-masonry').cubeportfolio({
+            filters: '#js-filters-masonry',
+            layoutMode: 'grid',
+            defaultFilter: '*',
+            animationType: 'slideDelay',
+            gapHorizontal: 20,
+            gapVertical: 20,
+            gridAdjustment: 'responsive',
+            mediaQueries: [{
+                width: 1500,
+                cols: 5,
+            }, {
+                width: 1100,
+                cols: 4,
+            }, {
+                width: 800,
+                cols: 3,
+            }, {
+                width: 480,
+                cols: 2,
+                options: {
+                    caption: '',
+                    gapHorizontal: 3,
+                    gapVertical: 3,
+                }
+            }],
+            caption: 'overlayBottomAlong',
+            displayType: 'bottomToTop',
+            displayTypeSpeed: 100,
+
+            // lightbox
+            lightboxDelegate: '.cbp-lightbox',
+            lightboxGallery: true,
+            lightboxTitleSrc: 'data-title',
+            lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
+        });
+
+        // Convert divs to queue widgets when the DOM is ready
+        $(function() {
+
+            $("#uploader").pluploadQueue({
+                // General settings
+                runtimes : 'html5,flash,silverlight,html4',
+                url : '/galleries/<%=@gallery.slug%>/transfer',
+                // chunk_size : '<%#= @gallery.project.shoot_type.max_frame_size %>mb',
+                unique_names : true,
+
+
+                filters : {
+                    max_file_size : '<%= @gallery.project.shoot_type.max_frame_size %>mb',
+                    min_file_size : '<%= @gallery.project.shoot_type.min_frame_size %>mb',
+                    mime_types: [
+                        {title : "Image files", extensions : "jpg,jpeg"}
+                    ]
+                },
+
+                // Flash settings
+                flash_swf_url : '/plupload/js/Moxie.swf',
+
+                // Silverlight settings
+                silverlight_xap_url : '/plupload/js/Moxie.xap',
+
+                // PreInit events, bound before any internal events
+                preinit : {
+                    Init: function(up, info) {
+                        log('[Init]', 'Info:', info, 'Features:', up.features);
+                    },
+
+                    UploadFile: function(up, file) {
+                        log('[UploadFile]', file);
+
+                        // You can override settings before the file is uploaded
+                        // up.setOption('url', 'upload.php?id=' + file.id);
+                        // up.setOption('multipart_params', {param1 : 'value1', param2 : 'value2'});
+                    }
+                },
+
+                // Post init events, bound after the internal events
+                init : {
+                    PostInit: function() {
+                        // Called after initialization is finished and internal event handlers bound
+                        log('[PostInit]');
+
+                        // document.getElementById('uploadfiles').onclick = function() {
+                        //   uploader.start();
+                        //   return false;
+                        // };
+                    },
+
+                    Browse: function(up) {
+                        // Called when file picker is clicked
+                        log('[Browse]');
+                    },
+
+                    Refresh: function(up) {
+                        // Called when the position or dimensions of the picker change
+                        log('[Refresh]');
+                    },
+
+                    StateChanged: function(up) {
+                        // Called when the state of the queue is changed
+                        log('[StateChanged]', up.state == plupload.STARTED ? "STARTED" : "STOPPED");
+                    },
+
+                    QueueChanged: function(up) {
+                        // Called when queue is changed by adding or removing files
+                        log('[QueueChanged]');
+                    },
+
+                    OptionChanged: function(up, name, value, oldValue) {
+                        // Called when one of the configuration options is changed
+                        log('[OptionChanged]', 'Option Name: ', name, 'Value: ', value, 'Old Value: ', oldValue);
+                    },
+
+                    BeforeUpload: function(up, file) {
+                        // Called right before the upload for a given file starts, can be used to cancel it if required
+                        log('[BeforeUpload]', 'File: ', file);
+                    },
+
+                    UploadProgress: function(up, file) {
+                        // Called while file is being uploaded
+                        log('[UploadProgress]', 'File:', file, "Total:", up.total);
+                    },
+
+                    FileFiltered: function(up, file) {
+                        // Called when file successfully files all the filters
+                        log('[FileFiltered]', 'File:', file);
+                    },
+
+                    FilesAdded: function(up, files) {
+                        // Called when files are added to queue
+                        log('[FilesAdded]');
+
+                        plupload.each(files, function(file) {
+                            log('  File:', file);
+                        });
+                    },
+
+                    FilesRemoved: function(up, files) {
+                        // Called when files are removed from queue
+                        log('[FilesRemoved]');
+
+                        plupload.each(files, function(file) {
+                            log('  File:', file);
+                        });
+                    },
+
+                    FileUploaded: function(up, file, info) {
+                        // Called when file has finished uploading
+                        log('[FileUploaded] File:', file, "Info:", info);
+                    },
+
+                    ChunkUploaded: function(up, file, info) {
+                        // Called when file chunk has finished uploading
+                        log('[ChunkUploaded] File:', file, "Info:", info);
+                    },
+
+                    UploadComplete: function(up, files) {
+                        // Called when all files are either uploaded or failed
+                        log('[UploadComplete]');
+                    },
+
+                    Destroy: function(up) {
+                        // Called when uploader is destroyed
+                        log('[Destroy] ');
+                    },
+
+                    Error: function(up, args) {
+                        // Called when error occurs
+                        console.log(args.status);
+                        if (args.status == 406){
+                            alert("حجم فایل بیشتر از حد مجاز است.")
+                        }
+                        if (args.status == 401){
+                            alert("اگزیف عکس موجود نیست و یا اگزیف دارای سریال نامبر نمی باشد. لطفا عکس دارای اگزیف را آپلود کنید.")
+                        }
+                    }
+                }
+            });
+
+            function log() {
+                var str = "";
+
+                plupload.each(arguments, function(arg) {
+                    var row = "";
+
+                    if (typeof(arg) != "string") {
+                        plupload.each(arg, function(value, key) {
+                            // Convert items in File objects to human readable form
+                            if (arg instanceof plupload.File) {
+                                // Convert status to human readable
+                                switch (value) {
+                                    case plupload.QUEUED:
+                                        value = 'QUEUED';
+                                        break;
+
+                                    case plupload.UPLOADING:
+                                        value = 'UPLOADING';
+                                        break;
+
+                                    case plupload.FAILED:
+                                        value = 'FAILED';
+                                        break;
+
+                                    case plupload.DONE:
+                                        value = 'DONE';
+                                        break;
+                                }
+                            }
+
+                            if (typeof(value) != "function") {
+                                row += (row ? ', ' : '') + key + '=' + value;
+                            }
+                        });
+
+                        str += row + " ";
+                    } else {
+                        str += arg + " ";
+                    }
+                });
+
+                var log = $('#log');
+                log.append(str + "\n");
+                // log.scrollTop(log[0].scrollHeight);
+            }
+        });
+
+    });
+    function remove_frames(id) {
+        $.ajax({
+            data: {
+                id: id,
+            },
+            dataType: 'script',
+            async: false,
+            success: function(){
+            },
+            type: 'DELETE',
+            url: "/frames/" + id,
+        })
+    }
+
+    function setModalMaxHeight(element) {
+        this.$element     = $(element);
+        this.$content     = this.$element.find('.modal-content');
+        var borderWidth   = this.$content.outerHeight() - this.$content.innerHeight();
+        var dialogMargin  = $(window).width() < 768 ? 20 : 60;
+        var contentHeight = $(window).height() - (dialogMargin + borderWidth);
+        var headerHeight  = this.$element.find('.modal-header').outerHeight() || 0;
+        var footerHeight  = this.$element.find('.modal-footer').outerHeight() || 0;
+        var maxHeight     = contentHeight - (headerHeight + footerHeight);
+
+        this.$content.css({
+            'overflow': 'hidden'
+        });
+
+        this.$element
+            .find('.modal-body').css({
+            'max-height': maxHeight,
+            'overflow-y': 'auto'
+        });
+    }
+
+    $('.modal').on('show.bs.modal', function() {
+        $(this).show();
+        setModalMaxHeight(this);
+    });
+
+    $(window).resize(function() {
+        if ($('.modal.in').length != 0) {
+            setModalMaxHeight($('.modal.in'));
+        }
+    });
+</script>
+
+<style>
+  .form-inline {
+    display: inline;
+  }
+</style>

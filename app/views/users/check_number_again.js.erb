@@ -1,0 +1,47 @@
+$(document).ready(function () {
+    let type;
+    let message;
+    setTimeout(function () {
+        type = 'info';
+        message = '<%= @message %>';
+
+        $.notify({
+            message: message
+        }, {
+            type: type,
+            placement: {
+                from: "top",
+                align: "center"
+            }
+        });
+    }, 150);
+    <% if @error == '1' %>
+      return;
+    <% end %>
+
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        var refreshId = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = 0;
+                $('#send_again_link').show();
+                $('#time').hide();
+                clearInterval(refreshId);
+            }
+        }, 1000);
+    }
+
+    var display = document.querySelector('#time');
+    startTimer(60, display);
+
+    $('#send_again_link').hide();
+    $('#time').show();
+})

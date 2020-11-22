@@ -1,0 +1,259 @@
+<script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyBqAlo6eTQeSbkOn3xYIjJ4e1zr4ewrSxU&sensor=false&libraries=places'>
+</script>
+<%= javascript_include_tag "locationpicker.jquery" %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <div class="col-sm-6" id="final-details">
+            <h3>اطلاعات نهایی</h3>
+            <div class="detail-row">
+              <% if alert %>
+                <div class="alert alert-warning">
+                  <p style="">
+                    <%= alert %>
+                  </p>
+                </div>
+              <% end %>
+            </div>
+            <div class="detail-row">
+
+              <span class="fa fa-user"></span>
+              <p>
+                <%= @project.user.display_name %> -
+                <%= @project.user.email %>
+              </p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-mobile"></span>
+              <p>
+                <%= @project.user.mobile_number %></p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-map-pin"></span>
+              <p style="direction: rtl;">
+                <%= h auto_link(simple_format(@project.address.detail), :html => {:target => '_blank'}) %>
+              </p>
+            </div>
+
+            <div class="detail-row">
+              <span class="fa fa-calendar-times-o"></span>
+              <p>
+                <% time = convert_persian_day(@project.start_time.strftime("%A")).to_s + " " + @project.start_time.to_date.to_pdate.strftime("%e %b").to_s + " ساعت " + @project.start_time.strftime("%H:%M") %>
+                <%= time %>
+              </p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-camera-retro"></span>
+              <p>رشته:
+                <%= @project.shoot_type.title %>
+              </p>
+            </div>
+            <% if @project.delivery_at_location %>
+              <div class="detail-row">
+                <span class="fa fa-files-o"></span>
+                <p>
+                  تحویل فایل ها در محل
+                </p>
+              </div>
+            <% end %>
+            <div class="detail-row">
+              <span class="fa fa-camera"></span>
+              <p> پکیج:
+                <%= @project.package.duration %> -
+                <% if @project.package.is_full %>
+                  دانلود
+                  تمام فریم ها
+                <% else %>
+                  دانلود
+                  <%= @project.package.digitals %>
+                  فریم
+                  از همه
+                  فریم ها
+                <% end %>
+              </p>
+            </div>
+            <div class="detail-row">
+              <span class="fa fa-camera"></span>
+              <p>
+                عکاس:
+                <%= @project.photographer.first_name %>
+                <%= @project.photographer.last_name %>
+              </p>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <div id="map" style="width: 100%; height: 400px;">
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-6">
+            <h4 class="text-left">
+              هزینه ایاب ذهاب تا محل عکاسی:
+            </h4>
+            <br />
+            <h3 class="text-left">
+              قابل پرداخت:
+            </h3>
+          </div>
+          <div class="col-xs-6">
+            <h4 class="text-right">
+              <%= number_with_delimiter(@project.receipt.transportion_cost.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+            </h4>
+            <br />
+            <h3 class="text-right">
+                <span id="final-cost">
+                  <%= number_with_delimiter(@project.receipt.subtotal.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                </span>
+              تومان
+            </h3>
+          </div>
+        </div>
+        <figure id="coupon">
+          <h3>
+            کد تخفیف:
+          </h3>
+          <div class="input-box">
+            <input  id="coupon_input" name="coupon" type="text" placeholder="کوپن تخفیف">
+            <button id="coupon_submit_button" class="btn-warning"> اعمال کد </button>
+          </div>
+          <div id="coupon-result" class=" hidden">
+            <h4>
+            </h4>
+          </div>
+        </figure>
+<!--        <div class="row" style="padding: 1em 0em;">
+          <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-10 col-lg-offset-2">
+            <div class="col-xs-12 col-sm-8 col-md-10"  >
+
+              <div class="collapse" id="collapseExample">
+                <div class="well">
+                  <p class="text-center" style="font-size: 11px">
+                    میتونی مبلغ
+                    <strong> فاکتور </strong>
+                    را به شماره کارت کادرو واریز کنی تا پروژه عکاسی ات سریع ثبت نهایی شود.
+                  </p>
+                  <h4 class="text-center" >
+                    <strong> 6219-8610-3871-8960  </strong>
+                  </h4>
+                  <h6 class="text-center">
+                    <span> بانک سامان - امیرمهدی واله</span>
+                  </h6>
+                  <p class="text-center text-primary" style="font-size: 11px">
+                    سپس اسکرین شات پرداخت تان را در
+                    چت پشتیبانی برای ما ارسال کنید.
+                  </p>
+                  <p class="text-center">
+                    <button class="btn btn-default" onclick="window.Raychat.open();">
+                      چت پشتیبانی
+                    </button>
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="btn-wrap text-center">
+            <%= form_for(:transaction, url: initial_send_transactions_path , id:"pay_form") do |f| %>
+              <%= f.hidden_field "amount" , value: @project.receipt.subtotal.to_i %>
+              <%= f.hidden_field "afterwards_url" , value: success_payment_notification_project_path(@project) + '?' %>
+              <input type="hidden" name="coupon_code" id="coupon-code">
+              <%= f.hidden_field "description" , value: " #{@project.user.email} #{@project.user.mobile_number}  | #{@project.package.title} - #{ @project.package.photos_count} - #{time} - #{@project.photographer.first_name} #{@project.photographer.last_name}"%>
+              <%= f.hidden_field "email" , value: @project.user.email %>
+              <%= f.hidden_field "mobile_number" , value: @project.user.mobile_number %>
+              <%= f.hidden_field "project_id" , value: @project.slug %>
+              <div class="btn-group">
+<!--                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                  رمز دوم پویا نداری؟
+                </a> -->
+                <button class="btn btn-blue">
+                  ثبت و پرداخت آنلاین
+                </button>
+              </div>
+
+            <% end %>
+          </div>
+        </div>
+      </div><!-- /.wrapper -->
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<script>
+    $(document).ready(function () {
+
+
+        // check coupon code
+
+        $('#coupon_submit_button').click(function(){
+            code = document.getElementById('coupon_input').value
+            console.log(code);
+            var sendReq = $.fn.postReq(code);
+        })
+
+
+        $.fn.postReq = function (code) {
+            console.log('send request for ' + code);
+            var url    = '<%=reserve_check_coupon_path %>';
+            $.ajax({
+                url    : url,
+                type   : "POST",
+                data   : {'coupon[code]' : code ,'project_slug':"<%=@project.slug%>"},
+                success: function (res) {
+                    console.log(res);
+                    var res = res;
+                    $('#coupon-result').removeClass('hidden');
+                    landing = $('#coupon-result');
+                    price = $('#final-cost');
+                    field_amount = $('#transaction_amount');
+                    if (res.response == 'ok') {
+                        if (res.free_credit) {
+                            af = jQuery('#transaction_afterwards_url').val();
+                            jQuery('#transaction_afterwards_url').val(af + 'free_credit=true&key=' + code + '&');
+                        }
+                        landing.text(res.message);
+                        price.text(res.discounted_price);
+                        field_amount.val(res.discounted_price);
+                        price.css({
+                            "color": '#2B87F9'
+                        });
+                        $('#coupon-result').css({
+                            "color": 'green'
+                        });
+                        $("#coupon-code").val(code);
+                    }
+                    if(res.response=='error'){
+                        landing.text(res.message);
+                        $('#coupon-result').css({
+                            "color": 'red'
+                        });
+                    }
+                },
+                error  : function (e) {
+                    console.log('error on POST Method');
+                    console.log(e);
+                }
+            })
+        };
+
+
+        $('#submit_page_form').click(function(){
+            $('#pay_form').submit();
+        })
+        $('#map').locationpicker({
+            location: {
+                latitude: <%= @project.address.lattitude %>,
+                longitude: <%= @project.address.longtitude %>
+            },
+            radius: 10,
+            zoom: 16,
+            markerDraggable: false
+        });
+    });
+</script>

@@ -1,0 +1,87 @@
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+@import "arctic_admin/base";
+@import 'activeadmin_addons/all';
+
+// @import "active_admin/mixins";
+// @import "active_admin/base";
+@import "bootstrap.min";
+// @import "wigu/active_admin_theme";
+@import "bootstrap-multiselect";
+@import "bootstrap.min";
+@import "gallery/cubeportfolio.min";
+
+@import "persian-datepicker.min";
+
+@import "photographer-flow";
+
+
+// @import "bootstrap-rtl.min";
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   .status_tag { background: #6090DB; }
+body{
+  font-family: "iransans",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+.flashes{
+  direction: rtl;
+}
+
+form fieldset > ol > li.date_select fieldset ol li, form fieldset > ol > li.time_select fieldset ol li, form fieldset > ol > li.datetime_select fieldset ol li{
+  width: 300px !important;
+}
+.label{
+  color: #0a5bb1 !important;
+}
+#title_bar{
+  background-color: #DEECF9;
+}
+#wrapper{
+  background: #004578;
+}
+.panel{
+  background-color: #bff0ff;
+}
+body.index #sidebar:before {
+  background-color: #c7e0f4;
+}
+.header #tabs li a{
+  color: #1788dc;
+}
+.ui-dialog{
+  background-color: #f3c442;
+}
+button{
+  border: 1px solid white;
+  background: none;
+  margin: 1rem;
+}
+.breadcrumb{
+  background-color: inherit;
+}
+body.index .table_actions .member_link{
+  background-color: #6b6b6b;
+  margin: 1px;
+}
+
+.with_sidebar{
+  margin: 0 auto !important;
+}
+
+.yes{
+  background-color: #4886be;
+}
+

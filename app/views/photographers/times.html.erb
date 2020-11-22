@@ -1,0 +1,193 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<% @top_title = "استودیوی شما" %>
+<% if photographer_signed_in? %>
+  <%= render 'shared/studio_header', title: "تقویم کاری" %>
+<% end  %>
+<section id="main" <% if not photographer_signed_in? %> style="margin-top:0 !important;"<%end%>>
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <% if photographer_signed_in? %>
+            <%= render 'shared/studio_top_navigation' %>
+          <% end %>
+          <div class="col-md-12 " style="margin-top: 5%;">
+            <div class="row">
+              <div class="col-xs-12">
+                <h4  class="text-right">
+                  برنامه هفتگی شما در حال حاضر
+                </h4>
+                <% if @photographer.free_times.any? %>
+                  <%= timeline free_times_table(@photographer), id: "free_time-chart", height: "350px", colors: ["#2B87F8","#1768cd" , "#31708f"] %>
+                <% else %>
+                  شما هنوز هیچ زمانی را وارد نکرده اید.
+                <% end %>
+              </div>
+            </div>
+            <h3 class="text-right">
+              ویرایش تقویم
+            </h3>
+            <hr>
+            <div class="container-fluid">
+              <div class="col-md-3 col-sm-2 col-xs-12">
+                <div class="row">
+
+                  <div class="col-xs-12 text-right" >
+                    <h4 class="text-right">
+                      تنظیم سریع
+                    </h4>
+                    <button class="btn btn-block close_all btn-default">
+                      <span class="fa fa-lock"></span>
+                      بستن همه زمان ها
+                    </button>
+                    <%= link_to close_all_times_path(@photographer),class:"btn btn-warning btn-block btn-default close_all_show hidden" do %>
+                      <span class="fa fa-warning"></span>
+                      آیا مطمئن هستید؟ (بله)
+                    <% end %>
+                    <%= link_to open_most_times_path(@photographer),class:"btn btn-block btn-default" do %>
+                      <span class="fa fa-unlock"></span>
+                      باز کردن بیشتر زمان
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-9 col-sm-10 col-xs-12">
+                <h4 style="line-height: 2em;" class="text-right" >
+                  زمان هایی که می خواهید پروژه عکاسی بگیرید را وارد کنید و
+                  <strong style="border-bottom:1px solid #ff7100"> پیوسته</strong>
+                  به روز نگاه دارید.
+                </h4>
+                <div class="row" style="text-align: -webkit-center">
+                  <%= form_for :photographer, url: update_times_photographer_path, method: "post", html: {class: "form form-group", :id => "update_times"} do |f| %>
+                    <%= hidden_field_tag :id , @photographer.uid %>
+                    <% WeekDay.all.priority_order.each do |e| %>
+
+                      <div class="row <%if e.id==8%> all_days <% else %> days <%end%> ">
+                        <div class="col-md-2 ">
+                          <h4 class="">
+                            <%= e.id == 8 ? "تعیین همه" : e.name %>
+                          </h4>
+                          <% if e.id == 8 %>
+                            <span data-html="true" class="fa fa-question-circle text-muted" style="font-size: 30px;" data-toggle="all_in_one" data-placement="top" ></span>
+                          <% end %>
+                        </div>
+                        <div class="col-md-1  col-xs-3">
+                          از
+                        </div>
+                        <div class="col-md-3  col-xs-8">
+                          <% if @photographer.free_times.find_by(:day => e.order).present? %>
+                            <% start_time = @photographer.free_times.find_by(:day => e.order).start.strftime("%H:%M") %>
+
+                            <div class="input-group clockpicker">
+                              <input class="form-control text-center" type="text" value="<%= start_time %>" id="free_time_start_<%=e.order%>" name="free_time[start_<%= e.order %>]"  placeholder="ساعت" required="">
+                            </div>
+
+                          <% else %>
+                            <div class="input-group clockpicker">
+                              <input class="form-control text-center" type="text" id="free_time_start_<%=e.order%>" name="free_time[start_<%= e.order %>]"  placeholder="ساعت" required="">
+                            </div>
+                          <% end %>
+                        </div>
+                        <div class="col-md-1  col-xs-3">
+                          تا
+                        </div>
+                        <div class="col-md-2  col-xs-8">
+                          <% if @photographer.free_times.find_by(:day => e.order).present? %>
+                            <% end_time = @photographer.free_times.find_by(:day => e.order).end.strftime("%H:%M") %>
+                            <div class="input-group clockpicker">
+                              <input class="form-control text-center" type="text" value="<%= end_time %>" id="free_time_end_<%=e.order%>" name="free_time[end_<%= e.order %>]"  placeholder="ساعت" required="">
+                            </div>
+                          <% else %>
+                            <div class="input-group clockpicker">
+                              <input class="form-control text-center" type="text"  id="free_time_end_<%=e.order%>"  name="free_time[end_<%= e.order %>]"  placeholder="ساعت" required="">
+                            </div>
+                          <% end %>
+                        </div>
+                        <div class="col-xs-12 col-md-3" style="display: flex;
+                            justify-content: space-evenly;font-size: 30px;color: #bdbdbd;">
+                          <span class="fa fa-unlock" onclick="open_this_day(<%=e.order%>)" id="<%=e.order%>"></span>
+                          <span class="fa fa-lock"  onclick="close_this_day(<%=e.order%>)" id="<%=e.order%>"></span>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+  <footer id="footer">
+    <div class="container">
+      <div class="wrap">
+        <%= link_to "استودیو", studio_photographer_path(@photographer), class: "btn btn-default " %>
+        <button type="submit" id="submit_page_form" class="face btn btn-blue btn-lg">ذخیره
+        </button>
+      </div>
+    </div>
+  </footer>
+</section>
+
+
+<script>
+    $(function () {
+        $('input[type="time"][value="now"]').each(function () {
+            var d = new Date(),
+                h = d.getHours(),
+                m = d.getMinutes();
+            if (h < 10) h = '0' + h;
+            if (m < 10) m = '0' + m;
+            $(this).attr({
+                'value': h + ':' + m
+            });
+        });
+    });
+</script>
+
+<script>
+
+
+    function open_this_day( day_id ) {
+        $("#free_time_start_"+day_id).val("07:30").addClass('green');;
+        $("#free_time_end_"+day_id).val("22:30").addClass('green');;
+        setTimeout(function () {
+            $("#free_time_start_"+day_id).removeClass('green');
+            $("#free_time_end_"+day_id).removeClass('green');
+        }, 3000);
+    }
+    function close_this_day( day_id ) {
+        $("#free_time_start_"+day_id).val("");
+        $("#free_time_end_"+day_id).val("");
+    }
+    $(document).ready(function () {
+
+        $('.close_all').click(function () {
+            $('.close_all').addClass("hidden");
+            $(".close_all_show").removeClass("hidden");
+        });
+
+        $(function () {
+            $('[data-toggle="all_in_one"]').tooltip({
+                title: "با تغییر این مقدار، تمامی روزهای هفته را یکجا تغییر دهید."
+            });
+        });
+        $('#submit_page_form').click(function () {
+            document.getElementById("update_times").submit();
+        })
+    });
+</script>
+
+
+<script type="text/javascript">
+    $('.clockpicker').clockpicker({
+        placement: 'top',
+        align: 'left',
+        donetext: 'Done'
+    });
+    $('.popover-title').css("direction", "rtl");
+</script>
+
+<!-- <link rel="manifest" href="/photographer_calendar_manifest?photographer_mobile_number=<%#= @photographer.mobile_number %>"> -->
+<!-- <link rel="manifest" href="/calender.json"> -->

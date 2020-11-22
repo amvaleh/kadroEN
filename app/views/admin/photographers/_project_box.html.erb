@@ -1,0 +1,43 @@
+<div class="well">
+  <h6 class="text-center">
+    <%= p.user.display_name %>
+  </h6>
+  <p class="rtl text-center">
+    <% if p.shoot_type.present? && p.package.present? %>
+    <span class="badge badge-default"><%= p.shoot_type.title%></span>-<span class="badge badge-success"><%= p.package.display_name %></span>-<%= "M+" if p.delivery_at_location %>
+    <% end %>
+    <% if p.start_time.present? %>
+    <%= p.start_time.to_date.to_pdate.strftime("%e %b")%>
+    <% end %>
+  </p>
+  <div class="row">
+    <div class="col-xs-4 alert alert-info">
+      <%= link_to "نمایش پروژه" ,admin_project_path(p), target: :_blank%>
+    </div>
+
+    <div class="col-xs-4 alert alert-info">
+      <%= link_to "فاکتور مشتری" ,thank_you_project_path(p), target: :_blank%>
+    </div>
+
+    <div class="col-xs-4 alert alert-info">
+      <%= link_to "فاکتور عکاس" ,project_information_project_path(p), target: :_blank%>
+    </div>
+
+    <div class="col-xs-4 alert alert-info">
+      <%= link_to "فاکتور پروژه" , edit_admin_receipt_path(p.receipt), target: :_blank%>
+    </div>
+
+    <div class="col-xs-4 alert alert-info">
+      <%= link_to "نمایش کاربر",admin_user_path(p.user), target: :_blank%>
+    </div>
+
+    <div class="col-xs-4 alert alert-info">
+      <%=link_to p.photographer.display_name,admin_photographer_path(p.photographer) if p.photographer.present? %>
+    </div>
+    <% if p.gallery.present? %>
+    <div class="col-xs-4 alert alert-info">
+      <%= link_to "گالری #{p.gallery.frames.count}",admin_gallery_path(p.gallery.slug), target: :_blank%>
+    </div>
+    <% end %>
+  </div>
+</div>

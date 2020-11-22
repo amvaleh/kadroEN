@@ -1,0 +1,161 @@
+.gallery-capacity-footer {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    z-index: 999;
+}
+
+.circle-capacity {
+    background: #dc0673;
+    border-radius: 50%;
+    width: 13%;
+    height: 130%;
+    display: inline-block;
+    position: absolute;
+    left: -3%;
+    bottom: 17%;
+    color: white;
+}
+
+#download-capacity-notify{
+    border-top-right-radius: 20px;
+    background-color: #2194e4;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    color: white;
+}
+
+#approve-download-btn {
+    width: 40%;
+}
+
+@media screen and (min-width: 601px) {
+    #download-capacity-notify {
+        font-size: 12px;
+    }
+    .check-show {
+        font-size: 12px;
+    }
+    #capacity-container{
+        width: 60%;
+    }
+    .circle-capacity {
+        font-size: 40px;
+    }
+
+
+}
+
+@media screen and (min-width: 1000px) {
+    #download-capacity-notify {
+        font-size: 15px;
+    }
+    .check-show{
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 950px) and (max-width: 1050px){
+    #download-acknowledge {
+        font-size: 18px;
+    }
+    #approve-download-btn {
+        font-size: 25px !important;
+    }
+}
+@media screen and (min-width: 1050px) {
+    #download-acknowledge {
+        font-size: 25px;
+    }
+    #approve-download-btn {
+        font-size: 25px !important;
+    }
+    .circle-capacity {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #download-capacity-notify {
+        font-size: 10px;
+    }
+    .check-show {
+        font-size: 10px;
+    }
+    #capacity-container{
+        width: 90%;
+    }
+    .circle-capacity {
+        font-size: 30px;
+    }
+    #download-acknowledge {
+        font-size: 14px;
+    }
+    #approve-download-btn {
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (max-width: 600px) and (min-width: 450px) {
+    #download-capacity-notify {
+        font-size: 12px;
+    }
+    .check-show {
+        font-size: 12px;
+    }
+    #capacity-container{
+        width: 90%;
+    }
+    .circle-capacity {
+        font-size: 35px;
+    }
+    #download-acknowledge {
+        font-size: 15px;
+    }
+    #approve-download-btn {
+        font-size: 15px !important;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 700px) {
+    #capacity-container{
+        width: 90%;
+    }
+    #download-acknowledge {
+        font-size: 17px;
+    }
+    #approve-download-btn {
+        font-size: 17px !important;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 950px) {
+    #capacity-container{
+        width: 80%;
+    }
+    #download-acknowledge {
+        font-size: 20px;
+    }
+    #approve-download-btn {
+        font-size: 20px !important;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 800px) {
+    .circle-capacity {
+        font-size: 42px;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 950px) {
+    .circle-capacity {
+        font-size: 44px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .circle-capacity {
+        font-size: 55px;
+    }
+}

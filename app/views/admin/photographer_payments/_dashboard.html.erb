@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row alert alert-success" style="direction:rtl">
+    <div class="col-xs-2 well">
+      کل بدهی:
+      <br>
+     <%= number_with_delimiter( Credit.all.where(owner_type:"User").sum(:value)+ PhotographerPayment.where(status: "2").sum("price") ,  :delimiter => ',') %>
+    </div>
+  </div>
+  <div class="row alert alert-success" style="direction:rtl">
+
+    <div class="col-xs-2 well">
+      جمع اعتبار:
+      <br>
+     <%= number_with_delimiter( Credit.all.where(owner_type:"User").sum(:value) , :delimiter => ',') %> تومن
+    </div>
+
+    <div class="col-xs-2 well">
+      آماده برای پرداخت:
+      <button class="btn btn-xs btn-large btn-default"><%= PhotographerPayment.where(:status => "2").count %></button>
+      <%= number_with_delimiter(PhotographerPayment.where(status: "2").sum("price"), :delimiter => ',') %> تومن
+    </div>
+
+    <div class="col-xs-2 well">
+پرداخت شده:
+      <button class="btn btn-xs btn-large btn-default"><%= PhotographerPayment.where(:status => "3").count %></button>
+      <%= number_with_delimiter(PhotographerPayment.where(status: "3").sum("price"), :delimiter => ',') %> تومن
+    </div>
+    <div class="col-xs-2 well">
+      ابطال شده:
+      <button class="btn btn-xs btn-large btn-default"><%= PhotographerPayment.where(:status => "4").count %></button>
+      <%= number_with_delimiter(PhotographerPayment.where(status: "4").sum("price"), :delimiter => ',') %> تومن
+    </div>
+    <div class="col-xs-2 well">
+      در انتظار پرداخت:
+      <button class="btn btn-xs btn-large btn-default"><%= PhotographerPayment.where(:status => "5").count %></button>
+      <%= number_with_delimiter(PhotographerPayment.where(status: "5").sum("price"), :delimiter => ',') %> تومن
+    </div>
+    <div class="col-xs-2 well">
+      دارای خطا
+      <button class="btn btn-xs btn-large btn-default"><%= PhotographerPayment.where(:status => "6").count %></button>
+      <%= number_with_delimiter(PhotographerPayment.where(status: "6").sum("price"), :delimiter => ',') %> تومن
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,125 @@
+<div class="row" style="margin-bottom:10px;">
+  <div class="col-xs-2">
+    <span>
+      Date:
+    </span>
+    <br>
+    <p style="margin-top: 30px;">Lead Source Type :</p>
+  </div>
+  <div class="col-xs-10">
+    <div class="col-xs-4">
+      <span>Start Date:</span>
+      <input class="date_input" id="start_date_input">
+    </div>
+    <div class="col-xs-4">
+      <span>End Date:</span>
+      <input class="date_input" id="end_date_input">
+    </div>
+    <div class="col-xs-4">
+      <button class="btn btn-sm btn-primary" id="submit-filter" style="margin-top:0px;">فیلتر کن</button>
+    </div>
+    <div class=row>
+      <div class="col-xs-12 text-left" style="margin-top: 20px;">
+        <input type="radio" id="confirmed" name="type" value="confirmed" <%= params[:type] == "confirmed" ? "checked" : "" %>>
+        <label for="confirmed" style="margin-right: 20px;">Confirmed Project</label>
+        <input type="radio" id="canceled" name="type" value="canceled" <%= params[:type] == "canceled" ? "checked" : "" %>>
+        <label for="canceled">Cancel Project</label>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  a = $('.date_input').persianDatepicker({
+    "format": "YYYY-MM-DD",
+    "inline": false,
+    "viewMode": "day",
+    "initialValue": true,
+    "initialValueType": false,
+    "autoClose": false,
+    "position": "auto",
+    "altFormat": "lll",
+    "altField": "#altfieldExample",
+    "onlyTimePicker": false,
+    "onlySelectOnDate": false,
+    "calendarType": "persian",
+    "inputDelay": 800,
+    "observer": false,
+    "calendar": {
+      "persian": {
+        "locale": "fa",
+        "showHint": true,
+        "leapYearMode": "algorithmic"
+      },
+      "gregorian": {
+        "locale": "en",
+        "showHint": true
+      }
+    },
+    "navigator": {
+      "enabled": true,
+      "scroll": {
+        "enabled": true
+      },
+      "text": {
+        "btnNextText": "<",
+        "btnPrevText": ">"
+      }
+    },
+    "toolbox": {
+      "enabled": true,
+      "calendarSwitch": {
+        "enabled": true,
+        "format": "MMMM"
+      },
+      "todayButton": {
+        "enabled": true,
+        "text": {
+          "fa": "امروز",
+          "en": "Today"
+        }
+      },
+      "submitButton": {
+        "enabled": true,
+        "text": {
+          "fa": "تایید",
+          "en": "Submit"
+        }
+      },
+      "text": {
+        "btnToday": "امروز"
+      }
+    },
+    "dayPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY MMMM"
+    },
+    "monthPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    },
+    "yearPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    }
+  });
+  
+  $("#start_date_input").val("<%= start_date.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>");
+  $("#end_date_input").val("<%= end_date.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>");
+  $( "#submit-filter" ).click(function() {
+    start_date = toEnglishNumber($("#start_date_input").val());
+    end_date = toEnglishNumber($("#end_date_input").val());
+    type = $('input[name="type"]:checked').val();
+    window.location.href = 'sale_analyze?start_date=' + start_date + '&end_date=' + end_date + '&type=' + type;
+  });
+  function toEnglishNumber(strNum) {
+    var pn = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+    var en = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    var an = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
+    var cache = strNum;
+    for (var i = 0; i < 10; i++) {
+        var regex_fa = new RegExp(pn[i], 'g');
+        cache = cache.replace(regex_fa, en[i]);
+    }
+    return cache;
+  }
+</script>

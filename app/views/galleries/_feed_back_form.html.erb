@@ -1,0 +1,83 @@
+<div style="background-color: rgba(236, 236, 236, 0.95); padding: 2%">
+  <div class="container-fluid" id="rate-photographer-first">
+    <div class="row">
+      <h4 class="text-center text-justify">
+        قبل از دانلود،
+        <strong style="color: #609919">
+          نظرتان
+        </strong>
+        را
+        نسبت به عملکرد عکاس
+        <strong>
+          <%= @gallery.project.photographer.abbrv_name %>
+        </strong>
+        با ما در میان بگذارید.
+      </h4>
+    </div>
+    <div class="row well">
+      <%= form_for :feed_back, url: create_feed_backs_path(project_slug), method: "post", html: {class: "form form-group", :id => "create"} do |f| %>
+        <div class="row">
+          <div class="col-4 col-xs-4">
+            <h4 class="text-center">
+              نظم و اجرا
+            </h4>
+          </div>
+          <div class="col-8 col-xs-8">
+            <div class="col-12 col-xs-12 text-center" id="feed_back[arate]">
+              <%= f.select :arate,[ ["۱","1"] , ["۲","2"], ["۳","3"], ["۴","4"], ["۵","5"], ["۶","6"], ["۷","7"], ["۸","8"], ["۹","9"], ["۱۰","10"] ], { :include_blank => 'نمره دهید' }, {:class => 'form-control' , :required => true}   %>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <hr>
+          <div class="col-4 col-xs-4">
+            <h4 class="text-center">
+              کیفیت
+              عکسها
+            </h4>
+          </div>
+          <div class="col-8 col-xs-8">
+            <div class="col-12 col-xs-12 text-center" id="feed_back[qrate]">
+              <%= f.select :qrate,[ ["۱","1"] , ["۲","2"], ["۳","3"], ["۴","4"], ["۵","5"], ["۶","6"], ["۷","7"], ["۸","8"], ["۹","9"], ["۱۰","10"] ], { :include_blank => 'نمره دهید' }, {:class => 'form-control' , :required => true}   %>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4 justify-content-center">
+          <hr>
+          <div class="col-md-12">
+            <h4 class="text-center">
+              اگر بخواهید به دیگران
+              <strong style="font-si"> <%= @gallery.project.photographer.abbrv_name%> </strong>
+              را معرفی کنید چه می گویید؟
+            </h4>
+          </div>
+          <div class="col-md-8 col-md-offset-2">
+            <%= f.text_area "description", class: "form-control", style: "height: 230px; font-size: 25px;", required: true ,
+                            placeholder: "مثال: #{@gallery.project.photographer.last_name} را بدلیل انرژی زیاد و حضور به موقع در محل و ادیت خوبی که روی عکس ها زد به دیگران توصیه می کنم." %>
+            <%= hidden_field_tag "is_remote", @remote %>
+          </div>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-md-offset-3">
+            <button type="submit" id="submit_page_form" class="btn btn-blue btn-lg btn-block">ذخیره
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+    function change_a(o) {
+        var x = o.value;
+        document.getElementById('value_a').innerHTML = x;
+    }
+</script>
+<script>
+    function change_q(o) {
+        var x = o.value;
+        document.getElementById('value_q').innerHTML = x;
+    }
+</script>

@@ -1,0 +1,36 @@
+<div id="profile-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="">
+      <i  data-dismiss="modal" class="fa fa-times fa-4x" style="color: #ffffff;
+    position: absolute;
+    z-index: 2;
+    background: #ffffff42;
+    border-radius: 18px;
+    font-size: 25px;
+    padding: 7px;" aria-hidden="true"></i>
+      <div class="body">
+        <div id="js-grid-slider-thumbnail" class="cbp">
+          <% @photographer.photographer_attachments.each do |ph_attach| %>
+            <div class="cbp-item" style="margin: 0px">
+              <div class="cbp-caption">
+                <div class="cbp-caption-defaultWrap">
+                  <img id="prof-img" src="<%= ph_attach.avatar_url(:large) %>">
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div id="js-pagination-slider">
+          <% @photographer.photographer_attachments.each do |ph_attach| %>
+            <div class="cbp-pagination-item cbp-pagination-active">
+              <img style="width: 100px; height: 100px" src="<%= ph_attach.avatar_url(:medium) %>">
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

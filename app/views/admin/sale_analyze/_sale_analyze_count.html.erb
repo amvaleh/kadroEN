@@ -1,0 +1,15 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+<div class="row" style="margin-bottom:10px;">
+    <div class="col-xs-2">
+        <span>
+        Sales Confirmed Projects
+        </span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <% data = Projects::ProjectsCountPerDay.call(start_date: start_date, end_date: end_date).result %>
+        <%= line_chart data, library: {backgroundColor: "#eee"} %>
+    </div>
+</div>

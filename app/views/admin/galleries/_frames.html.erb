@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-xs-12">
+    <% frames.order("created_at DESC").each do |frame| %>
+    <div class="col-xs-3" style="padding: 10px;">
+      <%= link_to frame.file_address(false,"light") , target: :_blank do %>
+      <%= image_tag frame.file_address(false,"light"),:width=> 300%>
+      <% end %>
+      <%= link_to "exif" , admin_exif_path(frame.exif) , target: "_blank" , :class => "btn btn-info btn-xs" if frame.exif.present?  %>
+      <%= link_to "watermarked" , frame.file_address(true,""), target: :_blank, :class => "btn btn-primary btn-xs" %>
+      <%= link_to "original" , frame.file_address(false,"original"), target: :_blank, :class => "btn btn-primary btn-xs" %>
+      <%= link_to "Show" , admin_frame_path(frame.id) , :class => "btn btn-default btn-xs" %>
+      <%= link_to "Edit" , edit_admin_frame_path(frame.id) , :class => "btn btn-default btn-xs" %>
+      <%= link_to "Delete" , admin_frame_path(frame.id) ,:method => :delete , data: { confirm: 'Are you sure?' } , :class => "btn btn-danger btn-xs" %>
+      <%= link_to('انتخاب تصویر', select_frame_form_admin_galleries_path(image_id: frame.id, image_type: "Frame"), class: 'btn btn-success btn-large', remote: true) %>
+    </div>
+    <%end%>
+  </div>
+</div>
+
+<%= render 'shared/modal' %>

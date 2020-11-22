@@ -1,0 +1,11 @@
+<%= form_for(@photographer) do |f|%>
+first_name: <%= f.text_field :first_name %>
+<br>
+last_name: <%= f.text_field :last_name %>
+<br>
+
+location: <%= f.text_field :location %>
+<br>
+<br>
+<%= f.submit %>
+<% end %>

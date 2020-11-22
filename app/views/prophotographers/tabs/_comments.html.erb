@@ -1,0 +1,32 @@
+<style>
+  .cbp-nav-controls{
+    top: -20px !important;
+  }
+
+</style>
+<div class="container-fluid" id="rates"  style="padding-bottom: 30px;" >
+
+  <% if @projects_feedbacked.count > 0 %>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-right title-font-size">
+        نظرات کاربران درباره
+        <%= @photographer.last_name %>
+      </h2>
+    </div>
+  </div>
+  <!-- feedbacks -->
+  <% if @good_feedbacks.count > 0 %>
+  <%= render "photographer_feedbacks" %>
+  <% end %>
+  <% else %>
+  <div class="row">
+    <div class="col-xs-12" style="height:30vh;display:flex;    align-items: center;justify-content:center">
+      <h2 class="text-center title-font-size" style="display:flex">
+        هنوز هیچ نظری برای این عکاس ثبت نشده است.
+      </h2>
+    </div>
+  </div>
+  <% end %>
+</div>
+

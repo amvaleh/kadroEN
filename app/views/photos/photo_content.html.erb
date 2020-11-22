@@ -1,0 +1,92 @@
+<head>
+  <% if Rails.env.production? %>
+  <%= render 'shared/externals/gtag_header' %>
+  <%= render 'shared/externals/ganalytics' %>
+  <%#= render 'shared/externals/addthis' %>
+  <%= render 'shared/externals/raychat' %>
+  <%#= render 'shared/externals/heap_analytics' %>
+  <%= render 'shared/yektanet_header' %>
+  <%= render 'shared/externals/yandex' %>
+  <% end %>
+  <title>
+    نمونه کار عکاسی
+    <%= @shoot_type.title if @shoot_type.present? %>
+    | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="نمونه کار <%= @shoot_type.title if @shoot_type.present? %>">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    <%= csrf_meta_tags %>
+
+    <% if Rails.env.production? %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload',host: "app.kadro.co" %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload',host: "app.kadro.co"  %>
+    <% else %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload'  %>
+    <% end %>
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+  </head>
+
+  <body style="min-height: 1000px;">
+    <div id="js-grid-full-width" class="cbp">
+      <% @photos.last(36).each do |p| %>
+      <div class="cbp-item identity logos" style="width: 30%">
+        <a href="<%=p.file_url(:medium)%>" class="cbp-caption cbp-lightbox">
+          <div class="cbp-caption-defaultWrap">
+            <img class="img-replace" src="<%=p.file_url(:thumb)%>" width="300" height="220" id="<%=p.file_url(:medium)%>" alt="عکس <%=p.expertise.shoot_type.title%>">
+          </div>
+          <div class="cbp-caption-activeWrap">
+            <div class="cbp-l-caption-alignLeft">
+              <div class="cbp-l-caption-body">
+                <div class="cbp-l-caption-title"> عکس <%=p.expertise.shoot_type.title%> </div>
+                <div class="cbp-l-caption-desc">
+                  <% if p.expertise.present? and p.expertise.photographer.present? %>
+                  توسط <%=p.expertise.photographer.abbrv_name%>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <% end %>
+    </div>
+    <script type="text/javascript">
+      (function($, window, document, undefined) {
+        'use strict';
+
+        // init cubeportfolio
+        $('#js-grid-full-width').cubeportfolio({
+          loadMoreAction: 'auto',
+          layoutMode: 'mosaic',
+          sortToPreventGaps: true,
+          defaultFilter: '*',
+          showNavigation: true,
+          animationType: 'fadeOutTop',
+          gapHorizontal: 3,
+          gapVertical: 3,
+          gridAdjustment: 'responsive',
+          mediaQueries: [{
+            width: 1100,
+            cols: 3,
+          }, {
+            width: 800,
+            cols: 2,
+          }, {
+            width: 480,
+            cols: 2,
+          }],
+          caption: 'minimal',
+          displayType: 'default',
+          // lightbox
+          lightboxDelegate: '.cbp-lightbox',
+          lightboxGallery: true,
+          lightboxTitleSrc: 'data-title',
+          lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
+        });
+      })(jQuery, window, document);
+    </script>
+  </body>

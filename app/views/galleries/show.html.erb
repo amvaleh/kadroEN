@@ -1,0 +1,494 @@
+<div style="
+background: url('<%=@gallery.frames.last.file_address(false,"light")%>'); background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;" class="data-id" id="<%= @gallery.id %>">
+<div style="background-color:rgba(255, 255, 255, 0.9);">
+  <div class="container-fluid" style="padding-top: 60px;padding-right: 12%;padding-left: 12%;">
+    <div class="row">
+      <h1 class="text-center" style="color: #2B87F9;">
+        <%= @gallery.project.user.display_name %>
+      </h1>
+      <div class="row">
+        <% if @need_to_pay_extra_hour %>
+        <div class="col-xs-12">
+          <div class="col-md-8 col-md-offset-2 text-center ">
+            <p class="alert alert-info">
+              لطفا از لینک زیر اقدام به تسویه
+              <%= @project.receipt.extrahour_total - @project.receipt.extrahour_paid %>
+              تومان
+              بابت
+              <%= @project.extend_hours %>
+              ساعت تمدید پروژه خود
+              بفرمائید.
+            </p>
+          </div>
+          <div class="col-md-4 col-md-offset-4">
+            <div class="row text-center" style="padding-top: 30px;">
+              <%= link_to "پرداخت", extra_receipt_project_path(@project.slug), class: "btn btn-blue btn-lg" %>
+            </div>
+          </div>
+        </div>
+        <% else %>
+
+        <%#= render "galleries/feedback_stars" , :@project => @project %>
+        <div class="row">
+          <div class="col-xs-12">
+            <nav class="navbar" style="background-color: #ffffff; border: 0.1em solid #d7d7d7;border-radius: 30px !important;">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed btn btn-blue" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <!-- <span class="fa fa-cogs fa-lg" style="color: white"></span> -->
+                    امکانات
+                  </button>
+                  <a href="#" class="navbar-brand" style="color:#a1a1a1;">
+                    <!-- put sth here -->
+                    <%= @gallery.project.start_time.to_date.to_pdate.strftime(" %e %b") %>
+                    -
+                    <%= @gallery.project.start_time.to_date.to_pdate.strftime("%A") %>
+                  </a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-left">
+                    <li class="text-center">
+                      <%= link_to "http://bit.ly/2YZjYiw",target:"_blank" do %>
+                      <i class="fa fa-file-movie-o"></i>
+                      ساخت کلیپ
+                      <% end %>
+                    </li>
+                    <li class="text-center">
+                      <a href="#" id="bulk_download" remote=true>
+                        <i class="fa fa-cloud-download"></i>
+                        دانلود همه
+                      </a>
+                    </li>
+                    <li class="text-center">
+                      <a data-toggle="modal" data-target="#share_gallery">
+                        <i class="fa fa-link"></i>
+                        اشتراک گذاری
+                      </a>
+                    </li>
+                    <% if GalleryPolicy.new(current_user, @gallery).password_create? %>
+                    <li class="text-center">
+                      <%= link_to("<i class='fa fa-lock'></i> #{t(:'galleries.set_password')}".html_safe,
+                      gallery_password_form_path(gallery_id: @gallery.slug), remote: true) %>
+                    </li>
+                    <% end %>
+                  </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+            <%= form_tag zip_download_gallery_path(@gallery), remote: true, id: "zip_download_form" do %>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% if !@need_to_pay_extra_hour %>
+  <% if current_user == @gallery.project.user %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-xs-12 text-center alert alert-info" style="background:url('/img/rate.jpg');background-size: cover;    max-height: 300px;min-height: 245px;">
+        <!-- <i class="fa fa-star"></i> -->
+        <div class="col-xs-6">
+          <%= image_tag @gallery.project.photographer.avatar_url(:medium),class:"img-rounded" %>
+          <%= image_tag "/img/rateme.gif" %>
+        </div>
+        <div class="col-xs-6 text-primary">
+          <br>
+          <% if not @gallery.project.feed_back.present? %>
+          <h4 style="color:white">
+            تجربه عکاسی تان با
+            <%=@gallery.project.photographer.display_name%>
+            چطور بود؟
+          </h4>
+          <% else %>
+          <h4 style="color:white">
+            ممنون، نظر شما دریافت شد.
+          </h4>
+          <% end %>
+          <%= link_to feed_backs_path(@gallery.project),class:"btn btn-default" do %>
+          نمره دهید
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-8 col-xs-12 text-center alert alert-danger" style="background: #09AF1C;max-height: 300px;min-height: 245px;">
+        <%= render "release_payment" , project: @gallery.project %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <%= render "photo_counter" %>
+
+  <div class="container-fluid" style="padding-right: 10%;
+  padding-left: 10%;">
+  <div class="loading-modal">
+    <%=image_tag "ajax-loader.gif" %>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+
+      <div id="grid-container" class="cbp">
+        <% @gallery.frames.order("created_at DESC").sort_by {|f| f.downloaded? ? 0 : 1}.first(9).each do |frame| %>
+        <% case @gallery.download_limit %>
+        <% when 0 %>
+        <%= render "galleries/full_frame_each", :frame => frame %>
+        <% else %>
+        <%= render "galleries/selection_frame_each", :frame => frame %>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br/>
+</div>
+
+<% end %>
+</div>
+
+<input type="hidden" id="frame-pointer" name="frame-pointer">
+
+<script type="text/javascript">
+
+  function likephoto(id){
+    var i = jQuery(parse('#like-%s',id));
+    var heart = jQuery(parse('#heart-%s',id));
+    console.log(i);
+    var bool = i.data('value');
+    var like = '';
+    if (!bool) {
+      console.log('clicked');
+      i.removeClass('fa-heart-o');
+      i.addClass('fa-heart');
+      i.addClass('gallery-frame-heart');
+      heart.show();
+      i.data("value", true);
+      like = true;
+    } else {
+      i.removeClass('fa-heart');
+      i.removeClass('gallery-frame-heart');
+      i.addClass('fa-heart-o');
+      i.data("value", false);
+      heart.hide();
+      like = false;
+    }
+    sendToServer(id,like)
+  }
+
+  function sendToServer(id, like) {
+    jQuery.ajax({
+      data: {
+        id: id,
+        like: like
+      },
+      type: 'POST',
+      url: '<%= like_frame_path %>',
+    })
+  }
+
+
+  function parse(str) {
+    var args = [].slice.call(arguments, 1),
+    i = 0;
+
+    return str.replace(/%s/g, () => args[i++]);
+  }
+
+  jQuery(document).ready(function ($) {
+    jQuery('#bulk_download').click(function () {
+      jQuery('#bulk_download').text("در حال آماده سازی فایل...");
+      jQuery('#zip_download_form').submit();
+    });
+    jQuery('#grid-container').cubeportfolio({
+      loadMore: '#js-loadMore',
+      loadMoreAction: 'click',
+      gridAdjustment: 'responsive',
+      displayTypeSpeed: 2,
+      caption: 'overlayBottomReveal',
+      layoutMode: 'grid',
+      sortToPreventGaps: true,
+      animationType: 'fadeOutTop',
+      lightboxDelegate: '.cbp-lightbox',
+      mediaQueries: [{
+        width: 1500,
+        cols: 4,
+        options: {
+          gapHorizontal: 70,
+          gapVertical: 10,
+        }
+      }, {
+        width: 1100,
+        cols: 3,
+        options: {
+          gapHorizontal: 70,
+          gapVertical: 10,
+        }
+      }, {
+        width: 800,
+        cols: 2,
+        options: {
+          gapHorizontal: 70,
+          gapVertical: 10,
+        }
+      }, {
+        width: 480,
+        cols: 2,
+        options: {
+          gapHorizontal: 50,
+          gapVertical: 10,
+        }
+      }],
+      lightboxGallery: true,
+      lightboxTitleSrc: 'data-title',
+      lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div><div class="text-left"><button class="btn btn-default keep-popup" id="download-frame-caller" onclick="show_approval_popup(event)" style="color:#2B87F9"> دانلود عکس <i class="fa fa-download"></i></button> <button class="btn btn-blue" id="shopping-cart-caller" onclick="shopCaller()"> سبد خرید <i class="fa fa-shopping-cart"></i></button></div>',
+      singlePageAnimation: 'fade',
+      singlePageDelegate: '.cbp-singlePage',
+      singlePageStickyNavigation: true,
+      filters: '#filters-container',
+      singlePageCounter: '<div class="cbp-popup-singlePage-counter">{{current}} of {{total}}</div>',
+      singlePageCallback: function (url, element) {
+        // to update singlePage content use the following method: this.updateSinglePage(yourContent)
+        var t = this;
+        jQuery.ajax({
+          url: url,
+          type: 'GET',
+          dataType: 'html',
+          timeout: 30000
+        })
+        .done(function (result) {
+          t.updateSinglePage(result);
+        })
+        .fail(function () {
+          t.updateSinglePage('خطایی رخ داده است، لطفا صفحه را دوباره بارگذاری کنید!');
+        });
+      }
+    });
+
+    var loaded = true;
+
+    jQuery(window).scroll(function () {
+      if (!loaded) return;
+
+      if (jQuery(window).scrollTop() + 250 >= jQuery(document).height() - jQuery(window).height()) {
+
+        loaded = false;
+        console.log("extending");
+        var frameNumber = $('.cbp-item').length;
+
+        var id = $('.data-id').attr('id');
+
+        if (frameNumber >= <%= @gallery.frames.length %>) {
+          $(".spinit").removeClass("loading");
+        }
+
+        $.ajax({
+          beforeSend: function () {
+            if (frameNumber < <%= @gallery.frames.length %>) {
+              $(".spinit").addClass("loading");
+            }
+          },
+          type: 'GET',
+          url: '<%= load_more_path %>',
+          dataType: 'script',
+          data: {
+            id: id,
+            frameNumber: frameNumber
+          },
+          success: function (data) {
+            setTimeout(function () {
+              loaded = true;
+              $(".spinit").removeClass("loading");
+            }, 1000);  // The millis to wait before executing this block
+          },
+        });
+      }
+    });
+
+
+  });
+
+  // jQuery(".cbp-caption").click(function () {
+
+  // });
+
+  function cbp_clicked(e) {
+    var path = e.path || (e.composedPath && e.composedPath());
+    var id = path[1].id ||path[2].id || path[3].id || path[4].id || path[5].id;
+
+    console.log(id);
+    console.log(e);
+    jQuery('#frame-pointer').val(id);
+  }
+
+  function downloadCaller() {
+    id = jQuery('#frame-pointer').val();
+    dont_show = jQuery('#dont-show').is(':checked');
+    console.log(dont_show);
+    jQuery.ajax({
+      type: 'GET',
+      url: '/frames/' + id + '/download',
+      data: {
+        ajax: true,
+        dont_show: dont_show
+      },
+      dataType: 'script'
+    });
+  }
+
+  function show_approval_popup(e) {
+    <% if @gallery.download_limit == 0 %>
+    downloadCaller();
+    <% else %>
+    id = jQuery('#frame-pointer').val();
+
+    console.log(id);
+    jQuery.ajax({
+      type: 'GET',
+      url: '/frames/check',
+      data: {
+        ajax: true,
+        frame_id: id,
+      },
+      dataType: 'json',
+      success: function (data) {
+        console.log(data.downloaded);
+        if (data.downloaded) {
+          downloadCaller();
+        } else if (!data.should_buy) {
+          if (data.dont_show) {
+            jQuery('#frame-pointer').val(id);
+            downloadCaller();
+          } else {
+            jQuery('#download-acknowledge').slideDown();
+            jQuery('#frame-pointer').val(id);
+          }
+        } else {
+          jQuery('#extra-download').slideDown();
+        }
+        jQuery('.gallery-capacity-footer').css('z-index', '9991');
+      }
+    });
+    <% end %>
+
+  }
+
+  function shopCaller() {
+    id = jQuery('#frame-pointer').val();
+    jQuery.ajax({
+      type: 'GET',
+      url: '/cart_form',
+      dataType: 'script',
+      data: {
+        frame_id: id
+      },
+      success: function (data) {
+        jQuery('.cbp-popup-wrap').trigger('click');
+      },
+    })
+  }
+
+  <% if @res && @ok_res == '0' %>
+  setTimeout(function () {
+    swal({
+      title: 'هشدار',
+      text: '<%= @res %>',
+      type: 'error',
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'تایید',
+      closeOnConfirm: false,
+      closeOnCancel: false
+    });
+    jQuery('.loading-spinner').hide();
+  }, 200);
+  <% elsif @ok_res == '1' %>
+  setTimeout(function () {
+    swal({
+      title: 'تبریک!',
+      text: '<%= "#{@res}: #{@track_code}" %>',
+      type: 'info',
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'تایید',
+      closeOnConfirm: false,
+      closeOnCancel: false
+    });
+    jQuery('.loading-spinner').hide();
+  }, 200);
+  <% end %>
+
+  function getApprove(e) {
+    id = e.srcElement.id;
+    e.preventDefault();
+    jQuery.ajax({
+      type: 'GET',
+      url: '/frames/check',
+      data: {
+        ajax: true,
+        frame_id: id
+      },
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+        if (data.downloaded) {
+          downloadCaller();
+        } else if (!data.should_buy) {
+          if (data.dont_show) {
+            jQuery('#frame-pointer').val(e.srcElement.id);
+            downloadCaller();
+          } else {
+            jQuery('#download-acknowledge').slideDown();
+            jQuery('#frame-pointer').val(e.srcElement.id);
+          }
+        } else {
+          jQuery('#extra-download').slideDown();
+          jQuery('#frame-pointer').val(e.srcElement.id);
+        }
+        jQuery('.gallery-capacity-footer').css('z-index', '9991');
+      }
+    });
+
+  }
+
+  jQuery(document).click(function (e) {
+    if (jQuery(e.target).closest('.gallery-capacity-footer').length === 0 && jQuery(e.target).closest('.keep-popup').length === 0) {
+      jQuery('#download-acknowledge').slideUp();
+      jQuery('#extra-download').slideUp();
+      jQuery('.gallery-capacity-footer').css('z-index', '999');
+    }
+
+    setTimeout(function () {
+      if (e.toElement.className == 'cbp-popup-next' || e.toElement.className == 'cbp-popup-prev') {
+        var array = jQuery('.cbp-popup-content img')[0].src.split('/');
+        var new_array = array[array.length - 1].split('watermarked_');
+        var name = new_array[new_array.length - 1];
+        jQuery.ajax({
+          type: 'GET',
+          url: '/frames/get_id',
+          data: {
+            ajax: true,
+            frame_name: name
+          },
+          success: function (frame_id) {
+            console.log(frame_id);
+            if (frame_id != "") {
+              jQuery('#frame-pointer').val(frame_id);
+            }
+          }
+        })
+      }
+    }, 100);
+  });
+
+
+</script>
+<%= render "galleries/tools/share_modal" %>
+</div>
+
+<%= render 'shared/large_modal' %>
+<%= render 'shared/modal_sm' %>
+
+

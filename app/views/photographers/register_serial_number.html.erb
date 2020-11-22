@@ -1,0 +1,135 @@
+<% @top_title = "ثبت سریال نامبر تجهیزات" %>
+<%= render 'shared/studio_header', title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <br>
+          <div class="row">
+            <div class="col-xs-12">
+              <h3 class="text-center">
+                <span style="color: red">سریال نامبر</span> تجهیزاتتان را ثبت کنید
+              </h3>
+              <br>
+              <% if alert.present? %>
+                <div style="font-size: 22px" class="text-center">
+                  <span class="alert-danger" ><%= alert %></span>
+                </div>
+              <% end %>
+              <br>
+              <p style="text-align: justify; font-size: 20px">
+                شما باید برای برای هر یک از تجهیزات خود
+                <span style="color: mediumvioletred">(دوربین و لنز)</span>
+                سریال نامبر
+                <span data-html="true" class="text-muted" style="font-size: 11px;font-style: italic;" data-toggle="what_is_sn" data-placement="top" data-original-title="" title="">
+                      <i class="fa fa-info-circle fa-x" style="font-size: 16px; color: cadetblue"></i>
+                      </span>
+                مربوط به آن را ثبت کنید.
+              </p>
+            </div>
+
+          </div>
+          <%= form_for :serial_numbers, method: "post", remote: true, html: {class: "form form-group", :id => "register_id"} do |f| %>
+            <div class="row">
+              <div class="col-xs-12">
+                <p style="font-size: 20px; color: currentColor">
+                  <span style="color: red; font-size: 30px">*</span>
+                  پس از ثبت سریال نامبر قادر به
+                  <span style="color: red; font-size: 22px">
+                  ویرایش
+                  </span>
+                  آن نخواهید بود.
+                </p>
+              </div>
+            </div>
+            <div class="text-center" style="font-size: 30px; color: #888d98">
+              دوربین ها
+            </div>
+            <br>
+            <input hidden class="form-control" name="submitted" value="true">
+            <% cameras.each_with_index do |camera, index| %>
+              <div class="row">
+                <div class="col-md-1">
+                  <div style="font-size: 25px" class="text-left">
+                    <%= (index + 1).to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %>)
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="text-left">
+                    <% if camera.serial_number.present? %>
+                      <input style="height: 50px" class="form-control" value="<%= camera.serial_number %>" readonly>
+                    <% else %>
+                      <input style="height: 50px" class="form-control" name="serial_numbers[c<%= camera.id %>]" id="<%= camera.id %>">
+                    <% end %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="text-left" style="font-size: 30px; color: mediumvioletred; direction: ltr">
+                    <%= camera.camera.brand %> <%= camera.camera.model %>
+                    <span style="color:mediumvioletred">:</span>
+                  </div>
+                </div>
+              </div>
+              <br>
+            <% end %>
+            <div class="text-center" style="font-size: 30px; color: #888d98">
+              لنز ها
+            </div>
+            <br>
+            <% lenzs.each_with_index do |lenz, index| %>
+              <div class="row">
+                <div class="col-md-1">
+                  <div style="font-size: 25px" class="text-left">
+                    <%= (index + 1).to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %>)
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="text-left">
+                    <% if lenz.serial_number.present? %>
+                      <input style="height: 50px" class="form-control" value="<%= lenz.serial_number %>" readonly>
+                    <% else %>
+                      <input style="height: 50px" class="form-control" name="serial_numbers[l<%= lenz.id %>]" id="<%= lenz.id %>">
+                    <% end %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="text-left" style="font-size: 30px; color: mediumvioletred; direction: ltr">
+                    <%= lenz.lenz.brand %> <%= lenz.lenz.model %>
+                    <span style="color: mediumvioletred">:</span>
+                  </div>
+                </div>
+              </div>
+              <br>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "استودیو", studio_photographer_path(@photographer), class: "btn btn-default " %>
+      <button type="submit" id="submit_page_form" class="btn btn-blue btn-lg">ذخیره
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script>
+    $(document).ready(function () {
+        $('#submit_page_form').click(function () {
+            document.getElementById("register_id").submit();
+        });
+        $(function () {
+            $('[data-toggle="what_is_sn"]').tooltip({
+                title: "<%= t(:'photographers.serial_number') %>"
+            });
+        })
+    });
+
+</script>

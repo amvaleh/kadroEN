@@ -1,0 +1,35 @@
+<header id="header">
+  <nav class="nav">
+    <div class="container">
+      <div class="wrap">
+        <a href="<%=kadro_url%>" title="" class="logo" target="_blank">
+          <img src="/img/logo.png" alt="title"></a>
+          <div class="btn-group">
+            <% if photographer_signed_in? %>
+            <%= link_to "خروج"  , destroy_photographer_session_path  , class: " btn btn-warning" %>
+            <% if current_photographer.join_step.name == "تاییدیه" %>
+            <%= link_to "استودیو"  , studio_photographer_path(current_photographer)  , class: " btn btn-blue" %>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="header">
+      <div class="container">
+        <% if notice %>
+        <div class="header-message">
+          <%= notice %>
+        </div>
+        <% elsif alert %>
+        <div class="header-message">
+          <%= alert %>
+        </div>
+        <% else %>
+        <div class="header-message">
+          <%= title %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </header>

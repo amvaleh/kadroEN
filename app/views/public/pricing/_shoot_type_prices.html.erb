@@ -1,0 +1,55 @@
+<section class="fdb-block py-3" data-block-type="contents" data-id="6" draggable="true">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col col-md-8 text-center">
+        <h2>
+          برای دیدن قیمت رشته را انتخاب کنید:
+        </h2>
+      </div>
+    </div>
+    <div class="row text-left mt-4 py-0 justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-8 mx-auto">
+        <div class="row">
+          <div class="col-6">
+            <button id="personal" class="btn btn-primary btn-block">
+              برای کار شخصی
+            </button>
+          </div>
+          <div class="col-6">
+            <button id="business" class="btn btn-outline-primary btn-block">
+              برای کار تجاری
+            </button>
+          </div>
+        </div>
+        <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
+          <% ShootType.all.is_personal.active.order("shoot_types.order").each do |sh| %>
+            <div class="col-4 col-sm-3 pt-5 pt-sm-0 text-center specialty">
+              <a href="<%= types_show_path(title: sh.w_url) + '/#prices' %>">
+                <img alt="قیمت عکاسی <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar_url(:medium) %>">
+                <h5 class="text-center">
+                  <strong>
+                    قیمت عکاسی <%= sh.title %>
+                  </strong>
+                </h5>
+              </a>
+            </div>
+          <% end %>
+        </div>
+        <div class="row text-left mt-0 py-3 justify-content-center d-none" id="business_types">
+          <% ShootType.all.is_business.active.order("shoot_types.order").each do |sh| %>
+            <div class="col-4 col-sm-3 pt-5 pt-sm-0 text-center specialty ">
+              <a href="<%= types_show_path(title: sh.w_url) + '/#prices' %>">
+                <img alt="قیمت عکاسی <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar_url(:medium) %>">
+                <h5 class="text-center">
+                  <strong>
+                    قیمت عکاسی <%= sh.title %>
+                  </strong>
+                </h5>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

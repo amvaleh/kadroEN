@@ -1,0 +1,28 @@
+<div class="row">
+  <% @cities = City.joins(:locations => :photographer).where(:photographers => {:approved => true}).uniq %>
+  <% @shoot_types_all = ShootType.joins(:expertises => :photographer).where(:photographers => {:approved => true}).uniq %>
+  <div class="col-xs-12 col-md-3">
+    <% @cities.each do |city| %>
+      <p class="text-right">
+        <%= link_to "آتلیه های عکاسی #{city.name}", city_path(city.name), style: "color:white;", target: "_blank" %>
+      </p>
+    <% end %>
+  </div>
+  <% @cities.first(3).each do |city| %>
+    <div class="col-xs-6 col-sm-3 text-right">
+      <%= link_to "کادرو در #{city.name}", city_path(city.name), style: "color:white;", target: "_blank" %>
+      <br>
+      <% shoot_types = @shoot_types_all.joins("INNER JOIN locations ON locations.id = photographers.location_id INNER JOIN cities ON cities.id = locations.city_id").where(:cities => {:name => city.name}).uniq %>
+      <% shoot_types.personalz.order(:order).last(3).each do |sh| %>
+        <p style="font-size:10px;text-align:right;">
+          <%= link_to "عکاسی #{sh.title} در #{city.name}", city_expertise_path(city.name, sh.title), style: "color:gray;", target: "_blank" %>
+        </p>
+      <% end %>
+      <% shoot_types.businessz.order(:order).last(3).each do |sh| %>
+        <p style="font-size:10px;text-align:right;">
+          <%= link_to "عکاسان #{sh.title} در #{city.name}", city_expertise_path(city.name, sh.title), style: "color:gray;", target: "_blank" %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

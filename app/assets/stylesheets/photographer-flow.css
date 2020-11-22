@@ -1,0 +1,15 @@
+.kadr {
+    padding: 0px;
+    margin-right: 15px;
+}
+
+.kadr-header{
+    margin-top: 0px;
+    color: #ff0083 !important;
+    background-color: #fff1ff;
+    font-size: 20px
+}
+
+.kadr-collapsor {
+    color: white !important; background-color: dodgerblue; width: 90%; font-size: medium;
+}

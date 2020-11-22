@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading cursor_pointer clickable panel-collapsed">
+        <div class="row">
+          <div class="col-xs-8"><h3 class="panel-title"><span class="fa fa-search"></span> <%= t(:'projects.filter_panel.title') %> </h3></div>
+          <div class="col-xs-1 pull-left clickable"><i class="fa fa-angle-up pull-left"></i></div>
+        </div>
+      </div>
+      <div class="panel-body" style="display: none">
+        <%= form_for(:search, url: project_search_photographer_path, remote: true) do |f| %>
+          <div class="row">
+            <%#= f.hidden_field(:id, value: current_photographer.id) %>
+            <div class="col-md-3 col-xs-12">
+              <%#= f.label(:customer_name, t(:'projects.filter_panel.customer_name')) %>
+              <div class="input-group form-group">
+                <span class="input-group-addon" id="customer_name"><i class="fa fa-user"></i> </span>
+                <%= f.text_field(:customer_name, class: 'form-control input-form',
+                                 'aria-describedby': "customer_name", placeholder: t(:'projects.filter_panel.customer_name')) %>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <%#= f.label(:from_date, t(:'projects.filter_panel.from_date')) %>
+              <div class="input-group form-group">
+                <span class="input-group-addon" id="date"><i class="fa fa-calendar"></i> </span>
+                <%= f.text_field(:from_date, class: 'form-control input-form jalali-date',
+                                 'aria-describedby': "date", placeholder: t(:'projects.filter_panel.from_date')) %>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <%#= f.label(:to_date, t(:'projects.filter_panel.to_date')) %>
+              <div class="input-group form-group">
+                <span class="input-group-addon" id="date"><i class="fa fa-calendar"></i> </span>
+                <%= f.text_field(:to_date, class: 'form-control input-form jalali-date',
+                                 'aria-describedby': "date", placeholder: t(:'projects.filter_panel.to_date')) %>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-12">
+              <%#= f.label(:'', '') %>
+              <%= f.submit(t(:'projects.filter_panel.do_filter'), class: 'btn btn-success btn-block') %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    $(document).on('click', '.clickable', function (e) {
+        var $this = $(this);
+        if (!$this.hasClass('panel-collapsed')) {
+            $this.parents('.panel').find('.panel-body').slideUp();
+            $this.addClass('panel-collapsed');
+            $this.find('i').removeClass('fa-angle-up').addClass('fa-angle-down');
+        } else {
+            $this.parents('.panel').find('.panel-body').slideDown();
+            $this.removeClass('panel-collapsed');
+            $this.find('i').removeClass('fa-angle-down').addClass('fa-angle-up');
+        }
+    });
+
+    $(document).ready(function () {
+        // $('.panel').find('.panel-body').slideUp();
+        // $('.clickable').addClass('panel-collapsed');
+        // $('.clickable').find('i').removeClass('fa-angle-up').addClass('fa-angle-down');
+
+        $(".jalali-date").pDatepicker(
+            {
+                observer: true,
+                format: 'YYYY/MM/DD',
+                autoClose: true,
+                initialValue: false
+            }
+        );
+    });
+</script>

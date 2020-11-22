@@ -1,0 +1,1 @@
+Project.update_all(rate_reminder_sent: true)

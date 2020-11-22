@@ -1,0 +1,76 @@
+<style>
+  .locations-list a{
+    height: 2em;
+    background: white;
+    color: green;
+    line-height: 22px;
+    margin: 1px 0px;
+    z-index: 2000;
+
+  }
+  .dropdown-menu {  position: fixed; z-index: 9999; }
+  .scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+  }
+  /*data-display="static"*/
+
+  .dropdown-container {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Bottom of button */
+    right: 0;
+    margin-left: -100px; /* More to the left */
+  }
+
+</style>
+<section class="fdb-block pb-3 pt-4">
+  <div class="container py-3 my-5" style="background-image: url(<%=assets_url("/types/imgs/shapes/6.svg")%>);">
+
+    <div class="row justify-content-center pt-2">
+      <div class="col-12 col-md-11 col-lg-11 text-center" style="padding: 0 0 0 0;">
+        <div class="fdb-box" >
+          <div class="well" id="map" style="width: 100%;height:500px;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+    var handler2 = Gmaps.build('Google');
+    handler2.buildMap({
+        provider: {
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            styles: mapStyleee,
+        }, internal: {id: 'map'}
+    }, function () {
+        markers2 = handler2.addMarkers([
+            <% if @shoot_locations.present? %>
+            <% @shoot_locations.each do |sh| %>
+            <% if sh.address.present? %>
+            {
+                "lat": <%=sh.address.lattitude%>,
+                "lng": <%=sh.address.longtitude%>,
+                "picture": {
+                    "url": "<%= @base_url %>img/land_logo.png",
+                    "width": 50,
+                    "height": 50
+                },
+                infowindow: '<h3 style="font-family: iranyekan-bold;"><%= sh.title %></h3><p class="text-center" style="font-family: iranyekan-light;"><%= sh.shoot_location_type.title %></p><%=link_to "مشاهده" , shoot_location_show_path(sh.slug),class: "btn btn-primary",target: "_blank",style: "font-family: iranyekan-bold;"  %><%=link_to "رزرو اینجا" , "https://app.kadro.co/book?shoot_location=#{sh.slug}",class: "btn btn-primary",target: "_blank", style: "margin-right: 10px; font-family: iranyekan-bold;" %>'
+            },
+            <% end %>
+            <% end %>
+            <% end %>
+        ]);
+        handler2.bounds.extendWith(markers2);
+        handler2.fitMapToBounds();
+        // handler2.getMap().setZoom(10);
+    });
+</script>

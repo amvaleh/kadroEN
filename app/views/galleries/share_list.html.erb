@@ -1,0 +1,90 @@
+<div style="
+background: url('<%=@gallery.frames.last.file_address(false,"light")%>'); background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;" class="data-id" id="<%= @gallery.id %>">
+<div style="background-color:rgba(255, 255, 255, 0.9);">
+  <div class="container" style="padding-top: 60px;">
+    <div class="row">
+      <h1 class="text-center" style="color: #2B87F9;">
+        اجازه برای نمونه کار
+      </h1>
+      <nav class="navbar" style="background-color: #ffffff; border: 0.1em solid #d7d7d7;border-radius: 30px !important;">
+        <h6 class="text-center">
+          عکاس شما،
+          <%=@gallery.project.photographer.abbrv_name%> تقاضای اجازه برای استفاده از
+          <%=@gallery.frames.share_requested.count%>
+          عکس شما را به عنوان نمونه کار دارد، آیا به او اجازه میدهید؟
+        </h6>
+      </nav>
+      <div class="row share_list">
+        <h4 class="text-center" style="color:#ff4600">
+          <span class="fa fa-check"></span> لطفا توجه کنید که:
+          </h4>
+        <div class="col-xs-12 ">
+          <p class="text-right">
+            اگر دوست ندارید اجازه دهید، کافیست به
+            <%= link_to "آلبوم من" , gallery_path(@gallery) %> باز گردید.
+          </p>
+        </div>
+        <div class="col-xs-12 ">
+          <p class="text-right">
+            عکاس بدون دریافت رضایت شما اجازه انتشار هیچ محتوایی ندارد.
+          </p>
+        </div>
+        <div class="col-xs-12">
+          <p class="text-right">
+            با کلیک بر روی دکمه
+            <strong style="color:#2B87F9;"> اجازه انتشار </strong>
+            شما می پذیرید که خودتان اجازه استفاده به عنوان نمونه کار را داده اید.
+          </p>
+        </div>
+        <div class="col-xs-12">
+          <p class="text-right text-danger">
+            <span class="fa fa-ban"></span>
+            توجه کنید امکان تغییر پس از اجازه انتشار وجود نخواهد داشت.
+          </p>
+        </div>
+      </div>
+      <% @gallery.frames.share_requested.order(" permit").each do |frame| %>
+      <div class="col-xs-12 well-sm" id="fame_<%=frame.id%>">
+        <div class="col-xs-12 col-sm-6">
+          <%= image_tag frame.correct_address , class:"img-responsive img-rounded" %>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <h3 class="text-center">
+            عکس شماره
+            <%= frame.id %>
+          </h3>
+          <h5 class="text-right text-muted">
+            <%= frame.width %> در <%=frame.height %> پیکسل
+            <br>
+            <small>نام: <%= frame.file_name %></small>
+          </h5>
+          <% if frame.exif.present? %>
+          <h5 class="text-right">
+            <small> سریال نامبر دوربین: <%= frame.exif.serial_number %></small>
+          </h5>
+          <% end %>
+          <% if frame.share_control.permit %>
+          <div class="col-xs-12" id="disallow_frame_<%=frame.id%>">
+            <%= render "share_controll/allowed" %>
+          </div>
+          <% else %>
+          <div class="col-xs-12" id="allow_frame_<%=frame.id%>">
+            <%= form_tag share_controll_allow_path,remote:true do %>
+            <%= hidden_field_tag :frame_id , frame.id %>
+            <%= submit_tag "اجازه انتشار" , class: "btn btn-blue btn-block",
+            :onclick => "return confirm('آیا مطمئن هستید برای این عکس؟')" %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+      <div class="row text-center" style="margin: 5% 0 3% 0;">
+        <%= link_to "بازگشت به آلبوم من" , gallery_path(@gallery),class:"btn btn-info btn-lg" %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,84 @@
+<div class="well">
+  <%= p.shoot_type.title%>-<span class="badge badge-success"><%= p.package.display_name %></span>-<%= "M+" if p.delivery_at_location %>
+  <br>
+  <%= p.start_time.to_date.to_pdate.strftime("%e %b")%>-
+  <%= link_to "edit_#{p.slug}" ,edit_admin_project_path(p), target: :_blank%>-
+  <%= link_to "info" ,thank_you_project_path(p), target: :_blank%>
+  <br>
+  -
+  <%= link_to "receipt" , edit_admin_receipt_path(p.receipt), target: :_blank%>
+  <br>
+  <%= link_to "#{p.user.display_name}(#{p.user.mobile_number})",admin_user_path(p.user), target: :_blank%>-<%=link_to p.photographer.display_name,admin_photographer_path(p.photographer)%>
+  <br>
+  <% if p.gallery.present?%>
+    <%= link_to "Gallery #{p.gallery.frames.count}" , admin_gallery_path(p.gallery), :target=> :_blank %>
+  <% end %>
+  <p>
+    <br>
+    <% if ActiveAdminComment.all.where(resource_type: 'Project', resource_id: p.id).any? %>
+      <%= link_to "Details", project_details_admin_projects_path(project_id: p.id), class: 'btn btn-danger btn-block', remote: true, style: 'float: right; background-color: #274c8e; color: white' %>
+    <% else %>
+      <%= link_to "Details", project_details_admin_projects_path(project_id: p.id), class: 'btn btn-default btn-block', remote: true, style: 'float: right; background-color: grey; color: white' %>
+    <% end %>
+    <% if sms %>
+      <input type="submit" value="SMS" style="float: left; background-color: #e39567" id="<%= p.id %>sms" class="btn btn-xs btn-info">
+    <% end %>
+    <p id="show-result<%= p.id %>" style="color: orangered; font-size: x-large"></p>
+    <br>
+    <br>
+    </p>
+    <% if timer.present? %>
+      <br>
+      <% second = Time.now - p.start_time %>
+      <% hour = ((second/60)/60).to_i %>
+      <% left_over = 72 - hour %>
+      فرصت باقی مانده : <%= left_over %> ساعت
+    <% end %>
+
+    <% if p.user_feedback.present? %>
+      <hr>
+      <p class="text-center">
+        <%= link_to "مشاهده نظر عکاس" , admin_user_feedback_path(p.user_feedback) , target: "_blank" %>
+      </p>
+    <% end %>
+
+
+    <% if p.feed_back.present? %>
+      <%= link_to "feedback" , admin_feed_backs_path(p.feed_back) ,class: "btn btn-primary btn-xs"%>
+      <p style="direction:rtl">
+        کیفیت: <%=p.feed_back.qrate%>
+        |
+        سرویس: <%=p.feed_back.arate %>
+        <br>
+        توضیح: <%= p.feed_back.description %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to "new feedback" , new_admin_feed_back_path(:feed_back =>{:project_id=>p.id}) ,class: "btn btn-primary btn-xs"%>
+      </p>
+    <% end %>
+
+    <% if p.user.lead_source.present? %>
+      <strong class="text-center"> Source : <%= p.user.lead_source.title %></strong>
+      <br>
+    <% end %>
+    <strong class="text-center"> projects : <%= p.user.projects.confirmed.count %></strong>
+    </div>
+
+<script>
+    $('#<%= p.id %>sms').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: "<%= CGI.unescape sms_link_path(p.id) %>",
+            dataType: 'script',
+            success: function () {
+                $('#<%= p.id %>sms').hide();
+                $('#show-result<%= p.id %>').html('SMS sent')
+
+            }
+
+        });
+    })
+</script>

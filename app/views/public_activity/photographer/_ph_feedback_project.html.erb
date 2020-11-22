@@ -1,0 +1,11 @@
+<span>
+  عکاس
+  <span class="owner">
+    <% if activity.owner.present? %>     <%= link_to activity.owner.display_name, admin_photographer_path(activity.owner.slug) %>     <% else %>       با آیدی       <%= activity.owner_id %>     که دیگر موجود نیست     <% end %>
+  </span>
+  بروژه خود را
+  <span class="recipient">
+  <%= link_to "ارزیابی", admin_feed_back_path(activity.recipient_id) %>
+  </span>
+  کرد
+</span>

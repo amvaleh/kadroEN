@@ -1,0 +1,10 @@
+<% if data.user.present? %>
+<% user = data.user %>
+<% user.projects.each do |project| %>
+<% unless project == data %>
+<div class="col-xs-3 alert alert-success" style="height: 230px!important;">
+  <%=render "project_box" , :p => project , :timer => false, sms: true %>
+</div>
+<% end %>
+<% end %>
+<% end %>

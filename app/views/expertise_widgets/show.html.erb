@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Widget:</strong>
+  <%= @expertise_widget.widget_id %>
+</p>
+
+<p>
+  <strong>Expertise:</strong>
+  <%= @expertise_widget.expertise_id %>
+</p>
+
+<%= link_to 'Edit', edit_expertise_widget_path(@expertise_widget) %> |
+<%= link_to 'Back', expertise_widgets_path %>

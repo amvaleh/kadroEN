@@ -1,0 +1,202 @@
+/*
+* This is a manifest file that'll be compiled into application.css, which will include all the files
+* listed below.
+*
+* Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+* or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+*
+* You're free to add application-wide styles to this file and they'll appear at the bottom of the
+* compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+* files in this directory. Styles in this file should be added after the last require_* statement.
+* It is generally better to create a new file per style scope.
+*
+*= require kadro/font-awesome.min
+*= require bootstrap.min
+*= require bootstrap-rtl.min
+*= require bootstrap-slider.min
+
+*= require kadro/sweetalert
+
+*= require persianDatePicker-default
+*= require owl.carousel.min
+*= require styles
+*= require_self
+*= require bootstrap/clockpicker.min
+*= require kadro/animate
+
+*= require mtr-datepicker.min
+*= require mtr-datepicker.default-theme.min
+*/
+
+.lrt{
+  direction: ltr !important;
+}
+.rtl{
+  direction: rtl !important;
+}
+
+.my_red{
+  color: red;
+}
+
+/*
+ *= require gulp/app
+ */
+
+.clockpicker-popover .popover-title {
+  direction: ltr !important;
+  background-color: #fff;
+  color: #999;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+    .cart-table {
+        font-size: 2.6vw;
+    }
+}
+
+.invoice-items {
+    color: #0a0a0a;
+}
+
+.frame-options {
+    background-color: #212020;
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 0px;
+    opacity: 0.9;
+    -webkit-transition: height 400ms;
+    -moz-transition: height 400ms;
+    -ms-transition: height 400ms;
+    -o-transition: height 400ms;
+    transition: height 400ms;
+}
+#ph-frame:hover + .frame-options{
+    height: 40px;
+}
+
+.frame-options:hover{
+    height: 40px;
+}
+
+
+#main #photographer .shoot-slider .item{
+    line-height: 60px!important;
+}
+#main #photographer .shoot-slider .item .stars{
+    margin-top: 35px!important;
+    margin-right: 10px;
+}
+
+#main #photographer .shoot-slider .item .stars .half-star{
+    background:url("/img/half star.png") no-repeat center;
+    height:14px;
+    width:14px;
+    margin-left: 21px;
+}
+#main #photographer .shoot-slider .item .stars .none-star{
+    background:url("/img/non star.png") no-repeat center;
+    height:14px;
+    width:14px;
+    margin-left: 21px;
+}
+#main #photographer .shoot-slider .item .stars .star{
+    margin-left: 21px;
+}
+.photographer-change-circle {
+    width: 107px;
+    height: 107px;
+    fill:none;
+    stroke: #f92b6c;
+    stroke-width:5px;
+    stroke-dasharray:1;
+    stroke-dashoffset:0;
+    stroke-linecap:round;
+    /*animation:loading 3500ms ease-in-out infinite alternate;*/
+    margin: -9px;
+}
+
+#main #photographer .shoot-slider .item .attach-img-change-photographer{
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    border: 3px solid white;
+}
+#main #photographer .shoot-slider .item .attach-img-change-photographer:hover{
+
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.photographer-avatar-container{
+    position: relative ;
+    width: 150px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.light-green{
+    background-color: #f6fff2;
+}
+
+#main #photographer .shoot-slider .item .btn-selected{
+    margin-right: 0px;
+    background-color: #3dc50c;
+    border-color: #3dc40c;
+    color: white !important;
+}
+
+#main #photographer .shoot-slider .item.selected{
+    border: 8px solid #3ec80c;
+    transform: scale(1.05);
+    border-radius: 10px;
+}
+
+#fixed-footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 0 0px;
+    z-index: 1000;
+    border-top: 1px solid #eaeaea;
+    background-color: white;
+}
+#samples{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.5);opacity:0;visibility:hidden;z-index:-1;-webkit-transition:all 500ms;-moz-transition:all 500ms;transition:all 500ms}#samples.open{opacity:1;visibility:visible;z-index:999999}#samples .inner{position:relative;width:100%;height:100%;padding:30px;display:flex;align-items:center;justify-content:center}#samples .inner .close{position:absolute;top:0;right:0;background-color:#fff;color:#827e7e;z-index:99999999}#samples .inner .portfolio img{width:80%;height:80%;margin:0 auto}
+
+
+.simple-loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 80px;
+    height: 80px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

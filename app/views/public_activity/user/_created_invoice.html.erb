@@ -1,0 +1,12 @@
+<span>
+  کاربر
+  <span class="owner">
+  <%= link_to activity.owner.display_name.present? ? activity.owner.display_name : 'بی اسم', admin_user_path(activity.owner.slug) %>
+  </span>
+
+  <span class="recipient">
+  <%= link_to "صورت حساب",admin_invoice_path(activity.recipient_id) %>
+  </span>
+  خریدش از فروشگاه
+  را ساخت
+</span>

@@ -1,0 +1,232 @@
+<div class="row">
+  <div class="col-xs-1 alert alert-success text-center kadr">
+    <h4 class="text-center kadr-header">Portfolio</h4>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'نمونه کارها'}) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#photographer-portfolio">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      نمونه کار
+    </div>
+    <br>
+    <br>
+    <div id="photographer-portfolio" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.each do |photographer| %>
+        <%= render partial: 'admin/photographers/primary_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-1 alert alert-danger text-center kadr">
+    <h4 class="text-center kadr-header">Bio</h4>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'تجربه کاری'}) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#photographer-bio">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      تجربه کاری
+    </div>
+    <br>
+    <br>
+    <div id="photographer-bio" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.each do |photographer| %>
+        <%= render partial: 'admin/photographers/primary_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-1 well text-center kadr">
+    <h4 class="text-center kadr-header">First check</h4>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'پروفایل ناقص'}).where('last_step_at >= ?', Time.now - 7.days) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#photographer-check">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      پروفایل ناقص
+    </div>
+    <br>
+    <br>
+    <div id="photographer-check" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.order(last_step_at: :asc).each do |photographer| %>
+        <%= render partial: 'admin/photographers/photographer_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+    <hr>
+    <% photographers =  Photographer.joins(:join_step).where(join_steps: {name: 'تایید اما ناقص'}).where('last_step_at >= ?', Time.now - 7.days) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#faulty-profile">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      تایید اما ناقص
+    </div>
+    <br>
+    <br>
+    <div id="faulty-profile" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.order(last_step_at: :asc).each do |photographer| %>
+        <%= render partial: 'admin/photographers/photographer_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+    <hr>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'بازنگری'})%>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#self-change">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      تغییر داد
+    </div>
+    <br>
+    <br>
+    <div id="self-change" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.order(last_step_at: :asc).each do |photographer| %>
+        <%= render partial: 'admin/photographers/photographer_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+    <hr>
+    <% photographers = Photographer.joins(:join_step).where('join_steps.name = ? or join_steps.name = ?', 'پروفایل ناقص', 'تایید اما ناقص').where('last_step_at < ?', Time.now - 7.days) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#incomplete-profile">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      عدم تکمیل
+    </div>
+    <br>
+    <br>
+    <div id="incomplete-profile" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.order(last_step_at: :asc).each do |photographer| %>
+        <% unless photographer.first_call_at.present? && photographer.first_call_at < Time.now - 7.days %>
+          <%= render partial: 'admin/photographers/calling_photographer_box', locals: {photographer: photographer} %>
+        <% else %>
+          <% photographer.join_step_id = JoinStep.find_by(code: 13).id %>
+          <% photographer.rejected = true %>
+          <% photographer.save %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-1 alert alert-success text-center kadr">
+    <h4 class="text-center kadr-header">Author approve</h4>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'تایید مسئول'}) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#authority-approve">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      تایید مسئول
+    </div>
+    <br>
+    <br>
+    <div id="authority-approve" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.each do |photographer| %>
+        <%= render partial: 'admin/photographers/photographer_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-1 alert alert-danger text-center kadr" style="background-color: white">
+    <h4 class="text-center kadr-header">Set interview time</h4>
+    <% photographers = Photographer.joins(:join_step).joins("left join locations l on l.id = location_id
+    left join cities c on l.city_id = c.id where (c.name = 'تهران' and join_steps.name = 'در انتظار مصاحبه')") %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#tehran">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      تهران
+    </div>
+    <br>
+    <br>
+    <div id="tehran" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.each do |photographer| %>
+        <%= render partial: 'admin/photographers/photographer_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+    <% photographers = Photographer.joins(:join_step).joins("left join locations l on l.id = location_id
+    left join cities c on l.city_id = c.id where (c.name != 'تهران' and join_steps.name = 'در انتظار مصاحبه')") %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#non-tehran">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      شهرستان ها
+    </div>
+    <br>
+    <br>
+    <%= form_for :photographers, url: filter_waiting_photographers_admin_photographers_path, method: "get", remote: true do |form| %>
+      <div class="form-group">
+        <select name="photographers[city_name][]" id="multi-select-demo" multiple="multiple">
+          <% Photographer.all.joins(:location).uniq.pluck(:city_name).each do |ph| %>
+            <option value="<%= ph %>"><%= ph %></option>
+          <% end %>
+        </select>
+        <%= form.submit 'فیلتر کن', class: 'btn btn-xs btn-default', style: 'color: white' %>
+      </div>
+    <% end %>
+    <div id="non-tehran" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.each do |photographer| %>
+        <%= render partial: 'admin/photographers/photographer_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-1 alert alert-danger text-center kadr">
+    <h4 class="text-center kadr-header">Interview</h4>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'تاریخ مصاحبه'}) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#interview-date">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      مصاحبه
+    </div>
+    <br>
+    <br>
+    <div id="interview-date" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.order(interview_date: :asc).each do |photographer| %>
+        <%= render partial: 'admin/photographers/interview_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-1 alert alert-success text-center kadr">
+    <h4 class="text-center kadr-header">Approval</h4>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'تاییدیه'}) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#Approval-final">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      تاییدیه
+    </div>
+    <br>
+    <br>
+    <div id="Approval-final" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.each do |photographer| %>
+        <%= render partial: 'admin/photographers/photographer_join_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-1 alert alert-danger text-center kadr">
+    <h4 class="text-center kadr-header">Rights step</h4>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'حقوقی'}) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#rights_step">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      حقوقی
+    </div>
+    <br>
+    <br>
+    <div id="rights_step" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.order(last_step_at: :asc).each do |photographer| %>
+        <%= render partial: 'admin/photographers/rights_step_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-xs-1 alert alert-success text-center kadr" style="border: 2px solid darkorange">
+    <h4 class="text-center kadr-header">Joined Us</h4>
+    <% photographers = Photographer.joins(:join_step).where(join_steps: {name: 'تایید نهایی'}).where('last_step_at > ?', Time.now - 7.days) %>
+    <div class="text-center btn kadr-collapsor" data-toggle="collapse" data-target="#joined-us">
+      <span style="color: white">
+      <%= '(' + photographers.size.to_s + ')'%>
+      </span>
+      تایید نهایی
+    </div>
+    <br>
+    <br>
+    <div id="joined-us" class="collapse" style="padding: 0px 3px 0px 3px;">
+      <% photographers.order(last_step_at: :asc).each do |photographer| %>
+        <%= render partial: 'admin/photographers/approved_photographer_box', locals: {photographer: photographer} %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+<script type="text/javascript">
+  a = $('#user_call_date').persianDatepicker({
+    "format": "YYYY/MM/DD",
+    "inline": false,
+    "viewMode": "day",
+    <% if @user.call_date.present? %>
+    "initialValue": true,
+    "initialValueType": false,
+    <% else %>
+    "initialValue": false,
+    <% end %>
+    "autoClose": false,
+    "position": "auto",
+    "altFormat": "lll",
+    "altField": "#altfieldExample",
+    "onlyTimePicker": false,
+    "onlySelectOnDate": false,
+    "calendarType": "persian",
+    "inputDelay": 800,
+    "observer": false,
+    "calendar": {
+      "persian": {
+        "locale": "fa",
+        "showHint": true,
+        "leapYearMode": "algorithmic"
+      },
+      "gregorian": {
+        "locale": "en",
+        "showHint": true
+      }
+    },
+    "navigator": {
+      "enabled": true,
+      "scroll": {
+        "enabled": true
+      },
+      "text": {
+        "btnNextText": "<",
+        "btnPrevText": ">"
+      }
+    },
+    "toolbox": {
+      "enabled": true,
+      "calendarSwitch": {
+        "enabled": true,
+        "format": "MMMM"
+      },
+      "todayButton": {
+        "enabled": true,
+        "text": {
+          "fa": "امروز",
+          "en": "Today"
+        }
+      },
+      "submitButton": {
+        "enabled": true,
+        "text": {
+          "fa": "تایید",
+          "en": "Submit"
+        }
+      },
+      "text": {
+        "btnToday": "امروز"
+      }
+    },
+    "dayPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY MMMM"
+    },
+    "monthPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    },
+    "yearPicker": {
+      "enabled": true,
+      "titleFormat": "YYYY"
+    }
+  });
+  <% if @user.call_date.present? %>
+  <% input_val = @user.call_date.to_date.to_pdate.to_s %>
+  <% final = input_val %>
+  $("#user_call_date").val("<%= final %>")
+  <% else %>
+  $("#user_call_date").val("")
+  <% end %>
+
+</script>

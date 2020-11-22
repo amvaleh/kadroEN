@@ -1,0 +1,129 @@
+<div class="row modal-section well" >
+  <div class="col-md-3 col-12 hidden-xs text-center">
+    <img src="<%= frame.file_address(true, 'light') %>" class="img-thumbnail img-circle" alt=""/>
+    <br/>
+    <br/>
+    <span><%= frame.original_filename %></span>
+  </div>
+
+  <div class="col-md-9 col-12">
+    <div class="row">
+      <div class="col-3 text-center cart-table">
+        <strong><%= t(:'carts.title') %></strong>
+      </div>
+      <div class="col-3 text-center cart-table">
+        <strong><%= t(:'carts.price') %></strong>
+      </div>
+      <div class="col-3 text-center cart-table">
+        <strong><%= t(:'carts.quantity') %></strong>
+      </div>
+
+      <div class="col-3 text-center cart-table">
+        <strong><%= t(:'carts.row_total') %></strong>
+      </div>
+    </div>
+    <hr/>
+
+    <% items.each do |item| %>
+      <% if item.status == 0 %>
+        <% next %>
+      <% end %>
+      <% if item.item_type.category != "download" || !(frame.gallery.project.package.is_full || frame.downloaded) %>
+        <% quantity = cart.detect {|c| c.item_id == item.id} ? cart.detect {|c| c.item_id == item.id}.quantity : 0 %>
+        <div class="row">
+          <div class="col-2 col-md-3 text-center cart-table px-0">
+            <%= item.title %>
+          </div>
+          <div class="col-2 col-md-3 text-center cart-table px-0">
+            <%= item.price.to_i %>
+          </div>
+
+          <div class="col-6 col-md-3 text-center cart-table">
+            <div class="input-group input-group-sm">
+          <span class="input-group-btn">
+            <%= button_to('#', onclick: "return updateQuantityInc(quantity_#{item.id}, '#{item.category}', '#{item.price}', '#{item.id}')",
+                          class: 'btn btn-success btn-sm cart-btn dark-blue', remote: true) do %>
+              <i class='fa fa-plus'></i>
+            <% end %>
+          </span>
+              <%= number_field_tag(:quantity, quantity, min: 0,
+                                   'data-remote' => true,
+                                   'data-url' => url_for(controller: 'carts', action: 'cart_create',
+                                                         item_id: item.id,
+                                                         frame_id: frame_id,
+                                                         format: 'js'),
+                                   style: 'text-align: center; min-width: 30px; height: 34px',
+                                   id: "quantity_#{item.id}", class: 'form-control') %>
+              <span class="input-group-btn">
+              <%= button_to('#', onclick: "return updateQuantityDec(quantity_#{item.id}, '#{item.category}', '#{item.price}', '#{item.id}')",
+                            class: 'btn btn-danger cart-btn light-blue', remote: true) do %>
+                <i class='fa fa-minus'></i>
+              <% end %>
+            </span>
+            </div>
+          </div>
+          <div class="col-2 col-md-3 text-center cart-table">
+            <div id="row-total-<%= item.id %>">
+              <%= (item.price * quantity).to_i %>
+            </div>
+          </div>
+        </div>
+        <br/>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-md-8 col-12 cart-table" id="total">
+    <%= render partial: 'total_dashboard', locals: {total: total} %>
+  </div>
+  <div class="col-md-4  col-12 text-left">
+    <div class="btn-group">
+      <%= link_to("<i class='fa fa-credit-card'></i> #{t('invoices.buttons.save_payment')}".html_safe,
+                  cart_items_list_dashboard_path,
+                  class: 'btn btn-success modal-btn', remote: true, onclick: "return cartItemForm()") %>
+      <button type="button" class="btn btn-default modal-btn" data-dismiss="modal"> ادامه خرید</button>
+    </div>
+  </div>
+</div>
+
+<script>
+    function updateQuantityInc(item_id, category, item_price, id) {
+        console.log(category);
+        var quantity_val = jQuery(item_id).val();
+        if (category === 'download' && parseInt(quantity_val) >= 1) {
+            return;
+        }
+        jQuery('.loading-spinner').show();
+        // jQuery('.cart-btn').prop("disabled",true);
+        jQuery(item_id).val(parseInt(quantity_val) + 1);
+        jQuery(item_id).change();
+        jQuery("#row-total-".concat(id.toString())).text(parseFloat(item_price) * (parseFloat(quantity_val) + 1));
+    }
+
+    function updateQuantityDec(item_id, category, item_price, id) {
+        console.log(item_id);
+        var quantity_val = jQuery(item_id).val();
+        if (parseInt(quantity_val) === 0) {
+            return;
+        }
+        if (category === 'download' && parseInt(quantity_val) > 1) {
+            return;
+        }
+        jQuery('.loading-spinner').show();
+        // jQuery('.cart-btn').prop("disabled",true);
+        jQuery(item_id).val(parseInt(quantity_val) - 1);
+        jQuery(item_id).change();
+        jQuery("#row-total-".concat(id.toString())).text(parseFloat(item_price) * (parseFloat(quantity_val) - 1));
+    }
+
+    function cartItemForm() {
+        jQuery('.loading-spinner').show();
+    }
+
+    // $('.cart-btn').on('click',function() {
+    //     console.log('ddd');
+    //     $(this).prop("disabled",true);
+    // });
+</script>

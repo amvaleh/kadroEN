@@ -1,0 +1,32 @@
+<% case @gallery.download_limit %>
+<% when 0 %>
+jQuery('#grid-container').cubeportfolio('appendItems','<%= escape_javascript render "full_frame_each_dashboard" %>')
+$( ".cbp-caption-defaultWrap" ).click(function() {
+    setTimeout(
+        function()
+        {
+            $('.cbp-popup-lightbox-img').bind('contextmenu', function(e) {
+                return false;
+            });
+            disable_right_click();
+        }, 100);
+});
+$('.cbp-caption-defaultWrap > img').bind('contextmenu', function(e) {
+    return false;
+});
+<% else %>
+jQuery('#grid-container').cubeportfolio('appendItems','<%= escape_javascript render "selection_frame_each_dashboard" %>')
+$( ".cbp-caption-defaultWrap" ).click(function() {
+    setTimeout(
+        function()
+        {
+            $('.cbp-popup-lightbox-img').bind('contextmenu', function(e) {
+                return false;
+            });
+            disable_right_click();
+        }, 100);
+});
+$('.cbp-caption-defaultWrap > img').bind('contextmenu', function(e) {
+    return false;
+});
+<% end %>

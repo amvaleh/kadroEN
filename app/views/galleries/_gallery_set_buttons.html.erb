@@ -1,0 +1,28 @@
+<div class="btn-group-vertical" style="width: 100%" role="group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    بیشتر
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+      <% if project.feed_back.present? %>
+      <%= link_to "امتیاز دهی", feed_backs_path(project), target: "_blank" %>
+      <% else %>
+      <%= link_to "امتیاز دهی", feed_backs_path(project), target: "_blank" %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "فاکتور", thank_you_project_path(project), target: "_blank" %>
+    </li>
+  </ul>
+</div>
+<% if project.gallery.present? %>
+<%= link_to "ورود به گالری پروژه", gallery, class: "btn btn-success", target: "_blank" %>
+<% if gallery.hashed_password.nil? %>
+<%= link_to("<i class='fa fa-unlock'></i> #{t(:'galleries.set_password')}".html_safe,
+gallery_password_form_path(gallery_id: gallery.slug), remote: true, class: "btn btn-primary") %>
+<% else %>
+<%= link_to("<i class='fa fa-lock'></i> #{t(:'galleries.change_password')}".html_safe,
+gallery_password_form_path(gallery_id: gallery.slug), remote: true, class: "btn btn-warning") %>
+<% end %>
+<% end %>

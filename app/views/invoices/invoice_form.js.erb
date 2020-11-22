@@ -1,0 +1,105 @@
+setTimeout(function() {
+    <%= render partial: 'shared/show_modal',
+               locals: {modal_partial: 'invoice_form', modal_title: t(:'invoices.main_title'),
+               local_vars: {address: address, total: total, cart_id: cart_id}} %>
+
+    jQuery('.loading-spinner').hide();
+}, 1000);
+
+jQuery(document).ready(function () {
+    setTimeout(function() {
+        console.log('1');
+        let mapCanvas = document.getElementById("map");
+        console.log('2')
+        let myCenter = new google.maps.LatLng(35.806937, 51.4281577);
+        console.log('3')
+        let mapOptions = {center: myCenter, zoom: 15};
+        console.log('4')
+        let map = new google.maps.Map(mapCanvas, mapOptions);
+        console.log('5')
+        let geocoder = new google.maps.Geocoder;
+
+
+        let marker = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            animation: google.maps.Animation.DROP,
+            position: {lat: 35.806937, lng: 51.4281577},
+            icon: "https://www.kadro.co/kadroMapMarker.png"
+        });
+        jQuery('#latt').val(marker.position.lat()).trigger('change');
+        //console.log('jquery'+jQuery('#latt').val());
+        jQuery('#long').val(marker.position.lng()).trigger('change');
+        //console.log('jquery'+jQuery('#long').val());
+
+        console.log('3')
+
+        map.addListener('center_changed', function () {
+            console.log('11')
+            marker.setPosition(map.getCenter());
+            setLocationName(marker.getPosition().lat(), marker.getPosition().lng());
+            jQuery('#latt').val(marker.getPosition().lat()).trigger('change');
+            jQuery('#long').val(marker.getPosition().lng()).trigger('change');
+            console.log('33')
+            console.log(jQuery('#latt').val());
+
+        });
+        ////////////////////////////
+        let workingLocationInput = document.getElementById('location');
+        let options = {
+            types: ['address'],
+            componentRestrictions: {country: 'ir'}
+        };
+        let autoComplete = new google.maps.places.Autocomplete(workingLocationInput, options);
+        //console.log('location : '+jQuery('#location').val());
+        autoComplete.bindTo('bounds', map);
+        autoComplete.addListener('place_changed', function () {
+            console.log('44')
+            let place = autoComplete.getPlace();
+
+            if (!place.geometry) {
+                // User entered the name of a Place that was not suggested and
+                // pressed the Enter key, or the Place Details request failed.
+                window.alert("آدرس مورد انتخابی شما نا معتبر است");
+                return;
+            }
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            }
+            else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(15);
+            }
+            marker.setPosition(place.geometry.location);
+            jQuery('#latt').val(marker.getPosition().lat()).trigger('change');
+            jQuery('#long').val(marker.getPosition().lng()).trigger('change');
+            setLocationName(marker.getPosition().lat(), marker.getPosition().lng());
+        });
+    }, 1000);
+
+    function setLocationName(lat,lng)
+    {
+        let geocoder = new google.maps.Geocoder;
+        let latlng = {
+            lat: lat,
+            lng: lng
+        };
+        geocoder.geocode({
+            'location': latlng
+        }, function(results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    //This is your formatted address
+                    //console.log('input : '+results[0].formatted_address);
+                    jQuery('#location').val(results[0].formatted_address).trigger('change');
+                }
+                else {
+                    console.log('No results found');
+                }
+            }
+            else {
+                console.log('Geocoder failed due to: ' + status);
+            }
+        });
+    }
+});

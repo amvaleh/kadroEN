@@ -1,0 +1,20 @@
+<span>
+  عکاس
+  <span class="owner">
+<% if activity.trackable.present? %>
+    <%= link_to activity.trackable.first_name + " " + activity.trackable.last_name, admin_photographer_path(activity.trackable.slug) %>
+    <% else %>
+      با آیدی
+      <%= activity.trackable_id %>
+      که دیگر موجود نیست
+    <% end %>  </span>
+  یک
+  <span class="recipient">
+  <%= link_to "فریم", admin_frame_path(activity.recipient_id) %>
+  </span>
+  را برای
+  <span class="recipient">
+  <%= link_to "گالری", admin_gallery_path(Gallery.find_by(id: activity.owner_id).slug) %>
+  </span>
+  پروژه خود آپلود کرد
+</span>

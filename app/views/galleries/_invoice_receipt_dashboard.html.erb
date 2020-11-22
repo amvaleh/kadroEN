@@ -1,0 +1,102 @@
+<% cart_items = Carts::CurrentCartItems.call(cart_id: cart_id).result %>
+<% cart = Cart.find(cart_id) %>
+<% address = cart.invoice.address if cart.invoice.present? %>
+<% user = cart.user %>
+
+<div class="container" style="background-color: white" id="pdf">
+  <div id="<%= cart_id %>">
+    <button type="button" id="receipt-modal-close" style="background: transparent; border:none" data-dismiss="modal"><i class="fa fa-close fa-3x" style="color: #2B87F9"></i> </button>
+    <div class="row" style="margin: 30px 15px 5px">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="top-right">
+              <img src="<%= Rails.env.development? ? "http://app.localhost:3000/img/logo.png" : "https://app.kadro.co/img/logo.png"%>" style="width: 40%">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div style="text-align: left; font-size: 24px; margin-top: 30px">
+              <div>شماره فاکتور</div>
+              <div style="margin-left: 50px"><%= cart.invoice.vch_number.to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') if cart.invoice.present? %></div>
+            </div>
+            <div style="font-size: 20px" class="text-left"> تاریخ:
+              <% time = cart.created_at.to_date.to_s.split("-") %>
+              <em><%= (time[0] + "/" + time[1] + "/" + time[2]).to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %></em>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+          <span>
+            <strong><%= user.display_name if user.present? %></strong>
+          </span>
+            <address>
+              <%= address.input if address.present? %>
+            </address>
+          </div>
+        </div>
+        <div class="row">
+          </span>
+          <div class="table-responsive">
+            <table class="table table-bordered" style="background-color: #d2d2d2">
+              <thead>
+              <tr style=" font-size: 20px; background-color: #2B87F9; color: white">
+                <th class="text-center" style="vertical-align: inherit; padding: 10px">#</th>
+                <th class="text-center" style="vertical-align: inherit; padding: 10px">نام آیتم</th>
+                <th class="text-center" style="vertical-align: inherit; padding: 10px">فریم</th>
+                <th class="text-center" style="vertical-align: inherit; padding: 10px">گالری</th>
+                <th class="text-center" style="vertical-align: inherit; padding: 10px">شماره فریم</th>
+                <th class="text-center" style="vertical-align: inherit; padding: 10px">تعداد</th>
+                <th class="text-center" style="vertical-align: inherit; padding: 10px">فی</th>
+                <th class="text-center" style="vertical-align: inherit; padding: 10px">مبلغ</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% total = 0 %>
+              <% cart_items.each_with_index do |cart_item, index| %>
+                <tr>
+                  <td style="vertical-align: inherit; padding: 10px"><%= index + 1 %> </td>
+                  <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= ItemType.find_by(category: cart_item.category).title + " " + cart_item.title %></td>
+                  <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= image_tag (cart_item.frame.file_url(:light)) , :width => 100 %></td>
+                  <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= link_to cart_item.frame.gallery.project.user.display_name, gallery_path(cart_item.frame.gallery.slug) %></td>
+                  <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= cart_item.frame.id %></td>
+                  <td style="vertical-align: inherit; padding: 10px" class="text-center" style="text-align: center"> <%= cart_item.quantity.to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %> </td>
+                  <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= cart_item.price.to_i.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %></td>
+                  <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= (cart_item.price * cart_item.quantity).to_i.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %></td>
+                </tr>
+                <% total = cart_item.price * cart_item.quantity + total %>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-3">
+            <table style="margin-bottom: 0px">
+              <tbody>
+              <tr>
+                <td style="padding: 7px">
+                  <strong>جمع: </strong>
+                </td>
+                <td>
+                  <strong><%= total.to_i.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %></strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 7px">
+                  <strong>حمل و نقل: </strong>
+                </td>
+                <td>
+                </td>
+              </tr>
+              <tr style="color: #2B87F9; font-size: 22px; border-top: 2px solid #b5b5b5">
+                <td style="padding: 7px">مبلغ کل: </td>
+                <td>
+                  <%= total.to_i.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

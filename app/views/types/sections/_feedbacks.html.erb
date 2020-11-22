@@ -1,0 +1,81 @@
+<section class="fdb-block" id="feed_backs" style="background-image: url(/types/imgs/shapes/6.svg);">
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <h2> نظر مشتریان </h2>
+        <h3 class="text-center"> آنچه مشتریان قبلی کادرو در خصوص تجربه شان می گویند را بشنوید: </h3>
+        <p class="lead text-center">
+          میانگین نمرات عکاسان
+          <%= @shoot_type.title%>
+          از بین <%= @all_feedbacks_count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+          نظر برابر است با
+          <%= number_with_precision(@average_rating,precision: 2).to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')%>
+<!--          (9 + (Date.today.day.to_f/100)).to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')-->
+          از
+          ۱۰
+        </p>
+      </div>
+    </div>
+    <div class="row mt-5 align-items-center justify-content-center" id="slider-container">
+      <% @good_feedbacks.first(12).each do |gf| %>
+      <div class=" col-md-8 col-lg-4 mt-4 mt-lg-0 cbp-item mx-auto">
+        <div class="fdb-box">
+          <div class="row mt-4" style="height: 220px;">
+            <div class="col-12">
+              <p class="text-right text-primary">
+                <%= gf.project.user.display_name %>:
+              </p>
+              <p class="lead" style="font-size:1.2rem">
+                "<%=truncate(gf.description , :length => 150, :separator => ' ')%>"
+              </p>
+            </div>
+          </div>
+          <div class="row no-gutters align-items-center mx-2">
+            <div class="col-3">
+              <img alt="image" class="img-fluid rounded" src="<%=assets_url(gf.project.photographer.avatar_url(:thumb))%>">
+            </div>
+            <div class="col-8 mx-1">
+              <p>
+                <strong> <%=gf.project.photographer.abbrv_name%> </strong><br>
+                <em>عکاس کادرو  </em>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+<script type="text/javascript">
+  jQuery(document).ready( function() {
+    jQuery('#slider-container').cubeportfolio({
+      layoutMode: 'slider',
+      drag: true,
+      auto: false,
+      autoTimeout: 5000,
+      autoPauseOnHover: true,
+      showNavigation: false,
+      showPagination: true,
+      rewindNav: true,
+      scrollByPage: true,
+      gridAdjustment: 'responsive',
+      displayType: 'default',
+      mediaQueries: [{
+        width: 1500,
+        cols: 6,
+      }, {
+        width: 1100,
+        cols: 4,
+      }, {
+        width: 800,
+        cols: 3,
+      }, {
+        width: 480,
+        cols: 1,
+      }]
+    });
+  });
+</script>

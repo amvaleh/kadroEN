@@ -1,0 +1,41 @@
+<% if @photographer.expertises.any? %>
+<% @header_photo = @photographer.expertises.sample.photos.sample%>
+<% end %>
+<header id="header">
+  <nav class="nav">
+    <div class="container">
+      <div class="wrap">
+        <a href="<%= studio_photographer_path(current_photographer) %>" title="" class="logo" target="_blank" style="display: flex; line-height: 50px">
+          <%= image_tag current_photographer.avatar_url(:thumb), class: "img-responsive" %>
+          <span class="hidden-xs"><%= current_photographer.display_name %></span>
+        </a>
+
+        <div class="btn-group">
+          <% if photographer_signed_in? %>
+            <% if current_photographer.join_step.name == "حقوقی" or  @photographer.join_step.name == "تاییدیه" %>
+            <%= link_to 'دریافت قرارداد' , '/kadroAgreement.pdf' , :class => "btn btn-success btn-lg",style:"color:white" , target: :_blank%>
+            <% else %>
+              <%= link_to "/updates" , class: "btn btn-lg btn-info " do %>
+              <i class="fa fa-bullhorn face"></i>
+              اخبار و به روزرسانی ها
+              <% end %>
+            <% end %>
+          <% else %>
+          <%= link_to "ورود", new_photographer_session_path, class: " btn btn-default " %>
+          <%= link_to "رزرو عکاس", root_path, class: "btn btn-blue" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="header" style="background-image: url('<%=@header_photo.present? && @header_photo.file_url.present? ? @header_photo.file_url(:medium) : "" %>') !important;">
+    <div class="container">
+      <div class="header-message texn-center">
+        <span style="background: #03030387;
+        padding: 1% 6% 1% 6%;color:white;">
+        <%= title %>
+      </span>
+    </div>
+  </div>
+</div>
+</header>

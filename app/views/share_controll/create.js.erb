@@ -1,0 +1,5 @@
+<% if @exceed_limit %>
+$('#share_control_<%=@frame.id%>').html("<%= j render 'request_exceeds' %>");
+<% else %>
+$('#share_control_<%=@frame.id%>').html("<%= j render 'request_sent' %>");
+<% end %>

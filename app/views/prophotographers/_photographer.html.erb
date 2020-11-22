@@ -1,0 +1,46 @@
+<div class="photographer">
+  <a href="<%= p.pro_url %>" class="wrap">
+    <span class="profile-img"
+          style="background-image: url('<%=p.avatar_url(:mini)%>');"></span>
+    <h5>
+      <span style="color: black">
+        <%= p.abbrv_name %>
+      </span>
+      <% if p.has_studio %>
+
+        -
+        <span class="label" style="padding:10px;color:black;background-color: #f8faff;border: 1px solid #2a87f9;">
+          <i class="fa fa-check-circle" aria-hidden="true" style="padding: 0px;
+              background-color: #f8faff;
+              color: #2a87f9;">
+          </i>
+          آتلیه دار
+        </span>
+      <% end %>
+    </h5>
+    <span class="w100">
+      <em>
+        <% art = ((p.qrate + p.arate) / 2).round(2).to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+        <%= p.location.city.name if p.location.city.present? %>
+        <p class="photographer-rating">
+        <%= art==0? 10 : art %> از ۱۰ </p>
+      </em>
+    </span>
+    <span class="badge text-primary" style="background-color: #f8f9fa;color: #007bff !important;">
+      <%= p.equipment.equip_cameras.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
+      دوربین
+    </span>
+    <span class="badge text-primary" style="background-color: #f8f9fa;color: #007bff !important;">
+      <%= p.equipment.equip_lenzs.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
+      لنز
+    </span>
+  </a>
+  <p style="font-size: 12px;color: gray;text-align: justify;max-height: 100px;" class="hidden-xs">
+    <% if p.experience.present? %>
+      <%= truncate(p.experience.bio, length: 100) %>
+    <% end %>
+  </p>
+  <a href="<%= p.pro_url %>"class="btn btn-blue btn-sm" style="font-size: 12px;">
+    مشاهده و رزرو
+  </a>
+</div>

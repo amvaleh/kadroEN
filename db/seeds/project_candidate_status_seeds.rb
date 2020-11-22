@@ -1,0 +1,5 @@
+ProjectCandidateStatus.find_or_create_by(title: 'elected')
+ProjectCandidateStatus.find_or_create_by(title: 'waiting')
+ProjectCandidateStatus.find_or_create_by(title: 'accepted')
+ProjectCandidateStatus.find_or_create_by(title: 'rejected')
+ProjectCandidateStatus.find_or_create_by(title: 'non_directed')

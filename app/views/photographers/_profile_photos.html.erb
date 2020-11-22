@@ -1,0 +1,321 @@
+<%= javascript_include_tag "plupload.full.min.js" %>
+<%= javascript_include_tag "jquery.plupload.queue.min.js" %>
+<%= stylesheet_link_tag "jquery.plupload.queue.css" %>
+
+
+<%= stylesheet_link_tag 'gallery/cubeportfolio.min' %>
+<%= javascript_include_tag 'gallery/jquery.cubeportfolio.min' %>
+
+<div class="col-xs-12">
+  <h2 class="text-right">
+    <span class="fa fa-user-plus" style="font-size: 30px;">
+    </span>
+    معرفی بیشتر خود
+  </h2>
+  <br>
+  <p style="text-align: justify; font-size: 20px">
+    به منظور معرفی بیشتر شما به کاربران و
+    <strong > افزایش اعتماد، </strong>
+    قابلیت افزودن
+    <strong > چند عکس پروفایل </strong>
+    ایجاد شده است،
+    <br>
+    کاربر با دیدن عکس های پروفایل بیشتر از شما،
+    راحت تر می توانند اعتماد کنند و از شما عکاسی رزرو کنند.
+  </p>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-danger">
+      ابعاد هر عکس حتما باید ۷۰۰*۷۰۰ پیکسل باشد.
+    </p>
+    <p class="text-danger">
+      حداقل ۴ عکس تا ۸ عکس آپلود کنید.
+    </p>
+  </div>
+
+  <hr>
+  <div class="col-xs-12" id="filelist">
+    <div id="uploader">
+      <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <hr>
+  <div class="col-xs-12">
+    <h2 class="text-center">
+      عکس های آپلود شده
+      <br>
+    </h2>
+    <%= link_to page_setting_photographer_path, class: "btn btn-primary" do %>
+    <i class="fa fa-refresh"></i>
+    به روز رسانی
+    <% end %>
+    <%= link_to @photographer.page_url, class: "btn btn-blue",target: "_blank" do %>
+    <i class="fa fa-user"></i>
+    مشاهده صفحه شما
+    <% end %>
+  </div>
+  <div class="col-xs-12" id="grid-container" style="padding-top: 5%;">
+    <div id="js-grid-masonry" class="cbp">
+      <% @photographer.photographer_attachments.order("created_at DESC").each do |f| %>
+      <div id="cbp-item-<%= f.id %>" class="cbp-item identity">
+        <div class="cbp-caption-defaultWrap">
+          <img id="ph-frame" src="<%= f.avatar_url(:medium) %>">
+          <div class="frame-options" style="text-align: center">
+            <i id="<%= f.id %>" class="fa fa-trash-o fa-2x delete-frame" style="color: #f0454f; cursor: pointer"></i>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // new uploader
+  $(document).ready(function () {
+
+    $(".delete-frame").click(function (event) {
+      avatar_id = event.target.id;
+      $.ajax({
+        data: {
+          id: <%= @photographer.id %>,
+          avatar_id: avatar_id
+        },
+        type: "POST",
+        url: "/page_setting/remove_avatar",
+        success: function () {
+          $("#cbp-item-".concat(avatar_id)).hide();
+        }
+      })
+    });
+
+
+    $('#js-grid-masonry').cubeportfolio({
+      filters: '#js-filters-masonry',
+      layoutMode: 'grid',
+      defaultFilter: '*',
+      animationType: 'slideDelay',
+      gapHorizontal: 20,
+      gapVertical: 20,
+      gridAdjustment: 'responsive',
+      mediaQueries: [{
+        width: 1500,
+        cols: 5,
+      }, {
+        width: 1100,
+        cols: 4,
+      }, {
+        width: 800,
+        cols: 3,
+      }, {
+        width: 480,
+        cols: 2,
+        options: {
+          caption: '',
+          gapHorizontal: 10,
+          gapVertical: 10,
+        }
+      }],
+      caption: 'overlayBottomAlong',
+      displayType: 'bottomToTop',
+      displayTypeSpeed: 100,
+
+      // lightbox
+      lightboxDelegate: '.cbp-lightbox',
+      lightboxGallery: true,
+      lightboxTitleSrc: 'data-title',
+      lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
+    });
+
+    $(function () {
+
+      $("#uploader").pluploadQueue({
+        // General settings
+        runtimes: 'html5,flash,silverlight,html4',
+        url: '/photographers/<%= @photographer.id %>/submit_avatars',
+        chunk_size: '5mb',
+        unique_names: true,
+
+
+        filters: {
+          max_file_size: '5mb',
+          mime_types: [
+          {title: "Image files", extensions: "jpg,jpeg"}
+          ]
+        },
+
+
+        // Flash settings
+        flash_swf_url: '/plupload/js/Moxie.swf',
+
+        // Silverlight settings
+        silverlight_xap_url: '/plupload/js/Moxie.xap',
+
+        // PreInit events, bound before any internal events
+        preinit: {
+          Init: function (up, info) {
+            log('[Init]', 'Info:', info, 'Features:', up.features);
+          },
+
+          UploadFile: function (up, file) {
+            log('[UploadFile]', file);
+
+            // You can override settings before the file is uploaded
+            // up.setOption('url', 'upload.php?id=' + file.id);
+            // up.setOption('multipart_params', {param1 : 'value1', param2 : 'value2'});
+          }
+        },
+
+
+        // Post init events, bound after the internal events
+        init: {
+          PostInit: function () {
+            // Called after initialization is finished and internal event handlers bound
+            log('[PostInit]');
+
+            document.getElementById('uploadfiles').onclick = function () {
+              uploader.start();
+              return false;
+            };
+          },
+
+          Browse: function (up) {
+            // Called when file picker is clicked
+            log('[Browse]');
+          },
+
+          Refresh: function (up) {
+            // Called when the position or dimensions of the picker change
+            log('[Refresh]');
+          },
+
+          StateChanged: function (up) {
+            // Called when the state of the queue is changed
+            log('[StateChanged]', up.state == plupload.STARTED ? "STARTED" : "STOPPED");
+          },
+
+          QueueChanged: function (up) {
+            // Called when queue is changed by adding or removing files
+            log('[QueueChanged]');
+          },
+
+          OptionChanged: function (up, name, value, oldValue) {
+            // Called when one of the configuration options is changed
+            log('[OptionChanged]', 'Option Name: ', name, 'Value: ', value, 'Old Value: ', oldValue);
+          },
+
+          BeforeUpload: function (up, file) {
+            // Called right before the upload for a given file starts, can be used to cancel it if required
+            log('[BeforeUpload]', 'File: ', file);
+          },
+
+          UploadProgress: function (up, file) {
+            // Called while file is being uploaded
+            log('[UploadProgress]', 'File:', file, "Total:", up.total);
+          },
+
+          FileFiltered: function (up, file) {
+            // Called when file successfully files all the filters
+            log('[FileFiltered]', 'File:', file);
+          },
+
+          FilesAdded: function (up, files) {
+            // Called when files are added to queue
+            log('[FilesAdded]');
+
+            plupload.each(files, function (file) {
+              console.log('  File:', file);
+            });
+          },
+
+          FilesRemoved: function (up, files) {
+            // Called when files are removed from queue
+            log('[FilesRemoved]');
+          },
+
+          FileUploaded: function (up, file, info) {
+            // Called when file has finished uploading
+            log('[FileUploaded] File:', file, "Info:", info);
+          },
+
+          ChunkUploaded: function (up, file, info) {
+            // Called when file chunk has finished uploading
+            log('[ChunkUploaded] File:', file, "Info:", info);
+          },
+
+          UploadComplete: function (up, files) {
+            // Called when all files are either uploaded or failed
+            log('[UploadComplete]');
+          },
+
+          Destroy: function (up) {
+            // Called when uploader is destroyed
+            log('[Destroy] ');
+          },
+
+          Error: function (up, args) {
+            // Called when error occurs
+            if (args.status == 406) {
+              alert("ابعاد عکس باید حتما ۷۰۰*۷۰۰ پیکسل باشد.")
+            }
+          }
+        }
+      });
+
+
+      function log() {
+        var str = "";
+
+        plupload.each(arguments, function (arg) {
+          var row = "";
+
+          if (typeof(arg) != "string") {
+            plupload.each(arg, function (value, key) {
+              // Convert items in File objects to human readable form
+              if (arg instanceof plupload.File) {
+                // Convert status to human readable
+                switch (value) {
+                  case plupload.QUEUED:
+                  value = 'QUEUED';
+                  break;
+
+                  case plupload.UPLOADING:
+                  value = 'UPLOADING';
+                  break;
+
+                  case plupload.FAILED:
+                  value = 'FAILED';
+                  break;
+
+                  case plupload.DONE:
+                  value = 'DONE';
+                  break;
+                }
+              }
+
+              if (typeof(value) != "function") {
+                row += (row ? ', ' : '') + key + '=' + value;
+              }
+            });
+
+            str += row + " ";
+          } else {
+            str += arg + " ";
+          }
+        });
+
+        var log = $('#log');
+        log.append(str + "\n");
+        // log.scrollTop(log[0].scrollHeight);
+      }
+    });
+
+
+
+
+  });
+
+</script>

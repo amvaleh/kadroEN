@@ -1,0 +1,243 @@
+<%= javascript_include_tag "bootstrap.min"  %>
+<style>
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+.radio-group label {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 35px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  height: 60px;
+}
+
+input[type=radio]:checked + label{
+  color: white;
+  background: #206fff;
+}
+
+label + input[type=radio] + label {
+  /*border-left: solid 1px #206fff;*/
+}
+.radio-group {
+  border: solid 1px #d0d0d0;
+  display: inline-block;
+  margin: 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  direction: rtl;
+}
+</style>
+<% @top_title = "چقدر تجربه کاری داری؟" %>
+<%= render 'shared/join_dynamic_header' , title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="tracker">
+        <div class="process-tabs-line w-hidden-tiny">
+          <span class="step-line step-line-package active" style="width: 33.3333%; right: 0%;"></span>
+          <span class="step-line step-line-datetime active" style="width: 33.3333%; right: 33.3333%;"></span>
+          <span class="step-line step-line-details active" style="width: 33.3333%; right: 66.6667%;"></span>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 0%;">
+          <div class="tracker-text">
+            اطلاعات اولیه
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle selected " style="right: 33.3333%;">
+          <div class="tracker-text">
+            تجهیزات عکاسی
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 66.6667%;">
+          <div class="tracker-text">
+            نمونه کارها
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle selected" style="right: 100%;">
+          <div class="tracker-text">
+            تجربه کاری
+          </div>
+        </div>
+
+      </div><!-- /.tracker -->
+
+      <div class="wrapper">
+        <%= form_for @experience , :url => submit_experience_photographer_path , html: {class: "form form-group"} , method: :post do |f| %>
+        <div class="row" style="margin-bottom: 30px;">
+          <div class="col-sm-12">
+            <p class="text-center">
+              مشتریان کادرو به دنبال عکاسان حرفه ای هستند که
+              یک سابقه اثبات شده در
+              <br>
+              انجام و تحویل عکس های حرفه ای
+              دارند.
+              به ما اجازه دهید در مورد سابقه کاری شما  به عنوان<br>
+              یک عکاس  بیشتر بدانیم.
+            </p>
+            <hr>
+          </div>
+          <div class="col-sm-6">
+            <div class="col-sm-12 ltr">
+              <h5>
+                چند سال عکاس بوده اید؟
+              </h5>
+              <!-- <input class="form-control" type="number" name="years_been_photographer" id="years" value="0" required="" > -->
+              <%= f.number_field "years_been_photographer" , class: "form-control" , 'required' => "" ,placeholder: "0" %>
+            </div>
+            <div id="projects_payed_for" class="col-sm-12 ltr hidden">
+              <h5 >
+                به صورت حدودی چند پروژه با کسب درآمد انجام داده اید؟
+              </h5>
+              <%= f.number_field "projects_payed_count" , class: "form-control" ,placeholder: "0" %>
+              <!-- <input class="form-control " type="number" name="projects_payed_count" id="projects_payed_count" value="0" > -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <h5>
+              تا به حال از عکاسی کسب درآمد کرده اید؟
+            </h5>
+            <div class="radio-group">
+              <input type="radio" id="payed_work_no" checked name="payed_work" value="no"><label onclick="$('#projects_payed_for').addClass('hidden');" for="payed_work_no">خیر</label><input type="radio" name="payed_work" value="yes" id="payed_work_yes" name="selector"><label onclick="$('#projects_payed_for').removeClass('hidden');" for="payed_work_yes">بله</label>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <h5>
+              لطفا تجربه خود را به عنوان یک عکاس توصیف کنید.
+            </h5>
+            <%= f.text_area "self_describe" , class: "form-control" , 'required' => "" ,placeholder: "یک چیزی اینجا بنویسید..." %>
+            <!-- <textarea required="" class="form-control" name="self_describe" placeholder="یک چیزی اینجا بنویسید..." ></textarea> -->
+            <h4 style="font-size: 0.7em; margin-top: 5px;">
+              این پاسخ توسط تیم ما بررسی می شوند و روی صفحه شخصی شما نمایش داده نمی شوند.
+            </h4>
+            <br>
+          </div>
+          <h3 style="margin-bottom: 20px;">
+            پاسخ به سوالات زیر روی صفحه شخصی شما نمایش داده خواهند شد:
+          </h3>
+          <div class="col-sm-12">
+            <br>
+            <h5>
+              لطفا یک خلاصه کوتاه از تجربه ها، تمرین ها و علاقه تون برای عکاسی بنویسید.
+            </h5>
+            <%= f.text_area "bio" , class: "form-control" , 'required' => "" ,placeholder: "امیررضا استواری یک عکاس حرفه ای است که برای شرکت ها و افراد مختلفی در تهران کار کرده است. اون مدرک لیسانس عکاسی از دانشکده هنر دارد و در عکاسی عروسی و عکاسی رویداد تخصص دارد و تا الان بیش از ۲۰۰ پروژه در تهران انجام داده است. او علاوه بر این تخصص قابل توجهی در عکاسی پرتره و محصول دارد، در شرکت دیجیکالا و بامیلو استخدام بوده و کارهای عکاسی آنها را انجام داده است." %>
+            <!-- <textarea required="" class="form-control" name="bio" placeholder="امیررضا استواری یک عکاس حرفه ای است که برای شرکت ها و افراد مختلفی در تهران کار کرده است. اون مدرک لیسانس عکاسی از دانشکده هنر دارد و در عکاسی عروسی و عکاسی رویداد تخصص دارد و تا الان بیش از ۲۰۰ پروژه در تهران انجام داده است. او علاوه بر این تخصص قابل توجهی در عکاسی پرتره و محصول دارد، در شرکت دیجیکالا و بامیلو استخدام بوده و کارهای عکاسی آنها را انجام داده است." ></textarea> -->
+            <h4 style="font-size: 0.7em; margin-top: 5px;">
+              لطفا از دیدگاه سوم شخص بنویسید.
+            </h4>
+          </div>
+
+          <div class="col-sm-12">
+            <br>
+            <h5>
+              چطوری عکاسی را آغاز کردید؟
+            </h5>
+            <%= f.text_area "passion" , class: "form-control" , 'required' => "" ,placeholder: "من عکاسی را از زمانی شروع کردم که پدر بزرگم به من یک دوربین آنالوگ در تولد ۱۰ سالگی ام هدیه داد. از اینکه می تونستم از چیز های مختلف عکاسی کنم و لحظات رو ثبت کنم خیلی خوشحال بودم. در ۱۶ سالگی، پدرم برایم یک دوربین DSLR خرید و من رو در یک کلاس عکاسی ۲ ماهه ثبت نام کرد، از آنجا بود که وارد دنیای حرفه ای عکاسی شدم و تفریح عکاسی تبدیل به حرفه اصلی ام شد." %>
+            <!-- <textarea required="" class="form-control" name="passion" placeholder="من عکاسی را از زمانی شروع کردم که پدر بزرگم به من یک دوربین آنالوگ در تولد ۱۰ سالگی ام هدیه داد. از اینکه می تونستم از چیز های مختلف عکاسی کنم و لحظات رو ثبت کنم خیلی خوشحال بودم. در ۱۶ سالگی، پدرم برایم یک دوربین DSLR خرید و من رو در یک کلاس عکاسی ۲ ماهه ثبت نام کرد، از آنجا بود که وارد دنیای حرفه ای عکاسی شدم و تفریح عکاسی تبدیل به حرفه اصلی ام شد." ></textarea> -->
+            <h4 style="font-size: 0.7em; margin-top: 5px;">
+              لطفا از دیدگاه اول شخص بنویسید.
+            </h4>
+          </div>
+
+          <div class="col-sm-12">
+            <br>
+            <h5>
+              در عکاسی، چه چیزی شما را به وجد می آورد؟
+            </h5>
+            <%= f.text_area "love_job" , class: "form-control" , 'required' => "" ,placeholder: "من عاشق قصه گویی هستم، به قول معروف، یک عکس هزار حرف دارد. عکاسی به من این فرصت را می دهد تا لحظات خاص در زندگی مردم را ثبت کنم و قصه آنها را صادقانه، منحصر بفرد و زیبا به اشتراک بگذارم. هیچ چیز لذت بخش تر از این نیست که لبخند رضایت روی چهره مشتری ام باشد زمانیکه برای اولین بار عکس هایش را می بیند. چشمهایشان چنان می درخشد انگار که در همان لحظه خاطره اش سیر می کند، یک عروسی، عقد، تولد و غیره. من دوست دارم آن کسی باشم که آن لحظه لذت بخش را می سازد." %>
+            <!-- <textarea required="" class="form-control" name="love_job" placeholder="من عاشق قصه گویی هستم، به قول معروف، یک عکس هزار حرف دارد. عکاسی به من این فرصت را می دهد تا لحظات خاص در زندگی مردم را ثبت کنم و قصه آنها را صادقانه، منحصر بفرد و زیبا به اشتراک بگذارم. هیچ چیز لذت بخش تر از این نیست که لبخند رضایت روی چهره مشتری ام باشد زمانیکه برای اولین بار عکس هایش را می بیند. چشمهایشان چنان می درخشد انگار که در همان لحظه خاطره اش سیر می کند، یک عروسی، عقد، تولد و غیره. من دوست دارم آن کسی باشم که آن لحظه لذت بخش را می سازد." ></textarea> -->
+            <h4 style="font-size: 0.7em; margin-top: 5px;">
+              لطفا از دیدگاه اول شخص بنویسید.
+            </h4>
+          </div>
+
+          <div class="col-sm-12">
+            <br>
+            <h5>
+              چه رشته هایی از عکاسی را بیشتر دوست دارید انجام دهید؟ و چرا؟
+            </h5>
+            <%= f.text_area "favorite_shoots" , class: "form-control" , 'required' => "" ,placeholder: "من عاشق قصه گویی هستم، به قول معروف، یک عکس هزار حرف دارد. عکاسی به من این فرصت را می دهد تا لحظات خاص در زندگی مردم را ثبت کنم و قصه آنها را صادقانه، منحصر بفرد و زیبا به اشتراک بگذارم. هیچ چیز لذت بخش تر از این نیست که لبخند رضایت روی چهره مشتری ام باشد زمانیکه برای اولین بار عکس هایش را می بیند. چشمهایشان چنان می درخشد انگار که در همان لحظه خاطره اش سیر می کند، یک عروسی، عقد، تولد و غیره. من دوست دارم آن کسی باشم که آن لحظه لذت بخش را می سازد." %>
+            <!-- <textarea required="" class="form-control" name="favorite_shoots" placeholder="من بیشتر عکاسی کودک و نوزاد را دوست دارم، چون کودکان را بسیار دوست دارم و به آن روزی فکر می کنم که آن کودک عکس هایش را می بیند و لذت می برد. من در عکاسی سعی می کنم خصلت واقعی کودک را به تصویر بکشم، آرامی کودک، بازیگوش بودن، زرنگ و پر شور بودن و یا وابسته مادر بودنش را. پیدا کردن بهترین حالت نور پردازی و ژست عکس برای کودکان آسان نیست، اما ارزش یک عکس خاطر انگیز را دارد."></textarea> -->
+            <h4 style="font-size: 0.7em; margin-top: 5px;">
+              لطفا از دیدگاه اول شخص بنویسید.
+            </h4>
+          </div>
+
+          <div class="col-sm-12">
+            <br>
+            <h5>
+              چه رشته هایی از عکاسی را انجام داده اید و چطور سعی کردید آنها را ویژه کنید؟
+            </h5>
+            <%= f.text_area "shoots" , class: "form-control" , 'required' => "" ,placeholder: "من در گذشته عکاسی پرتره خانوادگی بسیار انجام دادم. من تلاش می کنم کودکان را بخندانم چون در عالی شدن عکس ها خیلی تاثیر می گذارد و خانواده می تواند سال های آینده به آنها رجوع کنند و از دین آنها لذت ببرند. علاوه بر این من سعی می کنم شخصیت خانواده رو هم همانطور که هست ثبت کنم، برای مثال یک پدر و مادر جوان، من سعی می کنم یک ترکیب شاد و پر جنش و جوش را بسازم که نشان دهد چطور فرزندان می تونند کودک درون پدر و مادر را زنده کنند. من همچنین عکاسی های رویداد، از قبیل تولد ها و عقد و عروسی انجام داده ام که ..." %>
+            <!-- <textarea required="" class="form-control" name="shoots" placeholder="من در گذشته عکاسی پرتره خانوادگی بسیار انجام دادم. من تلاش می کنم کودکان را بخندانم چون در عالی شدن عکس ها خیلی تاثیر می گذارد و خانواده می تواند سال های آینده به آنها رجوع کنند و از دین آنها لذت ببرند. علاوه بر این من سعی می کنم شخصیت خانواده رو هم همانطور که هست ثبت کنم، برای مثال یک پدر و مادر جوان، من سعی می کنم یک ترکیب شاد و پر جنش و جوش را بسازم که نشان دهد چطور فرزندان می تونند کودک درون پدر و مادر را زنده کنند. من همچنین عکاسی های رویداد، از قبیل تولد ها و عقد و عروسی انجام داده ام که ..."></textarea> -->
+            <h4 style="font-size: 0.7em; margin-top: 5px;">
+              لطفا از دیدگاه اول شخص بنویسید.
+            </h4>
+          </div>
+
+          <div class="col-sm-12">
+            <br>
+            <h5>
+              چه مکان هایی در شهر را برای عکاسی دوست دارید ؟
+            </h5>
+            <%= f.text_area "city_shoots" , class: "form-control" , 'required' => "" ,placeholder: "مکان مورد علاقه من برای عکاسی در تهران، باغ فردوس ولیعصر است، مخصوصا بعد از ظهر ها و قبل از غروب آفتاب. نور خورشید در آن ساعت با تابیدن بر ساختمان سفید رنگ باغ فردوس، نور بسیار خوبی برای عکاسی پرتره بوجود می آورد. من دوست دارم مشتری را با خودم به اطراف باغ ببرم و از موقعیت های مختلف با پس زمینه های متنوع عکاسی کنم." %>
+            <!-- <textarea required="" class="form-control" name="city_shoots" placeholder="مکان مورد علاقه من برای عکاسی در تهران، باغ فردوس ولیعصر است، مخصوصا بعد از ظهر ها و قبل از غروب آفتاب. نور خورشید در آن ساعت با تابیدن بر ساختمان سفید رنگ باغ فردوس، نور بسیار خوبی برای عکاسی پرتره بوجود می آورد. من دوست دارم مشتری را با خودم به اطراف باغ ببرم و از موقعیت های مختلف با پس زمینه های متنوع عکاسی کنم."></textarea> -->
+            <h4 style="font-size: 0.7em; margin-top: 5px;">
+              لطفا از دیدگاه اول شخص بنویسید.
+            </h4>
+          </div>
+
+          <div class="col-sm-12">
+            <br>
+            <h5>
+              جوایز، افتخارات، مدارک و یا هر گونه تقدیرنامه که در عکاسی دریافت کرده اید را لیست کنید.
+            </h5>
+            <%= f.text_area "awards" , class: "form-control" , 'required' => "" ,placeholder: "برنده مسابقه عکاسی تبلیغاتی در تهران، بهمن ۹۴، از طرف فصلنامه عکاسی" %>
+            <!-- <textarea required="" class="form-control" name="awards" placeholder="برنده مسابقه عکاسی تبلیغاتی در تهران، بهمن ۹۴، از طرف فصلنامه عکاسی"></textarea> -->
+          </div>
+
+          <div class="col-sm-12">
+            <br>
+            <h5>
+              یک نکته جالب در مورد خودتون به ما بگید.
+            </h5>
+            <%= f.text_area "fun_fact" , class: "form-control" , 'required' => "" ,placeholder: "من نقاشی هم می کنم و حدود ۱۰ سال است که به اسکی روی آب می روم." %>
+            <!-- <textarea required="" class="form-control" name="fun_fact" placeholder="من نقاشی هم می کنم و حدود ۱۰ سال است که به اسکی روی آب می روم."></textarea> -->
+            <h4 style="font-size: 0.7em; margin-top: 5px;">
+              لطفا از دیدگاه اول شخص بنویسید.
+            </h4>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div><!-- /.main -->
+</div><!-- /.container -->
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "بازگشت" ,  portfolio_photographer_path(@photographer) , class:"btn btn-gray" %>
+      <button type="submit" id = "submit_page_form" class="btn btn-blue">ذخیره و ادامه
+      </button>
+    </div>
+  </div>
+</footer>
+<script>
+
+
+$('#submit_page_form').click(function(){
+  $('#edit_experience_<%=@experience.id%>').submit();
+});
+$('#edit_experience_<%=@experience.id%>').parsley().on('field:validated', function () {
+  $('#submit_page_form').prop('disabled', false);
+  //            $('.name, .phone, .map').removeClass('hidden');
+}).on('form:submit', function () {
+});
+
+</script>

@@ -1,0 +1,54 @@
+fa:
+  photographers:
+    messages:
+      success_message: "با موفقیت انجام شد."
+      not_approved: "شما تایید نشده ایید."
+    number: 'عدد'
+    ph_projects: 'پروژه ها'
+    uploaded_frames: 'عکس های آپلود شده'
+    hour: 'ساعت'
+    photography: 'ساعات عکاسی'
+    time: 'بار'
+    you_were_seen: 'پروفایل شما دیده شده'
+    toman: 'تومان'
+    total_income: 'کل دریافتی'
+    people: 'نفر'
+    employers: 'کارفرمایان'
+    mean_of_feedbacks_about_services: 'میانگین رضایت از سرویس دهی شما'
+    mean_of_feedbacks_about_quality: 'میانگین رضایت از کیفیت عکس ها'
+    downloaded_frames: 'عکس های دانلود شده'
+    bought_frames: 'عکس خریده شده'
+    downloaded_frames_info: 'ممکن است یک عکس چند بار دانلود شده باشد.'
+    percent: 'درصد'
+    serial_number: 'منظور از سریال نامبر همان کدی است که بر روی بدنه دوربین و لنز درج شده است.'
+
+    payments:
+      because_of: 'بابت'
+      deposit_referrer: 'شماره پیگیری:'
+      regist_time: 'تاریخ ساخت:'
+      project_time: 'تاریخ عکاسی:'
+      pay_date: 'تاریخ پرداخت:'
+      employer: 'کارفرما'
+
+
+  activerecord:
+    errors:
+      models:
+        photographer:
+          attributes:
+            password:
+              blank: 'کلمه عبور نمیتواند خالی باشد.'
+            email:
+              taken: 'این آدرس ایمیل قبلا ثبت شده است.'
+            uid:
+              taken: 'این آیدی قبلا ثبت شده است.'
+            mobile_number:
+              taken: 'این شماره موبایل قبلا ثبت شده است.'
+
+
+  bank_account:
+    messages:
+      short_code: 'شماره شبای وارد شده کوتاه است.'
+      long_code: 'شماره شبای وارد شده بلند است.'
+      string: 'شماره شبا باید عدد باشد.'
+      not_present: 'شماره شبا نمی تواند خالی باشد.'

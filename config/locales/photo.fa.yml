@@ -1,0 +1,15 @@
+fa:
+  photos:
+    messages:
+      success_message: "با موفقیت ایجاد شد."
+      not_found: "عکسی یافت نشد."
+      deleted_successfully: "عکس انتخابی با موفقیت حذف شد."
+
+
+  activerecord:
+    errors:
+      models:
+        photo:
+          attributes:
+            file:
+              blank: 'فایل نمی تواند خالی باشد.'

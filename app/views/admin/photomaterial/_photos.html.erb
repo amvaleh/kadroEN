@@ -1,0 +1,37 @@
+<h3>
+  Photos:
+</h3>
+<div class="contianer">
+  <div class="row">
+    <div class="col-xs-6 well">
+      <h5>
+        recent projects:
+      </h5>
+      <%Project.all.has_gallery.send_customer.order("start_time").last(50).each do |p|%>
+      <% if p.gallery.present? %>
+      <% p.gallery.frames.each do |f| %>
+      <div class="col-xs-4">
+        <%= image_tag f.file_address("false","light") ,class:"img-responsive img-rounded" %>
+        <%= link_to "download it" , f.file_address("false","light") ,target: "_blank" %>
+      </div>
+      <% end%>
+      <%end%>
+      <%end%>
+    </div>
+    <div class="col-xs-6">
+      <h5>
+        recent photographers:
+      </h5>
+      <% Photographer.approved.order("updated_at").last(50).each do |p|%>
+        <% p.expertises.each do |e|%>
+          <% e.photos.order("updated_at DESC").each do |photo|%>
+          <div class="col-xs-4">
+            <%= image_tag photo.file_url(:medium) ,class:"img-responsive img-rounded" %>
+            <%= link_to "download" , photo.file_url ,target: "_blank" %>
+          </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

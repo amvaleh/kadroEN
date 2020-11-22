@@ -1,0 +1,584 @@
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="tracker">
+        <div class="process-tabs-line w-hidden-tiny">
+          <span class="step-line step-line-package"
+          style="width: 33.3333%; right: 0%;"></span>
+          <span class="step-line step-line-datetime"
+          style="width: 33.3333%; right: 33.3333%;"></span>
+          <span class="step-line step-line-details"
+          style="width: 33.3333%; right: 66.6667%;"></span>
+        </div>
+        <% if params[:campaign_title].present? %>
+        <div class="process-tab-button tracker-circle selected" style="right: 0%;">
+          <div class="tracker-text">
+            <%= params[:campaign_title] %>
+          </div>
+        </div>
+        <% else %>
+        <div class="process-tab-button tracker-circle selected" style="right: 0%;">
+          <div class="tracker-text">
+            پکیج
+          </div>
+        </div>
+        <% end %>
+        <div class="process-tab-button tracker-circle " style="right: 33.3333%;">
+          <div class="tracker-text">
+            کی و کجا؟
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle" style="right: 66.6667%;">
+          <div class="tracker-text">
+            عکاس
+          </div>
+        </div>
+        <div class="process-tab-button tracker-circle" style="right: 100%;">
+          <div class="tracker-text">
+            جزئیات
+          </div>
+        </div>
+      </div><!-- /.tracker -->
+
+      <div class="wrapper">
+        <h3>۱- اطلاعات شما</h3>
+
+        <%= form_tag reserve_package_path, class: "form form-group" , id: "package_form" do %>
+        <% if params[:shoot_type_id].present? %>
+        <input type="hidden" name="speciality-id" id="speciality-id" value="<%= params[:shoot_type_id] %>">
+        <% else %>
+        <input type="hidden" name="speciality-id" id="speciality-id" value="<%=ShootType.all.businessz.first.id if ShootType.all.businessz.present?%>">
+        <% end %>
+
+        <!-- memory-plus=0 -->
+        <input type="hidden" name="memory-plus" id="memory-plus" value="0">
+
+        <% if params[:package_id].present? %>
+        <input type="hidden" name="package-id" id="package-id" value="<%= params[:package_id] %>">
+        <% else %>
+        <input type="hidden" name="package-id" id="package-id"  required="">
+        <% end %>
+
+        <% if params[:price].present? %>
+        <input type="hidden" name="price" id="price" value="<%= params[:price] %>">
+        <% end %>
+        <input type="hidden" name="coupon_code" id="coupon-code">
+
+        <!-- if the session is from a business -->
+        <% if params[:business_id].present? %>
+        <input type="hidden" name="business_name" id="business-name" value="<%=params[:business_id]%>" >
+        <% end %>
+
+        <!-- if the session is from a photographer (direct reserve) -->
+        <% if params[:photographer_id].present? %>
+        <input type="hidden" name="photographer_id" id="photographer_id" value="<%=params[:photographer_id]%>" >
+        <% end %>
+        <!--  -->
+        <div class="row" style="margin-bottom: 30px;">
+          <div class="col-sm-6">
+            <label for="name"></label>
+            <% if @user.first_name.present? %>
+            <input class="form-control" type="text" name="name" id="name" value="<%= current_user.first_name %>" placeholder="نام شما" required="">
+            <% else %>
+            <input class="form-control" type="text" name="name" id="name" placeholder="نام" required="">
+            <% end %>
+          </div>
+          <div class="col-sm-6">
+            <label for="name"></label>
+            <% if @user.last_name.present? %>
+            <input class="form-control" type="text" name="family" value="<%= current_user.last_name %>" id="family" placeholder="نام خانوادگی تون " required="">
+            <% else %>
+            <input class="form-control" type="text" name="family" id="family" placeholder="نام خانوادگی" required="">
+            <% end %>
+          </div>
+          <div class="col-sm-6">
+            <label for="mobile_number"></label>
+            <input class="form-control" type="number" id="mobile_number" name="mobile_number" placeholder="شماره موبایل" value="<%= current_user.mobile_number %>" required="" data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" disabled>
+          </div>
+          <div class="col-sm-6">
+            <label for="email"></label>
+            <% if current_user.email.present? %>
+            <input class="form-control" type="email" name="email" value="<%= current_user.email %>" id="email" placeholder="ایمیل شما" required="">
+            <% else %>
+            <input class="form-control" type="email" name="email" id="email" placeholder="ایمیل شما" required="">
+            <% end %>
+          </div>
+          <span class="add-company">افزودن نام شرکت</span>
+          <div class="col-sm-6 hidden company">
+            <label for="name"></label>
+            <% if @user.email.present? %>
+            <input class="form-control" type="text" name="company" value="<%= current_user.company_name %>" id="company" placeholder="نام شرکت">
+            <% else %>
+            <input class="form-control" type="text" name="company" id="company" placeholder="نام شرکت">
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+
+      </div>
+
+      <%if not params[:shoot_type_id].present? %>
+      <div class="wrapper" id="ask">
+        <div class="package">
+          <h3>
+            ۲-
+            برای چه موضوعی نیاز به عکاسی دارید؟
+          </h3>
+        </div><!-- /.package -->
+
+        <div class="speciality-type">
+          <div class="type-box " onclick="$(this).specialityType('#business')" style="border-left: solid 0.5px;"> کسب و کار</div>
+          <div class="type-box" onclick="$(this).specialityType('#personal')">شخصی</div>
+        </div>
+      </div>
+      <% end %>
+      <%if not params[:shoot_type_id].present? %>
+      <div class="wrapper hidden" id="detail">
+        <div id="specialities" class="specialties">
+          <!-- <h3 style="margin: 45px 0;">
+          ۳-
+          در چه زمینه ای قصد رزرو عکاسی دارید؟
+        </h3> -->
+        <br>
+
+        <ul id="business" class="row row-m10">
+          <% sindex = 0 %>
+          <% ShootType.active.businessz.order("shoot_types.order desc").each do |s| %>
+          <li class="col-xs-6 col-sm-4 col-md-3 <% if sindex > 3 %> hidden <% end %> %>">
+            <div href="#" class="specialty  <% if sindex==0%>  <% end %>" id="<%=s.id%>" onclick="$(this).showPackage('sp<%=s.id%>', <%=s.packages.count/2%>)">
+              <img src="<%=s.avatar_url%>" alt="">
+              <span>
+                <%= s.title%>
+              </span>
+            </div>
+          </li>
+          <% sindex = sindex + 1 %>
+          <% end %>
+        </ul><!-- ./row business-->
+
+        <ul id="personal" class="row row-m10 hidden">
+          <% sindex = 0 %>
+          <% ShootType.all.personalz.order("shoot_types.order desc").each do |s| %>
+          <li class="col-xs-6 col-sm-4 col-md-3  <% if sindex > 3 %> hidden <% end %> ">
+            <div href="#" class="specialty <% if sindex==0%> <% end %>" id="<%=s.id%>" onclick="$(this).showPackage('sp<%=s.id%>', <%=s.packages.count/2%>)">
+              <img src="<%=s.avatar_url%>" alt="">
+              <span>
+                <%= s.title%>
+              </span>
+            </div>
+          </li>
+          <% sindex = sindex + 1 %>
+          <% end %>
+        </ul><!-- ./row personal-->
+        <div id="show-more" class="show-more" style="display: block;">
+          <span>تخصص بیشتر</span>
+        </div>
+      </div><!-- ./specialities -->
+
+      <div class="pricing hidden">
+        <h3>
+          ۳-
+          چطور می خواهید عکس ها را دریافت کنید؟
+        </h3>
+        <div class="pricing-section" id="delivery-section" style="margin-bottom: 2%;">
+          <div id="online-gallery" class=" block" onclick="$(this).delivery('online-gallery')" style="margin-left:2%;">
+            <div class="img-box hidden-xs">
+              <img src="/img/album.png">
+            </div>
+            <div class="info-box">
+              <p class="title"  style="text-align: right;">
+                گالری خصوصی آنلاین
+              </p>
+              <p class="description"  style="text-align: right;">
+                عکس های ادیت شده را تا ۷۲ ساعت بعد از گالری امن خصوصی دریافت کنید.
+                <br>
+              </p>
+            </div>
+          </div>
+          <div id="memory-plus" class=" block" onclick="$(this).delivery('memory-plus')">
+            <div class="img-box hidden-xs">
+              <img src="/img/memory-plus.png">
+            </div>
+            <div class="info-box">
+              <p class="title"  style="text-align: right;">
+                سرویس مموری پلاس
+              </p>
+              <p class="description" style="text-align: right;">
+                عکس ها را بلافاصله بعد از عکاسی توسط فلش دریافت بکنید.
+                <br>
+                در صورت تمایل عکسهای دوربین پاک خواهند شد.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% count = 1 %>
+      <% ShootType.active.each do |t|%>
+      <figure id="sp<%=t.id%>" class="pricing hidden">
+        <h3>۴- انتخاب قیمت</h3>
+        <div class="pricing-section">
+          <div id="low-price" class="block" onclick="$(this).pricing('low')" style="margin-left: 2%;">
+            <div class="img-box hidden-xs">
+              <img src="/img/low-book.png">
+            </div>
+            <div class="info-box">
+              <p class="title"  style="text-align: right;">
+                برای من هزینه مهم است.
+              </p>
+              <p class="description" style="text-align: right;">
+                از بین همه عکس ها تعدادی را رایگان دریافت کنید و
+                برای
+                هر عکس بیشتر
+                <%=  number(t.packages.first.extra_price , 'fa')  %>
+                تومان
+                پرداخت کنید.
+              </p>
+            </div>
+          </div>
+
+          <div id="high-price" class="block" onclick="$(this).pricing('high')">
+            <div class="img-box hidden-xs">
+              <img src="/img/high-book.png">
+            </div>
+            <div class="info-box">
+              <p class="title"  style="text-align: right;">
+                برای من تعداد عکس مهم است.
+              </p>
+              <p class="description"  style="text-align: right;">
+                همه تصاویر عکاسی شده را دریافت کنید و همه خاطرات رو به یادبسپرید.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="shoot-package">
+          <h3>۵- پکیج خود را انتخاب کنید</h3>
+          <input type="text" data-slider-min="0" data-slider-max="<%= t.packages.count/2 -1 %>" data-slider-value="0" data-value="3" value="3" class="shoot hidden-xs hidden-sm" style="display: none;">
+          <div class="shoot-packages-boxes low" id="package-box-low">
+            <ul>
+              <% index = 0 %>
+              <% t.packages.active.economy.order("packages.order ASC").each do |p| %>
+              <li id="<%=p.id%>" class="service-block <% if index==0 %>  <% end %>" data-index="<%= index %>">
+                <div class="service-name">
+                  <p class="service-name-box">
+                    <%= p.duration %>
+                  </p>
+                </div>
+                <div class="service-image-box" style="background-image: url('<%=t.avatar_url(:medium) %>');">
+                  <div class="service-image-box-inner">
+                    <div class="service-price">
+                      <%=  number(p.price , 'fa')  %>
+                      <small> تومان </small>
+                    </div>
+                    <div class="service-duration">
+                      <span style="font-size: 10px;">
+                        با ادیت نور و رنگ
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <p class="digits">
+                  <span>
+                    شامل
+                    <%= number(p.digitals,'fa') %>
+                    عکس
+                  </span>
+                  <br>
+                  <small style="font-size: 10px;">
+                    از همه عکس ها
+                  </small>
+                </p>
+                <div class="suggestion-box" style="display: block;">
+                  <p class="ideal" style="font-size: 12px;
+                  text-align: -webkit-center;
+                  margin-top: 10px;">
+                  <small style="font-size: 10px;">
+                    هر عکس اضافه
+                    <%= number(p.extra_price, 'fa') %>
+                    تومان
+                  </small>
+                </p>
+                <!-- <span>Single preson/project Single background e.g. Profile picture</span> -->
+              </div>
+            </li>
+            <% index = index + 1 %>
+            <% end %>
+          </ul>
+        </div>
+
+        <div class="shoot-packages-boxes high hidden" id="package-box-high">
+          <ul>
+            <% index = 0 %>
+            <% t.packages.active.all_frames.order("packages.order ASC").each do |p| %>
+            <li id="<%=p.id%>" class="service-block <% if index==0 %>  <% end %>" data-index="<%=index%>">
+              <div class="service-name">
+                <p class="service-name-box">
+                  <%= p.duration %>
+                </p>
+              </div>
+              <div class="service-image-box" style="background-image: url('<%=t.avatar_url(:medium) %>');">
+                <div class="service-image-box-inner">
+                  <div class="service-price">
+                    <%=  number(p.price , 'fa')  %>
+                    <small> تومان </small>
+                  </div>
+                  <div class="service-duration">
+                    <span style="font-size: 10px;">
+                      با ادیت نور و رنگ
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="digits" style="font-size: 14px;padding: 20px 0;">
+                <span>
+                  شامل همه عکس ها
+                </span>
+              </p>
+              <div class="suggestion-box" style="display: block;">
+                <p class="ideal" style="font-size: 10px;
+                text-align: -webkit-center;
+                margin-top: 10px;">
+                همه عکس ها را دریافت کنید.
+              </p>
+            </div>
+          </li>
+          <% index = index + 1 %>
+          <% end %>
+        </ul>
+      </div>
+      <hr>
+      <p>
+        *
+        مدت زمان رزرو عکاس شامل زمان مسیر تا محل پروژه نمی شود، اما شامل زمان مورد نیاز
+        برای راه اندازی و نصب تجهیزات عکاسی در محل پروژه می شود.
+      </p>
+      <p>
+        *
+        در صورت نیاز می توانید
+        به صورت ساعتی
+        تمدید
+        کنید که هزینه هر نیم ساعت تمدید
+        <%= number(@project.shoot_type.half_hour_extend_cost.to_s, 'fa') %>
+        تومان است.
+      </p>
+      <p>
+        *
+        ما به شما فایل اصلی عکس را می دهیم.
+      </p>
+    </div>
+  </figure>
+  <% count = count + 1 %>
+  <% end %>
+</div><!-- /.wrapper -->
+<% end %><!-- /.if params shoot type id present -->
+</div><!-- /.main -->
+</div><!-- /.container -->
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "بازگشت" , "https://www.kadro.co" , class: "btn btn-gray" %>
+      <button type="submit" id ="submit_page_form" <% if !@only_info_needed %> disabled <% end %> class="btn btn-blue ">ذخیره و ادامه
+      </button>
+    </div>
+  </div>
+</footer>
+</section>
+
+
+<script>
+$(document).ready(function () {
+
+  $(".service-block").click(
+    function(){
+      $('#submit_page_form').prop('disabled', false);
+    }
+  )
+
+  $('#submit_page_form').click(function(){
+    $('#package_form').submit();
+  })
+
+  // handel input phone_number and email for show other input
+  $('#mobile_number, #email').on('change paste keyup', function () {
+    var len1 = $('#mobile_number').val().length;
+    var len2 = $('#email').val().length;
+    if (len1 > 2 && len2 > 2) {
+      $('#ask').removeClass('hidden');
+    }
+  });
+
+  $('#package_form').parsley().on('field:validated', function () {
+    // alert("ss");
+    // $('button').prop('disabled', false);
+    //            $('.name, .phone, .map').removeClass('hidden');
+  }).on('form:submit', function () {
+  });
+
+  // show company input on click
+  $('.add-company').click(function () {
+    $('.company').removeClass('hidden');
+    $(this).remove();
+  });
+
+});
+</script>
+<script type="text/javascript">
+
+$(document).ready(function () {
+  var sliderBar   = $('.shoot');
+  var packageList = $('.shoot-packages-boxes').find('ul li');
+  var ww = $(window).width();
+
+  // speciality select function
+  $.fn.specialityType = function (filter) {
+    $('#detail').removeClass('hidden');
+    $('.type-box').removeClass('selected');
+    $(this).addClass('selected');
+    $('html, body').animate({
+      scrollTop: $("#ask").offset().top
+    }, 500);
+    $('.specialties .row').addClass('hidden');
+    $(filter).removeClass('hidden');
+  };
+
+  // on speciality select
+  var speciality = $('#specialities').find('.specialty');
+  speciality.on("click", function () {
+    speciality.removeClass('selected');
+    $(this).addClass('selected');
+    // set form input value:
+    $("#speciality-id").val(this.id);
+  });
+
+  // on package select
+  var packaje = $('.shoot-packages-boxes').find('.service-block');
+  packaje.on("click", function () {
+    // set form input value:
+    $("#package-id").val(this.id);
+  });
+
+  // handle show more button
+  $('#show-more').click(function () {
+    $('.specialties .row li').removeClass('hidden');
+    $(this).hide(500);
+  });
+
+  if (ww > 991) {
+    sliderBar.slider({tooltip: 'hide'});
+    sliderBar.on('change', function (event) {
+      var newValue = event.value.newValue;
+      $('.shoot-packages-boxes ul li').removeClass('active');
+      $('.shoot-packages-boxes ul').find('li[data-index="' + newValue + '"]').addClass('active');
+    })
+  } else {
+    $('.shoot').remove();
+  }
+
+  // delivery click function *******
+
+  $.fn.delivery = function (selectClassName) {
+    $('#delivery-section .block').removeClass('selected');
+    $(this).addClass('selected');
+    $('figure.pricing.selected #low-price').removeClass('hidden');
+    $('figure.pricing.selected').removeClass('hidden');
+    if (selectClassName == "memory-plus"){
+      $('figure.pricing.selected #low-price').addClass('hidden');
+      $('figure.pricing.selected #low-price').removeClass('selected');
+      $('figure.pricing.selected #high-price').addClass('selected');
+      $('figure.pricing.selected #package-box-low').addClass('hidden');
+      $('figure.pricing.selected #package-box-high').removeClass('hidden');
+      $('input[name=memory-plus]').val('1');
+    };
+    if (selectClassName == "online-gallery"){
+      $('input[name=memory-plus]').val('0');
+    }
+    console.log(selectClassName);
+  };
+
+  // pricing click function
+  $.fn.pricing = function (selectClassName) {
+    $('figure.pricing.selected .block').removeClass('selected');
+    $(this).addClass('selected');
+    $('.shoot-packages-boxes').addClass('hidden');
+    $('.shoot-packages-boxes.' + selectClassName).removeClass('hidden');
+    $('.shoot-packages-boxes ul li').removeClass('active');
+    $('#submit_page_form').prop('disabled', true);
+    // $('.shoot-packages-boxes ul').find("li[data-index=0]").addClass('active');
+  };
+
+
+  $.fn.showPackage = function (id, count) {
+    $('div.pricing').removeClass('hidden');
+    $('figure.pricing').addClass('hidden');
+    $('figure.pricing.selected').removeClass('selected');
+    $('#' + id).addClass('selected');
+    $(".slider-horizontal").css({
+      "max-width": 160 * (count-1)
+    });
+  };
+
+  // change class and slider value on Click pricing
+  packageList.on('click', function () {
+    $('.shoot-packages-boxes').find('ul li').removeClass('active');
+    $(this).addClass('active');
+    var index = $(this).data('index');
+    sliderBar.slider('setValue', index, true);
+  });
+
+});
+
+$(window).on('load', function () {
+  // set width for slider
+  // 5 equal 6 pricing for dynamic change value
+  $(".slider-horizontal").css({
+    "max-width": 160 * (5)
+  });
+});
+
+
+// check coupon code
+
+$('#coupon_submit_button').click(function(){
+  code = document.getElementById('coupon_input').value
+  console.log(code);
+  var sendReq = $.fn.postReq(code);
+})
+
+
+$.fn.postReq = function (code) {
+  console.log('send request for ' + code);
+  var url    = '<%=reserve_check_coupon_path %>';
+  $.ajax({
+    url    : url,
+    type   : "POST",
+    data   : {'code' : code},
+    success: function (res) {
+      console.log(res);
+      var res = res;
+      $('#coupon-result').removeClass('hidden');
+      landing = $('#coupon-result , h4');
+      if (res.response == 'ok') {
+        landing.text(res.message);
+        $('#coupon-result').css({
+          "color": 'green'
+        });
+        $("#coupon-code").val(code);
+      }
+      if(res.response=='error'){
+        landing.text(res.message);
+        $('#coupon-result').css({
+          "color": 'red'
+        });
+      }
+    },
+    error  : function (e) {
+      console.log('error on POST Method');
+      console.log(e);
+    }
+  })
+};
+
+
+</script>

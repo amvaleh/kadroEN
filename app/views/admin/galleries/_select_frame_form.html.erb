@@ -1,0 +1,55 @@
+<%= form_for(:select_frame, url: select_frame_admin_galleries_path, remote: true) do |f| %>
+  <div class="form-group">
+    <%= f.hidden_field(:image_id, value: image_id, class: 'form-control') %>
+    <%= f.hidden_field(:image_type, value: image_type, class: 'form-control') %>
+  </div>
+
+  <%= f.fields_for(:shoot_types) do |st| %>
+    <div class="form-group">
+      <div class="row" dir="rtl">
+        <div class="col-md-6">
+          <div class="row">
+            <h4 class="text-center">شخصی</h4>
+            <hr/>
+            <% ShootType.where(is_personal: true).load.each do |s| %>
+              <div class="col-md-12">
+                <%= st.check_box("#{s.id}", checked: shoot_types.include?(s.id) ? true : false) %>
+                <%= st.label("#{s.id}", s.title) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="row">
+            <h4 class="text-center">شرکتی</h4>
+            <hr/>
+            <% ShootType.where(is_personal: false).load.each do |s| %>
+              <div class="col-md-12">
+                <%= st.check_box("#{s.id}", checked: shoot_types.include?(s.id) ? true : false) %>
+                <%= st.label("#{s.id}", s.title) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= f.text_area(:description, class: 'form-control') %>
+  </div>
+
+  <%= f.submit('ذخیره', class: 'btn btn-success') %>
+<% end %>
+
+<script>
+    // $("#shoot_types").select2({
+    //     placeholder: "انتخاب شوت تایپ",
+    //     theme: "classic",
+    //     width: "100%",
+    //     dir: "rtl",
+    //     language: "fa"
+    // });
+</script>

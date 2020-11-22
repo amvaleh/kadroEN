@@ -1,0 +1,103 @@
+<div class="content-wrapper padding-content">
+  <%= render 'shared/alert_notice' %>
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h3 class="page-title">
+          <i class="ion ion-person"></i>
+          حساب کاربری
+        </h3>
+      </div>
+    </div>
+  </div>
+  <section class="content">
+    <div class="row">
+      <div class="col-12 col-md-12 mt-3">
+        <div class="card shadow-sm">
+          <div class="card-horizontal">
+
+            <div class="col-12 pt-4">
+              <h5 class="pb-4">
+                ویرایش اطلاعات حساب کاربری
+              </h5>
+
+              <%= form_tag(update_user_path, format: :js ,method: :post, id: 'user', remote: true) do |f| %>
+                <div class="form-group row">
+                  <label for="full_name" class="col-sm-2 col-form-label">نام و نام خانوادگی :</label>
+                  <div class="col-10 col-md-5">
+                    <% if current_user.full_name.present? %>
+                      <input type="text" class="form-control" id="full_name" name="full_name" value="<%= current_user.full_name %>" required>
+                    <% else %>
+                      <input type="text" class="form-control" id="full_name" name="full_name">
+                    <% end %>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="mobile_number" class="col-sm-2 col-form-label">شماره همراه :</label>
+                  <div class="col-10 col-md-5">
+                    <input type="text" class="form-control" id="mobile_number" name="mobile_number" value="<%= current_user.mobile_number.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>" required disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="email" class="col-sm-2 col-form-label">ایمیل ( اختیاری ) :</label>
+                  <div class="col-10 col-md-5">
+                    <% if current_user.email.present? %>
+                      <input type="email" class="form-control" id="email" name="email" value="<%= current_user.email %>">
+                    <% else %>
+                      <input type="email" class="form-control" id="email" name="email">
+                    <% end %>
+                  </div>
+                </div>
+                <div class="form-group row pb-4">
+                  <label for="company_name" class="col-sm-2 col-form-label">نام شرکت ( اختیاری ) :</label>
+                  <div class="col-10 col-md-5">
+                    <% if current_user.company_name.present? %>
+                      <input type="text" class="form-control" id="company_name" name="company_name" value="<%= current_user.company_name %>" required>
+                    <% else %>
+                      <input type="text" class="form-control" id="company_name" name="company_name">
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row my-4">
+                  <div class="col-10">
+                    <button class="btn btn-info" id="submit_form" type="submit">ذخیره</button>
+                  </div>
+                </div>
+              <% end %>
+
+
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+
+<style>
+  .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+  .checked {
+    color: orange;
+  }
+
+  .lock-checked {
+    color: #0188ff;
+  }
+
+  .form-control {
+    border-radius: 5px;
+  }
+</style>

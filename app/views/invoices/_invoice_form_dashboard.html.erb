@@ -1,0 +1,103 @@
+<%= form_for(:shipping_address, url: invoice_create_path ) do |f| %>
+  <%= f.hidden_field(:dashboard, value: "true") %>
+  <%= f.hidden_field(:address_id, value: address.id) %>
+  <%= f.hidden_field(:user_id, value: current_user.id) %>
+  <%= f.hidden_field(:cart_id, value: cart_id) %>
+  <%= f.hidden_field(:mb, value: current_user.mobile_number) %>
+  <%= f.hidden_field(:em, value: current_user.email) %>
+  <%= f.hidden_field(:lattitude, id: 'latt') %>
+  <%= f.hidden_field(:longtitude, id: 'long') %>
+  <div class="row">
+    <% unless @do_take_address %>
+      <div class="col-md-6 col-12" style="padding-bottom: 1%;">
+        <label>
+          ۱- برای کجا می خواهید ارسال شود؟
+        </label>
+        <div id="map" style="width: 100%; height: 400px"></div>
+        <br>
+        <div class="alert-info">
+
+
+          <p class="text-center">
+            <span class="fa fa-info-circle"></span>
+            هزینه پیک به صورت نقدی در محل دریافت می گردد.
+          </p>
+        </div>
+      </div>
+    <% end %>
+    <div class="<%= @do_take_address ? 'col-md-12 col-xs-12' : 'col-md-6 col-xs-12' %>">
+      <label>
+        ۲- اطلاعات ارسال را تکمیل کنید:
+      </label>
+      <div class="row delivery">
+        <div class="col-12 col-md-6 form-group">
+          <%= f.text_field(:full_name, value: current_user.full_name,
+                           class: 'form-control', placeholder: t(:'invoices.full_name')) %>
+        </div>
+        <div class="col-12 col-md-6 form-group">
+          <%= f.text_field(:mobile_number, value: current_user.mobile_number,
+                           class: 'form-control text-left', disabled: true) %>
+        </div>
+        <% unless @do_take_address %>
+          <div class="col-12 col-md-6 form-group">
+            <%= f.text_field(:phone_number, value: address.phone_number, class: 'form-control text-left', placeholder: t(:'invoices.phone_number'), required: true, id: 'phone_num', oninvalid: "this.setCustomValidity('تلفن ثابت باید وارد شود')", oninput: "setCustomValidity('')") %>
+          </div>
+          <div class="col-12 col-md-6 form-group">
+            <%= f.text_field(:postal_code, value: address.postal_code, class: 'form-control text-left', placeholder: t(:'invoices.postal_code'), required: true, id: 'postal', oninvalid: "this.setCustomValidity('کد پستی باید وارد شود')", oninput: "setCustomValidity('')") %>
+          </div>
+        <% end %>
+        <div class="col-12 col-md-6 form-group">
+          <%= f.text_field(:email, value: current_user.email,
+                           class: 'form-control', placeholder: t(:'invoices.email'), style: "direction: ltr") %>
+        </div>
+
+      </div>
+
+      <% unless @do_take_address %>
+        <div class="row delivery" hidden>
+          <div class="col-12  form-group">
+            <%= f.text_field(:input, value: address.input, class: 'form-control', id: 'location') %>
+          </div>
+        </div>
+        <div class="row delivery" style="margin-top: 4%">
+          <div class="col-12 form-group">
+            <label>۳- آدرس دقیق پستی محل دریافت را وارد کنید: </label>
+            <%= f.text_area(:detail, value: address.detail, class: 'form-control', id: 'address-detail', row: 7) %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-12 form-group">
+          <%= f.text_field(:coupon, value: '', class: 'form-control', placeholder: 'کوپن تخفیف',
+                           style: "height: 50px; display: none") %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 form-group">
+          <strong><%= "#{t(:'carts.cart_total')}: #{number_with_delimiter(total.cart_total.to_i, :delimiter => ',')} #{t(:'invoices.currency')}" %></strong>
+          <div class="text-left mt-4">
+            <div class="col-12 form-group">
+              <%= f.button(class: 'btn btn-success btn-block', onclick: 'return submitButton()') do %>
+                <%= "<i class='fa fa-credit-card'></i> #{t('invoices.buttons.save_payment')}".html_safe %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+</div>
+
+<script>
+    function submitButton() {
+        postal_code = jQuery('#postal').val();
+        phone_number = jQuery('#phone_num').val();
+        if ((postal_code != "") && (phone_number != "")) {
+            jQuery('.loading-spinner').show();
+        }
+    }
+
+
+</script>

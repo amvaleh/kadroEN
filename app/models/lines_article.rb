@@ -1,0 +1,6 @@
+class LinesArticle < ApplicationRecord
+
+
+
+
+end

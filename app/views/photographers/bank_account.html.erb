@@ -1,0 +1,311 @@
+<% @top_title = "استودیوی شما" %>
+<%= render 'shared/studio_header', title: "مالی و بانکی" %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <% if notice %>
+                <div class="alert-info">
+                  <%= notice %>
+                </div>
+              <% elsif alert %>
+                <div class="alert-danger">
+                  <%= alert %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <br/>
+            <h4 class="text-center">
+              اطلاعات بانکی خود را وارد نمایید:
+            </h4>
+          </div>
+          <br>
+          <br>
+          <%= form_for :photographer, url: update_bank_account_photographer_path, method: "post", html: {class: "form form-group", :id => "update_bank_account"} do |f| %>
+            <input type="text" id="geolocation_status" name="geolocation_status" style="display:none"/>
+            <input type="text" id="living_lat" name="photographer[living_lat]" value="<%= @photographer.location.living_lat %>" style="display:none"/>
+            <% if @photographer.bank_account.present? %>
+              <div class="col-md-12 col-md-offset-0">
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      شماره کارت
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <% if @photographer.bank_account.card_number.present? %>
+                        <input class="form-control" type="number" name="photographer[card_number]" id="card_number" value="<%= @photographer.bank_account.card_number %>" required="">
+                      <% else %>
+                        <input class="form-control" type="number" name="photographer[card_number]" id="card_number" placeholder="وارد نمایید" required="">
+                      <% end %>
+                      <!-- trying to run parsley on form submition -->
+                      <%#= f.text_field :first_name , value: @photographer.first_name , class: "form-control mytextbox" , name: "name" , id: "name", :requried => "" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      شماره شبا
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <small id="requireShaba"><h2 style="display: inline; color: #ff090f">*</h2>وارد کردن شماره شبا
+                        الزامیست.
+                      </small>
+                      <small id="requireNumber" style=" color: #ff090f" hidden><h2 style="display: inline">*</h2>تنها
+                        عدد وارد کنید.
+                      </small>
+                      <% if @photographer.bank_account.shaba.present? %>
+                        <input class="form-control" type="text" id="shaba" name="photographer[shaba]" value="<%= @photographer.bank_account.shaba %>" required="">
+                      <% else %>
+                        <input class="form-control" type="text" id="shaba" name="photographer[shaba]" placeholder="لطفا شماره شبای خود را بدون IR وارد کنید." required="">
+                      <% end %>
+                      <%#= f.text_field :last_name , value: @photographer.last_name , class: "form-control mytextbox" , name: "name" , id: "name", :requried => "" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      نام صاحب حساب
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <small id="requireShaba">
+                        <h2 style="display: inline; color: #ff090f">*</h2>
+                        حتما عینا نام حسابی که در بانک ثبت شده است را وارد نمایید.
+                      </small>
+                      <!-- trying to run parsley on form submition -->
+                      <% if @photographer.bank_account.card_name.present? %>
+                        <input class="form-control" type="text" id="card_name" name="photographer[card_name]" value="<%= @photographer.bank_account.card_name %>" required="">
+                      <% else %>
+                        <input class="form-control" type="text" id="card_name" name="photographer[card_name]" placeholder="نام کوچک وارد نمایید" required="">
+                      <% end %>
+                      <%#= f.text_field :first_name , placeholder: "نام شما" , class: "form-control" , name: "name" , id: "name", :requried => "" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      نام خانوادگی صاحب حساب
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <small id="requireShaba">
+                        <h2 style="display: inline; color: #ff090f">*</h2>
+                        حتما عینا نام خانوادگی حسابی که در بانک ثبت شده است را وارد نمایید.
+                      </small>
+                      <!-- trying to run parsley on form submition -->
+                      <% if @photographer.bank_account.card_last_name.present? %>
+                        <input class="form-control" type="text" id="card_last_name" name="photographer[card_last_name]" value="<%= @photographer.bank_account.card_last_name %>" required="">
+                      <% else %>
+                        <input class="form-control" type="text" id="card_last_name" name="photographer[card_last_name]" placeholder="نام خانوادگی را وارد نمایید" required="">
+                      <% end %>
+                      <%#= f.text_field :first_name , placeholder: "نام شما" , class: "form-control" , name: "name" , id: "name", :requried => "" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      نام بانک شما
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <% if @photographer.bank_account.bank_name.present? %>
+                        <input class="form-control mytextbox" type="text" id="bank_name" name="photographer[bank_name]" value="<%= @photographer.bank_account.bank_name %>" required="">
+                      <% else %>
+                        <input class="form-control mytextbox" type="text" id="bank_name" name="photographer[bank_name]" placeholder="وارد نمایید" required="">
+                      <% end %>
+                      <%#= f.text_field :first_name , placeholder: "نام شما" , class: "form-control" , name: "name" , id: "name", :requried => "" %>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            <% else %>
+              <div class="col-md-12 col-md-offset-0">
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      شماره کارت
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <input class="form-control" type="number" name="photographer[card_number]" id="card_number" placeholder="وارد نمایید" required="">
+                      <!-- trying to run parsley on form submition -->
+                      <%#= f.text_field :first_name , value: @photographer.first_name , class: "form-control mytextbox" , name: "name" , id: "name", :requried => "" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      شماره شبا
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <small id="requireShaba"><h2 style="display: inline; color: #ff090f">*</h2>وارد کردن شماره شبا
+                        الزامیست.
+                      </small>
+                      <small id="requireNumber" style=" color: #ff090f" hidden><h2 style="display: inline">*</h2>تنها
+                        عدد وارد کنید.
+                      </small>
+                      <input class="form-control" type="text" id="shaba" name="photographer[shaba]" placeholder="لطفا شماره شبای خود را بدون IR وارد کنید." required="">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      نام صاحب حساب
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <input class="form-control mytextbox" type="text" id="card_name" name="photographer[card_name]" placeholder="وارد نمایید" required="">
+                      <%#= f.text_field :first_name , placeholder: "نام شما" , class: "form-control" , name: "name" , id: "name", :requried => "" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3 col-md-offset-0">
+                    <p>
+                      نام بانک شما
+                    </p>
+                  </div>
+                  <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-8 col-md-offset-0">
+                      <!-- trying to run parsley on form submition -->
+                      <input class="form-control mytextbox" type="text" id="bank_name" name="photographer[bank_name]" placeholder="وارد نمایید" required="">
+                      <%#= f.text_field :first_name , placeholder: "نام شما" , class: "form-control" , name: "name" , id: "name", :requried => "" %>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            <% end %>
+
+            <div class="col-md-12 col-md-offset-0">
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row text-center">
+      </div>
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "استودیو", studio_photographer_path(@photographer), class: "btn btn-default " %>
+      <button type="submit" id="submit_page_form" class="btn btn-blue">ذخیره
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script>
+    $('#shaba').keyup(function (event) {
+        var shaba = $('#shaba').val();
+        var reg = /^\d+$/;
+        if (!reg.test(shaba)) {
+            $('#requireShaba').hide();
+            $('#requireNumber').show();
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+
+
+        $(function () {
+            $('[data-toggle="why_static_number"]').tooltip({
+                title: "کادرو برای احراز هویت عکاسان با شماره ثابتی که می دهند تماس می گیرد و مصاحبه تلفنی کوتاهی از این طریق انجام می دهد."
+            });
+            $('[data-toggle="why_mobile_number"]').tooltip({
+                title: "کادرو پروژه های جدید عکاسی را از طریق پیامک به شما اطلاع می دهد و یا در صورت وجود مشکل یا تغییری در برنامه به شما زنگ می زند."
+            });
+
+        })
+
+        $('#submit_page_form').click(function () {
+            document.getElementById("update_bank_account").submit();
+        })
+
+        // handel input phone_number and email for show other input
+        $('#mobile_number, #email').on('change paste keyup', function () {
+            var len1 = $('#mobile_number').val().length;
+            var len2 = $('#email').val().length;
+            if (len1 > 2 && len2 > 2) {
+                $('#ask').removeClass('hidden');
+            }
+        });
+
+        $('#update_bank_account').parsley().on('field:validated', function () {
+            $('button').prop('disabled', false);
+        }).on('form:submit', function () {
+        });
+    });
+</script>
+<script>
+    $(".mytextbox").on("keypress", function (event) {
+
+        // Disallow anything not matching the regex pattern (A to Z uppercase, a to z lowercase and white space)
+        // For more on JavaScript Regular Expressions, look here: https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions
+        var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
+
+        // Retrieving the key from the char code passed in event.which
+        // For more info on even.which, look here: http://stackoverflow.com/q/3050984/114029
+        var key = String.fromCharCode(event.which);
+
+        //alert(event.keyCode);
+
+        // For the keyCodes, look here: http://stackoverflow.com/a/3781360/114029
+        // keyCode == 8  is backspace
+        // keyCode == 37 is left arrow
+        // keyCode == 39 is right arrow
+        // englishAlphabetAndWhiteSpace.test(key) does the matching, that is, test the key just typed against the regex pattern
+        if (event.keyCode == 32) {
+            return true;
+        }
+        if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
+            alert("لطفا فارسی تایپ کنید");
+            return false;
+        }
+
+        // If we got this far, just return false because a disallowed key was typed.
+        return true;
+    });
+
+    $('#mytextbox').on("paste", function (e) {
+        e.preventDefault();
+    });
+
+</script>

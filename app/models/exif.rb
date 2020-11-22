@@ -1,0 +1,2 @@
+class Exif < ApplicationRecord
+end

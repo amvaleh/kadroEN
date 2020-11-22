@@ -1,0 +1,296 @@
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main photographer" role="main">
+      <div class="container" style="padding: 0px">
+        <div class="col-md-12 col-xs-12" style="padding: 5px;">
+          <div class="panel panel-primary" style="margin-top: 5%">
+            <div class="panel-heading text-center text-gray"><h3>فاکتور فروش</h3></div>
+            <div class="panel-body" style="line-height:10px;">
+              <div class="row">
+                <div class="col-xs-3 text-center cart-table text-info">
+                  <strong><%= t(:'invoices.title') %></strong>
+                </div>
+                <div class="col-xs-3 text-center cart-table text-info">
+                  <strong><%= t(:'invoices.unit_price') %></strong>
+                </div>
+                <div class="col-xs-2 text-center cart-table text-info">
+                  <strong><%= t(:'invoices.quantity') %></strong>
+                </div>
+                <div class="col-xs-2 text-center cart-table text-info">
+                  <strong><%= t(:'invoices.price') %></strong>
+                </div>
+                <div class="col-xs-2 text-center cart-table text-info">
+                  <strong><%= t(:'invoices.discount') %></strong>
+                </div>
+              </div>
+              <hr/>
+
+              <% invoice.each do |i| %>
+                <div class="row">
+                  <div class="col-xs-3 text-center cart-table_value invoice-items">
+                    <p><%= i.title %></p>
+                  </div>
+                  <div class="col-xs-3 text-center cart-table_value invoice-items">
+                    <p><%= number_with_delimiter(i.unit_price.to_i, :delimiter => ',') %></p>
+                  </div>
+                  <div class="col-xs-2 text-center cart-table_value invoice-items">
+                    <p><%= i.quantity %></p>
+                  </div>
+                  <div class="col-xs-2 text-center cart-table_value invoice-items">
+                    <p id="net-price-<%= i.id %>"><%= number_with_delimiter(i.price.to_i, :delimiter => ',') %></p>
+                  </div>
+
+                  <div class="col-xs-2 text-center cart-table_value invoice-items">
+                    <% if code %>
+                      <% invoice_factor = discount_results[:invoice_factors].select {|invoice_factor| invoice_factor.invoice_item_id == i.id} if discount_results.present? %>
+                      <p id="discount-<%= i.id %>" style="color: red">
+                        <%= invoice_factor[0].value.to_i.to_s + '-' if discount_results.present? and discount_results[:item_relation] and invoice_factor.present? %>
+                      </p>
+                    <% else %>
+                      <p id="discount-<%= i.id %>" style="color: red"></p>
+                    <% end %>
+                  </div>
+                  <input id="price-<%= i.id %>" value="<%= i.price.to_i %>" hidden>
+                </div>
+                <br/>
+              <% end %>
+            </div>
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-xs-12 col-md-3 col-sm-3">
+                  <p style="margin-bottom: 0px; color: black">
+                    <i class="fa fa-question-circle">
+                      </i>
+                       کد تخفیف دارید؟</p>
+                </div>
+                <div class="col-md-4 col-xs-6 col-sm-4 text-right">
+                  <input id="coupon_input" name="coupon" type="text" placeholder="کد تخفیف" class="form-control" style="height: 45px; margin-bottom: 10px" value="<%= code if code.present? %>"/>
+                </div>
+                <div class="col-md-5 col-xs-6 col-sm-2 text-right">
+                  <div class="btn-group">
+                    <button id="coupon-check" type="button" class="btn btn-warning"  onclick="checkCoupon()">اعمال
+                      کد
+                    </button>
+                    <button class="btn btn-default" onclick="clearCoupon(); return false;">حذف</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="text-right col-xs-12" id="coupon-message">
+                </div>
+              </div>
+              <hr style="margin-top: 0px; margin-bottom: 0.5em">
+              <div class="row">
+                <div class="col-md-3 col-xs-6 text-right text-justify" style="color: black;">
+                  <p style="margin-bottom: 0px">
+                    <i class="fa fa-credit-card"></i> موجودی اعتبار شما:
+                      <%= number_with_delimiter(current_user.credit.value.to_i, :delimiter => ',') %>
+                      تومان
+                  </p>
+                </div>
+
+                <div class="col-md-5 col-xs-6 text-right pull-left" style="text-align: right">
+                  <button class="btn btn-default" id="i-use-credit">
+                    <i class="fa fa-hand-grab-o"></i>
+                    استفاده از اعتبار
+                  </button>
+                </div>
+              </div>
+
+              <input id="credit-amount" value="<%= current_user.credit.value %>" hidden>
+              <input id="used-credit" value="false" hidden>
+              <input id="total-primary-price" value="<%= net_price %>" hidden>
+
+              <div class="row text-center" style="color: black">
+                <div class="col-md-12 col-xs-12 text-right" style="text-align: center">
+                  <div class="row">
+                      <%= "#{t(:'invoices.net_price')}: " %>
+                      <%= "#{number_with_delimiter(net_price.to_i, :delimiter => ',')}" %>
+                      <%= "#{t(:'invoices.currency')}" %>
+                  </div>
+                  <div class="row">
+                    <%= "#{t(:'invoices.net_discount')}: " %>
+                    <span id="total-discount">
+            <%= number_with_delimiter(discount_results.present? ? discount_results[:total_discount].round : 0, :delimiter => ',') %>
+              </span>
+                    <%= "#{t(:'invoices.currency')}" %>
+                  </div>
+                  <div class="row" hidden id="credit-usage">
+                    اعتبار:
+                    <span id="total-discount">
+            <%= number_with_delimiter(current_user.credit.value.to_i, :delimiter => ',') %>
+              </span>
+                    <%= "#{t(:'invoices.currency')}" %>
+                  </div>
+                </div>
+                <div class="col-md-12 col-xs-12 text-center">
+                  <h3>
+                    قابل پرداخت:
+                    <span id="total-price">
+            <% if discount_results.present? %>
+            <%= number_with_delimiter(net_price.to_i - discount_results[:total_discount].round, :delimiter => ',') %>
+            <% else %>
+            <%= "#{number_with_delimiter(net_price.to_i, :delimiter => ',')}" %>
+            <% end %>
+
+            </span>
+                    <%= "#{t(:'invoices.currency')}" %>
+                  </h3>
+
+
+                  <%= form_for(:transaction, url: initial_send_transactions_path) do |f| %>
+                    <%= f.hidden_field(:amount, value: discount_results.present? ? net_price - discount_results[:total_discount].round : net_price) %>
+                    <%= f.hidden_field(:mobile_number, value: current_user.mobile_number) %>
+                    <%= f.hidden_field(:email, value: current_user.email) %>
+                    <%= f.hidden_field(:description, value: "خرید فروشگاه | کارت آیدی :#{invoice.first.cart_id} | invoice_id: #{invoice.first.invoice_id}") %>
+                    <%= f.hidden_field(:afterwards_url, value: full_url) %>
+                    <%= f.hidden_field(:credit_usage, value: 0) %>
+                    <%= f.hidden_field(:model, value: 'invoice') %>
+                    <%= f.hidden_field(:model_id, value: invoice_id) %>
+                    <%= f.hidden_field(:type, value: "invoice-payment") %>
+                    <%= f.button(class: 'btn btn-success', style: 'width: 50%') do %>
+                      <%= "<i class='fa fa-credit-card'></i> #{t('invoices.buttons.save_payment')}".html_safe %>
+                    <% end %>
+                  <% end %>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script>
+    function persian_number() {
+        persian = {0: '۰', 1: '۱', 2: '۲', 3: '۳', 4: '۴', 5: '۵', 6: '۶', 7: '۷', 8: '۸', 9: '۹'};
+
+        function traverse(el) {
+            if (el.nodeType == 3) {
+                var list = el.data.match(/[0-9]/g);
+                if (list != null && list.length != 0) {
+                    for (var i = 0; i < list.length; i++)
+                        el.data = el.data.replace(list[i], persian[list[i]]);
+                }
+            }
+            for (var i = 0; i < el.childNodes.length; i++) {
+                traverse(el.childNodes[i]);
+            }
+        }
+
+        traverse(document.body);
+    }
+
+    var ready;
+    ready = function () {
+        setTimeout(function () {
+            persian_number();
+        }, 100);
+    };
+    jQuery(document).ready(ready);
+
+    function checkCoupon() {
+        var used_credit = jQuery('#used-credit').val();
+
+        jQuery.ajax({
+            url: '<%= coupon_factor_path %>',
+            type: 'Post',
+            data: {
+                code: jQuery('#coupon_input').val(),
+                cart_id: '<%= invoice[0].cart_id %>'
+            },
+            success: function (data) {
+                console.log(data.total_discount);
+                if (data.response == "error") {
+                    jQuery('#coupon-message').empty();
+                    jQuery('#coupon-message').append('<div class="alert alert-danger">' + data.message + '</div>');
+                } else if (data.response == "ok") {
+                    jQuery('#coupon-message').empty();
+                    jQuery('#coupon-message').append('<div class="alert alert-success">' + data.message + '</div>');
+
+                    if (data.item_relation == true) {
+                        data.invoice_factors.forEach(function (invoice_factor) {
+                            jQuery('#discount-' + invoice_factor.invoice_item_id).empty();
+                            jQuery('#discount-' + invoice_factor.invoice_item_id).append(parseInt(invoice_factor.value) + '-');
+                        });
+                    }
+                    ;
+                    jQuery('#total-price').empty();
+                    total = jQuery('#total-primary-price').val();
+                    if (used_credit == "true") {
+                        jQuery('#transaction_amount').val(total - data.total_discount - <%= current_user.credit.value.to_i %>);
+                        jQuery('#total-price').append(total - data.total_discount - <%= current_user.credit.value.to_i %>);
+                    } else {
+                        jQuery('#transaction_amount').val(total - data.total_discount);
+                        jQuery('#total-price').append(total - data.total_discount);
+                    }
+                    jQuery('#total-discount').empty();
+                    jQuery('#total-discount').append(Math.round(data.total_discount));
+                    persian_number();
+                }
+            }
+        })
+    }
+
+    function clearCoupon() {
+        console.log("sldkjflkasjfd");
+        jQuery('#coupon_input').val('');
+        jQuery('#coupon-message').empty();
+        var has_used_credit = jQuery('#used-credit').val();
+        jQuery.ajax({
+            url: '<%= delete_coupon_path %>',
+            type: 'Post',
+            data: {
+                cart_id: '<%= invoice[0].cart_id %>',
+            },
+            success: function (data) {
+                if (data.response == "ok") {
+                    jQuery('#coupon_input').val('');
+                    data.invoice_items.forEach(function (item) {
+                        jQuery('#discount-' + item.id).empty();
+                    });
+                    if (has_used_credit == "true") {
+                        total = parseInt(jQuery('#total-primary-price').val()) - <%= current_user.credit.value.to_i %>;
+                    } else {
+                        total = jQuery('#total-primary-price').val();
+                    }
+                    jQuery('#total-price').empty();
+                    jQuery('#total-price').append(parseInt(total));
+                    jQuery('#total-discount').empty();
+                    jQuery('#total-discount').append(0);
+                    jQuery('#transaction_amount').val(total);
+
+
+                    jQuery('#coupon-message').append('<div class="alert alert-danger">' + data.message + '</div>');
+
+                    persian_number();
+
+                }
+            }
+        })
+    }
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    jQuery('#i-use-credit').click(function () {
+        credit = jQuery('#credit-amount').val();
+        total = jQuery('#transaction_amount').val();
+
+        if (parseInt(credit) >= parseInt(total)) {
+            credit = total;
+        }
+        jQuery('#transaction_credit_usage').val(credit);
+
+        jQuery('#credit-usage').slideDown();
+        jQuery('#transaction_amount').val(total - credit);
+        jQuery('#total-price').html(numberWithCommas(total - credit));
+        jQuery('#credit-amount').val(0);
+        jQuery('#used-credit').val(true);
+        var url = jQuery('#transaction_afterwards_url').val();
+        jQuery('#transaction_afterwards_url').val(url + 'credit=true&');
+        persian_number();
+    })
+</script>

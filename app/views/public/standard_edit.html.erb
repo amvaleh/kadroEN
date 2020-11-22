@@ -1,0 +1,34 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+  <% end %>
+  <title>
+    ادیت نور و رنگ عکس ها | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="ادیت نور و رنگ عکس ها">
+  <meta name="keywords" content="ادیت نور, ادیت عکس, ادیت رنگ, ویرایش عکس">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'twentytwenty/twentytwenty', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'twentytwenty/jquery.event.move', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'twentytwenty/jquery.twentytwenty', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'twentytwenty/twentytwenty', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'twentytwenty/jquery.event.move', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'twentytwenty/jquery.twentytwenty', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+  <link rel="icon" type="image/png" href="">
+</head>
+<%= render "public/shared/wordpress_header" %>
+<%= render "public/shared/twenty_twenty" , :count => 1 , :heading => "نمونه کار ادیت استاندارد" , :lead => "نمونه ادیت نور و رنگ در همه پکیج های عکاسی کادرو" , :img_1 => "/img/original.jpg" , :img_2 => "/img/lightedit.jpg"%>

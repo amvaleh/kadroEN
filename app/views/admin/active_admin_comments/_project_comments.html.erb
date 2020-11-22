@@ -1,0 +1,28 @@
+<% date = "" %>
+<div style="direction: rtl !important; padding: 5px">
+  <% comments.each do |comment|%>
+    <div class="row text-center">
+      <% unless date.present? %>
+        <% date = comment.created_at.to_date %>
+        <strong style="font-size: large; color: coral"><%= comment.created_at.to_date %></strong>
+      <% end %>
+      <% unless comment.created_at.to_date == date %>
+        <strong style="font-size: large; color: coral"><%= comment.created_at.to_date %></strong>
+        <% date = comment.created_at.to_date %>
+      <% end %>
+    </div>
+    <p style="font-size: 14px; color: #8a6d3b">
+    <span style="font-size: 15px; color: #003751">
+      <% admin = AdminUser.where(id: comment.author_id)[0] %>
+      <%= admin.present? ? admin.email : 'ادمین سابق' %>
+      در قسمت
+      <span style="color: #3a0018">
+        <%= comment.resource_type %>
+      </span>
+      نوشت:
+    </span>
+      <%= comment.body %>
+    </p>
+
+  <% end %>
+</div>

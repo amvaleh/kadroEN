@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row" id="portfolio">
+    <div class="col-xs-12">
+      <h2 class="text-right title-font-size">
+        رشته های عکاسی
+        <%= @photographer.last_name %>
+      </h2>
+      <p class="text-right">
+        برای مشاهده نمونه کارها کلیک کنید.
+      </p>
+      <div class="col-xs-12 " style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; align-items: flex-end;    margin-bottom: 3em;">
+        <% @expertises.order("expertises.order DESC").each do |ex|%>
+          <a style="cursor:pointer;margin: auto;
+              background-color: #ffffff;
+              padding: 10px;flex-grow: 20;" class="top_expertises" onclick="Scroll_to_expertise(field_<%=ex.id%>);" role="tab">
+            <div class="text-center">
+              <%= image_tag ex.shoot_type.avatar_url(:mini) %>
+            </div>
+            <div class="text-center" style="color:#888888;" >
+              <%=ex.shoot_type.title%>
+            </div>
+          </a>
+        <% end%>
+      </div>
+    </div>
+  </div>
+</div>

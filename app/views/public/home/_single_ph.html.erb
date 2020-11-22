@@ -1,0 +1,39 @@
+<div class="col-6 col-sm-6 col-md-3 text-left">
+  <div class="fdb-box p-0">
+    <img alt="عکس پروفایل <%=@ph.abbrv_name%>" class="img-fluid rounded-0" src="<%=@ph.avatar_url() %>">
+    <div class="content p-3">
+      <h3>
+        <strong>
+          <%=@ph.abbrv_name %>
+        </strong>
+      </h3>
+      <p class="text-center">
+        <%= @ph.location.city.name %>
+      </p>
+      <p class="text-center">
+        فعال در
+        <%= @ph.expertises.approved.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
+        رشته عکاسی
+      </p>
+      <p class="text-center">
+                <span class="badge badge-light text-primary">
+                <%= @ph.equipment.equip_cameras.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
+                  دوربین
+                </span>
+        <span class="badge badge-light text-primary">
+                <%= @ph.equipment.equip_lenzs.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
+          لنز
+                </span>
+      </p>
+      <p class="text-center">
+        <%rate= ((@ph.qrate+@ph.arate)/2).round(1).to_i %>
+        <% for i in 1..(rate/2) do%>
+          <i class="fa fa-star text-warning"></i>
+        <%end %>
+      </p>
+      <p class="text-center">
+        <%= link_to "مشاهده" , pro_url(@ph.uid,:subdomain=>"pro"), class:"btn btn-outline-primary" %>
+      </p>
+    </div>
+  </div>
+</div>

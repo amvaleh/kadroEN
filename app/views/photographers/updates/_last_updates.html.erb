@@ -1,0 +1,63 @@
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="text-center text-muted">
+      آخرین به روز رسانی ها:
+    </h3>
+    <br>
+    <div class="owl-carousel" id="box-slider2">
+      <% LinesArticle.all.where(published: true).order(created_at: :desc).each do |la| -%>
+      <div class="box-slide" style="background: black;
+    height: 600px; !important;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.75);
+    margin-bottom: 2em;">
+    <%=image_tag "/uploads/lines/article/hero_image/#{la.id}/#{la.hero_image}"%>
+        <div class="payed-cart" style="background-color: transparent;" >
+          <div class="price-part">
+            <div class="price-stat">
+              <span><%=la.title%></span>
+            </div>
+            <div class="stat-li3">
+              <span style="font-size:8px;"><%=la.sub_title%></span>
+            </div>
+          </div>
+          <div class="box-bar">
+            <div class="stat-li2">
+              <span class="field-stat"><%= la.teaser %></span>
+            </div>
+          </div>
+        </div>
+        <span style="position: absolute;
+        left: 10%;
+        bottom: 4%;"> <%= link_to "باقی مطلب" , "/updates/articles/#{la.slug}",class:"btn btn-default btn-xs" %></span>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("#box-slider2").owlCarousel({
+    navText: [],
+    nav: true,
+    rtl: true,
+    responsiveClass: true,
+    responsive: {
+      100: {
+        items: 1
+      },
+      300: {
+        items: 1
+      },
+      800: {
+        items: 2
+      },
+      1100: {
+        items: 3
+      }
+    },
+    smartSpeed: 1000,
+    autoplay: false,
+    autoplaySpeed: 1000
+  });
+</script>

@@ -1,0 +1,3 @@
+class ActiveAdminComment < ApplicationRecord
+
+end

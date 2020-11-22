@@ -1,0 +1,17 @@
+<div class="alert alert-info" style="background-color: #fffbc3">
+  <strong class="text-center" style="margin-top: 0px; color: #464646;">
+    <%= photographer.display_name %>
+  </strong>
+  <% if photographer.location.present? and photographer.location.city.present? %>
+    <h5 class="text-right" style="color: #464646">
+      <%= photographer.location.city.name.to_s + " " + photographer.location.area_name.to_s %> -
+    </h5>
+  <% end %>
+  <h5 class="text-left" style="color: #464646">
+    - <%= photographer.mobile_number %>
+  </h5>
+
+  <div class="text-left">
+    <%= link_to "show",admin_photographer_path(photographer.slug), class: 'btn btn-default', style: 'color: white; background-color: dodgerblue', target: :_blank %>
+  </div>
+</div>

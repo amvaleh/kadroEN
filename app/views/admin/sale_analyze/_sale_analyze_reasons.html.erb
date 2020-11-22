@@ -1,0 +1,44 @@
+<div class="row" style="margin-bottom:10px;">
+    <div class="col-xs-12">
+            <div class="col-xs-2">
+                <p>فروش کل</p>
+            </div>
+            <div class="col-xs-2">
+                <p>سود فروش</p>
+            </div>
+            <div class="col-xs-2">
+                <p>پرداختی کل عکاس</p>
+            </div>
+            <div class="col-xs-2">
+                <p>سود فروشگاه</p>
+            </div>
+            <div class="col-xs-2">
+                <p>کل عکاسان پروژه رفته</p>
+            </div>
+            <div class="col-xs-2">
+                <p>عکاس جدید تایید شده</p>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+            <div class="col-xs-2">
+                <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= number_with_delimiter(Receipts::TotalSale.call(start_date: start_date, end_date: end_date).total, :delimiter => ',') %></p>
+            </div>
+            <div class="col-xs-2">
+                <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= number_with_delimiter(Receipts::TotalBenefit.call(start_date: start_date, end_date: end_date).total, :delimiter => ',') %></p>
+            </div>
+            <div class="col-xs-2">
+                <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= number_with_delimiter(Receipts::TotalPhPayment.call(start_date: start_date, end_date: end_date).total, :delimiter => ',') %></p>
+            </div>
+            <div class="col-xs-2">
+                <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= number_with_delimiter(Invoices::TotalProfit.call(start_date: start_date, end_date: end_date).total, :delimiter => ',') %></p>
+            </div>
+            <div class="col-xs-2">
+                <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= Projects::ActivePhotographer.call(start_date: start_date, end_date: end_date).total %></p>
+            </div>
+            <div class="col-xs-2">
+                <p style="border: 1px solid;padding: 5px;border-radius: 10px;"><%= Photographers::CountApprovedPhotographers.call(start_date: start_date, end_date: end_date).total %></p>
+            </div>
+    </div>
+</div>

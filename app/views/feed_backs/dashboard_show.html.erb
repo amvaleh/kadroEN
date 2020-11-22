@@ -1,0 +1,224 @@
+<% @photographer = @project.photographer %>
+<%= render 'shared/modal_sm' %>
+<div class="content-wrapper padding-content">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="d-flex align-items-center justify-content-start">
+      <div class="mr-0">
+        <h3 class="page-title">
+          <i class="mdi mdi-view-dashboard"></i>
+          نظردهی
+        </h3>
+      </div>
+      <span class="ml-0">
+          <i class="mdi mdi-comment-account-outline"></i>
+          نظر شما در رتبه عکاس تاثیر مستقیم دارد و در صفحه او نمایش داده می شود.
+        </span>
+    </div>
+  </div>
+  <% if !@project.feed_back.present? %>
+    <div class="col-12">
+      <hr>
+      <%= form_for :feed_back, url: create_feed_backs_path, method: "post", html: {class: "form form-group", :id => "create"}, remote: @remote do |f| %>
+        <div class="container">
+          <h4 class="text-right">
+            عکاسی <%= @project.shoot_type.title %>
+            با
+            <%= @photographer.last_name %>
+            چطور بود؟
+          </h4>
+          <div class="row justify-content-center" style="margin: 3rem 0rem;">
+            <div class="col-4 col-sm-4">
+              <h5 class="text-rigth">
+                نظم و اجرا
+              </h5>
+            </div>
+            <div class="col-8 col-sm-6">
+              <div class="col-12 text-center" id="feed_back[arate]">
+                <%= f.select :arate,[ ["۱","1"] , ["۲","2"], ["۳","3"], ["۴","4"], ["۵","5"], ["۶","6"], ["۷","7"], ["۸","8"], ["۹","9"], ["۱۰","10"] ], { :include_blank => 'نمره دهید' }, {:class => 'form-control' , :required => true}   %>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center" style="margin: 3rem 0rem;">
+            <div class="col-4 col-sm-4">
+              <h5 class="text-rigth">
+                کیفیت
+                عکسها
+              </h5>
+            </div>
+            <div class="col-8 col-sm-6">
+              <div class="col-12 text-center" id="feed_back[qrate]">
+                <%= f.select :qrate,[ ["۱","1"] , ["۲","2"], ["۳","3"], ["۴","4"], ["۵","5"], ["۶","6"], ["۷","7"], ["۸","8"], ["۹","9"], ["۱۰","10"] ], { :include_blank => 'نمره دهید' }, {:class => 'form-control' , :required => true}   %>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center" style="margin: 3rem 0rem;">
+            <div class="col-4 col-sm-4">
+              <h5 class="text-rigth">
+                استفاده از ماسک؟
+              </h5>
+            </div>
+            <div class="col-8 col-sm-6">
+              <div class="col-12 text-center" id="feed_back[qrate]">
+                <%= f.select :used_mask,[ ["بله","true"] , ["خیر","false"] ], { :include_blank => 'انتخاب کنید' }, {:class => 'form-control' , :required => true}   %>
+              </div>
+            </div>
+          </div>
+          <h4 class="text-right">
+            اگر بخواهید
+            <%= @photographer.last_name %>
+            را به دیگران پیشنهاد کنید چه می گویید؟
+          </h4>
+          <div class="row justify-content-center my-4">
+            <div class="col-12 col-sm-10 col-md-6">
+              <%= f.text_area "description", class: "form-control", style: "height: 100px; font-size: 15px;", required: true ,
+                              placeholder: "مثال: #{@photographer.last_name} را بدلیل انرژی زیاد و حضور به موقع در محل و ادیت خوبی که روی عکس ها زد به دیگران توصیه می کنم." %>
+              <%= hidden_field_tag "is_remote", @remote %>
+            </div>
+          </div>
+          <br>
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <button type="submit" id="submit_page_form" class="btn btn-blue btn-lg btn-block">ذخیره
+              </button>
+            </div>
+          </div>
+          <br>
+          <div class="row justify-content-center">
+            <div class="col-4">
+              <%= link_to "بازگشت", :back, class: "btn btn-default btn-lg btn-block" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="col-12">
+      <h3 class="text-center">
+        شما قبلا برای این پروژه امتیاز وارد نموده ایید.
+      </h3>
+      <div class="col-12">
+        <h4 class="text-center">
+          سرویس دهی
+          عکاس
+        </h4>
+        <div class="row justify-content-center">
+          <div class="text-center" style="direction: ltr;font-size: 30px;">
+            <% 5.times do |n| %>
+              <% if n*2 < @project.feed_back.arate %>
+                <span class="fa fa-star checked"></span>
+              <% else %>
+                <span class="fa fa-star"></span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <br>
+        <div class="col-12">
+          <h4 class="text-center">
+            کیفیت
+            عکسها
+          </h4>
+        </div>
+        <div class="row justify-content-center">
+          <div class="text-center" style="direction: ltr;font-size: 30px;">
+            <% 5.times do |n| %>
+              <% if n*2 < @project.feed_back.qrate %>
+                <span class="fa fa-star checked"></span>
+              <% else %>
+                <span class="fa fa-star"></span>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <h4 class="text-center">
+              توضیحات بیشتر
+            </h4>
+          </div>
+          <div class="col-10 col-md-8">
+            <%#= f.text_area "description" , class: "form-control" , style: "height: 230px; font-size: 25px;" %>
+            <textarea style="height: 230px; font-size: 25px;" rows="7" required="" class="form-control" placeholder="<%= @project.feed_back.description %>" disabled></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row justify-content-center mb-4">
+          <div class="col-8">
+            <%= link_to "بازگشت", :back, class: "btn btn-default btn-lg btn-block" %>
+          </div>
+        </div>
+      </div>
+
+
+  <% end %>
+
+  </div>
+</div>
+<%= render 'shared/large_modal' %>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#grid-container').cubeportfolio({
+            // gapHorizontal: 20,
+            // gapVertical: 20,
+            gridAdjustment: 'responsive',
+            caption: 'overlayBottomReveal',
+            // displayType: 'sequentially',
+            displayTypeSpeed: 2,
+            caption: 'minimal',
+            lightboxDelegate: '.cbp-lightbox',
+            lightboxGallery: true,
+            lightboxTitleSrc: 'data-title',
+            lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
+            singlePageAnimation: 'fade',
+            singlePageDelegate: '.cbp-singlePage',
+            // singlePageDeeplinking: true,
+            singlePageStickyNavigation: true,
+            singlePageCounter: '<div class="cbp-popup-singlePage-counter">{{current}} of {{total}}</div>',
+            singlePageCallback: function (url, element) {
+                // to update singlePage content use the following method: this.updateSinglePage(yourContent)
+                var t = this;
+                jQuery.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'html',
+                    timeout: 30000
+                })
+                    .done(function (result) {
+                        t.updateSinglePage(result);
+                    })
+                    .fail(function () {
+                        t.updateSinglePage('خطایی رخ داده است، لطفا صفحه را دوباره بارگذاری کنید!');
+                    });
+            }
+            // options
+        });
+    });
+</script>
+<script>
+    function change_a(o) {
+        var x = o.value;
+        document.getElementById('value_a').innerHTML = x;
+    }
+
+    jQuery(document).ready(function () {
+        jQuery('.gallery-capacity-footer').hide();
+    })
+</script>
+
+<script>
+    function change_q(o) {
+        var x = o.value;
+        document.getElementById('value_q').innerHTML = x;
+    }
+</script>
+<style>
+  .checked {
+    color: orange;
+  }
+
+  .lock-checked {
+    color: #0188ff;
+  }
+</style>

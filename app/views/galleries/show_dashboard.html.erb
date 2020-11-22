@@ -1,0 +1,660 @@
+<%= render 'shared/large_modal' %>
+<%= render 'shared/modal_sm' %>
+<%= render 'galleries/tools/share_modal' %>
+
+<div class="content-wrapper padding-content">
+  <%= render 'shared/alert_notice' %>
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <h3 class="page-title">
+          <i class="mdi mdi-view-dashboard"></i>
+          <% if @gallery.name.present? %>
+            <%= "گالری " + @gallery.name%>
+          <% else %>
+            گالری شما
+          <% end %>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <%= form_tag zip_download_gallery_path(@gallery), remote: true, id: "zip_download_form" do %>
+  <% end %>
+  <%= form_tag exempt_photographer_money_gallery_path(@gallery), remote: true, id: "exempt_photographer_money_form" do %>
+  <% end %>
+  <section class="content data-id" id="<%= @gallery.id %>">
+    <div class="row">
+      <div class="col-12 col-md-12 mt-3">
+        <div id="mobile_action" class="card shadow-sm">
+          <div class="card-horizontal">
+            <div class="col-12 col-md-8 pt-4 text-left">
+              <div class="row pb-4 justify-content-center" style="direction: ltr;">
+                <% if @gallery.project.user == current_user %>
+                  <div class="d-inline-flex px-2" style="border-right: 1px solid;">
+                    <% if @gallery.hashed_password == nil %>
+                      <%= link_to('<span class="fa fa-unlock" style="vertical-align: middle;margin-right: 5px;"></span>رمز عبور  '.html_safe,
+                                  gallery_password_form_path(gallery_id: @gallery.slug), remote: true, class: "color-blue") %>
+                    <% else %>
+                      <%= link_to('<span class="fa fa-lock lock-checked" style="vertical-align: middle;margin-right: 5px;"></span>رمز عبور  '.html_safe,
+                                  gallery_password_form_path(gallery_id: @gallery.slug), remote: true, class: "color-blue") %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <div class="d-inline-flex px-2" style="border-right: 1px solid;cursor: pointer;">
+                  <a class="color-blue" data-toggle="modal" data-target="#share_gallery">
+                    <span class="fa fa-share-alt"></span>
+                    اشتراک گذاری
+                  </a>
+                </div>
+                <div class="d-inline-flex px-2">
+                  <a class="color-blue" href="#" id="bulk_download_1" remote=true>
+                    <i class="fa fa-cloud-download"></i>
+                    دانلود همه
+                  </a>
+                </div>
+              </div>
+              <% if @gallery.project.user == current_user %>
+                <div class="row my-4" style="direction: ltr;">
+                  <div class="col-12">
+                    <% if @gallery.project.reserve_step.present?  &&  ( @gallery.project.reserve_step.name != "happy_call" && @gallery.project.reserve_step.name != "checkout" ) %>
+                      <a class="btn btn-sm btn-info" href="#" id="exempt_photographer_money_button_1">آزاد سازی مبلغ</a>
+                    <% end %>
+                    <% if !@gallery.project.feed_back.present? %>
+                      <a class="btn btn-sm btn-info-outline" href="/feed_backs/<%= @gallery.project.slug %>">نظردهی به عکاس</a>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row my-4" style="direction: ltr;">
+                  <div class="col-5">
+                    <a class="btn btn-sm btn-info-outline" href="/projects/<%= @gallery.project.slug %>/thank_you">مشاهده فاکتور</a>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="card shadow-sm">
+          <div class="card-horizontal">
+            <div class="col-12 col-md-4 pt-4">
+              <div class="row">
+                <div class="col-12">
+                  <% if @gallery.name.present? && @gallery.project.user == current_user %>
+                    <div id="gallery_name_div">
+                      <div class="row pb-4">
+                        <div class="col-6">
+                          <h5 id="gallery_name" style="margin-bottom: 0px;margin-top: 5px;">
+                            <%= @gallery.name %>
+                          </h5>
+                        </div>
+                        <div class="col-6 text-left">
+                          <button id="edit_gallery_name" class="btn btn-sm btn-info-outline">ویرایش</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="gallery_input_div" class="form-group" style="display: none;">
+                      <input type="text" class="form-control" id="gallery_name_input" style="border-radius: 5px;" placeholder="لطفا یک نام برای گالری خود وارد کنید :" value="<%= @gallery.name %>">
+                    </div>
+                  <% elsif @gallery.project.user == current_user %>
+                    <div id="gallery_name_div" style="display: none;">
+                      <div class="row pb-4">
+                        <div class="col-6">
+                          <h5 id="gallery_name" style="margin-bottom: 0px;margin-top: 5px;"></h5>
+                        </div>
+                        <div class="col-6 text-left">
+                          <button id="edit_gallery_name" class="btn btn-sm btn-info-outline">ویرایش</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="gallery_input_div" class="form-group">
+                      <input type="text" class="form-control" id="gallery_name_input" style="border-radius: 5px;" placeholder="لطفا یک نام برای گالری خود وارد کنید :" value="<%= @gallery.name %>">
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <i class="mdi mdi-contacts"></i>
+                    <%= @gallery.project.photographer.display_name %>
+                  </p>
+                </div>
+                <div class="col-6 text-left">
+                  <% if @gallery.project.feed_back.present? %>
+                    <% 5.times do |n| %>
+                      <% if n*2 < @gallery.project.feed_back.qrate %>
+                        <span class="fa fa-star checked"></span>
+                      <% else %>
+                        <span class="fa fa-star"></span>
+                      <% end %>
+                    <% end %>
+                  <% elsif @gallery.project.user == current_user %>
+                    <p>
+                      <a class="btn btn-sm btn-info" href="/feed_backs/<%= @gallery.project.slug %>">
+                        <span class="fa fa-star checked"></span>
+                        نظر دهید ...
+                      </a>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <span class="fa fa-camera"></span>
+                    <%= @gallery.frames.count.to_s.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                  </p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>
+                    <%= @gallery.project.start_time.to_date.to_pdate.strftime("%Y/%m/%d").tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    <span class="fa fa-money"></span>
+                    هزینه پروژه
+                  </p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>
+                    <%= @gallery.project.receipt.subtotal.tr('.0123456789', '/۰۱۲۳۴۵۶۷۸۹') %>
+                    تومان
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div id="desktop_show" class="col-12 col-md-8 pt-4 text-left">
+              <div class="row pb-4" style="direction: ltr;">
+                <% if @gallery.project.user == current_user %>
+                  <div class="d-inline-flex px-4" style="border-right: 1px solid;">
+                    <% if @gallery.hashed_password == nil %>
+                      <%= link_to('<span class="fa fa-unlock" style="vertical-align: middle; font-size: 23px;margin-right: 5px;"></span>رمز عبور  '.html_safe,
+                                  gallery_password_form_path(gallery_id: @gallery.slug), remote: true, class: "color-blue") %>
+                    <% else %>
+                      <%= link_to('<span class="fa fa-lock lock-checked" style="vertical-align: middle; font-size: 23px;margin-right: 5px;"></span>رمز عبور  '.html_safe,
+                                  gallery_password_form_path(gallery_id: @gallery.slug), remote: true, class: "color-blue") %>
+                    <% end %>
+                  </div>
+                <% end %>
+                <div class="d-inline-flex px-4" style="border-right: 1px solid;cursor: pointer;">
+                  <a class="color-blue" data-toggle="modal" data-target="#share_gallery">
+                    <span class="fa fa-share-alt" style="font-size: 23px"></span>
+                    اشتراک گذاری
+                  </a>
+                </div>
+                <div class="d-inline-flex px-4">
+                  <a class="color-blue" href="#" id="bulk_download_2" remote=true>
+                    <i class="fa fa-cloud-download" style="font-size: 23px"></i>
+                    دانلود همه
+                  </a>
+                </div>
+              </div>
+              <% if @gallery.project.user == current_user %>
+                <div class="row mt-4" style="direction: ltr;">
+                  <div class="col-5">
+                    <% if @gallery.project.reserve_step.present?  &&  ( @gallery.project.reserve_step.name != "happy_call" && @gallery.project.reserve_step.name != "checkout" ) %>
+                      <a class="btn btn-sm btn-info" href="#" id="exempt_photographer_money_button_2">آزاد سازی مبلغ</a>
+                    <% end %>
+                    <% if !@gallery.project.feed_back.present? %>
+                      <a class="btn btn-sm btn-info-outline" href="/feed_backs/<%= @gallery.project.slug %>">نظردهی به عکاس</a>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row mt-4" style="direction: ltr;">
+                  <div class="col-5">
+                    <a class="btn btn-sm btn-info-outline" href="/projects/<%= @gallery.project.slug %>/thank_you">مشاهده فاکتور</a>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div id="filters-container" class=" cbp-l-filters-alignRight">
+        <!-- '*' means shows all item elements -->
+        <div data-filter="*" class="cbp-filter-item cbp-filter-item-active"><div class=""></div> همه عکسها </div>
+        <div data-filter=".retouched" class="cbp-filter-item"><div class=""></div> روتوش شده </div>
+        <div data-filter=".downloaded" class="cbp-filter-item"><div class=""></div> دانلود شده </div>
+        <div data-filter=".liked" class="cbp-filter-item"><div class=""></div> لایک شده </div>
+        <% if @gallery.frames.share_requested.any? and current_user == @gallery.project.user %>
+          <a href="<%=permission_gallery_path(@gallery)%>" class="cbp-filter-item"> اجازه انتشار </a>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-12">
+
+        <div id="grid-container" class="cbp">
+          <% frames = @gallery.frames.order(like: :desc, downloaded: :desc, retouched: :desc, created_at: :desc).first(12) %>
+          <% frames.each do |frame| %>
+            <% case @gallery.download_limit %>
+          <% when 0 %>
+              <%= render "galleries/full_frame_each_dashboard", :frame => frame %>
+            <% else %>
+              <%= render "galleries/selection_frame_each_dashboard", :frame => frame %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>
+<input type="hidden" id="frame-pointer" name="frame-pointer">
+
+<style>
+  .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+  .checked {
+    color: orange;
+  }
+
+  .lock-checked {
+    color: #0188ff;
+  }
+
+</style>
+
+<script>
+    function likephoto(id){
+        var i = jQuery(parse('#like-%s',id));
+        var heart = jQuery(parse('#heart-%s',id));
+        console.log(i);
+        var bool = i.data('value');
+        var like = '';
+        if (!bool) {
+            console.log('clicked');
+            i.removeClass('fa-heart-o');
+            i.addClass('fa-heart');
+            i.addClass('gallery-frame-heart');
+            heart.removeAttr('hidden');
+            heart.show();
+            i.data("value", true);
+            like = true;
+        } else {
+            i.removeClass('fa-heart');
+            i.removeClass('gallery-frame-heart');
+            i.addClass('fa-heart-o');
+            i.data("value", false);
+            heart.hide();
+            like = false;
+        }
+        sendToServer(id,like)
+    }
+    function sendToServer(id, like) {
+        jQuery.ajax({
+            data: {
+                id: id,
+                like: like
+            },
+            type: 'POST',
+            url: '<%= like_frame_path %>',
+        })
+    }
+    function parse(str) {
+        var args = [].slice.call(arguments, 1),
+            i = 0;
+
+        return str.replace(/%s/g, () => args[i++]);
+    }
+
+    function disable_right_click() {
+        $('.cbp-popup-lightbox-img').bind('contextmenu', function(e) {
+            return false;
+        });
+
+        $( ".cbp-popup-next" ).click(function() {
+            setTimeout(
+                function()
+                {
+                    $('.cbp-popup-lightbox-img').bind('contextmenu', function(e) {
+                        return false;
+                    });
+                    disable_right_click();
+                }, 100);
+        });
+
+        $( ".cbp-popup-prev" ).click(function() {
+            setTimeout(
+                function()
+                {
+                    $('.cbp-popup-lightbox-img').bind('contextmenu', function(e) {
+                        return false;
+                    });
+                    disable_right_click();
+                }, 100);
+        });
+    }
+
+    jQuery(document).ready(function ($) {
+        $( ".cbp-caption-defaultWrap" ).click(function() {
+            setTimeout(
+                function()
+                {
+                    $('.cbp-popup-lightbox-img').bind('contextmenu', function(e) {
+                        return false;
+                    });
+                    disable_right_click();
+                }, 100);
+        });
+
+        $('.cbp-caption-defaultWrap > img').bind('contextmenu', function(e) {
+            return false;
+        });
+
+
+        jQuery('#bulk_download_1').click(function () {
+            jQuery('#bulk_download_1').text("در حال آماده سازی فایل...");
+            jQuery('#zip_download_form').submit();
+        });
+        jQuery('#bulk_download_2').click(function () {
+            jQuery('#bulk_download_2').text("در حال آماده سازی فایل...");
+            jQuery('#zip_download_form').submit();
+        });
+        jQuery('#exempt_photographer_money_button_1').click(function () {
+            jQuery('#exempt_photographer_money_form').submit();
+        });
+        jQuery('#exempt_photographer_money_button_2').click(function () {
+            jQuery('#exempt_photographer_money_form').submit();
+        });
+        jQuery('#grid-container').cubeportfolio({
+            loadMore: '#js-loadMore',
+            loadMoreAction: 'click',
+            gridAdjustment: 'responsive',
+            displayTypeSpeed: 2,
+            caption: 'overlayBottomReveal',
+            layoutMode: 'grid',
+            sortToPreventGaps: true,
+            animationType: 'fadeOutTop',
+            lightboxDelegate: '.cbp-lightbox',
+            mediaQueries: [{
+                width: 1500,
+                cols: 4,
+                options: {
+                    gapHorizontal: 7,
+                    gapVertical: 10,
+                }
+            }, {
+                width: 1100,
+                cols: 3,
+                options: {
+                    gapHorizontal: 7,
+                    gapVertical: 10,
+                }
+            }, {
+                width: 800,
+                cols: 3,
+                options: {
+                    gapHorizontal: 7,
+                    gapVertical: 10,
+                }
+            }, {
+                width: 480,
+                cols: 1,
+                options: {
+                    gapHorizontal: 7,
+                    gapVertical: 10,
+                }
+            }],
+            lightboxGallery: true,
+            lightboxTitleSrc: 'data-title',
+            lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div><div class="text-left"><button class="btn btn-default keep-popup" id="download-frame-caller" onclick="show_approval_popup(event)" style="color:#2B87F9"> دانلود عکس <i class="fa fa-download"></i></button> <button class="btn btn-blue" id="shopping-cart-caller" onclick="shopCaller()"> سبد خرید <i class="fa fa-shopping-cart"></i></button></div>',
+            singlePageAnimation: 'fade',
+            singlePageDelegate: '.cbp-singlePage',
+            singlePageStickyNavigation: true,
+            filters: '#filters-container',
+            singlePageCounter: '<div class="cbp-popup-singlePage-counter">{{current}} of {{total}}</div>',
+            singlePageCallback: function (url, element) {
+                // to update singlePage content use the following method: this.updateSinglePage(yourContent)
+                var t = this;
+                jQuery.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'html',
+                    timeout: 30000
+                })
+                    .done(function (result) {
+                        t.updateSinglePage(result);
+                    })
+                    .fail(function () {
+                        t.updateSinglePage('خطایی رخ داده است، لطفا صفحه را دوباره بارگذاری کنید!');
+                    });
+            }
+        });
+        var loaded = true;
+        jQuery(window).scroll(function () {
+            if (!loaded) return;
+            like_active = $("[data-filter='.liked']").hasClass( "cbp-filter-item-active" )
+            downloaded_active = $("[data-filter='.downloaded']").hasClass( "cbp-filter-item-active" )
+            retouched_active = $("[data-filter='.retouched']").hasClass( "cbp-filter-item-active" )
+            like_length = $('.liked').length
+            downloaded_length = $('.downloaded').length
+            retouched_length = $('.retouched').length
+            if ((jQuery(window).scrollTop() + 250 >= jQuery(document).height() - jQuery(window).height()) && !(like_active && (like_length >= <%= @gallery.frames.liked.count %>)) && !(downloaded_active && (downloaded_length >= <%= @gallery.frames.downloaded.count %>))  && !(retouched_active && (retouched_length >= <%= @gallery.frames.retouched.count %>))) {
+                loaded = false;
+                console.log("extending");
+                var frameNumber = $('.cbp-item').length;
+
+                var id = $('.data-id').attr('id');
+
+                if (frameNumber >= <%= @gallery.frames.length %>) {
+                    $(".spinit").removeClass("loading");
+                }
+
+                $.ajax({
+                    beforeSend: function () {
+                        if (frameNumber < <%= @gallery.frames.length %>) {
+                            $(".spinit").addClass("loading");
+                            jQuery('.loading-spinner').show();
+                        }
+                    },
+                    type: 'GET',
+                    url: '<%= load_more_dashboard_path %>',
+                    dataType: 'script',
+                    data: {
+                        id: id,
+                        frameNumber: frameNumber
+                    },
+                    success: function (data) {
+                        setTimeout(function () {
+                            loaded = true;
+                            $(".spinit").removeClass("loading");
+                            jQuery('.loading-spinner').hide();
+                        }, 1000);  // The millis to wait before executing this block
+                    },
+                });
+            }
+        });
+    });
+    function cbp_clicked(e) {
+        var path = e.path || (e.composedPath && e.composedPath());
+        var id = path[1].id ||path[2].id || path[3].id || path[4].id || path[5].id;
+
+        console.log(id);
+        console.log(e);
+        jQuery('#frame-pointer').val(id);
+    }
+    function downloadCaller() {
+        id = jQuery('#frame-pointer').val();
+        dont_show = jQuery('#dont-show').is(':checked');
+        console.log(dont_show);
+        jQuery.ajax({
+            type: 'GET',
+            url: '/frames/' + id + '/download',
+            data: {
+                ajax: true,
+                dont_show: dont_show
+            },
+            dataType: 'script'
+        });
+    }
+    function show_approval_popup(e) {
+        <% if @gallery.download_limit == 0 %>
+        downloadCaller();
+        <% else %>
+        id = jQuery('#frame-pointer').val();
+
+        console.log(id);
+        jQuery.ajax({
+            type: 'GET',
+            url: '/frames/check',
+            data: {
+                ajax: true,
+                frame_id: id,
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data.downloaded);
+                if (data.downloaded) {
+                    downloadCaller();
+                } else if (!data.should_buy) {
+                    if (data.dont_show) {
+                        jQuery('#frame-pointer').val(id);
+                        downloadCaller();
+                    } else {
+                        jQuery('#download-acknowledge').slideDown();
+                        jQuery('#frame-pointer').val(id);
+                    }
+                } else {
+                    jQuery('#extra-download').slideDown();
+                }
+                jQuery('.gallery-capacity-footer').css('z-index', '9991');
+            }
+        });
+        <% end %>
+
+    }
+    function shopCaller() {
+        id = jQuery('#frame-pointer').val();
+        jQuery.ajax({
+            type: 'GET',
+            url: '/cart_form_dashboard',
+            dataType: 'script',
+            data: {
+                frame_id: id
+            },
+            success: function (data) {
+                jQuery('.cbp-popup-wrap').trigger('click');
+            },
+        })
+    }
+    <% if @res && @ok_res == '0' %>
+    setTimeout(function () {
+        swal({
+            title: 'هشدار',
+            text: '<%= @res %>',
+            type: 'error',
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'تایید',
+            closeOnConfirm: false,
+            closeOnCancel: false
+        });
+        jQuery('.loading-spinner').hide();
+    }, 200);
+    <% elsif @ok_res == '1' %>
+    setTimeout(function () {
+        swal({
+            title: 'تبریک!',
+            text: '<%= "#{@res}: #{@track_code}" %>',
+            type: 'info',
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'تایید',
+            closeOnConfirm: false,
+            closeOnCancel: false
+        });
+        jQuery('.loading-spinner').hide();
+    }, 200);
+    <% end %>
+    function getApprove(e) {
+        id = e.srcElement.id;
+        e.preventDefault();
+        jQuery.ajax({
+            type: 'GET',
+            url: '/frames/check',
+            data: {
+                ajax: true,
+                frame_id: id
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.downloaded) {
+                    downloadCaller();
+                } else if (!data.should_buy) {
+                    if (data.dont_show) {
+                        jQuery('#frame-pointer').val(e.srcElement.id);
+                        downloadCaller();
+                    } else {
+                        jQuery('#download-acknowledge').slideDown();
+                        jQuery('#frame-pointer').val(e.srcElement.id);
+                    }
+                } else {
+                    jQuery('#extra-download').slideDown();
+                    jQuery('#frame-pointer').val(e.srcElement.id);
+                }
+                jQuery('.gallery-capacity-footer').css('z-index', '9991');
+            }
+        });
+    }
+    jQuery(document).click(function (e) {
+        if (jQuery(e.target).closest('.gallery-capacity-footer').length === 0 && jQuery(e.target).closest('.keep-popup').length === 0) {
+            jQuery('#download-acknowledge').slideUp();
+            jQuery('#extra-download').slideUp();
+            jQuery('.gallery-capacity-footer').css('z-index', '999');
+        }
+        setTimeout(function () {
+            // if (e.toElement.className == 'cbp-popup-next' || e.toElement.className == 'cbp-popup-prev') {
+            if (e.target.className == 'cbp-popup-next' || e.target.className == 'cbp-popup-prev') {
+                var array = jQuery('.cbp-popup-content img')[0].src.split('/');
+                var new_array = array[array.length - 1].split('watermarked_');
+                var name = new_array[new_array.length - 1];
+                jQuery.ajax({
+                    type: 'GET',
+                    url: '/frames/get_id',
+                    data: {
+                        ajax: true,
+                        frame_name: name
+                    },
+                    success: function (frame_id) {
+                        console.log(frame_id);
+                        if (frame_id != "") {
+                            jQuery('#frame-pointer').val(frame_id);
+                        }
+                    }
+                })
+            }
+        }, 100);
+    });
+    $('#gallery_name_input').focusout(function() {
+        var parts = window.location.href.split('/');
+        var lastSegment = parts.pop() || parts.pop();
+        input = $('#gallery_name_input').val();
+        if (input.length > 0) {
+            $.ajax({
+                type: "POST",
+                url: "/galleries/update_name",
+                async: false,
+                data: {
+                    name: $('#gallery_name_input').val(),
+                    gallery_slug: lastSegment,
+                },
+                success: function (data) {
+
+                }
+            });
+        }
+    })
+    $('#edit_gallery_name').click(function() {
+        $("#gallery_name_div").hide();
+        $("#gallery_input_div").show();
+    });
+</script>

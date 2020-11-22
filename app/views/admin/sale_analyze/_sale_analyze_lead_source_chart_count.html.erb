@@ -1,0 +1,21 @@
+
+<div class="row" style="margin-bottom:10px;">
+    <div class="col-xs-2">
+        <span>
+        Lead Source Confirmed Projects:
+        </span>
+    </div>
+</div>
+<% lead_sources.each do |lead_source| %>
+<div class="row">
+    <div class="col-xs-12">
+        <span><%= lead_source.title%></span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <% data = Projects::ProjectsCountPerDayWithLeadSource.call(start_date: start_date, end_date: end_date, lead_source_id: lead_source.id).result %>
+        <%= line_chart data, library: {backgroundColor: "#eee"} %>
+    </div>
+</div>
+<% end %>

@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-md-12">
+    <hr>
+    <% if payments.length == 0 %>
+      <p class="text-center alert alert-info">
+        وضعیت تسویه حساب پروژه ها در این مکان نمایش داده می شود.
+      </p>
+    <% else %>
+      <h4 class="text-center text-muted">
+        وضعیت تسویه حسابها:
+      </h4>
+      <br>
+      <div class="owl-carousel" id="box-slider">
+        <% payments.order(:status, payment_date: :desc).each do |payment| -%>
+          <% if Lookup.find_by(code: payment.status).title == "ابطال شده" %>
+            <% next %>
+          <% end %>
+          <% if payment.price > 1000 %>
+            <div class="box-slide">
+              <div class="<%= payment.status == 3 ? 'payed-cart' : 'not-payed-cart' %>">
+                <div class="price-part">
+                  <div class="price-stat">
+                    <span><%= number_with_delimiter(payment.price.to_i, :delimiter => ',').to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                    <small style="font-size:8px;">
+                      <%= t(:'photographers.toman') %>
+                    </small>
+                  </div>
+                  <div class="stat-li3">
+                    <%= payment.status_title %>
+                  </div>
+                </div>
+                <div class="box-bar">
+                  <div class="stat-li2">
+                    <span class="field-stat"><%= t(:'photographers.payments.because_of') %></span>
+                    <%= payment.payment_type_title %>
+                  </div>
+                  <div class="stat-li">
+                    <span class="field-stat"><%= t(:'photographers.payments.deposit_referrer') %></span>
+                    <span class="value"><%= payment.deposit_referrer.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %></span>
+                  </div>
+                  <div class="stat-li">
+                    <span class="field-stat"><%= t(:'photographers.payments.regist_time') %></span>
+                    <i class="fa fa-calendar"></i>
+                    <span class="value"><%#= payment.created_at.to_date.to_formatted_s(:time).tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') %>
+                      <%= payment.created_at %>
+                    </span>
+                  </div>
+                  <!-- <div class="stat-li">
+                    <span class="field-stat"><%#= t(:'photographers.payments.pay_date') %></span>
+                    <i class="fa fa-calendar"></i>
+                    <span class="value"><%#= payment.payment_date.to_date.to_pdate.to_s.tr(':0123456789', ':۰۱۲۳۴۵۶۷۸۹') if payment.payment_date.present? %></span>
+                  </div> -->
+                  <% if payment.project.user.present? %>
+                    <div class="stat-li">
+                      <span class="field-stat"><%= t(:'photographers.payments.employer') %>:</span>
+                      <span class="value" style="font-size: 17px;"><%= link_to payment.project.user.first_name + " " + payment.project.user.last_name, project_information_project_path(id: payment.project.id), style: 'text-decoration: none;' %></span>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end -%>
+  </div>
+</div>
+
+<script>
+    $("#box-slider").owlCarousel({
+        navText: [],
+        nav: true,
+        rtl: true,
+        responsiveClass: true,
+        responsive: {
+            100: {
+                items: 1
+            },
+            300: {
+                items: 2
+            },
+            800: {
+                items: 3
+            },
+            1100: {
+                items: 4
+            }
+        },
+        smartSpeed: 400,
+        autoplay: true,
+        autoplaySpeed: 500
+    });
+</script>

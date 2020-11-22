@@ -1,0 +1,33 @@
+<span>
+  ادمین
+  <span class="owner">
+    <%= link_to activity.owner.email, admin_admin_user_path(activity.owner_id) %>
+  </span>
+  <% words = activity.recipient_type.split /(?=[A-Z])/ %>
+  <% link = "" %>
+  <% words.each_with_index do |receipt, index| %>
+    <% if index == words.size - 1 %>
+      <% link = link + receipt.downcase %>
+    <% else %>
+      <% link = link + receipt.downcase + "_" %>
+    <% end %>
+  <% end %>
+  <% link = link + "s" %>
+
+  <% if link.include? "category" %>
+    <% link = "categories" %>
+  <% end %>
+
+  <% if activity.recipient_type == "Photographer" %>
+    <% slug = Photographer.find_by(id: activity.recipient_id)&.slug %>
+    <% elsif activity.recipient_type == "Project" %>
+    <% slug = Project.find_by(id: activity.recipient_id)&.slug %>
+    <% elsif activity.recipient_type == "Gallery" %>
+    <% slug = Gallery.find_by(id: activity.recipient_id)&.slug %>
+    <% link = "galleries" %>
+  <% end %>
+  یک
+  <span class="recipient">
+<%= link_to activity.recipient_type, slug.present? ? "#{link}/#{slug}" : "#{link}/#{activity.recipient_id}" %>  </span>
+  را آپدیت کرد
+</span>

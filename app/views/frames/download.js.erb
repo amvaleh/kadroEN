@@ -1,0 +1,44 @@
+console.log("inside");
+<% if @show_feed_back_modal %>
+jQuery('#modal_form_lg').css('z-index',9993);
+<%= render partial: 'shared/show_modal',
+  locals: {modal_partial: '/galleries/feed_back_form', modal_title: "نظر دهید",
+           local_vars: {project_slug: @project.slug, name: @project.photographer.display_name}, modal_id: 'modal_form_lg'} %>
+
+<% elsif @show_exemption_modal %>
+
+jQuery('#modal_form_lg').css('z-index',9993);
+<%= render partial: 'shared/show_modal',
+  locals: {modal_partial: '/galleries/exempt_photographer_money', modal_title: " ", local_vars: {project: @gallery.project}, modal_id: 'modal_form_lg'} %>
+
+<% elsif @error %>
+alert("<%=@error%>");
+<% else %>
+
+var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+if (iOS == true) {
+    console.log("ios devise");
+    var file_path = '<%=@url%>';
+    var a = document.createElement('A');
+    a.href = file_path;
+    a.download = '<%= @frame.original_filename %>';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+else {
+    console.log("Other os devise");
+    var file_path = '<%=@url%>';
+    var a = document.createElement('A');
+    a.href = file_path;
+    a.download = '<%= @frame.original_filename %>';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+jQuery('.frame_<%=@frame.id%>').addClass("downloaded");
+<% end %>
+
+document.getElementById('download-count-notice').innerHTML = "<%= @frame.gallery.downloaded_count %>"
+document.getElementById('download-capacity-notice').innerHTML = "<%= @frame.gallery.download_limit - @frame.gallery.downloaded_count %>"
+persian_number();

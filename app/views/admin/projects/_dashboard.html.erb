@@ -1,0 +1,438 @@
+<style>
+  .projectbox p a {
+    font-size: 10px;
+  }
+</style>
+<div class="container-fluid" style="width:3550px;">
+  <div class="row ">
+    <div class="col-xs-1" style="width: 325px;">
+      <div class="col-xs-12 well">
+        <h4> Call User </h4>
+        <% User.where(:is_called => false).order(:call_date).each do |u|%>
+          <%= render "user_box_for_call", :u => u, :timer => false %>
+        <% end %>
+      </div>
+      <div class="col-xs-12 alert alert-danger">
+        <h4> Three Loops </h4>
+        <% Project.joins(:reserve_step).where(:reserve_steps => {:name => "care"}).where('projects.change_loop_times >= ?', 3).each do |p|%>
+          <%= render "project_box_before_pay", :p => p, :timer => false , :sms=>false %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-xs-1">
+      <h5 class="text-left">
+        Project Leads
+      </h5>
+
+      <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#packagecollapse" aria-expanded="false" aria-controls="packagecollapse">
+        package
+        <%= Project.joins(:reserve_step).where(:reserve_steps => {:name => "package"}).count %>
+      </button>
+      <div class="collapse" id="packagecollapse">
+        <% Project.joins(:reserve_step).where(:reserve_steps => {:name => "package"}).each do |p|%>
+          <% if p.call_status_id.nil? and p.user.present? and p.user.mobile_number != "09027993049" %>
+            <%= render "project_box_before_pay", :p => p, :timer => false, sms: true %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#locationcollapse" aria-expanded="false" aria-controls="locationcollapse">
+        location
+        <%= Project.joins(:reserve_step).where(:reserve_steps => {:name => "location"}).count %>
+      </button>
+
+      <div class="collapse" id="locationcollapse">
+        <% Project.joins(:reserve_step).where(:reserve_steps => {:name => "location"}).each do |p|%>
+          <% if p.call_status_id.nil? and p.user.present? and p.user.mobile_number != "09027993049" %>
+            <%= render "project_box_before_pay", :p => p, :timer => false, sms: true %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+      <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#datecollapse" aria-expanded="false" aria-controls="datecollapse">
+        date -
+        <%= Project.joins(:reserve_step).where(:reserve_steps => {:name => "date"}).count %>
+      </button>
+      <div class="collapse" id="datecollapse">
+        <%Project.joins(:reserve_step).where(:reserve_steps => {:name => "date"}).each do |p|%>
+          <% if p.call_status_id.nil? and p.user.present? and p.user.mobile_number != "09027993049" %>
+            <%= render "project_box_before_pay", :p => p, :timer => false, sms: true %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+      <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#photographercollapse" aria-expanded="false" aria-controls="photographercollapse">
+        photographer
+        <%= Project.joins(:reserve_step).where(:reserve_steps => {:name => "photographer"}).count %>
+      </button>
+      <h6 class="text-center alert alert-warning" style="word-spacing: 2em;">
+        3w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 3.weeks.ago,2.weeks.ago).joins(:reserve_step).where(:reserve_steps => {:name => "photographer"}).count %></span>
+        -
+        2w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 2.weeks.ago,1.week.ago).joins(:reserve_step).where(:reserve_steps => {:name => "photographer"}).count %></span>
+        -
+        1w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 1.week.ago,Time.now).joins(:reserve_step).where(:reserve_steps => {:name => "photographer"}).count %></span>
+      </h6>
+      <div class="collapse" id="photographercollapse">
+        <%Project.joins(:reserve_step).where(:reserve_steps => {:name => "photographer"}).each do |p|%>
+          <% if p.call_status_id.nil? and p.user.present? and p.user.mobile_number != "09027993049" %>
+            <%= render "project_box_before_pay", :p => p, :timer => false, sms: true %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <button class="btn btn-default btn-block" type="button" data-toggle="collapse" data-target="#detailscollapse" aria-expanded="false" aria-controls="detailscollapse">
+        details -
+        <%= Project.joins(:reserve_step).where(:reserve_steps => {:name => "details"}).count %>
+      </button>
+      <h6 class="text-center alert alert-warning" style="word-spacing: 2em;">
+        3w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 3.weeks.ago,2.weeks.ago).joins(:reserve_step).where(:reserve_steps => {:name => "details"}).count %></span>
+        -
+        2w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 2.weeks.ago,1.week.ago).joins(:reserve_step).where(:reserve_steps => {:name => "details"}).count %></span>
+        -
+        1w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 1.week.ago,Time.now).joins(:reserve_step).where(:reserve_steps => {:name => "details"}).count %></span>
+      </h6>
+      <div class="collapse" id="detailscollapse">
+        <%Project.joins(:reserve_step).where(:reserve_steps => {:name => "details"}).order("start_time DESC").each do |p|%>
+          <% if p.call_status_id.nil? and p.user.present?  and p.user.mobile_number != "09027993049" %>
+            <%= render "project_box_before_pay", :p => p, :timer => false, sms: true %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+      <h4 class="text-center">
+        canceled payment
+      </h4>
+      <h6 class="text-center alert alert-warning" style="word-spacing: 2em;">
+        3w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 3.weeks.ago,2.weeks.ago).joins(:reserve_step).where(:reserve_steps => {:name => "canceled_payment"}).count %></span>
+        -
+        2w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 2.weeks.ago,1.week.ago).joins(:reserve_step).where(:reserve_steps => {:name => "canceled_payment"}).count %></span>
+        -
+        1w:<span class="badge"><%=  Project.where('projects.created_at >= ? and projects.created_at <=?', 1.week.ago,Time.now).joins(:reserve_step).where(:reserve_steps => {:name => "canceled_payment"}).count %></span>
+      </h6>
+      <% Project.joins(:reserve_step).where(:reserve_steps => {:name => "canceled_payment"}).each do |p| %>
+        <% if p.call_status_id.nil? %>
+          <%= render "project_box_before_pay", :p => p, :timer => false, :sms=>true %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-1 alert alert-info">
+      <h5 class="text-left">
+        more than 3 days
+      </h5>
+      <h6 class="text-center">
+        wating for ph
+      </h6>
+      <% Project.all.more_than_3days
+             .joins(:reserve_step).where(:reserve_steps => {:name => "wating_for_ph"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        care
+      </h6>
+      <% Project.all.more_than_3days
+             .joins(:reserve_step).where(:reserve_steps => {:name => "care"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false , :sms=>true %>
+      <% end %>
+      <h6 class="text-center">
+        change ph
+      </h6>
+      <% Project.all.more_than_3days
+             .joins(:reserve_step).where(:reserve_steps => {:name => "change_ph"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false , :sms=>true %>
+      <% end %>
+      <h6 class="text-center">
+        change time
+      </h6>
+      <% Project.all.more_than_3days
+             .joins(:reserve_step).where(:reserve_steps => {:name => "change_time"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        confirmed
+      </h6>
+      <% Project.all.more_than_3days
+             .joins(:reserve_step).where(:reserve_steps => {:name => "confirmed"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-1 alert alert-warning">
+      <h5 class="text-left">
+        after towmorrow
+      </h5>
+      <h6 class="text-center">
+        wating for ph
+      </h6>
+      <% Project.all.after_tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "wating_for_ph"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        care
+      </h6>
+      <% Project.all.after_tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "care"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        change ph
+      </h6>
+      <% Project.all.after_tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "change_ph"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        change time
+      </h6>
+      <% Project.all.after_tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "change_time"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false , :sms=>true %>
+      <% end %>
+      <h6 class="text-center">
+        confirmed
+      </h6>
+      <% Project.all.after_tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "confirmed"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-1 alert alert-danger">
+      <h5 class="text-left">
+        tomorrow
+      </h5>
+      <h6 class="text-center">
+        wating for ph
+      </h6>
+      <% Project.all.tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "wating_for_ph"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        care
+      </h6>
+      <% Project.all.tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "care"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        change ph
+      </h6>
+      <% Project.all.tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "change_ph"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false , :sms=>true %>
+      <% end %>
+      <h6 class="text-center">
+        change time
+      </h6>
+      <% Project.all.tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "change_time"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false , :sms=>true %>
+      <% end %>
+      <h6 class="text-center">
+        confirmed
+      </h6>
+      <% Project.all.tomorrow
+             .joins(:reserve_step).where(:reserve_steps => {:name => "confirmed"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false , :sms=>true %>
+      <% end %>
+    </div>
+    <div class="col-xs-1 alert alert-success">
+      <h5 class="text-left">
+        today
+      </h5>
+      <h6 class="text-center">
+        wating for ph
+      </h6>
+      <% Project.all.today
+             .joins(:reserve_step).where(:reserve_steps => {:name => "wating_for_ph"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        care
+      </h6>
+      <% Project.all.today
+             .joins(:reserve_step).where(:reserve_steps => {:name => "care"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        change ph
+      </h6>
+      <% Project.all.today
+             .joins(:reserve_step).where(:reserve_steps => {:name => "change_ph"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        change time
+      </h6>
+      <% Project.all.today
+             .joins(:reserve_step).where(:reserve_steps => {:name => "change_time"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+      <h6 class="text-center">
+        confirmed
+      </h6>
+      <% Project.all.today
+             .joins(:reserve_step).where(:reserve_steps => {:name => "confirmed"}).each do |p| %>
+        <%= render "project_box", :p => p, :timer => false, :sms=>true  %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-1 well">
+      <h5 class="text-left">
+        72 hour
+      </h5>
+      <h6 class="text-center">
+        No Gallery
+      </h6>
+      <% Project.all.while_ago.order(start_time: :asc).joins(:reserve_step).where('reserve_steps.name = ? or reserve_steps.name = ?', "confirmed", "change_time").each do |p| %>
+        <%=render "project_box" , :p => p , :timer => true, :sms=>false  %>
+      <% end %>
+      <h6 class="text-center">
+        Has Gallery
+      </h6>
+      <% Project.all.while_ago.order(start_time: :asc).joins(:reserve_step).where(:reserve_steps => {:name => "uploaded"}).has_gallery.each do |p| %>
+        <%=render "project_box_afterdone" , :p => p , :timer => true , :sms=>false%>
+      <% end %>
+      <h6 class="text-center">
+        Re Edit
+      </h6>
+      <% Project.all.while_ago
+             .joins(:reserve_step).order(start_time: :asc).where(:reserve_steps => {:name => "re_edit"}).each do |p| %>
+        <%=render "project_box_afterdone" , :p => p , :timer => true , :sms=>false%>
+      <% end %>
+    </div>
+
+    <div class="col-xs-1 well">
+      <h5 class="text-left">
+        Closing in 2 weeks
+      </h5>
+      <h6 class="text-center">
+        Re Edit
+      </h6>
+      <% Project.all.while_ago
+             .joins(:reserve_step).where(:reserve_steps => {:name => "re_edit"}).each do |p| %>
+        <%= render "project_box_afterdone", :p => p, :timer => true, :sms=>false  %>
+      <% end %>
+
+      <h4>
+        Closing in 1 month
+      </h4>
+
+      <h6 class="text-center">
+        Qualified
+      </h6>
+      <% Project.payed.confirmed.all.a_month_ago
+             .joins(:reserve_step).where(:reserve_steps => {:name => "qualified"}).each do |p| %>
+        <%= render "project_box_afterdone", :p => p, :timer => false, :sms=>false %>
+      <% end %>
+
+      <h6 class="text-center">
+        downloadeddd
+      </h6>
+      <% Project.payed.confirmed.all.a_month_ago
+             .joins(:reserve_step).where(:reserve_steps => {:name => "downloaded"}).each do |p| %>
+        <%= render "project_box_afterdone", :p => p, :timer => false, :sms=>false %>
+      <% end %>
+
+      <h6 class="text-center">
+        happy call
+      </h6>
+      <% Project.all.a_month_ago
+             .joins(:reserve_step).where(:reserve_steps => {:name => "happy_call"}).each do |p| %>
+        <%= render "project_box_afterdone", :p => p, :timer => false, :sms=>false %>
+      <% end %>
+
+      <h4>
+        Closing in 2 weeks
+      </h4>
+
+      <h6 class="text-center">
+        checkout
+      </h6>
+      <% Project.all.while_ago
+             .joins(:reserve_step).where(:reserve_steps => {:name => "checkout"}).each do |p| %>
+        <%= render "project_box_afterdone", :p => p, :timer => false, :sms=>false %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-2 alert alert-info">
+      <h4 class="text-center text-danger">
+        Print Orders
+      </h4>
+      <% Cart.two_weeks_ago.order("status").each do |c| %>
+        <% if not c.invoice.present? %>
+          <%= render "admin/carts/cart", :cart => c %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-xs-2 alert alert-warning">
+      <h4 class="text-center text-danger">
+        Payed Print Order
+      </h4>
+
+      <% Invoice.two_weeks_ago.where(service_step_id: nil).order("status").each do |i| %>
+        <%= render "admin/invoices/invoice", :invoice => i %>
+      <% end %>
+
+      <% ServiceStep.all.order("service_steps.order").each do |st| %>
+        <div class="well">
+          <button class="btn btn-block" type="button" data-toggle="collapse" data-target="#<%=st.id%>" aria-expanded="false" aria-controls="<%=st.id%>">
+            <h4 class="text-left">
+              <%= st.title %>
+              <span class="pull-right">
+              <%= st.description %>
+            </span>
+            </h4>
+          </button>
+          <div class="collapse in" id="<%=st.id%>">
+            <% Invoice.two_weeks_ago.where(service_step_id: st.id).order("status").each do |i| %>
+              <%= render "admin/invoices/invoice", :invoice => i %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render 'shared/large_modal' %>
+
+<script type="text/javascript">
+    // $(".datepicker22").persianDatepicker();
+    $('.observer-example').persianDatepicker({
+        observer: true,
+        format: 'YYYY/MM/DD',
+        altField: '.observer-example-alt'
+    });
+
+    function submit_date_call(project_id){
+        var date = $("#"+ project_id + "-input").val()
+        console.log(date);
+        send_to_server_call_user(project_id, date, "/users/set_call_date")
+    }
+
+    function send_to_server_call_user(project_id, date, url){
+        var result = $.ajax({
+            data: {
+                project_id: project_id,
+                date: date,
+            },
+            dataType: 'json',
+            async: false,
+            success: function(){
+                btn = document.getElementById(project_id + "-submit");
+                btn.innerHTML = "ثبت شد"
+                btn.disabled = true
+            },
+            type: 'POST',
+            url: url,
+        })
+    }
+</script>

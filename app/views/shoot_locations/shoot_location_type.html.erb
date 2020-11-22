@@ -1,0 +1,14 @@
+<%#= render "shoot_locations/sections/map",locals: { :@shoot_types => @shoot_types, :@shoot_locations => @shoot_locations }%>
+<section class="fdb-block pb-2">
+  <div class="container">
+    <div class="row align-items-center p-2">
+      <div class="col-12">
+        <p style="">
+          <%= link_to "لیست مکان ها" , shoot_location_root_path %>   >   <%= link_to @shoot_location_type.title , shoot_location_type_filter_url(@shoot_location_type.title) %>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<%= render "shoot_locations/sections/shoot_locations_view",locals: { :@shoot_locations => @shoot_locations }%>
+<%= render "shoot_locations/sections/reserve" %>

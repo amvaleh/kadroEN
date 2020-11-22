@@ -1,0 +1,54 @@
+<header id="masthead" class="site-header fixed" role="banner">
+  <div class="container">
+    <div class="wrap">
+      <div class="menu-button hidden-lg hidden-md">
+        <button class="hamburger hamburger--stand" type="button"
+                aria-controls="primary-menu"
+                aria-expanded="false">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+        </button>
+      </div>
+      <div class="site-branding">
+        <h1 class="site-title">
+          <a href="https://www.kadro.co/"
+             rel="home" target="_blank">
+            <img src="/img/kadro_white.png"
+                 alt="کادرو" id="logo-main">
+            <img
+            src="/img/kadro_normal.png"
+            alt="کادرو" id="logo-sticky">
+          </a>
+        </h1>
+      </div><!-- .site-branding -->
+
+
+      <nav id="site-navigation" class="main-navigation" role="navigation">
+        <div class="main-menu">
+          <ul id="primary-menu" class="menu">
+            <% credit = @user.credit %>
+            <% credit = credit.value %>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent  <%= credit < 0 ? 'alert-danger' : 'alert-success' %>" >
+              اعتبار شما:
+              <%= number(credit, 'fa').to_s + (credit < 0 ? "-" : "+") %>
+              تومان
+            </li>
+            <li id="" class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent ">
+              <%= link_to "لیست پروژه ها", galleries_path %>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page current_page_parent ">
+              <%= link_to "خرید های فروشگاه", user_invoices_path %>
+            </li>
+          </ul>
+        </div>
+        <a href="<%=users_refer_url %>" class="btn btn-link free-photography" style="color:#337ab7"> عکاسی رایگان </a>
+        <a href="<%=book_url %>" class="btn btn-blue"> رزرو عکاس </a>
+      </nav><!-- #site-navigation -->
+      <div id="cart-header"><span data-kadro-hook='cart_header'></span></div>
+
+    </div>
+  </div>
+</header><!-- #masthead -->
+
+<%= render 'shared/modal' %>

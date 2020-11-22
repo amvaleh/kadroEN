@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/externals/raychat' %>
+    <%= render 'shared/yektanet_header' %>
+  <% end %>
+  <title>
+    کادرو |
+    فیلمبرداری و ساخت تیزر
+  </title>
+  <meta charset="UTF-8">
+  <meta name="theme-color" content="RGB(254, 193, 6)" />
+
+  <meta name="description" content="ساخت تیزر تبلیغاتی حرفه ای و تیزر ارزان قیمت با کادرو و دریافت ۷۲ ساعته سفارش به همراه فیلمبرداری و عکاسی شامل هلی شات، کرین و دوربین حرفه ای">
+  <meta name="keywords" content="ساخت تیزر تبلیغاتی, فیملبرداری و ساخت کلیپ, قیمت ساخت تیزر">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'videography', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'videography', 'data-turbolinks-track': 'reload' %>
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<%= render "public/shared/wordpress_header" %>
+
+<%= render 'shared/externals/gtag_body' %>
+<%= yield %>
+<script async  src="https://script.cashineh.com/tracker/js?id=CA-856475218-1"></script>
+</html>

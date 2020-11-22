@@ -1,0 +1,37 @@
+<div class="alert alert-success">
+  <strong class="text-center" style="margin-top: 0px">
+    <%= photographer.display_name %>
+  </strong>
+  <% if photographer.location.present? and photographer.location.city.present? %>
+    <h5 class="text-right">
+      <%= photographer.location.city.name.to_s + " " + photographer.location.area_name.to_s %> -
+    </h5>
+  <% end %>
+  <% if photographer.promissory.present? %>
+    <h5 class="text-right" style="color: rebeccapurple;">
+       .سفته دارد -
+    </h5>
+  <% end %>
+  <% if photographer.contract.present? %>
+    <h5 class="text-right" style="color: rebeccapurple">
+      .قرارداد دارد -
+    </h5>
+  <% end %>
+  <% if photographer.last_step_at.present? %>
+  <h5 class="text-right" style="direction: rtl !important; color: mediumvioletred">
+    <% second = Time.now - photographer.last_step_at %>
+    <% hour = ((second / 60) / 60).to_i %>
+    -
+    <%= hour %>
+    ساعته اینجاست
+  </h5>
+    <% end %>
+  <h5 class="text-left">
+    - <%= photographer.mobile_number %>
+  </h5>
+  <div class="text-left">
+    <%= link_to "show", admin_photographer_path(photographer.slug), class: 'btn btn-default', style: 'color: white; background-color: dodgerblue', target: :_blank %>
+    <%= link_to "edit", edit_admin_photographer_path(photographer.slug), class: 'btn btn-default', style: 'color: white; background-color: orange', target: :_blank %>
+
+  </div>
+</div>

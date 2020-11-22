@@ -1,0 +1,77 @@
+<section class="fdb-block" id="feed_backs" style="background-image: url(/types/imgs/shapes/9.svg);" >
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <h2> نظر مشتریان </h2>
+        <h3 class="text-center">
+          نظر مشتریان قبلی در خصوص قیمتهای کادرو:
+        </h3>
+      </div>
+    </div>
+    <% @good_feedbacks = FeedBack.where('feed_backs.publishable = ? and arate > ? and qrate > ? and description LIKE ?',true, 8, 8, "%قیمت%") %>
+    <div class="row mt-5 align-items-center justify-content-center" id="slider-container">
+      <% @good_feedbacks.first(12).each do |gf| %>
+        <div class="col-md-8 col-lg-4 mt-4 mt-lg-0 cbp-item">
+          <div class="fdb-box" >
+            <div class="row mt-4" style="height: 25em;overflow: scroll;">
+              <div class="col-12">
+                <p class="text-right text-primary">
+                  <i class="fa fa-comments fa-2x"></i><br>
+                  <small class="text-muted">
+                    مشتری کادرو
+                  </small> -
+                  <%= gf.project.user.display_name %>:
+                </p>
+                <p class="lead text-dark" style="font-size:1.2rem">
+                  <%=gf.description %>"
+                </p>
+              </div>
+            </div>
+            <div class="row no-gutters align-items-center">
+              <div class="col-12 mx-1">
+                <p>
+                  <em>
+                    <% time = gf.project.start_time.to_date.to_pdate.strftime("%e %b ").to_s %>
+                   - <%= time.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+                  </em>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+<script type="text/javascript">
+    jQuery(document).ready( function() {
+        jQuery('#slider-container').cubeportfolio({
+            layoutMode: 'slider',
+            drag: true,
+            auto: false,
+            autoTimeout: 5000,
+            autoPauseOnHover: true,
+            showNavigation: false,
+            showPagination: true,
+            rewindNav: true,
+            scrollByPage: true,
+            gridAdjustment: 'responsive',
+            displayType: 'default',
+            mediaQueries: [{
+                width: 1500,
+                cols: 3,
+            }, {
+                width: 1100,
+                cols: 2,
+            }, {
+                width: 800,
+                cols: 2,
+            }, {
+                width: 480,
+                cols: 1,
+            }]
+        });
+    });
+</script>

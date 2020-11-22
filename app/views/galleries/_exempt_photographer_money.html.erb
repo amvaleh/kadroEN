@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row alert alert-danger text-center" style="background: #09AF1C;max-height: 300px;min-height: 245px;">
+    <div class="col-12 col-xs-12 text-primary text-center">
+      <h2 class="" style="color:white;">
+        <%= image_tag "/img/payment_guarantee.png",style:"width:50px" %>
+        پرداخت امن
+      </h2>
+      <% if project.reserve_step.name =="qualified" or project.reserve_step.name =="downloaded" or project.reserve_step.name =="uploaded" %>
+        <h4 style="color:white;text-align:center" id="release_text">
+          در صورت رضایت از عملکرد عکاس، مبلغ پروژه را برای وی آزاد کنید.
+        </h4>
+        <br>
+        <%= form_tag release_payment_project_path(project) do %>
+          <%= hidden_field_tag id: project.slug %>
+          <%= submit_tag "آزاد سازی مبلغ", class:"btn", style:"background:black;color:white" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

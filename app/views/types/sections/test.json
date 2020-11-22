@@ -1,0 +1,837 @@
+{
+  "@context": "http://schema.org/",
+  "@type": "Service",
+  "serviceType": "عکاسی چهره - پروفایل",
+  "provider": {
+    "@type": "Brand",
+    "name": "عکاسی حرفه ای کادرو",
+    "logo": "https://www.kadro.co/img/logo.png"
+  },
+    "offers" : {
+    "@type" : "AggregateOffer",
+    "lowPrice" : "1590000",
+    "highPrice": "4390000",
+    "priceCurrency": "IRR"
+  },
+    "review" : [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "امیر تقوی"
+        },
+        "datePublished": "2019-10-27",
+        "reviewBody": "به عكسى كه ميخواستم رسيدم.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "نازنین واحدی"
+        },
+        "datePublished": "2019-11-02",
+        "reviewBody": "خانم اسلامی به موقع در محل حاضر شدند. بسیار خوش‌برخورد و با حوصله هستند. خیلی هم حرفه‌ای و خوب کارشون را انجام دادند. من بسیار از عملکرد ایشون راضی بودم.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "مروتی"
+        },
+        "datePublished": "2019-11-02",
+        "reviewBody": "خانوم زمانى كاملا مسلط بودن خيلى منظم و آن تايم بودن و بسيار خوش اخلاق و با حوصله سوالات مارو پاسخ ميدادن",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "آزاد بهرامی"
+        },
+        "datePublished": "2019-11-07",
+        "reviewBody": "با حوصله و حرفه ای",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "9",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "علی دادرس"
+        },
+        "datePublished": "2019-12-01",
+        "reviewBody": "اخلاق حرفه ایی، منظم و خوش برخورد",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "هادی داوودی"
+        },
+        "datePublished": "2019-12-03",
+        "reviewBody": "خوش اخلاق منظم ومودب و صبور و عالی",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "پیمان اعلائی"
+        },
+        "datePublished": "2019-12-07",
+        "reviewBody": "خیلی راضی هستم، پر انرژی، وقت شناس و کاربلد، همه چیز عالی بود ممنونم از خانم خسروی عزیز و تیم کادرو",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "آنیتا مرشد"
+        },
+        "datePublished": "2019-12-09",
+        "reviewBody": "عاشق کارش هست و انرژی فوق العاده داره که به مشتری انتقال میده خوش برخورد و دلسوز هستن و کارشون هم که عالیه",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "محمد ایراندوست"
+        },
+        "datePublished": "2019-12-11",
+        "reviewBody": "آقاي كليشادي به موقع و سر وقت جهت عكاسي حاضر شدند و به تمام امور عكاسي چه از لحاظ لوكيشين، زاويه و ... تجربه عالي داشته اند  و جهت بالا بردن كيفيت عكسها نظرات عالي ارايه دادند و اگر در آينده نياز به عكاسي داشتم  آقاي كليشادي انتخاب اول و آخرم است.
+ممنون",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "مرتضی امیری"
+        },
+        "datePublished": "2019-12-15",
+        "reviewBody": "خیلی کارش درست از همه نظر عالی اخلاق شخصیت به موقع بودن و واقعا کامل و عالی و با علاقه زیادی کار میکنه و وقت میزاره ممنونم کادرو",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "رضاشکریان"
+        },
+        "datePublished": "2019-12-21",
+        "reviewBody": "حرفه ای ، خوش اخلاق و مشتی",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "محراب حسین زهی"
+        },
+        "datePublished": "2019-12-22",
+        "reviewBody": "عالی پر انرژی حتما انتخابشون کنید",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "صادق سجادی "
+        },
+        "datePublished": "2019-12-28",
+        "reviewBody": "بسیار منظم، حرفه ای و درجه یک. عالی👌
+",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "سپيده دژدار"
+        },
+        "datePublished": "2020-01-04",
+        "reviewBody": "دقيق سر وقت و كارشون عالى",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "سعید رحیمی"
+        },
+        "datePublished": "2020-01-07",
+        "reviewBody": "آقای ثمودی واقعا ادم خوش اخلاق وقت شناس و مهربون بود و تو کارش با این که وقت کم بود واقعا سلیقه خوبی داشت ممنون از شما و اقای ثمودی",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "مهسا جدیدی"
+        },
+        "datePublished": "2020-01-11",
+        "reviewBody": "حضور به موقع - باحوصله - خوش اخلاق",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "9",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "محمدعلی کوهی دهکردی"
+        },
+        "datePublished": "2020-01-26",
+        "reviewBody": "خانوم پرزیوند را برای تلاش زیاد وتعهد کاری و مهارت زیاد  و سعی در پیدا کردن بهترین لوکیشن عکاسی به دیگران توصیه میکنم.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "مریم زمانی"
+        },
+        "datePublished": "2020-01-30",
+        "reviewBody": "خیلی خوش اخلاق و مهربون وخوش برخورد.
+وقت شناس",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "لاله رحیمی"
+        },
+        "datePublished": "2020-01-30",
+        "reviewBody": "رفتارشون بسیار حرفه ای بود. همچنین در انتخاب نوع لباس و ژست عکاسی سلیقه خیلی خوبی  دارن ",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "فرشاد صدری"
+        },
+        "datePublished": "2020-02-08",
+        "reviewBody": "آقای بختیاری بسیار خوش اخلاق، وقت شناس و حرفه‌ای هستند. تجهیزات کامل رو همراه خودشون آوردند که خیلی به عکس‌های گرفته شده کمک کرد و همچنین با دقت بسیار سعی کردند علاوه بر دادن ایده‌های جدید، ایده‌هایی که پیشنهاد کرده بودیم را نیز اجرا کنند.
+من قطعاً همکاری با ایشان را توصیه می‌کنم. 😊👌",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "مهدی وهابی"
+        },
+        "datePublished": "2020-02-11",
+        "reviewBody": "خانوم پرزیوند عکاس فوق العاده ماهر و با تجربه ای هستن که از بودن در لنز دوربینشون لذت بردم",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "علی یعسوبی"
+        },
+        "datePublished": "2020-02-12",
+        "reviewBody": "فوق العاده با اخلاق، حرفه ای و صبور",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "رضا رحمتی"
+        },
+        "datePublished": "2020-02-15",
+        "reviewBody": "عالی",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "امیررضا نعمتی"
+        },
+        "datePublished": "2020-02-18",
+        "reviewBody": "خوش برخورد،حرفه ای",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "مهرداد بکرانی"
+        },
+        "datePublished": "2020-02-19",
+        "reviewBody": "حرفه ای باتجربه تکنیکی",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "نگین عابدزاده"
+        },
+        "datePublished": "2020-02-20",
+        "reviewBody": "با حوصله و صبور",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "رضا ترکمانی"
+        },
+        "datePublished": "2020-02-27",
+        "reviewBody": "اخلاق و شخصيت عالي",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "انصاری"
+        },
+        "datePublished": "2020-02-28",
+        "reviewBody": "آقای جاجرمی انسانی محترم
+در زمینه ی عکاسی حرفه ی و دلسوز
+و دارای انرژی مثبت",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "پوریا احمدی"
+        },
+        "datePublished": "2020-03-07",
+        "reviewBody": "عالی و حرفه ای ",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "شیرین نقاش"
+        },
+        "datePublished": "2020-03-08",
+        "reviewBody": "خانم اسلامی یک عکاس منظم و دقیق . سر ساعت در محل حاضر شدند با حوصله و دقت عکاسی کردند بنده تجربه عالی عکاسی با ایشان را داشتم ",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "محمد جوادبهارلو"
+        },
+        "datePublished": "2020-03-11",
+        "reviewBody": "عااااایییی",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "رامین زردشتی"
+        },
+        "datePublished": "2020-03-14",
+        "reviewBody": "سپاس",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "9",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "پوریا احمدی"
+        },
+        "datePublished": "2020-03-19",
+        "reviewBody": "منظم و با حوصله و در عین حال حرفه ای ",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "سعید توکلی"
+        },
+        "datePublished": "2020-03-23",
+        "reviewBody": "خوش برخورد و صبور",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "میلاد بری"
+        },
+        "datePublished": "2020-03-24",
+        "reviewBody": "آدم خون گرم و با انرژی",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "زهرا شهریاری"
+        },
+        "datePublished": "2020-03-29",
+        "reviewBody": "حضور ب موقع در محل و خوش برخورد و شریف .",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "سمانه گلشنی"
+        },
+        "datePublished": "2020-04-05",
+        "reviewBody": "حضور به موقع",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "sss"
+        },
+        "datePublished": "2020-04-09",
+        "reviewBody": "پسر حرف گوش کنی بود !‌ آفرین",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "محمد مهدی کوچک زاده"
+        },
+        "datePublished": "2020-04-13",
+        "reviewBody": "فوق العاده با انرژی شوخ طبع و کار بلد ",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+              ,
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "رامتین هاشمی"
+        },
+        "datePublished": "2020-04-14",
+        "reviewBody": "❤",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "10",
+          "bestRating": "10",
+          "worstRating": "0"
+        },
+        "itemReviewed": {
+          "name": "عکاسی چهره - پروفایل",
+          "url": "/types/%D8%B9%DA%A9%D8%A7%D8%B3%DB%8C-%D9%BE%D8%B1%D8%AA%D8%B1%D9%87-%D9%88-%D9%BE%D8%B1%D9%88%D9%81%D8%A7%DB%8C%D9%84"
+        }
+      }
+  ],
+    "aggregateRating" : {
+    "@type" : "AggregateRating",
+    "ratingValue" : "9.9268292682926829",
+    "bestRating" : "10",
+    "worstRating" : "1",
+    "ratingCount" : "40"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "kadro - کادرو",
+    "address" : {
+      "addressLocality": "Iran, Tehran"
+    }
+  }
+}

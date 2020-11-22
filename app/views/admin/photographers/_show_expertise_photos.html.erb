@@ -1,0 +1,17 @@
+<button class="btn btn-gray btn-block" type="button" data-toggle="collapse" data-target="#collapseExample_<%= counter %>" aria-expanded="false" aria-controls="collapseExample_<%= counter %>" style="margin-bottom: 10px; color: white;">
+  مشاهده <%= photos.count %> نمونه کار رشته <%= expertise.shoot_type.title %>
+</button>
+<div class="collapse" id="collapseExample_<%= counter %>">
+    <% photos.each do |data| %>
+    <div id="a-div-<%= data.id %>" class="cbp-item identity">
+      <%= link_to data.file_url(:large), target: "_blank" do %>
+      <img src="<%= data.file_url(:medium) %>" style="height: 130px; width: 130px; margin-bottom: 5px;">
+      <% end %>
+          <%= link_to "exif" , admin_exif_path(data.exif) , target: "_blank" , :class => "btn btn-info btn-xs btn-block" if data.exif.present?  %>
+          <%= link_to "Show" , admin_photo_path(data.id) , :class => "btn btn-default btn-xs btn-block" %>
+          <%= link_to "Edit" , edit_admin_photo_path(data.id) , :class => "btn btn-default btn-xs btn-block" %>
+          <%= link_to "Delete" , admin_photo_path(data.id) ,:method => :delete , :class => "btn btn-default btn-xs btn-block" %>
+          <%= link_to('انتخاب تصویر', select_frame_form_admin_galleries_path(image_id: data.id, image_type: "Photo"), class: 'btn btn-success btn-large btn-block', remote: true) %>
+    </div>
+    <% end %>
+</div>

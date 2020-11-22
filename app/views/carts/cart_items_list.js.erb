@@ -1,0 +1,22 @@
+<% if total.cart_count == 0 %>
+  setTimeout(function () {
+      swal({
+          title: 'هشدار',
+          text: '<%= t(:'carts.messages.cart_is_empty') %>',
+          type: 'error',
+          confirmButtonColor: '#DD6B55',
+          confirmButtonText: 'تایید',
+          closeOnConfirm: false,
+          closeOnCancel: false
+      });
+      jQuery('.loading-spinner').hide();
+  }, 200);
+<% else %>
+setTimeout(function() {
+    <%= render partial: 'shared/show_modal',
+      locals: {modal_partial: 'cart_items_form', modal_title: t(:'carts.cart_items'),
+               local_vars: {cart_items: cart_items, total: total, current_frames: current_frames}} %>
+    jQuery('.loading-spinner').hide();
+}, 1000);
+<% end %>
+

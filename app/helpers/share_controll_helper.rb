@@ -1,0 +1,2 @@
+module ShareControllHelper
+end

@@ -1,0 +1,28 @@
+<div class="row text-center" >
+  <% if u.present? %>
+  <div class="col-xs-12">
+    <%= link_to u.display_name ,admin_user_path(u), target: :_blank, class:"btn btn-default btn-block" %>
+    <div class="col-xs-6">
+      زمان تماس:
+      <%= u.call_date.to_pdate %>
+      شماره تماس :
+      <%= u.mobile_number %>
+    </div>
+    <div class="col-xs-6">
+      فرصت :
+      <%= ((u.call_date.to_time - Time.now)/86400).to_i %>
+      <% if u.lead_source.present? %>
+      <p style="text-align: left;">
+        Source : <%= u.lead_source.title %>
+      </p>
+      <% end %>
+      <p style="text-align: left;">
+        projects : <%= u.projects.confirmed.count %>
+      </p>
+
+    </div>
+      <button id="<%= u.id%>-submit" type="button" name="call-submit-<%= u.id%>" class="btn btn-primary" onclick="is_called(<%= u.id%>);">کامل شد</button>
+
+    </div>
+  </div>
+  <% end %>

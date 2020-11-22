@@ -1,0 +1,98 @@
+<style>
+  h5 span a {
+  color: white !important;
+}
+</style>
+<div class="row <% if invoice.status==1 %>alert alert-info<%else%> well<%end%>" style="direction:rtl;">
+  <% if invoice.service_step.present? %>
+  <h6 class="text-right">
+    <%= invoice.service_step.description %>
+  </h6>
+  <% end %>
+  <h5>
+    <span class="label label-primary pull-right">
+      شماره: <%= invoice.vch_number  %>
+    </span>
+    <bold class="pull-right" style="padding-right: 2%;">
+      <%=link_to invoice.cart.user.display_name , admin_user_path(invoice.cart.user), target:"_blank" %>
+    </bold>
+    <span class="label label-info pull-left">
+      <%=link_to "ویرایش" , edit_admin_invoice_path(invoice), target:"_blank" %>
+    </span>
+    <span class="label label-primary pull-left">
+      <%=link_to "نمایش" , admin_invoice_path(invoice), target:"_blank" %>
+    </span>
+    <% if invoice.status==1%>
+    <span class="label label-warning pull-left">
+      <% if invoice.address.present? %>
+      <%=link_to "آدرس" , admin_address_path(invoice.address), target:"_blank" %>
+      <% end %>
+    </span>
+    <span class="label label-success pull-left">
+      پیگیری: <%= invoice.track_code %>
+    </span>
+    <% end %>
+
+  </h5>
+  <div class="col-xs-12">
+    <div class="col-xs-2">
+      قیمت
+    </div>
+    <div class="col-xs-2">
+      تعداد
+    </div>
+    <div class="col-xs-2">
+      فریم
+    </div>
+    <div class="col-xs-2">
+      پروژه
+    </div>
+    <div class="col-xs-2">
+      نوع
+    </div>
+    <div class="col-xs-2">
+      مدل
+    </div>
+  </div>
+  <% invoice.invoice_items.each do |invoice_item| %>
+  <div class="col-xs-12" style="padding-top:2px;border: 1px solid;margin-top: 3px;margin-bottom: 3px;">
+    <div class="col-xs-2">
+      <%= invoice_item.unit_price %>
+    </div>
+    <div class="col-xs-2">
+      <%= invoice_item.quantity %>
+    </div>
+    <div class="col-xs-2">
+      <%= link_to invoice_item.cart_item.frame.id , invoice_item.cart_item.frame.file_url(:light), target:"_blank" %>
+    </div>
+    <div class="col-xs-2">
+      <%=link_to invoice_item.cart_item.project.slug , admin_project_path(invoice_item.cart_item.project), target:"_blank"  %>
+    </div>
+    <div class="col-xs-2">
+      <%= invoice_item.cart_item.item.item_type.title %>
+    </div>
+    <div class="col-xs-2">
+      <%= invoice_item.cart_item.item.title%>
+    </div>
+    <% if invoice_item.cart_item.item.item_type.category == "retouch"%>
+    <div class="col-xs-12" style="border-top: 1px solid;">
+      <span>توضیحات : 
+      <%= invoice_item.cart_item.description %>
+      </span>
+    </div>
+    <% end %>
+  </div>
+  <% end %>
+  <div class="col-xs-12">
+    <div class="col-xs-2 pull-left">
+      <%= Invoices::CurrentInvoiceTotal.call(invoice: invoice,status: invoice.status).invoice_total %>
+    </div>
+    <div class="col-xs-2 pull-left">
+      جمع کل:
+    </div>
+    <div class="col-xs-3 pull-left">
+      <%= link_to(t(:'invoices.buttons.download_zip'), create_zip_path(order_type: 2, id: invoice.id)) %>
+    </div>
+
+  </div>
+</div>

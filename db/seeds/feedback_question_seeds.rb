@@ -1,0 +1,7 @@
+FeedbackQuestion.find_or_create_by!(question_type:"photographer", question_title:"راهنمایی برای آماده سازی", question:"در تماس تلفنی قبل از پروژه توانستم به کارفرما راهنمایی مناسب برای آماده سازی ارائه دهم.")
+FeedbackQuestion.find_or_create_by!(question_type:"photographer", question_title:"اطلاع داشتن عکاس نسبت به استایل", question:"کارفرما دقیقا می دانست به چه سبک و استایلی می خواست عکاسی کند.")
+FeedbackQuestion.find_or_create_by!(question_type:"photographer", question_title:"استفاده از خلاقیت عکاس", question:"کارفرما اجازه داد من از خلاقیت خودم در عکاسی استفاده کنم.")
+FeedbackQuestion.find_or_create_by!(question_type:"photographer", question_title:"بررسی عکس ها توسط مشتری حین پروژه", question:"کارفرما حین پروژه عکس های گرفته شده را مرتبا چک می کرد.")
+FeedbackQuestion.find_or_create_by!(question_type:"photographer", question_title:"اضافه کردن سوژه های جدید از سمت مشتری حین پروژه", question:"کارفرما سوژه های جدید که در تماس تلفنی و درخواست اولیه اش صحبتی نکرده بود به کار اضافه کرد.")
+FeedbackQuestion.find_or_create_by!(question_type:"photographer", question_title:"رضایت کارفرما از کیفیت کار", question:"حس می کنم کارفرما از کیفیت کار من رضایت کافی داشت.")
+FeedbackQuestion.find_or_create_by!(question_type:"photographer", question_title:"آشنایی کارفرما به عکاسی و فنون نورپردازی", question:"کارفرما به عکاسی و فنون نورپردازی آشنایی داشت.")

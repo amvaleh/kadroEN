@@ -1,0 +1,16 @@
+<tr id="tr-<%= expertise_widget.id %>">
+  <th scope="row"><%= counter %></th>
+  <td>
+    <span><%= expertise_widget.widget.name %></span>
+  </td>
+  <td>
+    <% expertise_widget.expertise_widget_attachments.each do |a|  %>
+    <div id="a-div-<%= a.id %>" class="cbp-item identity">
+      <img src="<%= a.photo_url(:medium) %>" style="height: 150px;">
+          <%#= cl_image_tag(a.photo_url(:medium), :height => 100,:width=> 100, :crop => :fit, :quality => 50, :angle=>"ignore")%>
+      <button id="remove-button-attachment-<%= a.id %>" class="btn btn-gray btn-block" type="button" name="button" onclick="remove_attachment(<%= a.id %>,'/expertise_widget_attachments/<%=a.id %>');">حذف عکس</button>
+    </div>
+    <% end %>
+  </td>
+  <td><button id="remove-button-widget-<%= expertise_widget.id %>" class="btn btn-danger btn-block" type="button" name="button" onclick="remove_widget(<%= expertise_widget.id %>,'/expertise_widgets/<%=expertise_widget.id %>');">حذف</button></td>
+</tr>

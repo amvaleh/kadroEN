@@ -1,0 +1,11 @@
+<span>
+  کاربر
+<span class="owner">
+  <%= link_to activity.owner.display_name, admin_user_path(activity.owner.slug) %>
+  </span>
+  فاکتور فروشگاه مربوط به
+  <span class="recipient">
+  <%= link_to "یک خرید را",admin_cart_path(activity.recipient_id) %>
+  </span>
+  دانلود کرد.
+</span>

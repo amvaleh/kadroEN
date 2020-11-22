@@ -1,0 +1,6 @@
+$('#like-row-<%= @photo.id %>').empty()
+$('#like-row-<%= @photo.id %>').append(`<%= render partial: '/selectable_images/like_row' , :locals => {:p => @photo, :base_url => @base_url} %>`);
+
+$(document).ready(function(event) {
+          likephoto(<%= @selectable.id %>,'<%= @status %>','<%= @base_url %>/selectable_images/like','<%= @photo.id %>');
+        });

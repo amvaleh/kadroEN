@@ -1,0 +1,85 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<h3 style="direction: rtl; text-align: right;">
+  Ahoy Analytics
+</h3>
+
+<%= line_chart Ahoy::Visit.group_by_day(:started_at).count %>
+<%= pie_chart Project.joins(:ahoy_visit).group("utm_source").count %>
+
+<br>
+
+  <h3 style="direction: rtl; text-align: right;">
+    وضعیت فروش پکیج ها:
+  </h3>
+  <%=Package.joins(:projects => :gallery).where(:projects=>{:confirmed=>true}).group(:duration).average(:total_frames).map { |a,b| [a,b.to_i] } %>
+
+  <br>
+
+
+<div style="direction:rtl !important;">
+  <h4 style="direction: rtl; text-align: right;">
+    مقدار کش فلو ۹۸
+    <B style="font-size: 20px;">
+      (ماه)
+    </B>
+    <br>
+    <span>
+      کل:
+    </span>
+    <%= Project.all.confirmed.joins(:receipt).sum('CAST(subtotal AS float)') %>
+  </h4>
+  <% data = Projects::AnalyzeSumTotal.call(year: "1398", is_payed: true).result %>
+  <%= column_chart data, library: {backgroundColor: "#eee"} %>
+
+  <h4 style="direction: rtl; text-align: right;">
+    مقدار کش فلو ۹۷
+    <B style="font-size: 20px;">
+      (ماه)
+    </B>
+    <br>
+    <span>
+      کل:
+    </span>
+    <%= Project.all.confirmed.joins(:receipt).sum('CAST(subtotal AS float)') %>
+  </h4>
+  <% data = Projects::AnalyzeSumTotal.call(year: "1397", is_payed: true).result %>
+  <%= column_chart data, library: {backgroundColor: "#eee"} %>
+
+  <h4 style="direction: rtl; text-align: right;">
+    تعداد سفارش های عکاسی پرداخت شده ۹۸
+    <B style="font-size: 20px;">
+      (ماه)
+    </B>
+  </h4>
+  <% data = Projects::AnalyzeProject.call(year: "1398", is_payed: true).result %>
+  <%= column_chart data, library: {backgroundColor: "#eee"}, colors: ["green", "#999"] %>
+
+
+  <h4 style="direction: rtl; text-align: right;">
+    تعداد سفارش های عکاسی پرداخت شده ۹۷
+    <B style="font-size: 20px;">
+      (ماه)
+    </B>
+  </h4>
+  <% data = Projects::AnalyzeProject.call(year: "1397", is_payed: true).result %>
+  <%= column_chart data, library: {backgroundColor: "#eee"}, colors: ["green", "#999"] %>
+
+
+  <h4 style="direction: rtl; text-align: right;">
+    پروژه های تایید شده
+    <B style="font-size: 20px;">
+      (رشته ها)
+    </B>
+  </h4>
+  <%= pie_chart Project.all.confirmed.group(:shoot_type_id).count.map {|s, total| ["#{ShootType.find(s).title}", total]}, library: {backgroundColor: "#eee"} %>
+
+  <h4 style="direction: rtl; text-align: right;">
+    تعداد لید ها
+    <B style="font-size: 20px;">
+      (ماه)
+    </B>
+  </h4>
+  <%= column_chart User.all.group_by_month(:created_at).count.map {|s, total| [s.to_date.to_pdate.to_s, total]}, library: {backgroundColor: "#eee"} %>
+
+
+</div>

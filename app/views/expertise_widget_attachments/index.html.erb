@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Expertise Widget Attachments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Expertise widget</th>
+      <th>Photo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expertise_widget_attachments.each do |expertise_widget_attachment| %>
+      <tr>
+        <td><%= expertise_widget_attachment.expertise_widget_id %></td>
+        <td><%= expertise_widget_attachment.photo %></td>
+        <td><%= link_to 'Show', expertise_widget_attachment %></td>
+        <td><%= link_to 'Edit', edit_expertise_widget_attachment_path(expertise_widget_attachment) %></td>
+        <td><%= link_to 'Destroy', expertise_widget_attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Expertise Widget Attachment', new_expertise_widget_attachment_path %>

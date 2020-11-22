@@ -1,0 +1,180 @@
+<br>
+<%= form_for :activities, url: activities_filter_path, method: "post", :remote => true do |f| %>
+  <div class="form-group row">
+    <div style="padding-right: 25px; margin-bottom: -25px">
+      <strong> Actor
+      </strong>
+    </div>
+    <div class="col-md-11">
+      <select class="form-control" name="activities[trackable][]" id="trackable">
+        <option disabled selected value> -- select an actor --</option>
+        <% Activity.all.uniq.pluck(:trackable_type).each do |tr| %>
+          <option value="<%= tr %>"><%= tr %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row" hidden id="user-actions">
+    <div style="padding-right: 25px; margin-bottom: -25px">
+      <strong> Action
+      </strong>
+    </div>
+    <div class="col-md-11">
+      <select name="activities[key][]" id="multiselect-user-key" multiple="multiple">
+        <% Activity.all.uniq.pluck(:key).each do |key| %>
+          <% lookup = Lookup.find_by(category: key) %>
+          <% if key.include? "photographer." or key.include? "admin_user." or lookup.nil? %>
+            <% next %>
+          <% end %>
+          <option value="<%= key %>"><%= lookup.title %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row" hidden id="ph-actions">
+    <div style="padding-right: 25px; margin-bottom: -25px">
+      <strong> Action
+      </strong>
+    </div>
+    <div class="col-md-11">
+      <select name="activities[key][]" id="multiselect-ph-key" multiple="multiple">
+        <% Activity.all.uniq.pluck(:key).each do |key| %>
+          <% lookup = Lookup.find_by(category: key) %>
+          <% if key.include? "user." or key.include? "admin_user." or lookup.nil? %>
+            <% next %>
+          <% end %>
+          <option value="<%= key %>"><%= lookup.title %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row" hidden id="admin-actions">
+    <div style="padding-right: 25px; margin-bottom: -25px">
+      <strong> Action
+      </strong>
+    </div>
+    <div class="col-md-11">
+      <select name="activities[key][]" id="multiselect-admin-key" multiple="multiple">
+        <% Activity.all.uniq.pluck(:key).each do |key| %>
+          <% lookup = Lookup.find_by(category: key) %>
+          <% if key.include? "user." or key.include? "photographer." or lookup.nil? and not key.include? "_user."%>
+            <% next %>
+          <% end %>
+          <option value="<%= key %>"><%= lookup.title if lookup.present? %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div style="padding-right: 25px; margin-bottom: -25px">
+      <strong>Object
+      </strong>
+    </div>
+    <div class="col-md-11">
+      <select name="activities[recipient][]" id="multiselect-recipient" multiple="multiple">
+        <% Activity.all.uniq.pluck(:recipient_type).each do |recip| %>
+          <option value="<%= recip %>"><%= recip %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <span style="padding-right: 25px">
+      <strong>Time
+      </strong>
+    </span>
+    <div class="col-md-3 col-md-offset-8" style="direction: rtl">
+      <input class="form-control" autocomplete="off" type="datetime" name="activities[time][]" id="date" value="<%= Date.today %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <span style="padding-right: 25px">
+      <strong>Name
+      </strong>
+    </span>
+    <div class="col-md-3 col-md-offset-8" style="direction: rtl">
+      <input class="form-control" autocomplete="off" type="text" name="activities[name][]" id="actor-name" style="width: 275px">
+    </div>
+  </div>
+  <div id="approve-check" hidden class="row form-group">
+    <strong style="padding-right: 25px">Approved</strong>
+    <div class="col-md-3 col-md-offset-8" style="direction: rtl">
+    <input type="checkbox" name="activities[approve][]">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.submit 'فیلتر کن' %>
+    </div>
+  </div>
+  <hr>
+<% end %>
+<div id="activities-log">
+  <%= render partial: 'public_activity/activities', locals: {activities: activities} %>
+</div>
+
+<script type="text/javascript">
+    $("#date").pDatepicker(
+        {
+            observer: true,
+
+            format: 'YYYY/MM/DD',
+
+            autoClose: true,
+            initialValue: true,
+
+        }
+    );
+
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#trackable").on('change', function () {
+            if (this.value == "User") {
+                $("#user-actions").show();
+                $("#ph-actions").hide();
+                $("#admin-actions").hide();
+                $('option', $('#multiselect-ph-key')).each(function () {
+                    $(this).removeAttr('selected').prop('selected', false);
+                });
+                $('option', $('#multiselect-admin-key')).each(function () {
+                    $(this).removeAttr('selected').prop('selected', false);
+                });
+                $('#approve-check').hide();
+            } else if(this.value == "Photographer") {
+                $("#user-actions").hide();
+                $("#ph-actions").show();
+                $("#admin-actions").hide();
+                $('option', $('#multiselect-user-key')).each(function () {
+                    $(this).removeAttr('selected').prop('selected', false);
+                });
+                $('option', $('#multiselect-admin-key')).each(function () {
+                    $(this).removeAttr('selected').prop('selected', false);
+                });
+                $('#approve-check').show();
+            } else if (this.value == "AdminUser") {
+                $("#user-actions").hide();
+                $("#ph-actions").hide();
+                $("#admin-actions").show();
+                $('option', $('#multiselect-ph-key')).each(function () {
+                    $(this).removeAttr('selected').prop('selected', false);
+                });
+                $('option', $('#multiselect-user-key')).each(function () {
+                    $(this).removeAttr('selected').prop('selected', false);
+                });
+                $('#approve-check').hide();
+            } else {
+                $("#user-actions").hide();
+                $("#ph-actions").hide();
+                $('#approve-check').hide();
+            }
+
+        });
+
+    });
+</script>

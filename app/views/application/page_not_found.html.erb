@@ -1,0 +1,72 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/externals/addthis' %>
+    <%= render 'shared/externals/raychat' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+  <% end %>
+  <title>
+    صفحه مورد نظر یافت نشد
+    | کادرو
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="صفحه مورد نظر یافت نشد">
+  <meta name="keywords" content="">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    <%= csrf_meta_tags %>
+
+    <% if Rails.env.production? %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload'  %>
+    <% else %>
+    <%= stylesheet_link_tag   'wordpress', media: 'all', 'data-turbolinks-track': 'reload'%>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload'  %>
+    <% end %>
+    <link rel="icon" type="image/png" href="">
+  </head>
+
+<%= render "public/shared/wordpress_header" %>
+
+
+  <section class="fdb-block" style="padding: 0">
+    <div class="container">
+      <div class="row justify-content-center pb-xl-5">
+        <div class="col-8 col-sm-8 text-center">
+          <img alt="image" class="img-fluid" src=<%=assets_url("/img/404.jpg")%> >
+          <h2>
+            آخ، محتوای اینجا پاک شده یا به آدرس دیگه ای رفته!
+          </h2>
+        </div>
+      </div>
+
+      <div class="row text-left justify-content-center pt-5">
+        <div class="col-12 ">
+          <div class="row">
+            <div class="col-12">
+              <h3><strong> صفحه اصلی </strong></h3>
+              <p class="text-center">
+                برو به صفحه اصلی، از اونجا به همه چیز دسترسی داری.
+                <br><%= link_to "صفحه اصلی" , "https://www.kadro.co",class:"btn btn-primary" %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12  pt-5 pt-sm-5 pt-md-5">
+          <div class="row">
+            <div class="col-12">
+              <h3><strong> قیمت های عکاسی </strong></h3>
+              <p class="text-center"> برای دیدن قیمت های عکاسی و رزرو یک عکاس حرفه ای برو اینجا
+                <br> <%= link_to "مشاهده قیمتها" , pricing_url ,class:"btn btn-outline-primary"%>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%#= render "types/sections/footer", :@shoot_type=>@shoot_type%>

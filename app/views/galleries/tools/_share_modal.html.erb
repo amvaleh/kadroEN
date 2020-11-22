@@ -1,0 +1,43 @@
+<div class="modal fade bs-example-modal-lg" id="share_gallery" tabindex="-1" role="dialog" aria-labelledby="link_share_title">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="link_share_title">
+          اشتراک گذاری آلبوم
+        </h4>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-right">
+          برای به اشتراک گذاری آلبوم این لینک را کپی کنید:
+        </h5>
+
+        <br>
+
+        <input class="form-control text-center" onclick="copyme()" id="thelink" style="font-size: 20px; height: 70px;" value="<%= @gallery.short_url %>" readonly>
+
+        <br>
+
+        <h5 class="alert alert-warning">
+          توجه داشته باشید هر کسی که این لینک را داشته باشد به آلبوم شما دسترسی خواهد داشت.
+        </h5>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        <button type="button" data-dismiss="modal" class="btn btn-lg btn-blue">
+          متوجه هستم
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    function copyme() {
+        var copyText = document.getElementById("thelink");
+        copyText.select();
+        document.execCommand("copy");
+        alert("لینک آلبوم کپی شد");
+    }
+</script>

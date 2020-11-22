@@ -1,0 +1,7 @@
+<% if data.projects.present? %>
+<% data.projects.not_payed.each do |project| %>
+<div class="col-xs-3 alert alert-success">
+  <%=render "project_box" , :p => project, sms: true %>
+</div>
+<% end %>
+<% end %>

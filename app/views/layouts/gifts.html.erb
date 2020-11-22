@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if Rails.env.production? %>
+  <%= render 'shared/externals/yandex' %>
+
+  <%= render 'shared/externals/studio/gtag_header' %>
+  <%= render 'shared/externals/studio/analytics' %>
+  <%= render 'shared/externals/addthis' %>
+  <%= render 'shared/externals/raychat' %>
+  <%#= render 'shared/externals/hotjar_recorder' %>
+  <%#= render 'shared/externals/heap_analytics' %>
+  <%= render 'shared/yektanet_header' %>
+
+  <% end %>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title> هدیه روز عکاسان </title>
+
+  <meta charset="UTF-8">
+  <meta name="description" content="رزرو آنلاین عکاس حرفه ای، برای هر زمان و هر مکان یک عکاس حرفه ای انتخاب و رزرو کنید، عکاسی کنید، لذت ببرید.">
+  <meta name="keywords" content="رزرو, قیمت ,عکاسی ,پرتره, ,کودک ,بارداری, محصول, صنعتی,رویداد,آتلیه ,ارزان">
+  <meta name="author" content="تیم کادرو">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'gifts/gifts', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'gifts/gifts', 'data-turbolinks-track': 'reload' %>
+    <link rel="icon" type="image/png" href="/img/cameragift.png">
+  </head>
+
+  <body>
+    <%= render 'shared/externals/studio/gtag_body' %>
+    <%= yield %>
+  </body>
+
+  </html>

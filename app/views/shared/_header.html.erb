@@ -1,0 +1,42 @@
+<header id="header">
+  <nav class="nav">
+    <div class="container" style=" padding-right: 0px!important;
+        padding-left: 0px!important;">
+      <div class="wrap">
+        <div title="" class="logo" style="text-align: -webkit-center">
+          <div class="col-xs-12 credit-show" style="padding-right: 0px">
+          <% if user_signed_in? %>
+            <h4 class="">
+              اعتبار شما:
+              <%=  number(current_user.credit.value, 'fa').to_s + (current_user.credit.value < 0 ? "-" : "+") %>
+              <span style="font-size: 40%">
+                تومان
+              </span>
+            </h4>
+          <% end %>
+          </div>
+        </div>
+        <div class="btn-group">
+          <% if user_signed_in? %>
+            <button type="button" class="btn btn-blue dropdown-toggle btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               منو
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" style="left: 0; right: auto">
+              <li>
+                <%= link_to "آلبوم من", galleries_url, :onclick => 'confirmExit(event)' %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <%= link_to "خروج", destroy_user_session_path %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+  <!-- </div> -->
+</div>
+</nav>
+<div class=" ">
+</div>
+</header>

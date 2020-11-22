@@ -1,0 +1,5 @@
+<% @projects.each do |project|%>
+jQuery('#projects_you_candidated_section').append(
+    "<%= escape_javascript render 'project_you_candidated_cart', project:  project, photographer_rivals: @photographer_rivals.where('project_candidates.project_id = ?', project.id)  %>"
+)
+<% end %>

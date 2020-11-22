@@ -1,0 +1,27 @@
+<% if @photographers.any? %>
+  <% if @expertise.present?%>
+    <% @photographers.sort_by  {|ph| [ -ph.projects.where(:shoot_type_id=>@expertise.shoot_type.id).checked_out.count , -(ph.qrate + ph.arate) ]}.each do |p| %>
+      <% if p.total_free_times > 10 %>
+        <div class="col-xs-6 col-sm-4 col-lg-4 col-md-4">
+          <%= render "photographer" , :p => p %>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% @photographers.sort_by { |ph| [ -ph.total_free_times , (-ph.qrate+ -ph.arate)/2 ] }.sort_by { |ph| [ ph.current_sign_in_at.to_pdate.to_date ] }.reverse.each do |p| %>
+      <% if p.total_free_times > 10 %>
+        <div class="col-xs-6 col-sm-4 col-lg-4 col-md-4">
+<!--          <p>-->
+<!--            <%#= p.current_sign_in_at.to_pdate.to_date %> *-->
+            <%#= p.total_free_times%>
+<!--          </p>-->
+          <%= render "photographer" , :p => p %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="text-center alert alert-danger">
+    متاسفانه در حال حاضری عکاسی با شرایط انتخابی شما فعال نیست.
+  </div>
+<% end %>

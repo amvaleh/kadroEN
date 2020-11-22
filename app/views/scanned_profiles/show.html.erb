@@ -1,0 +1,108 @@
+<% @top_title = "مدارک شناسایی" %>
+<%= render 'shared/studio_header' , title: @top_title %>
+<section id="main">
+  <div class="container">
+    <div class="main">
+      <div class="wrapper">
+        <div class="row">
+          <%= render 'shared/studio_top_navigation' %>
+          <div class="row">
+            <% unless notice.present? %>
+              <h3 class="text-center">
+                تصاویر شناسایی اسکن شده را آپلود کنید
+              </h3>
+              <h5 class="text-center">
+                ( حجم تصویر ارسالی نباید بیشتر از ۱ مگابایت باشد. )
+              </h5>
+            <% else %>
+              <h3 class="text-info text-center" id="notice"><%= notice %> </h3>
+            <% end %>
+          </div>
+          <br>
+          <br>
+          <%= form_for :scanned_profile, url: scanned_profiles_path, method: "post" , html: {class: "form form-group" , :id => "scanned_profiles"} do |f| %>
+          <div class="col-md-12 col-md-offset-0">
+            <div class="row">
+              <div class="col-md-3 col-md-offset-0">
+                <p>
+                  صفحه اول شناسنامه
+                </p>
+              </div>
+              <div class="row" style="margin-bottom: 30px;">
+                <div class="col-md-8 col-md-offset-0">
+                  <%= f.file_field "birthـcertificate", :id=>"birthـcertificate" %>
+                  <% if @scanned_profile.birthـcertificate.present? %>
+                  <img src="<%=@scanned_profile.birthـcertificate_url(:medium)%>"
+                  alt="<%=@photographer.display_name%> - عکاس کادرو" title="<%=@photographer.display_name%> - عکاس <%=@photographer.location.city_name%>">
+                  <% end %>
+                  <!-- trying to run parsley on form submition -->
+                  <%#= f.text_field :first_name , value: @photographer.first_name , class: "form-control mytextbox" , name: "name" , id: "name", :requried => "" %>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-3 col-md-offset-0">
+                <p>
+                  کارت ملی
+                </p>
+              </div>
+              <div class="row" style="margin-bottom: 30px;">
+                <div class="col-md-8 col-md-offset-0">
+                  <!-- trying to run parsley on form submition -->
+                  <%= f.file_field "national_card", :id=>"national_card" %>
+                  <% if @scanned_profile.national_card.present? %>
+                  <img src="<%=@scanned_profile.national_card_url(:medium)%>"
+                  alt="<%=@photographer.display_name%> - عکاس کادرو" title="<%=@photographer.display_name%> - عکاس <%=@photographer.location.city_name%>">
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div><!-- /.main -->
+  </div><!-- /.container -->
+</section>
+
+<footer id="footer">
+  <div class="container">
+    <div class="wrap">
+      <%= link_to "استودیو" , studio_photographer_path(@photographer) ,class: "btn btn-default "%>
+      <button type="submit" id ="submit_page_form" class="btn btn-blue btn-lg">ذخیره
+      </button>
+    </div>
+  </div>
+</footer>
+
+<script>
+$(document).ready(function () {
+  $(function () {
+
+  })
+  $('#submit_page_form').click(function(){
+    document.getElementById("scanned_profiles").submit();
+  })
+
+  function getExtension(filename) {
+    var parts = filename.split('.');
+    return parts[parts.length - 1];
+  }
+
+  $('#national_card').bind('change', function() {
+    if(this.files[0].size > 1000000) {
+      alert('حجم فایل نباید بیش از ۱ مگابایت باشد.');
+      document.getElementById("national_card").value = "";
+    }
+  });
+
+  $('#birthـcertificate').bind('change', function() {
+    if(this.files[0].size > 1000000) {
+      alert('حجم فایل نباید بیش از ۱ مگابایت باشد.');
+      document.getElementById("birthـcertificate").value = "";
+    }
+  });
+});
+
+</script>

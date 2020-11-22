@@ -1,0 +1,207 @@
+$speed: 600ms;
+// $delay: ($speed * 0.5);
+$easing: cubic-bezier(0.55, 0, 0.1, 1);
+$primaryColor: #4286f5;
+
+
+#header{
+    .header{
+        .container{
+            #main{
+                .container{
+                    .main{
+                        .wrapper{
+                            #price_selection{
+                                .pricing{
+                                    .shoot-package{
+                                        #packages{
+                                            .packages {
+                                                .mymodal-container {
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    z-index: 100;
+                                                    position: fixed;
+                                                    bottom: 0;
+                                                    right: 0;
+                                                    display: flex;
+                                                    align-items: flex-end;
+                                                    justify-content: center;
+                                                    background-color: rgba(#000, 0.3);
+                                                    opacity: 0;
+                                                    visibility: hidden;
+                                                    backface-visibility: hidden;
+                                                    transition: opacity $speed $easing, visibility $speed $easing;
+                                                    &.active {
+                                                        opacity: 1;
+                                                        visibility: visible;
+                                                    }
+                                                    .mymodal {
+                                                        padding: 1em;
+                                                        border-radius: 0.8em 0.8em 0 0;
+                                                        width: 100%;
+                                                        z-index: 1;
+                                                        background-color: #fff;
+                                                        box-shadow: 0 5px 5px #00000030;
+                                                        position: absolute;
+                                                        bottom: -100%;
+                                                        left: 50%;
+                                                        transform: translate(-50%, -50%);
+                                                        transition: all $speed $easing;
+                                                        .header {
+                                                            display: flex;
+                                                            flex-direction: row;
+                                                            align-items: center;
+                                                            justify-content: space-between;
+                                                            margin-bottom: 1rem;
+                                                            border-bottom: 0.5px $primaryColor solid;
+                                                            padding-bottom: 0.5em;
+                                                            padding-top: 0px;
+                                                            height: auto;
+                                                            background: #fff;
+                                                            :first-child {
+                                                                color: $primaryColor;
+                                                                font-size: 1.2em;
+                                                            }
+                                                        }
+                                                        .close-mymodal {
+                                                            cursor: pointer;
+                                                        }
+                                                        .text {
+                                                            width: 100%;
+                                                            height: calc(100% - 50px);
+                                                            ul {
+                                                                display: flex;
+                                                                flex-direction: column;
+                                                                li {
+                                                                    align-items: center;
+                                                                    display: flex;
+                                                                    flex-direction: row;
+                                                                    padding: 0.25em 0;
+                                                                    justify-content: flex-start;
+                                                                    font-weight: lighter;
+                                                                    .icon {
+                                                                        width: 0.5em;
+                                                                        height: 0.5em;
+                                                                        background-color: $primaryColor;
+                                                                        margin-left: 0.4rem;
+                                                                        border-radius: 0.3em;
+                                                                    }
+                                                                    p {
+                                                                        font-weight: lighter;
+                                                                        b {
+                                                                            font-weight: bold;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            // overflow-y: scroll;
+                                                            // &::-webkit-scrollbar {
+                                                            //     width: 0.4rem;
+                                                            //     height: 0.5rem;
+                                                            // }
+                                                            // &::-webkit-scrollbar-thumb {
+                                                            //     background-color: rgb(230, 230, 230);
+                                                            //     border-radius: 0.25rem;
+                                                            // }
+                                                        }
+                                                        &.active {
+                                                            bottom: 5%;
+                                                            transform: translate(-50%, 0);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #header{
+        .header{
+            .container{
+                #main{
+                    .container{
+                        .main{
+                            .wrapper{
+                                #price_selection{
+                                    .pricing{
+                                        .shoot-package{
+                                            #packages{
+                                                .packages {
+                                                    .mymodal-container {
+                                                            margin-bottom: 20px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    
+    #header{
+        .header{
+            .container{
+                #main{
+                    .container{
+                        .main{
+                            .wrapper{
+                                #price_selection{
+                                    .pricing{
+                                        .shoot-package{
+                                            #packages{
+                                                .packages {
+                                                    .mymodal-container {
+                                                        .mymodal {
+                                                            border-radius: 0.8em;
+                                                            width: 80%;
+                                                            bottom: -100%;
+                                                            left: 50%;
+                                                            max-width: 500px;
+                                                            transform: translate(-50%, -50%);
+                                                            transition: all $speed $easing;
+                                                            &.active {
+                                                                bottom: 50%;
+                                                                transform: translate(-50%, 50%);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {}
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {}

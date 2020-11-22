@@ -1,0 +1,47 @@
+<div class="col-xs-12 well">
+  <div class="col-xs-12 col-md-6">
+    <div class="col-md-6 pull-right col-xs-12 text-center">
+      <img src="img/memory-plus.png" class="img-thumbnail">
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <div class="btn-group-vertical" style="width:100%" role="group" id="set-password-button">
+        <%= render partial: 'galleries/gallery_set_buttons', locals: {gallery: project.gallery, project: project} %>
+      </div>
+    </div>
+    <div class="col-xs-12">
+      <p style="text-align: justify;">
+        <span class="fa fa-camera fa-lg" style="font-size:20px;"></span>
+        تحویل در محل
+        <br>
+        <% if project.start_time.present? %>
+          <span class="fa fa-calendar fa-lg" style="font-size:20px;"></span>
+          <%= project.start_time.to_date.to_pdate.strftime("%A - %d %b ") %>
+          <br>
+        <% end %>
+        <% if project.photographer.present? %>
+          <span class="fa fa-user fa-lg" style="font-size:20px;"></span>
+          <%= project.photographer.display_name %>
+          <br>
+        <% end %>
+        <% if project.package.present? %>
+          <span class="fa fa-image fa-lg" style="font-size:20px;"></span>
+          ( <%= project.package.duration %> -
+          <% if project.package.is_full %>
+            تمام فریم ها
+          <% else %>
+            <%= project.package.digitals %>
+            فریم
+            دانلود
+          <% end %>
+          )
+          <br>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="col-md-12 col-xs-12"  style="background: #09AF1C;padding-bottom: 10%;">
+      <%= render "release_payment" , project: project %>
+    </div>
+  </div>
+</div>
