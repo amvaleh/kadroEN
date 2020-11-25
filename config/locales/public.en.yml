@@ -1,0 +1,7 @@
+en:
+  galleries:
+    select_frame_title: 'Select Photo'
+  active_admin:
+    comments:
+      delete: "Remove"
+      created_at: "Created at"
