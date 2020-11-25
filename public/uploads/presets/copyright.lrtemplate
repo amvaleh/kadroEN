@@ -1,0 +1,13 @@
+s = {
+	id = "38A70FEB-EC1E-4656-99BA-956BD4114D38",
+	internalName = "Kadro-Copyright",
+	title = "Kadro-Copyright",
+	type = "Metadata",
+	value = {
+		["com.adobe.copyright"] = "Kadro",
+		["com.adobe.copyrightInfoURL"] = "www.kadro.co",
+		["com.adobe.copyrightState"] = true,
+		uuid = "A2E2E533-FF8A-4EEB-8557-DE577DF0A0A9",
+	},
+	version = 0,
+}
