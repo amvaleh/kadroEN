@@ -3,8 +3,10 @@ en:
     home:
       seo:
         title: "Book a pro photographer"
-        meta_description: "" 
-
+        meta_description: "Kadro online photography market includes hundreds of professional photographers and level photography studios throughout Iran"
+        meta_keywords: "Photography, Staff, Photographer reservation, Photographer system, Online photography, Color, On-site photography, Send photographer,
+                        Photograph order, Photography project, Photographer platform, Videographer reservation"
+        meta_author: "Kadro Team"
       section1:
         title: "The easiest way to have a professional photographer and videographer"
         subtitle: "We ,the most professional, are gathered here"
@@ -13,7 +15,16 @@ en:
           button2: "Book a photographer and studio"
           button3: "or"
 
-      section2: #work us
+      section2: "Customer feedback"    
+
+      section3: #photography feild
+        title: "Kadro Photography field"
+        subtitle: "Please click to see the portfolio and the price of each field"
+        buttons:
+          button1: "Personal activities"
+          button2: "Business activities"      
+
+      section4: #work us
         title: "How to work with us"
         subtitle1: "Package selection"
         explain: "Kadro prices Are hourly You can buy a package from one hour to seven hours"
@@ -43,10 +54,10 @@ en:
         subtitle6: "Video about kadro"
         explain14: "In this video, you can see how kadro works perfectly"
 
-      section3: #featurs
-        title: "?What are the benefits of kadro"  
-        
-        subtitle1: "7 days service guarantee " 
+      section5: #featurs
+        title: "?What are the benefits of kadro"
+      
+        subtitle1: "7 days service guarantee "
         explain1: "Up to 7 days after receiving the photos, you can get a full refund if you are not satisfied"
         
         subtitle2: "delivery at your location"
@@ -69,20 +80,11 @@ en:
         
         subtitle8: "Ethical commitment"
         explain8: "All Kadro photographers have submitted a contract and a cash guarantee in order to abide by Kadro's terms and conditions."
-   
 
-    public: #photography feild
-      section1:
-        title: "Kadro Photography field"
-        subtitle: "Please click to see the portfolio and the price of each field"
-        buttons:
-          button1: "Personal activities"
-          button2: "Business activities"
-
-      section2: #barandegan
+      section6: #barandegan
         title: "Kadro customer winners"   
 
-      section3: # bartarin phtographer
+      section7: # bartarin phtographer
         title: "Best photographers"
         subtitle: "All photographers have passed the hard filters and been accepted Here we see the top photographers"
         subtitle1: "Top female photographers"    
@@ -91,10 +93,50 @@ en:
         explain: 
           explain1: "Kadro is the same as Snape of Iranian photography, it is very valuable to have a professional photographer for yourself"
           button: "Book a photographer"
-      section4: #khadamt digar
+      section8: #khadamt digar
         title: "Other services kadro"
         subtitle: "We have a professional team of photographers who can offer many other services"
-  public: 
+        img:
+          alt:
+            alt1: "Making teasers and filming"
+            title1: "Making teasers and filming"     #sakht teaser
+            explain1: "Watch the clips, select and order a professional team for your project"
+            link1: "Making teasers and filming"
+
+            alt2: "Price of printing photos"
+            title2: "Online photo printing"
+            explain2: "Easily order photos from your photo album, any size you want"
+            link2: "Price of printing photos"
+
+            alt3: "Online photo printing"
+            title3: "Edit and color light"
+            explain3: "All your photos in Kadro are edited by a light and color photographer. All your photos"
+            link3: "Sample editing and color light"  
+            
+            alt4: "Online photo printing"
+            title4: "Professional photo retouching"
+            explain4: "For the needs of professionals, you can order a professional photo retouch"
+            link4: "Sample professional photo retouching"
+
+      section9:
+        title: "?Are you a photographer"
+        subtitle: "Kadro is now hiring a professional photographer, join Kadro and make money easily from photography"
+        button:    "Kadro registration conditions" 
+
+
+      footer:
+        titles:
+          title0: "Kadro"
+          title1: "List of photographers and studios"
+          title2: "Enter the album"
+          title3: "Employ a photographer"
+          title4: "About us"
+        subtitls:
+          subtitle1: "Kadro values"  
+      header:
+        title:
+          title1: "menu"    
+    public: 
     galleries:
       select_frame_title: 'Select Photo'
     active_admin:

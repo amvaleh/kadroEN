@@ -8,12 +8,12 @@
 
 <% end %>
   <title>
-    Book a pro photographer 
+  <%= t(:'general.home.seo.title') %>
   </title>
   <meta charset="UTF-8">
-  <meta name="description" content="بازار آنلاین عکاسی کادرو شامل صد ها عکاس حرفه ای و آتلیه های عکاسی سطح بندی شده در سرتاسر ایران">
-  <meta name="keywords" content="عکاسی, کادرو, رزرو عکاس, سامانه عکاس, عکاسی آنلاین, رنگیتر, عکاسی در محل, ارسال عکاس, سفارش عکاسی, پروژه عکاسی, پلفترم عکاس, رزرو فیلمبردار">
-  <meta name="author" content="تیم کادرو">
+  <meta name="description" content="<%= t(:'general.home.seo.meta_description') %>">
+  <meta name="keywords" content="<%= t(:'general.home.seo.meta_keywords') %>">
+  <meta name="author" content="<%= t(:'general.home.seo.meta_author') %>">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
   <%= csrf_meta_tags %>
@@ -38,10 +38,10 @@
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
         <h2>
-          <%= t(:'general.public.section1.title') %>
+          <%= t(:'general.home.section3.title') %>
         </h2>
         <p class="text-center lead">
-          <%= t(:'general.public.section1.subtitle') %>
+          <%= t(:'general.home.section3.subtitle') %>
         </p>
       </div>
     </div>
@@ -50,12 +50,12 @@
         <div class="row">
           <div class="col-6">
             <button id="personal" class="btn btn-primary btn-block" style="height: 50px">
-              <%= t(:'general.public.section1.buttons.button1') %>
+              <%= t(:'general.home.section3.buttons.button1') %>
             </button>
           </div>
           <div class="col-6">
             <button id="business" class="btn btn-outline-primary btn-block" style="height: 50px">
-              <%= t(:'general.public.section1.buttons.button2') %>
+              <%= t(:'ggeneral.home.section3.buttons.button2') %>
             </button>
           </div>
         </div>
@@ -87,7 +87,7 @@
       <div class="col-12">
         <h3>
           <strong>
-            <%= t(:'general.public.section6.title')%>
+            <%= t(:'general.home.section6.title')%>
           </strong>
         </h3>
         <div class="mt-5 justify-content-center">
@@ -116,10 +116,10 @@
     <div class="row text-center justify-content-center">
       <div class="col-8">
         <h2>
-         <%= t(:'general.public.section3.title') %>
+         <%= t(:'general.home.section7.title') %>
         </h2>
         <p class="lead text-left">
-          <%= t(:'general.public.section3.subtitle') %>
+          <%= t(:'general.home.section7.subtitle') %>
         </p>
       </div>
     </div>
@@ -133,7 +133,7 @@
     <div class="row text-center justify-content-center">
       <div class="col-8">
         <h3>
-         <%= t(:'general.public.section3.subtitle1') %>
+         <%= t(:'general.home.section7.subtitle1') %>
         </h3>
         <p class="lead">
         </p>
@@ -148,7 +148,7 @@
     <div class="row text-center justify-content-center">
       <div class="col-8">
         <h3>
-         <%= t(:'general.public.section3.subtitle2') %>
+         <%= t(:'general.home.section7.subtitle2') %>
         </h3>
         <p class="lead">
         </p>
@@ -164,7 +164,7 @@
     <div class="row text-center justify-content-center">
       <div class="col-8">
         <h3>
-          <%= t(:'general.public.section3.subtitle3') %>
+          <%= t(:'general.home.section7.subtitle3') %>
         </h3>
         <p class="lead">
         </p>
@@ -182,12 +182,12 @@
     <div class="row align-items-center justify-content-center">
       <div class="col-12 mt-4 mt-sm-0">
         <h2>
-          <%= t(:'general.public.section3.explain.explain1') %>
+          <%= t(:'general.home.section7.explain.explain1') %>
        </h2>
       </div>
       <div class="col-auto text-center">
         <a class="btn btn-primary" href="<%=book_url %>">
-         <%= t(:'general.public.section3.explain.button') %>
+         <%= t(:'general.home.section7.explain.button') %>
         </a>
       </div>
     </div>
@@ -198,11 +198,11 @@
     <div class="row text-center">
       <div class="col-12">
         <h2>
-          <%= t(:'general.public.section4.title') %>
+          <%= t(:'general.home.section8.title') %>
         </h2>
         <p class="h3">
           <em>
-            <%= t(:'general.public.section4.subtitle') %>
+            <%= t(:'general.home.section8.subtitle') %>
           </em>
         </p>
       </div>
@@ -210,55 +210,54 @@
 
     <div class="row text-center py-5 pt-xl-5">
       <div class="col-12 col-sm-10 m-auto m-md-0 col-md-6 text-center">
-        <img alt="فیلمبرداری و ساخت تیزر" height="300" src="/img/videography/servicesold.svg">
+        <img alt="<%= t(:'general.home.section8.img.alt.alt1') %>" height="300" src="/img/videography/servicesold.svg">
         <h3>
-          فیلمبرداری و ساخت تیزر
+          <%= t(:'general.home.section8.img.alt.title1') %>     
         </h3>
         <p class="lead pt-3">
-          کلیپ ها رو ببین، انتخاب کن و سفارش بده تا یک تیم حرفه ای برای پروژه ت تعیین بشه
+          <%= t(:'general.home.section8.img.alt.explain1') %>
         </p>
         <p class="lead text-center pt-1">
-          <%= link_to "ساخت تیزر کادرو" , videography_path,class: "btn btn-outline-dark btn-sm "%>
+          <%= link_to t(:'general.home.section8.img.alt.link1') , videography_path,class: "btn btn-outline-dark btn-sm "%>
         </p>
       </div>
 
       <div class="col-12 col-sm-10 m-auto m-md-0 col-md-6 pt-5 pt-md-0">
-        <img alt="چاپ آنلاین عکس" height="300" src="/img/home/print_online.svg">
+        <img alt= "<%= t(:'general.home.section8.img.alt.alt2') %>" height="300" src="/img/home/print_online.svg">
         <h3>
-          چاپ عکس و شاسی آنلاین
+         <%= t(:'general.home.section8.img.alt.title2') %>
         </h3>
         <p class="lead pt-3">
-          راحت از آلبوم عکسهات، هر سایزی که می خواهی سفارش چاپ عکس بده
+         <%= t(:'general.home.section8.img.alt.explain2') %>
         </p>
         <div class="btn-group">
-          <%= link_to "قیمت های چاپ عکس" , print_prices_path,class: "btn btn-outline-dark btn-sm"%>
+          <%= link_to t(:'general.home.section8.img.alt.link2') , print_prices_path,class: "btn btn-outline-dark btn-sm"%>
         </div>
       </div>
     </div>
     <div class="row py-5 pt-xl-5">
       <div class="col-12 col-sm-10 m-auto m-md-0 col-md-6 pt-5 pt-md-0 justify-content-center text-center">
-        <img alt="چاپ آنلاین عکس"  height="300" src="/img/home/color_edit.svg">
+        <img alt="<%= t(:'general.home.section8.img.alt.alt3') %>"  height="300" src="/img/home/color_edit.svg">
         <h3>
-          ادیت و نور رنگ
+          <%= t(:'general.home.section8.img.alt.title3') %>
         </h3>
         <p class="lead pt-3">
-          همه عکسهای شما در کادرو توسط عکاس ادیت نور و رنگ می شود.
-          همه عکسهای شما!
-        </p>
+          <%= t(:'general.home.section8.img.alt.explain3') %>
+       </p>
         <p class="lead text-center pt-1">
-          <%= link_to "نمونه ادیت نور و رنگ" , standard_edit_path,class: "btn btn-outline-dark btn-sm"%>
+          <%= link_to t(:'general.home.section8.img.alt.link3') , standard_edit_path,class: "btn btn-outline-dark btn-sm"%>
         </p>
       </div>
       <div class="col-12 col-sm-10 m-auto m-md-0 col-md-6 pt-5 pt-md-0 text-center">
-        <img alt="چاپ آنلاین عکس" height="300" src="/img/home/retouch.svg">
+        <img alt= "<%= t(:'general.home.section8.img.alt.alt4') %>" height="300" src="/img/home/retouch.svg">
         <h3>
-          روتوش حرفه ای عکس
+          <%= t(:'general.home.section8.img.alt.title4') %>
         </h3>
         <p class="lead pt-3">
-          برای نیاز حرفه ای ها، می توانید سفارش روتوش حرفه ای عکس هم بدهید.
+          <%= t(:'general.home.section8.img.alt.explain4') %>
         </p>
         <p class="lead text-center pt-1">
-          <%= link_to "نمونه روتوش حرفه ای" , retouch_edit_path,class: "btn btn-outline-dark btn-sm"%>
+          <%= link_to t(:'general.home.section8.img.alt.link4') , retouch_edit_path,class: "btn btn-outline-dark btn-sm"%>
         </p>
       </div>
     </div>
@@ -271,13 +270,13 @@
       <div class="col-12 col-md-10 col-lg-8 text-center">
         <div class="fdb-box bg-primary">
           <h2 class="text-light">
-            عکاس هستی؟
+            <%= t(:'general.home.section9.title') %>
           </h2>
-          <p class="lead text-right text-light">
-            کادرو در حال حاضر عکاس حرفه ای جذب میکند، به کادرو بپیوند و راحت از عکاسی در آمد زایی کن.
+          <p class="lead text-left text-light">
+          <%= t(:'general.home.section9.subtitle') %>
           </p>
           <p class="mt-4 text-center text-light">
-            <a class="text-light btn btn-outline-light" href="<%=join_us_path %>"> شرایط ثبت نام در کادرو
+            <a class="text-light btn btn-outline-light" href="<%=join_us_path %>"> <%= t(:'general.home.section9.button') %>
               <i class="fa fa-angle-left"></i>
             </a>
           </p>
