@@ -8,7 +8,7 @@
 
 <% end %>
   <title>
-رزرو آنلاین عکاس، آتلیه و فیلمبردار با قیمت عالی | کادرو، اسنپ عکاسی
+    Book a pro photographer 
   </title>
   <meta charset="UTF-8">
   <meta name="description" content="بازار آنلاین عکاسی کادرو شامل صد ها عکاس حرفه ای و آتلیه های عکاسی سطح بندی شده در سرتاسر ایران">
@@ -38,10 +38,10 @@
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
         <h2>
-          رشته های عکاسی کادرو
+          <%= t(:'general.public.section1.title') %>
         </h2>
         <p class="text-center lead">
-          برای مشاهده نمونه کارها و قیمت هر رشته کلیک کنید.
+          <%= t(:'general.public.section1.subtitle') %>
         </p>
       </div>
     </div>
@@ -50,12 +50,12 @@
         <div class="row">
           <div class="col-6">
             <button id="personal" class="btn btn-primary btn-block" style="height: 50px">
-              برای کار شخصی
+              <%= t(:'general.public.section1.buttons.button1') %>
             </button>
           </div>
           <div class="col-6">
             <button id="business" class="btn btn-outline-primary btn-block" style="height: 50px">
-              برای کار تجاری
+              <%= t(:'general.public.section1.buttons.button2') %>
             </button>
           </div>
         </div>
@@ -87,14 +87,14 @@
       <div class="col-12">
         <h3>
           <strong>
-            برندهای مشتری کادرو
+            <%= t(:'general.public.section6.title')%>
           </strong>
         </h3>
         <div class="mt-5 justify-content-center">
           <img alt="image" height="70" class="ml-3 mr-3 mb-2 mt-2" src="/img/home/brands/snapp.png">
           <img alt="image" height="70" class="ml-3 mr-3 mb-2 mt-2" src="/img/home/brands/sunIch.png">
           <img alt="image" height="70" class="ml-3 mr-3 mb-2 mt-2" src="/img/home/brands/behnoosh-copy.png">
-          <img alt="image" height="70" class="ml-3 mr-3 mb-2 mt-2" src="/img/home/brands/evand.png">
+          <img alt="image" height="70" class="ml-3 mr-3 mb2 mt-2" src="/img/home/brands/evand.png">
           <img alt="image" height="70" class="ml-3 mr-3 mb-2 mt-2" src="/img/home/brands/snappfoooood.png">
           <img alt="image" height="70" class="ml-3 mr-3 mb-2 mt-2" src="/img/home/brands/dinnnng.png">
         </div>
@@ -116,10 +116,10 @@
     <div class="row text-center justify-content-center">
       <div class="col-8">
         <h2>
-          برترین عکاسان کادرو
+         <%= t(:'general.public.section3.title') %>
         </h2>
-        <p class="lead">
-          همه عکاسان از فیلترهای سختی عبور داده شده و پذیرش شده اند. در اینجا برترین عکاسها را می بینیم.
+        <p class="lead text-left">
+          <%= t(:'general.public.section3.subtitle') %>
         </p>
       </div>
     </div>
@@ -133,7 +133,7 @@
     <div class="row text-center justify-content-center">
       <div class="col-8">
         <h3>
-          برترین عکاسان خانم کادرو
+         <%= t(:'general.public.section3.subtitle1') %>
         </h3>
         <p class="lead">
         </p>
@@ -148,7 +148,7 @@
     <div class="row text-center justify-content-center">
       <div class="col-8">
         <h3>
-          جدید ترین اعضا
+         <%= t(:'general.public.section3.subtitle2') %>
         </h3>
         <p class="lead">
         </p>
@@ -164,7 +164,7 @@
     <div class="row text-center justify-content-center">
       <div class="col-8">
         <h3>
-          برترین آتلیه دار های کادرو
+          <%= t(:'general.public.section3.subtitle3') %>
         </h3>
         <p class="lead">
         </p>
@@ -182,12 +182,12 @@
     <div class="row align-items-center justify-content-center">
       <div class="col-12 mt-4 mt-sm-0">
         <h2>
-          کادرو همون اسنپ عکاسی ایرانه، خیلی ارزون عکاس حرفه ای تو داشته باش...
-        </h2>
+          <%= t(:'general.public.section3.explain.explain1') %>
+       </h2>
       </div>
       <div class="col-auto text-center">
         <a class="btn btn-primary" href="<%=book_url %>">
-          رزرو عکاس
+         <%= t(:'general.public.section3.explain.button') %>
         </a>
       </div>
     </div>
@@ -198,11 +198,11 @@
     <div class="row text-center">
       <div class="col-12">
         <h2>
-          خدمات دیگر کادرو
+          <%= t(:'general.public.section4.title') %>
         </h2>
         <p class="h3">
           <em>
-            با تیم حرفه ای عکاسانی که داریم، خیلی خدمات دیگر هم ارائه می دهیم.
+            <%= t(:'general.public.section4.subtitle') %>
           </em>
         </p>
       </div>

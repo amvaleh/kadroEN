@@ -1,9 +1,9 @@
 <section class="fdb-block px-sm-3 px-md-5 bg-dark" id="how_works" style="background-image: url(/types/imgs/shapes/10.svg)">
   <div class="container-fluid" id="home-how">
     <div class="row justify-content-center ">
-      <div class="col-12 text-center">
+      <div class="col-12 text-left">
         <h2>
-          نحوه کار کادرو
+          <%= t(:'general.home.section2.title') %>
         </h2>
       </div>
     </div>
@@ -14,22 +14,17 @@
       </div>
 
       <div class="col-12 col-md-5 m-md-auto">
-        <h3 class="header-lead text-right text-dark">
+        <h3 class="header-lead text-center text-dark">
           <strong>
-          انتخاب پکیج
+            <%= t(:'general.home.section2.subtitle1') %>
           </strong>
         </h3>
         <p class="lead">
-          قیمت های عکاسی
-          <strong>
-            کادرو
-          </strong> به صورت ساعتی است.
-          شما می توانید از
-          یک ساعت
-          تا
-          هفت ساعت
-          پکیج خریداری کنید.
-        </p>
+          <%= t(:'general.home.section2.explain') %> 
+        </p>  
+         <!-- <strong>
+            Kadro
+          </strong>-->
       </div>
     </div>
 
@@ -39,17 +34,16 @@
       </div>
 
       <div class="col-12 col-md-5">
-        <h3 class="header-lead text-right text-dark"><strong> انتخاب عکاس </strong></h3>
-        <p class="lead">
+        <h3 class="header-lead text-left text-dark"><strong> <%= t(:'general.home.section2.subtitle2') %> </strong></h3>
+        <p class="lead text-left">
           <strong>
-            الگوریتم کادرو بهترین عکاسان
-          </strong> را بر اساس
+            <%= t(:'general.home.section2.explain1') %> 
+          </strong> <%= t(:'general.home.section2.explain2') %> 
           <strong>
-            زمان و مکان شما
+           <%= t(:'general.home.section2.explain3') %> 
           </strong>
-          پیشنهاد می دهد که می توانید با دیدن نمونه کارها و
-          <strong class=""> نظرات قبلی </strong>
-          انتخاب کنید.
+          <%= t(:'general.home.section2.explain4') %> 
+          <!--<strong class=""> نظرات قبلی </strong>-->
         </p>
       </div>
     </div>
@@ -59,17 +53,13 @@
         <img alt="image" class="img-fluid" alt="پرداخت قیمت عکاسی با ضمانت ۷ روزه" src=<%=assets_url("/img/home/safe.svg")%> >
       </div>
       <div class="col-12 col-md-5 m-md-auto">
-        <h3 class="header-lead text-right text-dark"><strong> پرداخت امن </strong></h3>
-        <p class="lead">
-          مبلغی که شما می پردازید به عکاس
-          پرداخت نمی شود تا
-          <strong> ۷ روز بعد از عکاسی </strong>
-          .
+        <h3 class="header-lead text-left text-dark"><strong> <%= t(:'general.home.section2.subtitle3') %> </strong></h3>
+        <p class="lead text-left">
+          <%= t(:'general.home.section2.explain5') %>
+          <strong> <%= t(:'general.home.section2.explain6') %> </strong>
           <br>
-         شما می توانید در صورت رضایت از عکاس
-          مبلغ را برای او
-          <strong> آزاد  </strong> کنید یا
-          کل مبلغ را باز پس بگیرید.
+         <%= t(:'general.home.section2.explain7') %>
+          <!--<strong> آزاد  </strong> -->
         </p>
       </div>
     </div>
@@ -79,13 +69,12 @@
       </div>
 
       <div class="col-12 col-md-5">
-        <h3 class="header-lead text-right text-dark"><strong> انجام عکاسی </strong></h3>
-        <p class="lead">
-          عکاس با تجهیزات عکاسی مناسب کار شما میاد در محل شما، همه کارها رو به او بسپرید و با خیال راحت عکاسی تون رو انجام دهید.
+        <h3 class="header-lead text-left text-dark"><strong> <%= t(:'general.home.section2.subtitle4') %> </strong></h3>
+        <p class="lead text-left" >
+          <%= t(:'general.home.section2.explain8') %>
           <br>
-          در صورت نیاز میتونید زمان تون رو
-          <strong class="text-dark"> تمدید </strong>
-          هم بکنید.
+          <%= t(:'general.home.section2.explain9') %>
+         <!-- <strong class="text-dark"> تمدید </strong>-->
         </p>
       </div>
     </div>
@@ -94,11 +83,10 @@
         <img alt="image" class="img-fluid" alt="تحویل عکسها در آلبوم شخصی" src=<%=assets_url("/img/home/album_download.svg")%> >
       </div>
       <div class="col-12 col-md-5 m-md-auto">
-        <h3 class="header-lead text-right text-dark"><strong> ۷۲ ساعته توی آلبوم! </strong></h3>
-        <p class="lead">
-          عکاس بعد از
-          <strong class="text-gray"> ادیت نور و رنگ همه عکسهاتون </strong>
-اونها در آلبوم شخصی تون قرار میده و شما می تونید اونها رو در ۷۲ ساعت ببینید، دانلود کنید، به اشتراک بگذارید یا سفارش چاپ عکس و شاسی بدهید.
+        <h3 class="header-lead text-left text-dark"><strong> <%= t(:'general.home.section2.explain10') %> </strong></h3>
+        <p class="lead text-left">
+          <%= t(:'general.home.section2.explain11') %>
+          <!--<strong class="text-gray"> ادیت نور و رنگ همه عکسهاتون </strong>-->
         </p>
       </div>
     </div>
@@ -108,21 +96,21 @@
       </div>
 
       <div class="col-12 col-md-5">
-        <h3 class="header-lead text-right text-dark"><strong> نمره و نظر دهی </strong></h3>
-        <p class="lead">
-          بعد از دریافت عکس ها، به عکاس تون نظر می دهید و در صورت رضایت مبلغ رو برای عکاس آزاد می کنید.
+        <h3 class="header-lead text-left text-dark"><strong> <%= t(:'general.home.section2.subtitle5') %> </strong></h3>
+        <p class="lead text-left">
+         <%= t(:'general.home.section2.explain12') %>
           <br>
-          در غیر اینصورت میتونید با عکاس دیگری عکاسی کنید یا کل مبلغ تون رو در ۷ روز ضمانت بازگشت مبلغ پس بگیرید.
+          <%= t(:'general.home.section2.explain13') %>
         </p>
       </div>
     </div>
     <div class="row  pt-5 pb-md-5">
       <div class="col text-center">
         <h2 class="text-center">
-          ویدیو توضیحی کادرو
+          <%= t(:'general.home.section2.subtitle6') %>
         </h2>
         <p class="text-center text-white">
-          در این ویدیو، نحوه کامل کار کردن کادرو رو می تونید ببینید.
+           <%= t(:'general.home.section2.explain14') %>
         </p>
       </div>
     </div>

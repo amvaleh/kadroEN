@@ -1,7 +1,114 @@
 en:
-  galleries:
-    select_frame_title: 'Select Photo'
-  active_admin:
-    comments:
-      delete: "Remove"
-      created_at: "Created at"
+  general:
+    home:
+      seo:
+        title: "Book a pro photographer"
+        meta_description: "" 
+
+      section1:
+        title: "The easiest way to have a professional photographer and videographer"
+        subtitle: "We ,the most professional, are gathered here"
+        buttons:
+          button1: "Book a videographer"
+          button2: "Book a photographer and studio"
+          button3: "or"
+
+      section2: #work us
+        title: "How to work with us"
+        subtitle1: "Package selection"
+        explain: "Kadro prices Are hourly You can buy a package from one hour to seven hours"
+        
+        subtitle2: "photographer selection"
+        explain1: "The kadro algorithm offers the best photographers"
+        explain2: "time and place"
+        explain3: "based on your"
+        explain4: "which you can select by looking at previous portfolios and comments"
+        
+        subtitle3: "Secure payment"
+        explain5: "The amount you pay will not be paid to the photographer until"
+        explain6: "7 days after the photo"
+        explain7: "You can release the amount for the photographer if he agrees or get the full amount back"
+        
+        subtitle4: "workmanship photography"
+        explain8: "A photographer with great photography equipment will come to your place"
+        explain9: "You can extend your time if needed"
+        explain10: "72 hours in the album!"
+        explain11: "After editing the light and color, a photographer puts all your photos in your personal album 
+        and you can view, download, share or order photo printing in 72 hours."
+        
+        subtitle5: "Rate and comment"
+        explain12: "After receiving the photos, you comment to your photographer and if you are satisfied, you release the amount for the photographer" 
+        explain13: "Otherwise, you can take a photo with another photographer or get your full amount back in 7 days warranty"
+        
+        subtitle6: "Video about kadro"
+        explain14: "In this video, you can see how kadro works perfectly"
+
+      section3: #featurs
+        title: "?What are the benefits of kadro"  
+        
+        subtitle1: "7 days service guarantee " 
+        explain1: "Up to 7 days after receiving the photos, you can get a full refund if you are not satisfied"
+        
+        subtitle2: "delivery at your location"
+        explain2: "You can take photos from the photographer in the same place and delete all the photos from the camera"
+        
+        subtitle3: "Original image file .jpg"
+        explain3: "The photo file in original quality will be delivered to you in high quality .jpg format"
+        
+        subtitle4: "Photographer Ms. and Mr."
+        explain4: "Depending on your needs, you can book both a female photographer and a male photographer, everything is by yourself"
+        
+        subtitle5: "Photo printing"
+        explain5: "It is very easy for you to order any photo from your personal album and receive it at home."
+        
+        subtitle6: "Edit light and color of all photos"
+        explain6: "All your photos are edited by a light and color photographer. In all packages and all disciplines"
+        
+        subtitle7: "privacy"
+        explain7: "The photos can only be seen by you and your photographer, and if necessary, Ms. Kadro's expert checks the photos for quality control"
+        
+        subtitle8: "Ethical commitment"
+        explain8: "All Kadro photographers have submitted a contract and a cash guarantee in order to abide by Kadro's terms and conditions."
+   
+
+    public: #photography feild
+      section1:
+        title: "Kadro Photography field"
+        subtitle: "Please click to see the portfolio and the price of each field"
+        buttons:
+          button1: "Personal activities"
+          button2: "Business activities"
+
+      section2: #barandegan
+        title: "Kadro customer winners"   
+
+      section3: # bartarin phtographer
+        title: "Best photographers"
+        subtitle: "All photographers have passed the hard filters and been accepted Here we see the top photographers"
+        subtitle1: "Top female photographers"    
+        subtitle2: "Newest members"
+        subtitle3: "The best kadro studio owners"
+        explain: 
+          explain1: "Kadro is the same as Snape of Iranian photography, it is very valuable to have a professional photographer for yourself"
+          button: "Book a photographer"
+      section4: #khadamt digar
+        title: "Other services kadro"
+        subtitle: "We have a professional team of photographers who can offer many other services"
+  public: 
+    galleries:
+      select_frame_title: 'Select Photo'
+    active_admin:
+      comments:
+        delete: "Remove"
+        created_at: "Created at"
+    about_us:
+      heading_about_us: "About kadro team"
+  contact_us:
+    title: "Contact us"
+    description: "آمدی جانم به قربانت، حالا چرا؟ دیروز کجا بودی؟"
+    call_number: "021 28425220"
+    call_title: "شماره تماس"
+    manager_office_title: "دفتر مدیریت"
+    manager_office_address: "تجریش - دزاشیب - روبروی آتش نشانی - پلاک ۳۲ - همکف شرقی - زنگ ۱۰۱"
+    central_office_title: "دفتر مرکزی"
+    central_office_address: "تهران - کارگر شمالی - بعد از تقاطع جلال آل احمد - پردیس فنی دانشگاه تهران - طبقه زیرین کتابخانه قلمچی - مجموعه دیموند (پلاک ۱۴۵۰ ) - کادرو" 

@@ -27,7 +27,7 @@ module ReserveKadro
     config.autoload_paths << Rails.root.join('app', 'serializers')
 
     # config.action_mailer.deliver_later_queue_name = :sidekiq
-    Rails.application.config.i18n.default_locale = :fa
+    Rails.application.config.i18n.default_locale = :en
 
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.enabled = true

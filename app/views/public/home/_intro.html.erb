@@ -3,10 +3,10 @@
     <div class="row align-items-center text-left">
       <div class="col-12">
         <h1 class="text-right text-sm-center">
-          ساده ترین راه برای داشتن یک عکاس و فیلمبردار حرفه ای
+         <%= t(:'general.home.section1.title') %>
         </h1>
         <p class="lead text-center">
-          دیگه دنبال عکاس و فیلمبردار نگرد، ما حرفه ای ترین ها، اینجا دور هم جمع شده ایم.
+          <%= t(:'general.home.section1.subtitle') %>
         </p>
       </div>
       <div class="col-12 align-items-center text-center justify-content-center my-5">
@@ -31,13 +31,13 @@
         <div class="btn-group btn-group-lg dropleft" id="intro_ctas">
           <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
-            یا
+            <%= t(:'general.home.section1.buttons.button3') %>
           </button>
           <a href="<%=book_url %>" class="btn btn-primary">
-            رزرو عکاس / آتلیه
+            <%= t(:'general.home.section1.buttons.button2') %>
           </a>
           <a href="<%=videography_url %>" class="btn btn-warning">
-            رزرو فیلمبردار
+            <%= t(:'general.home.section1.buttons.button1') %>
           </a>
           <div class="dropdown-menu text-right">
             <a class="dropdown-item" href="<%=shoot_location_root_url %>">
