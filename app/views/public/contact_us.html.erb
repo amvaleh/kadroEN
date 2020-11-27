@@ -8,13 +8,12 @@
 
 <% end %>
   <title>
-    تماس با ما
-    | کادرو
+    <%= t(:'general.public.seo_contact.title') %>
   </title>
   <meta charset="UTF-8">
-  <meta name="description" content="تماس با ما">
+  <meta name="description" content="<%= t(:'general.public.seo_contact.title.mata_description') %>">
   <meta name="keywords" content="">
-  <meta name="author" content="تیم کادرو">
+  <meta name="author" content="<%= t(:'general.public.seo_contact.title.mata_author') %>">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
   <%= csrf_meta_tags %>
@@ -33,11 +32,10 @@
     <div class="row align-items-center">
       <div class="col-12 col-md-6 col-lg-5">
         <h1>
-          <%= t(:'contact_us.title') %>
+          <%= t(:'general.public.sections_contact.section1.title') %>
         </h1>
-        <p class="text-center">
-          <%= t(:'contact_us.description') %>
-        </p>
+       <!-- <p class="text-center">
+        </p>-->
       </div>
       <div class="col-12 col-md-6 ml-md-auto mt-4 mt-md-0">
         <img alt="image" class="img-fluid" src="<%=assets_url("/img/contact_us_man.png")%>">
@@ -53,24 +51,24 @@
     <div class="row">
       <div class="col-12 col-md-6 col-lg-5">
         <h2>
-          <%= t(:'contact_us.call_title') %>
+           <%= t(:'general.public.sections_contact.section2.call_title') %>
         </h2>
         <p class="text-large text-center" style="direction: ltr!important;">
-          <a href="tel:02128425220" style="font-size: 30px"><%= t(:'contact_us.call_number').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %></a>
+          <a href="tel:02128425220" style="font-size: 30px"><%= t(:'general.public.sections_contact.section2.call_number').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %></a>
         </p>
         <p class="h3 mt-4 mt-lg-5">
           <strong>
-            <%= t(:'contact_us.manager_office_title') %>
+            <%= t(:'general.public.sections_contact.section2.manager_office_title') %>
           </strong>
         </p>
         <p>
-          <%= t(:'contact_us.manager_office_address') %>
+          <%= t(:'general.public.sections_contact.section2.manager_office_address') %>
         </p>
         <p class="h3 mt-4 mt-lg-5">
-          <strong><%= t(:'contact_us.central_office_title') %></strong>
+          <strong><%= t(:'general.public.sections_contact.section2.central_office_title') %></strong>
         </p>
         <p>
-          <strong><%= t(:'contact_us.central_office_address') %></strong>
+          <strong><%= t(:'general.public.sections_contact.section2.central_office_address') %></strong>
         </p>
       </div>
       <div class="col-12 col-md-6 ml-auto">
@@ -84,24 +82,24 @@
     <div class="row text-center">
       <div class="col-12  my-2 pb-5">
         <h3>
-          اگر میدونی با کدوم بخش  کادرو کار داری...
+         <%= t(:'general.public.sections_contact.section3.title') %>
         </h3>
       </div>
       <div class="col-12 col-md-8 m-auto col-lg-4">
         <div class="fdb-box fdb-touch">
-          <h2> بازاریابی </h2>
+          <h2> <%= t(:'general.public.sections_contact.section3.part1') %> </h2>
           <p class="text-center"> <a href="mailto:marketing@kadro.co">marketing@kadro.co</a> </p>
         </div>
       </div>
       <div class="col-12 col-md-8 m-auto col-lg-4 pt-5 pt-lg-0">
         <div class="fdb-box fdb-touch">
-          <h2> امور عکاسان </h2>
+          <h2> <%= t(:'general.public.sections_contact.section3.part2') %> </h2>
           <p class="text-center"> <a href="mailto:photographers@kadro.co">photographers@kadro.co</a> </p>
         </div>
       </div>
       <div class="col-12 col-md-8 m-auto col-lg-4 pt-5 pt-lg-0">
         <div class="fdb-box fdb-touch">
-          <h2> روابط عمومی </h2>
+          <h2> <%= t(:'general.public.sections_contact.section3.part3') %> </h2>
           <p class="text-center"> <a href="mailto:info@kadro.co">info@kadro.co</a> </p>
         </div>
       </div>
@@ -117,16 +115,16 @@
     </div>
     <div class="row justify-content-center">
       <div class="col-12 col-lg-8 col-xl-6 text-center">
-        <h2> آدرس پستی </h2>
+        <h2> <%=t(:'general.public.sections_contact.section4.title') %></h2>
         <p class="lead text-center">
-          << برای ارسال مدارک عکاسان یا محصولات برای عکاسی >>
+          <%=t(:'general.public.sections_contact.section4.subtitle') %>
         </p>
         <p class="h3 mt-5">
-          تهران ، امیرآباد ، تقاطع جلال آل احمد و کارگر شمالی ، دانشکده فنی دانشگاه تهران ، طبقه زیرین کتابخانه قلمچی ، مجموعه دیموند
+         <%=t(:'general.public.sections_contact.section4.address') %>
           </p>
-        <h2> کد پستی </h2>
+        <h2> <%=t(:'general.public.sections_contact.section4.code') %> </h2>
         <p class="h3 mt-5">
-          ۱۴۳۹۹۵۶۱۹۱
+          <%=t(:'general.public.sections_contact.section4.num_code') %>
         </p>
       </div>
     </div>

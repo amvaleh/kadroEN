@@ -6,26 +6,26 @@
         position: static;
         z-index: 10;" id="main_navbar">
       <button class="mr-auto navbar-toggler btn-light" type="button" data-toggle="collapse" data-target="#navbarNav5" aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
-        منو
+       <%= t(:'general.home.header.titles.title1') %>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav5">
         <ul class="nav nav-pills nav-fill text-center navbar-nav ml-0 mr-auto justify-content-center " style="text-align:center">
           <li class="mx-auto nav-item btn-group text-center">
-            <a class="btn btn-outline-primary btn-sm" href="<%=galleries_url%>"> ورود </a>
-            <a class="btn btn-primary btn-sm" href="<%=book_url%>"> رزرو عکاس / آتلیه </a>
+            <a class="btn btn-outline-primary btn-sm" href="<%=galleries_url%>"> <%= t(:'general.home.header.titles.title2') %> </a>
+            <a class="btn btn-primary btn-sm" href="<%=book_url%>"> <%= t(:'general.home.header.titles.title3') %> </a>
           </li>
         </ul>
         <ul class="navbar-nav mx-auto justify-content-between" style="text-align:center">
           <li class="nav-item">
-            <a class="nav-link text-light mx-2" href="<%=all_pros_url %>"> لیست عکاسها  </a>
+            <a class="nav-link text-light mx-2" href="<%=all_pros_url %>"> <%= t(:'general.home.header.titles.title5') %>  </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light mx-2" href="<%=pricing_url %>"> تعرفه قیمت عکاسی </a>
+            <a class="nav-link text-light mx-2" href="<%=pricing_url %>"> <%= t(:'general.home.header.titles.title6') %></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              خدمات کادرو
+             <%= t(:'general.home.header.titles.title4') %>
             </a>
             <div class="dropdown-menu dropdown-menu-left text-right">
               <a class="dropdown-item" href="<%=book_url %>"> رزرو عکاس / آتلیه </a>
@@ -40,7 +40,7 @@
         <ul class="navbar-nav justify-content-end ml-auto text-center">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle mr-md-5 text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-              برای عکاس
+            <%= t(:'general.home.header.titles.title7') %>
             </a>
             <div class="dropdown-menu text-right">
               <a class="dropdown-item" href="<%=join_us_url %>"> ثبت نام </a>

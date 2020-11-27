@@ -147,7 +147,7 @@ en:
         titles:
           title1: "Letter Kadro"  
           explain1: "Emails including the latest photography trends in the world, 
-                prices and discounts for you; If you are eager, become a member of letter kadro."
+                prices and discounts for you; If you are eager become a member of letter kadro"
           button: "Register"
           explain2: "Enter your email"
           explain3: "Enter your email to be notified first"
@@ -228,83 +228,114 @@ en:
         section5:
           title: "The path we took"
           year: "1396"
-          subtitle1: "The idea of a "Kadro" was created"
-          subtitle2: ""kadro" is the Latin translation of the word FRAME "
+          #1
+          subtitle1: "The idea of a Kadro was created"
+          subtitle2: "kadro is the Latin translation of the word FRAME"
+          #2
           subtitle3: "The first version of Kadro site"
-          subtitle4: "came up on a half wordpress and "
+          subtitle4: "came up on a half wordpress and"
           subtitle5: "half ROR platform"
+          #3
           subtitle6: "We entered the two-month accelerator camp"
           subtitle7: "We couldn't not agree on mutual valuation with Sarir VC and we left"
+          #4
           subtitle8: "Change team members"
           subtitle9-1: "At this time"
-          subtitle9-2: "Amir Reza Ostavi"
+          subtitle9-2: "Amir Reza Ostavi" #link
           subtitle9-3: "who was with us for 3 months left the team and 
                         Mohammad Mehdi Hosseini Nasab joined the team as the founder"
+          #5
           subtitle10: "Kadro's office was established in Dezashib"
           subtitle11: "People in the photo: Amir Mehdi Valeh, Mohammad Mehdi Hosseini Nasab, Amir Hossein Zahedi"
+          #6
           subtitle12: "Channel 3 interview with one of the photographers in charge of the Iftar photography project in Ramadan"   
           subtitle13-1: "The photographer you see is"
           subtitle13-2: "Mr. M. Bakhtiari" 
-          subtitle13-3: "one of the top photographers of "Kadro" "
-          subtitle14: "Signing a contract for "Kadro" advertising teaser"
+          subtitle13-3: "one of the top photographers of Kadro"
+          #7
+          subtitle14: "Signing a contract for Kadro advertising teaser"
           subtitle15: "The above project was directed by Mr. Saleh Abdi and filmed, compiled and delivered in 3 months"
+          #8
           subtitle16-1: "achieve"
           subtitle16-2: "second rank"
-          subtitle16-3: "in the Dmond Pitches in the field of fashion "
-          subtitle17-1: "This is where"
+          subtitle16-3: "in the Dmond Pitches in the field of fashion"
+          subtitle17-1: "And so it was that"
           subtitle17-2: "Interested in Kadro"
+          #9
           subtitle18: "So far, 50 active photographers have been staff members and more than 200 photography projects have been completed"
+          
           year2: "1397"
+          #10
           subtitle19: "Gain capital from Dmond"
-          subtitle20: "There were three other investment offers, 
-                      after many consultations "Kadro" joined the big team "Dmond"News link and details"
-          link1: "To read here" #number21 don't have
-          subtitle22: "Mashhad, Shiraz, Isfahan joined the "Kadro""
-          subtitle23: "List of all cities where "Kadre" is active and photographers are ready"
+          subtitle20: "There were three other investment offers
+                      after many consultations Kadro joined the big team Dmond News link and details"
+          link1: "To read here" 
+          #don't have subtitle21 
+          subtitle22: "Mashhad, Shiraz, Isfahan joined the Kadro"
+          subtitle23: "List of all cities where Kadre is active and photographers are ready"
           link2: "List of photographers"
+          
           subtitle24: "Siavash Bagheri is coming"
           subtitle25: "He's right now"
+          link3: "The best photographer"
           subtitle26: "To do the best quality control possible"
+          
           subtitle27: "Kadro sponsorship in the Yalda of 97 startup entrepreneurs (Milad Tower)"
           subtitle28: "More than ten thousand photos were taken at the event by ten photographers which are categorized"
-          link3: "You can see here"
-          subtitle29: "Year of construction of "Kadro" substructure 97"
-          subtitle30: "The 5-member technical team of "Kadro" in 1397 created the most basic technical infrastructure including:"
+          link4: "You can see here"
+          
+          subtitle29: "1397year of construction of Kadro substructure"
+          subtitle30: "The 5-member technical team of Kadro in 1397 created the most basic technical infrastructure including:"
           subtitle30-1: "Ability to deliver files on site"
           subtitle30-2: "Secure and online private album and print order"
           subtitle30-3: "Accelerate the photographer booking process with ReactJs technology"
           subtitle30-4: "Automatic error detection system and project information mismatch"
           subtitle30-5: "Book directly from the photographer page"
-          subtitle30-6: " And many other things"
+          subtitle30-6: "And many other things"
+          
           year3: "1398"
+         
           subtitle31: "Kadro in the Maidoon program channel Three"
-          subtitle32: "He invited Maidoon Kadro program to introduce his services, "Everything is in the movie"
+          subtitle32: "He invited Maidoon Kadro program to introduce his services, Everything is in the movie"
+          
           subtitle33: "Not only booking a photographer, but also booking a studio"
           subtitle34: "There were so many requests that we added the ability to book a studio"
           subtitle35: "You can go and take photos in the studio"
-          link4: "See all the studios here and you can book"
-          subtitle36: ""Location" is a constant problem! Where to go to photograph"
+          link5: "See all the studios here and you can book"
+          
+          subtitle36: "Location is a constant problem Where to go to photograph"
           subtitle37: "A new service we have developed for users is a list of the best photography places in Iran (starting with Tehran) From"
-          link5: "This link you can see all the places"
+          link6: "This link you can see all the places"
+          
           year4: "1399"
+          
           subtitle38: "1399 is stronger than ever, with all its difficulties, we are by your side, with new services that you will see soon"
           subtitle39: "This section will be updated frequently"
 
-            
-  
-        
-     
-    galleries:
-      select_frame_title: 'Select Photo'
-    active_admin:
-      comments:
-        delete: "Remove"
-        created_at: "Created at"
-
-    description: "آمدی جانم به قربانت، حالا چرا؟ دیروز کجا بودی؟"
-    call_number: "021 28425220"
-    call_title: "شماره تماس"
-    manager_office_title: "دفتر مدیریت"
-    manager_office_address: "تجریش - دزاشیب - روبروی آتش نشانی - پلاک ۳۲ - همکف شرقی - زنگ ۱۰۱"
-    central_office_title: "دفتر مرکزی"
-    central_office_address: "تهران - کارگر شمالی - بعد از تقاطع جلال آل احمد - پردیس فنی دانشگاه تهران - طبقه زیرین کتابخانه قلمچی - مجموعه دیموند (پلاک ۱۴۵۰ ) - کادرو" 
+      seo_contact:
+        title: "Contact us | Kadro"
+        mata_description: "Contact us"
+        meta_keywords:
+        meta_author: "Kadro team"
+      sections_contact:
+        section1:
+          title: "contact us"
+        section2: #contact_Us
+          call_title: "Call number"
+          call_number: "021 28425220"
+          manager_office_title: "Manager office"
+          manager_office_address: "Tajrish-Dezashib-In front of the fire station-No.32-Bell.101"
+          central_office_title: "Central office"
+          central_office_address: "Tehran Province, Tehran, DMOND Accelerator, N Kargar, Central Library Basement, College 2 of Engineering Faculty"
+        section3: 
+          title: "If you know Which Kadro section you want"
+          part1: "Marketing"
+          part2: "Photographers"
+          part3: "Information"
+        section4:
+          title: "Post address"  
+          subtitle: "To send photographers documents or products for photography"
+          address: "Tehran, Amirabad, Jalal Al-Ahmad and Kargar Shomali intersection, 
+                    Faculty of Engineering, University of Tehran, Ghalamchi Library, Dimond Complex"
+          code: "Postal code"
+          num_code: "1439956191"

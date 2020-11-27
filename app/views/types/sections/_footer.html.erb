@@ -7,9 +7,9 @@
       <div id="subscribers_section" class="col-12 col-md-10 col-lg-6 mt-4 mt-lg-0 ml-auto mr-auto ml-lg-auto text-left" >
         <div class="row">
           <div class="col">
-            <h2> کادرونامه </h2>
-            <p class="lead">
-              نامه های الکترونیکی شامل آخرین ترندهای عکاسی در جهان، قیمتها و تخفیف ها برای شما؛ اگر مشتاقید عضو کادرونامه شوید.
+            <h2> <%= t(:'general.home.footer.titles.title1') %> </h2>
+            <p class="lead text-left">
+              <%= t(:'general.home.footer.titles.explain1') %>
             </p>
           </div>
         </div>
@@ -17,15 +17,15 @@
           <div class="col">
             <div class="input-group">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button" onclick="submit_subscribers()"> ثبت </button>
+                <button class="btn btn-primary" type="button" onclick="submit_subscribers()"> <%= t(:'general.home.footer.titles.button') %> </button>
               </div>
-              <input id="email_input" type="text" class="form-control" placeholder=" ایمیل خود را وارد کنید. ">
+              <input id="email_input" type="text" class="form-control" placeholder=" <%= t(:'general.home.footer.titles.explain2') %> ">
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <p class="h4 text-left"> ایمیلت رو بگذار تا اول از همه خبردار بشی </p>
+            <p class="h4 text-left"> <%= t(:'general.home.footer.titles.explain3') %></p>
           </div>
         </div>
       </div>
@@ -45,19 +45,19 @@
       <div class="col">
         <ul class="nav justify-content-center">
           <li class="nav-item">
-            <a class="nav-link active" href="<%=kadro_url %>"> کادرو </a>
+            <a class="nav-link active" href="<%=kadro_url %>"> <%= t(:'general.home.footer.titles.title2') %> </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%=all_pros_url %>"> لیست عکاسان و آتلیه ها </a>
+            <a class="nav-link" href="<%=all_pros_url %>"> <%= t(:'general.home.footer.titles.title3') %> </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%=galleries_url%>"> ورود به آلبوم </a>
+            <a class="nav-link" href="<%=galleries_url%>"> <%= t(:'general.home.footer.titles.title4') %> </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%=join_us_url %>"> استخدام عکاس </a>
+            <a class="nav-link" href="<%=join_us_url %>"> <%= t(:'general.home.footer.titles.title5') %> </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%=about_us_url %>"> درباره ما </a>
+            <a class="nav-link" href="<%=about_us_url %>"><%= t(:'general.home.footer.titles.title6') %> </a>
           </li>
         </ul>
       </div>
@@ -66,35 +66,35 @@
   <div class="container py-5">
     <div class="row align-items-top text-center">
       <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-sm-right text-right">
-        <h2 class="text-right"><strong> ارزشهای کادرو </strong></h2>
+        <h2 class="text-right"><strong> <%= t(:'general.home.footer.subtitles.subtitle1') %> </strong></h2>
         <nav class="nav flex-column">
-          <a class="nav-link active" href="<%=contact_us_url %>"> تماس با ما </a>
-          <a class="nav-link active" href="<%=terms_url %>"> شرایط و قوانین </a>
-          <a class="nav-link" href="<%=privacy_url%>"> حریم خصوصی </a>
-          <a class="nav-link" href="<%=faq_url %>"> سوالات متداول </a>
-          <a class="nav-link" href="https://forms.gle/ozCdsYxiREnWC3V86" target="_blank"> ثبت شکایات </a>
-          <a class="nav-link" href="https://www.kadro.co/news">کادرو در خبرها</a>
+          <a class="nav-link active" href="<%=contact_us_url %>"> <%= t(:'general.home.footer.subtitles.subtitle2') %></a>
+          <a class="nav-link active" href="<%=terms_url %>"> <%= t(:'general.home.footer.subtitles.subtitle3') %> </a>
+          <a class="nav-link" href="<%=privacy_url%>"><%= t(:'general.home.footer.subtitles.subtitle4') %> </a>
+          <a class="nav-link" href="<%=faq_url %>"> <%= t(:'general.home.footer.subtitles.subtitle5') %></a>
+          <a class="nav-link" href="https://forms.gle/ozCdsYxiREnWC3V86" target="_blank"> <%= t(:'general.home.footer.subtitles.subtitle6') %></a>
+          <a class="nav-link" href="https://www.kadro.co/news"><%= t(:'general.home.footer.subtitles.subtitle7') %></a>
         </nav>
       </div>
       <div class="col-6 col-sm-6 col-md-4 col-lg-3  text-sm-right text-right">
-        <h2 class="text-right"><strong> خدمات تجاری </strong></h2>
+        <h2 class="text-right"><strong> <%= t(:'general.home.footer.subtitles.subtitle8') %></strong></h2>
         <nav class="nav flex-column">
-          <a class="nav-link active" href="<%= videography_url %>"> فیلمبرداری و ساخت تیزر </a>
+          <a class="nav-link active" href="<%= videography_url %>"> <%= t(:'general.home.footer.subtitles.subtitle8') %></a>
 <!--          <a class="nav-link" href="<%#= enterprises_url %>"> پکیج های تجاری </a>-->
-          <a class="nav-link" href="<%=shoot_location_root_url %>"> مکان های عکاسی </a>
-          <a class="nav-link" href="https://www.kadro.co/affiliate"> همکاری در فروش </a>
-          <a class="nav-link" href="<%=users_refer_url %>"> عکاسی رایگان </a>
+          <a class="nav-link" href="<%=shoot_location_root_url %>"> <%= t(:'general.home.footer.subtitles.subtitle9') %> </a>
+          <a class="nav-link" href="https://www.kadro.co/affiliate"> <%= t(:'general.home.footer.subtitles.subtitle10') %></a>
+          <a class="nav-link" href="<%=users_refer_url %>"> <%= t(:'general.home.footer.subtitles.subtitle11') %></a>
         </nav>
       </div>
 
       <div class="col-12 col-md-4 col-lg-3 text-right">
-        <h2 class="text-right"><strong> خدمات افزوده </strong></h2>
+        <h2 class="text-right"><strong> <%= t(:'general.home.footer.subtitles.subtitle12') %> </strong></h2>
         <nav class="nav flex-column">
-          <a class="nav-link" href="https://www.kadro.co/blog/"> وبلاگ </a>
-          <a class="nav-link" href="<%=standard_edit_url %>">ادیت نور و رنگ </a>
-          <a class="nav-link" href="<%=retouch_edit_url %>"> روتوش حرفه ای عکس </a>
-          <a class="nav-link" href="<%=pricing_url %>"> قیمت عکاسی </a>
-          <a class="nav-link" href="<%=print_prices_url %>">قیمت چاپ عکس </a>
+          <a class="nav-link" href="https://www.kadro.co/blog/"> <%= t(:'general.home.footer.subtitles.subtitle13') %></a>
+          <a class="nav-link" href="<%=standard_edit_url %>"> <%= t(:'general.home.footer.subtitles.subtitle14') %> </a>
+          <a class="nav-link" href="<%=retouch_edit_url %>"> <%= t(:'general.home.footer.subtitles.subtitle15') %> </a>
+          <a class="nav-link" href="<%=pricing_url %>"> <%= t(:'general.home.footer.subtitles.subtitle16') %>  </a>
+          <a class="nav-link" href="<%=print_prices_url %>"> <%= t(:'general.home.footer.subtitles.subtitle17') %> </a>
         </nav>
       </div>
 
