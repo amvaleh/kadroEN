@@ -15,8 +15,23 @@ en:
           button2: "Book a photographer and studio"
           button3: "or"
 
-      section2: "Customer feedback"    
+      section2: 
+        title: "Customer feedback"
+        comments:
+          name1: "Zohre alavi"
+          subtitle1: "Baby photography"
+          comment1: "I wanted to photograph a baby with decor, clothes and lighting, 
+                    so I took a photo from Kadro and he was very kind and patient Thank you for your efforts"
 
+          name2: "Mehrdad hajipasha"
+          subtitle2: "Wedding photography"
+          comment2: "We photographed kadro for an hour in person and for an hour outdoors, 
+                    and our photographer was really energetic, very professional and very creative."
+          
+          name3: "Mojtaba khodaverdian"
+          subtitle3: "Industrial photography"
+          comment3: "I wanted photography for DJ Kala. With the coordination of the photographer, 
+                    the equipment was brought to our place and we photographed all the products. He was a regular and experienced photographer"
       section3: #photography feild
         title: "Kadro Photography field"
         subtitle: "Please click to see the portfolio and the price of each field"
@@ -26,31 +41,36 @@ en:
 
       section4: #work us
         title: "How to work with us"
+        alt1: "Photographer prices"
         subtitle1: "Package selection"
         explain: "Kadro prices Are hourly You can buy a package from one hour to seven hours"
         
+        alt2: "Choosing a professional photographer"
         subtitle2: "photographer selection"
         explain1: "The kadro algorithm offers the best photographers"
         explain2: "time and place"
         explain3: "based on your"
         explain4: "which you can select by looking at previous portfolios and comments"
         
+        alt3: "Pay the price of photography with a 7-day guarantee"
         subtitle3: "Secure payment"
         explain5: "The amount you pay will not be paid to the photographer until"
         explain6: "7 days after the photo"
         explain7: "You can release the amount for the photographer if he agrees or get the full amount back"
         
+        alt4: "Doing on-site photography"
         subtitle4: "workmanship photography"
         explain8: "A photographer with great photography equipment will come to your place"
         explain9: "You can extend your time if needed"
         explain10: "72 hours in the album!"
         explain11: "After editing the light and color, a photographer puts all your photos in your personal album 
         and you can view, download, share or order photo printing in 72 hours."
-        
+        alt5: "Delivery of photos in personal album"
         subtitle5: "Rate and comment"
         explain12: "After receiving the photos, you comment to your photographer and if you are satisfied, you release the amount for the photographer" 
         explain13: "Otherwise, you can take a photo with another photographer or get your full amount back in 7 days warranty"
         
+        alt6: "Comment to the photographer"
         subtitle6: "Video about kadro"
         explain14: "In this video, you can see how kadro works perfectly"
 
@@ -123,30 +143,164 @@ en:
         subtitle: "Kadro is now hiring a professional photographer, join Kadro and make money easily from photography"
         button:    "Kadro registration conditions" 
 
-
       footer:
         titles:
-          title0: "Kadro"
-          title1: "List of photographers and studios"
-          title2: "Enter the album"
-          title3: "Employ a photographer"
-          title4: "About us"
-        subtitls:
-          subtitle1: "Kadro values"  
+          title1: "Letter Kadro"  
+          explain1: "Emails including the latest photography trends in the world, 
+                prices and discounts for you; If you are eager, become a member of letter kadro."
+          button: "Register"
+          explain2: "Enter your email"
+          explain3: "Enter your email to be notified first"
+          title2: "Kadro"
+          title3: "List of photographers and studios"
+          title4: "Enter the album"
+          title5: "Employ a photographer"
+          title6: "About us"
+        subtitles:
+          subtitle1: "Kadro values"
+          subtitle2: "contact us"
+          subtitle3: "Terms and Conditions"
+          subtitle4: "Privacy"
+          subtitle5: "Frequently Asked Questions"
+          subtitle6: "Register complaints"
+          subtitle7: "Kadro in the news"
+          subtitle8: "Commercial services"
+          subtitle9: "Filming and making a teaser"
+          subtitle10: "Photography locations"
+          subtitle11: "Sales cooperation"
+          subtitle12: "Free photography"
+          subtitle13: "Added service"
+          subtitle14: "weblog"
+          subtitle14: "Light and color editing"
+          subtitle15: "Professional photo retouching"
+          subtitle16: "Photography price"
+          subtitle17: "Photo printing price"
       header:
-        title:
-          title1: "menu"    
+        titles:
+          title1: "Menu"
+          title2: "Login" 
+          title3: "Photographer and studio reservation"
+          title4: "Kadro services"
+          title5: "List of photographers"
+          title6: "Show the price of photography"
+          title7: "For photographer"
     public: 
+      seo:
+        title: "About us | Kadro"
+        meta_description: "About us"
+        meta_keywords: "About the executive team and the founders of Kadro"
+        meta_author: "Kadro Team"
+      sections:
+        section1:
+          title: "Contact us"
+          subtitle: "We are also on social media"
+        section2:
+          title: "?Why are we"
+          subtitle1: "Life these days is going so fast that one day we open our eyes and see that years have passed and only memories remain!
+                     We are here to record your memories,your most important moments and your joys in the easiest way 
+                     so that you can easily go back in time and review your memories whenever you want"
+          subtitle2: "Kadro is here for you to"
+          subtitle3: "touch the memories of your life at a glance"  
+        section3:
+          title: "Kadro team members"
+          subtitle1: "We have gathered the best of Iran around us, this includes"
+          subtitle2: "The photography that makes up our team is also possible"
+        section4: 
+          title: "Our consultants"
+          subtitle: "All those who have accompanied us so far."  
+          Consultants:
+            name1: "Reza Jafari"
+            feild1: "Web Advisor and Technical Security"
+            name2: "Nima Behravan"
+            feild2: "Business Development Consultant"
+            name3: "Amir Hossein Seghatol-Islami"
+            feild3: "Marketing Consultant and Growth Hack"
+            name4: "Amin Ismaeili"
+            feild4: "Digital marketing consultant and seo"
+            name5: "Alireza Niknejad"
+            feild5: "Adviser in the field of photography education"
+            name6: "Jalal Barabadi"
+            feild6: "Digital Marketing Consultant"
+            name7: "Omid Zarifpour"
+            feild7: "Investment Advisor"
+            name8: "Fouad Saeedi Nik"
+            feild8: "Business Management Consultant"
+        section5:
+          title: "The path we took"
+          year: "1396"
+          subtitle1: "The idea of a "Kadro" was created"
+          subtitle2: ""kadro" is the Latin translation of the word FRAME "
+          subtitle3: "The first version of Kadro site"
+          subtitle4: "came up on a half wordpress and "
+          subtitle5: "half ROR platform"
+          subtitle6: "We entered the two-month accelerator camp"
+          subtitle7: "We couldn't not agree on mutual valuation with Sarir VC and we left"
+          subtitle8: "Change team members"
+          subtitle9-1: "At this time"
+          subtitle9-2: "Amir Reza Ostavi"
+          subtitle9-3: "who was with us for 3 months left the team and 
+                        Mohammad Mehdi Hosseini Nasab joined the team as the founder"
+          subtitle10: "Kadro's office was established in Dezashib"
+          subtitle11: "People in the photo: Amir Mehdi Valeh, Mohammad Mehdi Hosseini Nasab, Amir Hossein Zahedi"
+          subtitle12: "Channel 3 interview with one of the photographers in charge of the Iftar photography project in Ramadan"   
+          subtitle13-1: "The photographer you see is"
+          subtitle13-2: "Mr. M. Bakhtiari" 
+          subtitle13-3: "one of the top photographers of "Kadro" "
+          subtitle14: "Signing a contract for "Kadro" advertising teaser"
+          subtitle15: "The above project was directed by Mr. Saleh Abdi and filmed, compiled and delivered in 3 months"
+          subtitle16-1: "achieve"
+          subtitle16-2: "second rank"
+          subtitle16-3: "in the Dmond Pitches in the field of fashion "
+          subtitle17-1: "This is where"
+          subtitle17-2: "Interested in Kadro"
+          subtitle18: "So far, 50 active photographers have been staff members and more than 200 photography projects have been completed"
+          year2: "1397"
+          subtitle19: "Gain capital from Dmond"
+          subtitle20: "There were three other investment offers, 
+                      after many consultations "Kadro" joined the big team "Dmond"News link and details"
+          link1: "To read here" #number21 don't have
+          subtitle22: "Mashhad, Shiraz, Isfahan joined the "Kadro""
+          subtitle23: "List of all cities where "Kadre" is active and photographers are ready"
+          link2: "List of photographers"
+          subtitle24: "Siavash Bagheri is coming"
+          subtitle25: "He's right now"
+          subtitle26: "To do the best quality control possible"
+          subtitle27: "Kadro sponsorship in the Yalda of 97 startup entrepreneurs (Milad Tower)"
+          subtitle28: "More than ten thousand photos were taken at the event by ten photographers which are categorized"
+          link3: "You can see here"
+          subtitle29: "Year of construction of "Kadro" substructure 97"
+          subtitle30: "The 5-member technical team of "Kadro" in 1397 created the most basic technical infrastructure including:"
+          subtitle30-1: "Ability to deliver files on site"
+          subtitle30-2: "Secure and online private album and print order"
+          subtitle30-3: "Accelerate the photographer booking process with ReactJs technology"
+          subtitle30-4: "Automatic error detection system and project information mismatch"
+          subtitle30-5: "Book directly from the photographer page"
+          subtitle30-6: " And many other things"
+          year3: "1398"
+          subtitle31: "Kadro in the Maidoon program channel Three"
+          subtitle32: "He invited Maidoon Kadro program to introduce his services, "Everything is in the movie"
+          subtitle33: "Not only booking a photographer, but also booking a studio"
+          subtitle34: "There were so many requests that we added the ability to book a studio"
+          subtitle35: "You can go and take photos in the studio"
+          link4: "See all the studios here and you can book"
+          subtitle36: ""Location" is a constant problem! Where to go to photograph"
+          subtitle37: "A new service we have developed for users is a list of the best photography places in Iran (starting with Tehran) From"
+          link5: "This link you can see all the places"
+          year4: "1399"
+          subtitle38: "1399 is stronger than ever, with all its difficulties, we are by your side, with new services that you will see soon"
+          subtitle39: "This section will be updated frequently"
+
+            
+  
+        
+     
     galleries:
       select_frame_title: 'Select Photo'
     active_admin:
       comments:
         delete: "Remove"
         created_at: "Created at"
-    about_us:
-      heading_about_us: "About kadro team"
-  contact_us:
-    title: "Contact us"
+
     description: "آمدی جانم به قربانت، حالا چرا؟ دیروز کجا بودی؟"
     call_number: "021 28425220"
     call_title: "شماره تماس"
