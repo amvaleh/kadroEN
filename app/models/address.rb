@@ -26,7 +26,7 @@ class Address < ApplicationRecord
 
   def get_city_name
     if self.longtitude_changed? || self.lattitude_changed?
-      result = NeshanApis::GetAreaAndCityName.call(lat: self.lattitude, long: self.longtitude)
+      result = GoogleApis::GetAreaAndCityName.call(lat: self.lattitude, long: self.longtitude)
       city = City.find_by_name(result.city)
       if !city.present?
         city = City.create(name: result.city)
