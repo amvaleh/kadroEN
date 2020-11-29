@@ -2,50 +2,51 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <h2>درخواست مشاوره</h2>
+        <h2><%= t(:'general.public.sections_contact.section5.title')%></h2>
         <h3 style="text-align: justify;">
-          نیاز به مشاوره داری ؟ درخواست یا سوالت رو ثبت کن تا کارشناس متخصص کادرو باهات تماس بگیره و بهترین پکیج را برایت ثبت کند.</h3>
+        <%= t(:'general.public.sections_contact.section5.subtitle')%>
+        </h3>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col mt-4 text-right">
-      <label for="name">نام</label>
+    <div class="col mt-4 text-left">
+      <label for="name"><%= t(:'general.public.sections_contact.section5.lable1')%> </label>
       <input id="name" type="text" name="name" class="form-control" required>
     </div>
   </div>
-  <div class="row mt-4 text-right">
+  <div class="row mt-4 text-left">
     <div class="col">
-      <label for="phone_number">شماره تماس</label>
+      <label for="phone_number"><%= t(:'general.public.sections_contact.section5.lable2')%></label>
       <input id="phone_number" type="text" name="phone_number" class="form-control" required>
     </div>
   </div>
-  <div class="row mt-4 text-right">
+  <div class="row mt-4 text-left">
     <div class="col">
-      <label for="max_budget">سقف بودجه شما چقدر است ؟ (تومان)</label>
+      <label for="max_budget"><%= t(:'general.public.sections_contact.section5.lable3')%></label>
       <input id="max_budget" type="number" name="max_budget" class="form-control mb-1" required>
     </div>
   </div>
-  <div class="row mt-4 text-right">
+  <div class="row mt-4 text-left">
     <div class="col">
-      <label for="call_time">چه زمانی با شما تماس بگیریم ؟</label>
+      <label for="call_time"><%= t(:'general.public.sections_contact.section5.lable4')%></label>
       <select id="call_time" name="call_time" class="form-control" id="exampleFormControlSelect1">
-        <option value="Morning">۹:۰۰ الی ۱۲:۰۰</option>
-        <option value="Noon">۱۲:۰۰ الی ۱۶:۰۰</option>
-        <option value="Evening">۱۶:۰۰ الی ۲۰:۰۰</option>
+        <option value="Morning"><%= t(:'general.public.sections_contact.section5.time1')%></option>
+        <option value="Noon"><%= t(:'general.public.sections_contact.section5.time2')%></option>
+        <option value="Evening"><%= t(:'general.public.sections_contact.section5.time3')%></option>
       </select>
     </div>
   </div>
 
-  <div class="row mt-4 text-right">
+  <div class="row mt-4 text-left">
     <div class="col">
-      <label for="description">نیازتان را شرح دهید:</label>
-      <textarea id="description" class="form-control" id="description" rows="3" placeholder="من ۴۰ عدد محصول دارم که می خواهم برای فروش آنلاین با زمینه سفید عکاسی کنم."></textarea>
+      <label for="description"><%= t(:'general.public.sections_contact.section5.lable5')%></label>
+      <textarea id="description" class="form-control" id="description" rows="3" placeholder="<%= t(:'general.public.sections_contact.section5.lable6')%>"></textarea>
     </div>
   </div>
   <div class="row mt-4">
     <div class="col">
-      <button class="btn btn-block btn-primary" id="submit_form" type="button" onclick="submit()">ثبت</button>
+      <button class="btn btn-block btn-primary" id="submit_form" type="button" onclick="submit()"><%= t(:'general.public.sections_contact.section5.button')%></button>
     </div>
   </div>
 </div>

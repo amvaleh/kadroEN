@@ -8,19 +8,19 @@
 <% end %>
   <title>
     <%= @shoot_type.w_title %>
-    | کادرو
+    <%=t(:'general.types.seo.title') %>
   </title>
   <meta charset="UTF-8">
-  <meta name="description"
-        content="از
-  <%= @cheapest_package.price%>
-  تومان برای
+  <meta name="description" content=" <%=t(:'general.types.seo.meta_discription.part1') %>
+    <%= @cheapest_package.price%>
+  <%=t(:'general.types.seo.meta_discription.part2') %>
   <%=@cheapest_package.duration%>
-  عکاس
+  <%=t(:'general.types.seo.meta_discription.part3') %>
   <%=@shoot_type.title%>
-  بگیرید. و هر جا که می خواهید عکاسی کنید، انتخاب محل با شماست.">
-  <meta name="keywords" content="قیمت, تعرفه, قیمت عکاسی <%=@shoot_type.title%>, تعرفه عکاسی <%=@shoot_type.title%>, عکاسی <%=@shoot_type.title%> در محل">
-  <meta name="author" content="تیم کادرو">
+  <%=t(:'general.types.seo.meta_discription.part4') %>">
+  <meta name="keywords" content="<%=t(:'general.types.seo.meta_keyword.part1') %> <%=@shoot_type.title%> <%=t(:'general.types.seo.meta_keyword.part2') %> <%=@shoot_type.title%>
+  <%=t(:'general.types.seo.meta_keyword.part3') %><%=@shoot_type.title%> <%=t(:'general.types.seo.meta_keyword.part4') %>">
+  <meta name="author" content="<%=t(:'general.types.seo.meta_author') %>">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
   <%= csrf_meta_tags %>

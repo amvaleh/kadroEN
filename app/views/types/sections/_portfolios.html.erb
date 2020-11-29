@@ -3,11 +3,10 @@
   <div class="container">
     <div class="row pt-1">
       <div class="col-12">
-        <h2 class="text-white"> برخی نمونه کارها </h2>
+        <h2 class="text-white"> <%=t(:'general.types.sections.section3.title') %> </h2>
         <% if @photos.present? and @photos.count > 0 %>
-          <p class="text-center">
-            دوست داری در رتبه بندی عکاسان سهیم باشی؟
-            به نمونه کارها رای بده.
+          <p class="text-center">                                                                                                                        
+            <%=t(:'general.types.sections.section3.subtitle1') %>
           </p>
           <div id="js-grid-lightbox-gallery" class="cbp">
               <% @photos.each do |f| %>
@@ -33,12 +32,11 @@
                       <div class="cbp-l-caption-alignLeft">
                         <div class="cbp-l-caption-body">
                           <div class="cbp-l-caption-title text-right">
-                            نمونه کار عکاسی
+                            <%=t(:'general.types.sections.section3.subtitle2') %>
                             <%=@shoot_type.title%>
                           </div>
                           <div class="cbp-l-caption-desc text-right">
-                            عکس از
-                            عکاس تایید شده کادرو
+                           <%=t(:'general.types.sections.section3.subtitle3') %>
                           </div>
                         </div>
                       </div>
@@ -49,10 +47,9 @@
               </div>
             <% else %>
               <p class="text-center">
-                 قادر به نمایش نمونه کارهای این رشته نیستیم، لطفا
-                برای درخواست مشاوره
-                <%= link_to " در این لینک" , call_request_url %>
-                پیام بگذارید.
+                <%=t(:'general.types.sections.section3.subtitle4') %>
+                <%= link_to t(:'general.types.sections.section3.subtitle5') , call_request_url %>
+               <%=t(:'general.types.sections.section3.subtitle6') %>
               </p>
             <% end %>
 

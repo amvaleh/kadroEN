@@ -2,10 +2,9 @@
   <div class="container">
     <div class="row text-center justify-content-center">
       <div class="col-12">
-        <h2> عکاسان <%=@shoot_type.title %> کادرو </h2>
+        <h2> <%= t(:'general.types.sections.section5.title1-2') %> <%=@shoot_type.title %> <%= t(:'general.types.sections.section5.title1-1') %> </h2>
         <p class="lead text-center">
-          کادرو شما را به بهترین عکاسان منطقه تان وصل می کند تا
-          به انتخاب خود رزرو کنید.
+          <%= t(:'general.types.sections.section5.subtitle1-1') %>
         </p>
       </div>
     </div>
@@ -33,17 +32,16 @@
   <div class="row text-center" id="from_here" style="padding: 3em 0em 0 0;">
     <div class="col-12 m-sm-auto">
       <p class="text-center">
-        با دانستن مکان و زمان عکاسی شما، بهترین گزینه ها را
-        برای عکاسی
+       <%= t(:'general.types.sections.section5.subtitle1-2') %>
         <%=@shoot_type.title %>
-        به شما معرفی میکنیم.
+       <%= t(:'general.types.sections.section5.subtitle1-3') %>
       </p>
       <p class="mt-3 text-center">
         <a class="btn btn-primary btn-lg sl-1" href="<%=book_url%>">
           <i class="fa fa-angle-right"></i>
-          یک عکاس
+        <%= t(:'general.types.sections.section5.button2') %>
         <%=@shoot_type.title %>
-          پیدا کن
+         <%= t(:'general.types.sections.section5.button1') %>
 
         </a>
       </p>
@@ -56,15 +54,16 @@
         <img class="img-fluid" alt=" بهترین عکاسان <%=@shoot_type.title%> در ایران" src="<%=assets_url("/img/irmap.png")%>">
       </div>
       <div class="col-12 col-lg-7 col-xl-7 ml-sm-auto pt-5 pt-lg-0">
-        <h2 class=""> عکاسی
+        <h2 class=""> <%= t(:'general.types.sections.section5.title2-1') %>
           <small><%=@shoot_type.title%></small>
-          در سراسر ایران </h2>
+          <%= t(:'general.types.sections.section5.title2-2') %>
+          </h2>
           <div class="row pt-4 pt-xl-5">
             <% @cities.first(2).each do |city|%>
             <div class="col-12 col-sm-6 col-xl-6">
               <%= link_to "https://pro.#{environment_url}/city/#{city.name}/expertise/#{@shoot_type.title}" ,class: "" do %>
               <h4 class="text-right"><strong> <%=city.name%> </strong></h4>
-              <p class="text-right">   عکاسهای
+              <p class="text-right">   <%= t(:'general.types.sections.section5.subtitle2') %>
                 <strong><%=@shoot_type.title%></strong> در
                 <%=city.name%>
               </p>
@@ -78,7 +77,7 @@
             <div class="col-12 col-sm-6 col-xl-6">
               <%= link_to "https://pro.#{environment_url}/city/#{city.name}/expertise/#{@shoot_type.title}" ,class: "" do %>
               <h4 class="text-right"><strong> <%=city.name%> </strong></h4>
-              <p class="text-right">   عکاسهای
+              <p class="text-right">  <%= t(:'general.types.sections.section5.subtitle2') %>
                 <strong><%=@shoot_type.title%></strong> در
                 <%=city.name%>
               </p>

@@ -11,18 +11,18 @@
         <%= @ph.location.city.name %>
       </p>
       <p class="text-center">
-        فعال در
+         <%=t(:'general.home.section7.lable4')%>
         <%= @ph.expertises.approved.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
-        رشته عکاسی
+        <%=t(:'general.home.section7.lable5')%>
       </p>
       <p class="text-center">
                 <span class="badge badge-light text-primary">
                 <%= @ph.equipment.equip_cameras.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
-                  دوربین
+                  <%=t(:'general.home.section7.lable2')%>
                 </span>
         <span class="badge badge-light text-primary">
                 <%= @ph.equipment.equip_lenzs.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
-          لنز
+         <%=t(:'general.home.section7.lable1')%>
                 </span>
       </p>
       <p class="text-center">
@@ -32,7 +32,7 @@
         <%end %>
       </p>
       <p class="text-center">
-        <%= link_to "مشاهده" , pro_url(@ph.uid,:subdomain=>"pro"), class:"btn btn-outline-primary" %>
+        <%= link_to t(:'general.home.section7.lable3') , pro_url(@ph.uid,:subdomain=>"pro"), class:"btn btn-outline-primary" %>
       </p>
     </div>
   </div>

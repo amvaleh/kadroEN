@@ -2,10 +2,10 @@
 <div class="row text-center">
   <div class="col-12">
     <h2>
-      خدمات بیشتر <%=@shoot_type.title%>
+       <%=t(:'general.types.sections.partners.title') %><%=@shoot_type.title%>
     </h2>
     <p class="text-center">
-      قدرت گرفته از همکاران تجاری کادرو
+       <%=t(:'general.types.sections.partners.subtitle') %>
       </p>
   </div>
 </div>
@@ -24,7 +24,7 @@ box-shadow: 2px 3px 20px 5px rgb(145, 153, 235);">
           <%=partner.service%>
         </p>
         <p class="mt-4">
-          <a class="btn btn-outline-secondary" target="_blank" rel="noreferrer noopener" href="<%=partner_show_url(id: partner.website)%>"> برو به <%=partner.title%> </a>
+          <a class="btn btn-outline-secondary" target="_blank" rel="noreferrer noopener" href="<%=partner_show_url(id: partner.website)%>"> <%=t(:'general.types.sections.partners.subtitle2') %> <%=partner.title%> </a>
         </p>
       </div>
     </div>

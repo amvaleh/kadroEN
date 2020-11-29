@@ -70,23 +70,22 @@
     <div class="row">
       <div class="col text-center">
         <h2>
-          <small>تعرفه قیمت عکاسی</small> <%= @shoot_type.title %>
+          <small> <%=t(:'general.types.sections.section1.title') %></small> <%= @shoot_type.title %>
         </h2>
         <p class=" text-center text-muted mb-0">
-          شروع تعرفه قیمت
-          از
+         <%=t(:'general.types.sections.section1.subtitle1') %>
           <%= number_with_delimiter(@cheapest_package.price, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
-          تومان برای
+          <%=t(:'general.types.sections.section1.subtitle2') %>
           <strong><%= @cheapest_package.duration %></strong>
-          عکاسی حرفه ای است.
+          <%=t(:'general.types.sections.section1.subtitle3') %>
         </p>
       </div>
     </div>
   </div>
 
   <div class="packages">
-      <h4>انتخاب کنید
-          <b> پروژه&zwnj;تون چند ساعت وقت میبره؟ </b>
+      <h4><%=t(:'general.types.sections.section1.subtitle4')%>
+           <!--پروژه&zwnj;--><b><%=t(:'general.types.sections.section1.subtitle5') %></b>
       </h4>
       <div class="selection-bar">
           <%
@@ -97,7 +96,7 @@
               </div>
               <p style="font-size: 100%;">
                 <%=order.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')%>
-                ساعت
+                <%=t(:'general.types.sections.section1.time') %>
               </p>
               <img src="/img/Verify.svg" alt="" class="popular-icon" style="display: none;">
           </div>
@@ -112,22 +111,22 @@
               </h3>
             <div class="items">
                 <div class="item">
-                    <p>میانگین <b><%=number_with_delimiter(p.feature_1.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')%> عکس </b></p>
+                    <p><%=t(:'general.types.sections.section1.item1') %> <b><%=number_with_delimiter(p.feature_1.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')%> عکس </b></p>
                 </div>
                 <div class="item" onclick="show_modal(<%=p.id%>)"><img src="/img/question.svg" alt="" class="icon">
-                    <p style="cursor: pointer;">اطلاعات بیشتر ... </p>
+                    <p style="cursor: pointer;"> <%=t(:'general.types.sections.section1.item3') %> </p>
                 </div>
                 <div class="item">
-                  <p> امکان دانلود فایل
+                  <p> <%=t(:'general.types.sections.section1.item2') %>
                     <b>
                       <%= p.is_full ? "همه عکسها" : "#{p.digitals.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')} عکس"%>
                     </b>
                 </div>
             </div>
             <div class="price">
-                <p><%= number_with_delimiter(p.price, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %> تومان</p>
+                <p><%= number_with_delimiter(p.price, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %> <!--تومان--></p>
                   <a href="https://app.kadro.co/book" class="button">
-                    انتخاب و ادامه
+                    <%=t(:'general.types.sections.section1.button') %>
                   </a>
             </div>
         </div>
@@ -212,15 +211,16 @@
       </div>
       <div class="options bg-blue">
           <div class="item"><img src="" alt="" class="icon">
-              <p>مشاهده <b> همه عکس&zwnj;ها</b></p>
+              <p> <%=t(:'general.types.sections.section1.item5') %> <b> <%=t(:'general.types.sections.section1.item4') %><!--&zwnj;--></b></p>
           </div>
           <div class="item"><img src="" alt="" class="icon">
-              <p>هزینه هر نیم ساعت عکاسی اضافه، <b>
+              <p> <%=t(:'general.types.sections.section1.item6') %><b>
                 <%= number_with_delimiter(@shoot_type.half_hour_extend_cost.to_i, :delimiter => ',').to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
-                 تومان</b> است.</p>
+                <!-- تومان</b> است. -->
+              </p> 
           </div>
           <div class="item"><img src="" alt="" class="icon">
-              <p> قیمت در شهرستان ها ارزان تر است.<b></p>
+              <p> <%=t(:'general.types.sections.section1.item7') %><b></p>
           </div>
       </div>
 
@@ -235,13 +235,13 @@
           <div class="row justify-content-center">
             <div class="col-12 col-xl-8 text-center">
               <h2>
-                قیمت چاپ عکس
+               <%=t(:'general.types.sections.section2.title') %>
               </h2>
               <p class="lead">
-                قیمت های چاپ عکس کادرو در مقایسه با بازار بسیار رقابتی است و شما میتوانید بعد از عکاسی تان به تعداد دلخواه از عکس هایتان سفارش چاپ عکس و شاسی بدهید.
+                <%=t(:'general.types.sections.section2.subtitle') %>
               </p>
               <p class="h3 mt-4">
-                <%= link_to "قیمت چاپ عکس" , print_prices_path , class:"btn btn-dark"%>
+                <%= link_to t(:'general.types.sections.section2.link')  , print_prices_path , class:"btn btn-dark"%>
               </p>
             </div>
           </div>

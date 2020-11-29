@@ -2,17 +2,17 @@
   <div class="container">
     <div class="row text-center justify-content-center">
       <div class="col-md-10 col-lg-8 col-xl-7">
-        <h2> نظر مشتریان </h2>
-        <h3 class="text-center"> آنچه مشتریان قبلی کادرو در خصوص تجربه شان می گویند را بشنوید: </h3>
+        <h2> <%=t(:'general.types.sections.section4.title') %> </h2>
+        <h3 class="text-center"> <%=t(:'general.types.sections.section4.subtitle1') %> </h3>
         <p class="lead text-center">
-          میانگین نمرات عکاسان
+          <%=t(:'general.types.sections.section4.subtitle2') %>
           <%= @shoot_type.title%>
-          از بین <%= @all_feedbacks_count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
-          نظر برابر است با
+          <%=t(:'general.types.sections.section4.subtitle3') %> 
+          <%= @all_feedbacks_count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
+          <%=t(:'general.types.sections.section4.subtitle4') %>
           <%= number_with_precision(@average_rating,precision: 2).to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')%>
 <!--          (9 + (Date.today.day.to_f/100)).to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')-->
-          از
-          ۱۰
+          <%=t(:'general.types.sections.section4.subtitle5') %>
         </p>
       </div>
     </div>
@@ -37,7 +37,7 @@
             <div class="col-8 mx-1">
               <p>
                 <strong> <%=gf.project.photographer.abbrv_name%> </strong><br>
-                <em>عکاس کادرو  </em>
+                <em> <%=t(:'general.types.sections.section4.subtitle6') %> </em>
               </p>
             </div>
           </div>
