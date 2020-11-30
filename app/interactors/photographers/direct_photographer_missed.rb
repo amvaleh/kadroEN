@@ -20,7 +20,7 @@ module Photographers
             در این لحظه به علت کم بودن زمان تقویم کاری شما
             مشتری از رزرو مستقیم شما منصرف گردید
             با مراجعه به لینک زیر جهت افزایش زمان های خالی خود اقدام فرمایید.
-            http://l.kadro.co/#{short_url.unique_key}
+            http://l.kadro.me/#{short_url.unique_key}
             text
             photographer.notification_for_less_free_time = Time.now
             photographer.save

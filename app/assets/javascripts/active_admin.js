@@ -10,7 +10,7 @@
 //= require persian-datepicker.min
 
 $(document).ready(function() {
-    if (((document.URL) == 'https://app.kadro.co/admin/crm') || ((document.URL) == 'http://app.localhost:3000/admin/crm')) {
+    if (((document.URL) == 'https://app.kadro.me/admin/crm') || ((document.URL) == 'http://app.localhost:3000/admin/crm')) {
      $('body.active_admin.logged_in').css('display','flex');
      $('body.active_admin.logged_in').css('padding-left','250px')
     }

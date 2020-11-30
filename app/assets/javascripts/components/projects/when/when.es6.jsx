@@ -542,7 +542,7 @@ class When extends React.Component {
                                         <div className="alert alert-danger" id="noHoursSpan" style={{ display: "none", textAlign: "center" }}>
                                             <p style={{ color: "red",textDecoration: 'none' }}>{this.state.error_messages["available_hours_failure"]}</p>
                                             <div style={{textAlign: 'center', marginTop: '0.8rem'}}>{(mobileDisplay)?(<button className="btn btn-alert btn-large btn-lg =" onClick={()=>{event.preventDefault();window.open("tel:0212842522")}} >
-                                            تماس با ما</button>):(<button className="btn btn-alert btn-large btn-lg =" onClick={()=>{event.preventDefault();window.open("https://www.kadro.co/contact")}} >
+                                            تماس با ما</button>):(<button className="btn btn-alert btn-large btn-lg =" onClick={()=>{event.preventDefault();window.open("https://www.kadro.me/contact")}} >
                                             تماس با ما</button>)}</div>
                                         </div>
                                         <div className="alert alert-danger" id="addressErrorSpan" style={{ display: "none", textAlign: "center"}}>

@@ -86,7 +86,7 @@ class InvoicesController < ApplicationController
     invoice = Invoices::InvoiceSummary.call(user: current_user, invoice_id: params[:invoice_id]).result
     net_price = Invoices::NetPrice.call(invoice_id: params[:invoice_id]).result
     call_back = if Rails.env.production?
-        "https://app.kadro.co/invoices/#{invoice[0].vch_number}/verify_pay?"
+        "https://app.kadro.me/invoices/#{invoice[0].vch_number}/verify_pay?"
       elsif Rails.env.development?
         "http://app.localhost:3000/invoices/#{invoice[0].vch_number}/verify_pay?"
       elsif Rails.env.staging?
@@ -113,7 +113,7 @@ class InvoicesController < ApplicationController
     invoice = Invoices::InvoiceSummary.call(user: current_user, invoice_id: params[:invoice_id]).result
     net_price = Invoices::NetPrice.call(invoice_id: params[:invoice_id]).result
     call_back = if Rails.env.production?
-        "https://app.kadro.co/invoices/#{invoice[0].vch_number}/verify_pay?"
+        "https://app.kadro.me/invoices/#{invoice[0].vch_number}/verify_pay?"
       elsif Rails.env.development?
         "http://app.localhost:3000/invoices/#{invoice[0].vch_number}/verify_pay?"
       elsif Rails.env.staging?
@@ -170,11 +170,11 @@ class InvoicesController < ApplicationController
           short_url = Shortener::ShortenedUrl.generate("/invoice_show?track_code=#{params[:track_code]}")
           SuccessPaymentWorker.perform_async(
             current_user.id,
-            "http://l.kadro.co/#{short_url.unique_key}",
+            "http://l.kadro.me/#{short_url.unique_key}",
             "فاکتور فروش", params[:track_code]
           )
           Invoices::SuccessSms.call(mobile_number: current_user.mobile_number,
-                                    link: "http://l.kadro.co/#{short_url.unique_key}",
+                                    link: "http://l.kadro.me/#{short_url.unique_key}",
                                     track_code: params[:track_code])
           current_user.create_activity :payed_invoice, owner: current_user, recipient: invoice
           gallery = Galleries::GalleryByInvoice.call(invoice: invoice).result

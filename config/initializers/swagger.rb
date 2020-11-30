@@ -8,11 +8,11 @@ end
 Swagger::Docs::Config.base_api_controller = ApiController
 
 Swagger::Docs::Config.register_apis({
-  '1.0' => {
-    controller_base_path: '',
-    api_file_path: 'public/apidocs',
-    base_path: "https:///app.kadro.co",
+  "1.0" => {
+    controller_base_path: "",
+    api_file_path: "public/apidocs",
+    base_path: "https:///app.kadro.me",
     parent_controller: ApiController,
-    clean_directory: true
-  }
+    clean_directory: true,
+  },
 })

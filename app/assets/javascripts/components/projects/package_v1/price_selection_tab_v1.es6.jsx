@@ -107,7 +107,7 @@ class PriceSelectionTabV1 extends React.Component {
 	        return(
 	            <div id="packages" style={{margin: "5% 0 0 0"}}>
                             <div className="ball glowing col-xs-12 col-md-6 col-md-offset-3 btn-lower-prices">
-                            <a id="lower_price" href="https://app.kadro.co/call_request">قیمت کمتر میخواهم</a></div>
+                            <a id="lower_price" href="https://app.kadro.me/call_request">قیمت کمتر میخواهم</a></div>
 	                <h3 style={{marginBottom: "20px"}}>{(headerNumber)+'انتخاب قیمت'}
                   </h3>
 	                <ServicePackagesTab
@@ -142,7 +142,7 @@ class PriceSelectionTabV1 extends React.Component {
 	        return(
 	            <div id="packages" style={{margin: "5% 0 0 0"}}>
                             <div className="ball glowing col-xs-12 col-md-6 col-md-offset-3 btn-lower-prices">
-                            <a id="lower_price" href="https://app.kadro.co/call_request">قیمت کمتر میخواهم</a></div>
+                            <a id="lower_price" href="https://app.kadro.me/call_request">قیمت کمتر میخواهم</a></div>
 	                <h3  style={{marginBottom: "20px"}} >{(headerNumber)+'انتخاب قیمت'}</h3>
 	                <ServicePackagesTab
                         mediumImageLink={this.props.mediumImageLink}

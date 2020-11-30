@@ -10,7 +10,7 @@ namespace :feed_back_tasks do
       user = project.user
       sms_message = <<-text
 #{user.display_name} عزیز خوشحال می شویم اگر نظر شما را در مورد تجربه عکاسی #{project.shoot_type.title} تان را با آقای #{project.photographer.display_name} ، داشته باشیم.
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 با تشکر کادرو
       text
       SmsWorker.perform_async(sms_message, user.mobile_number)

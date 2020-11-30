@@ -91,8 +91,8 @@
                 معرفی این مکان توسط :
               </p>
               <p style="font-size: 15px !important;">
-                <a href="https://pro.kadro.co/<%= @owner_shoot_location_photographer.uid %>">
-                  <img alt="image" class="img-fluid rounded-circle" style="margin-left: 10px;" src="https://locations.kadro.co<%= @owner_shoot_location_photographer.avatar_url(:thumb) %>">
+                <a href="https://pro.kadro.me/<%= @owner_shoot_location_photographer.uid %>">
+                  <img alt="image" class="img-fluid rounded-circle" style="margin-left: 10px;" src="https://locations.kadro.me<%= @owner_shoot_location_photographer.avatar_url(:thumb) %>">
                   <%= @owner_shoot_location_photographer.abbrv_name %>
                 </a></p>
             <% end %>
@@ -142,9 +142,9 @@
       <div class="row text-center justify-content-center">
         <% @suggested_photographers.each do |ph| %>
           <div class="col-6 col-sm-2 m-sm-auto">
-            <img alt="image" class="img-fluid rounded-circle" src="https://app.kadro.co<%= ph.avatar_url(:medium) %>">
+            <img alt="image" class="img-fluid rounded-circle" src="https://app.kadro.me<%= ph.avatar_url(:medium) %>">
             <h3><strong><%= ph.abbrv_name %></strong></h3>
-            <p class="text-center"><a class="btn btn-dark mt-4 mb-5 mb-md-0" href="https://pro.kadro.co/<%= ph.uid %>" style="margin-top: 0px !important;">مشاهده</a></p>
+            <p class="text-center"><a class="btn btn-dark mt-4 mb-5 mb-md-0" href="https://pro.kadro.me/<%= ph.uid %>" style="margin-top: 0px !important;">مشاهده</a></p>
           </div>
         <% end %>
       </div>
@@ -171,7 +171,7 @@
                     "width": 50,
                     "height": 50
                 },
-                infowindow: '<h3 style="font-family: iranyekan-bold;"><%= @shoot_location.title %></h3><p class="text-center" style="font-family: iranyekan-light;"><%= @shoot_location.shoot_location_type.title %></p><%=link_to "رزرو اینجا" , "https://app.kadro.co/book?shoot_location=#{@shoot_location.slug}" ,class: "btn btn-primary",target: "_blank", style: "margin-right: 10px; font-family: iranyekan-bold;" %>'
+                infowindow: '<h3 style="font-family: iranyekan-bold;"><%= @shoot_location.title %></h3><p class="text-center" style="font-family: iranyekan-light;"><%= @shoot_location.shoot_location_type.title %></p><%=link_to "رزرو اینجا" , "https://app.kadro.me/book?shoot_location=#{@shoot_location.slug}" ,class: "btn btn-primary",target: "_blank", style: "margin-right: 10px; font-family: iranyekan-bold;" %>'
             },
             <% end %>
 

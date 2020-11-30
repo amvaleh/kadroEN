@@ -193,7 +193,7 @@ class Photographer < ApplicationRecord
     if Rails.env.development?
       "http://" + self.uid.to_s + ".localhost:3000"
     else
-      "http://#{self.uid.to_s}.kadro.co"
+      "http://#{self.uid.to_s}.kadro.me"
     end
   end
 
@@ -202,7 +202,7 @@ class Photographer < ApplicationRecord
       # self.uid.to_s
       "http://pro.localhost:3000/" + self.uid.to_s
     else
-      "https://pro.kadro.co/" + self.uid.to_s
+      "https://pro.kadro.me/" + self.uid.to_s
     end
   end
 

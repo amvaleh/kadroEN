@@ -9,7 +9,7 @@ module Projects
       short_url = Shortener::ShortenedUrl.generate("/projects/#{project.slug}/project_information")
       sms_message = <<-text
 کادرو: پروژه عکاسی با مشخصات زیر لغو گردید.
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
           text
       res = SmsWorker.perform_async(sms_message, project.photographer.mobile_number)
 

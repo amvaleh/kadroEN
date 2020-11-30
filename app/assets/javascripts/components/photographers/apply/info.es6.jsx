@@ -589,7 +589,7 @@ class Info extends React.Component {
 													/>
 													<label htmlFor="check1">
 													{'من ' 	}
-													<a id="checkout" href="https://kadro.co/terms/" target="_blank">
+													<a id="checkout" href="https://kadro.me/terms/" target="_blank">
 													 شرایط و مقررات 
 													</a>
 													{' کادرو را خوانده و پذیرفته ام.'}

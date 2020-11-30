@@ -178,7 +178,7 @@ class Project < ApplicationRecord
 سفارش عکاسی شما ثبت گردید.
 جزئیات برای عکاس انتخابی تان ارسال شد.
 وضعیت پروژه: در انتظار بررسی عکاس
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 کادرو
               text
               SmsWorker.perform_async(sms_message, project.user.mobile_number)
@@ -238,7 +238,7 @@ http://l.kadro.co/#{short_url.unique_key}
 سفارش عکاسی شما ثبت گردید.
 جزئیات برای عکاس انتخابی تان ارسال شد.
 وضعیت پروژه: در انتظار بررسی عکاس
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 کادرو
             text
             SmsWorker.perform_async(sms_message, project.user.mobile_number)
@@ -322,7 +322,7 @@ http://l.kadro.co/#{short_url.unique_key}
 
           sms_message = <<-text
 #{self.user.display_name} عزیز، عکس های شما حاضر شده است، از طریق لینک زیر می تونید آنها را مشاهده، دانلود و به اشتراک بگذارید:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 با امتیاز دهی به عکاس ما را در افزایش کیفیت خدمات یاری کنید.
           کادرو
           text
@@ -378,7 +378,7 @@ http://l.kadro.co/#{short_url.unique_key}
 
     sms_message = <<-text
     پروژه شما تایید گردید:
-    http://l.kadro.co/#{short_url.unique_key}
+    http://l.kadro.me/#{short_url.unique_key}
     شماره موبایل عکاس:
     #{project.photographer.first_name + " " + project.photographer.last_name + " "}
     #{project.photographer.mobile_number}
@@ -396,7 +396,7 @@ http://l.kadro.co/#{short_url.unique_key}
 
       sms_message = <<-text
 #{self.user.display_name} عزیز، عکس های شما حاضر شده است، از طریق لینک زیر می توانید آنها را مشاهده و دانلود کنید و به اشتراک بگذارید:
-      http://l.kadro.co/#{short_url.unique_key}
+      http://l.kadro.me/#{short_url.unique_key}
 با امتیاز دهی به عکاس  خود، ما را در افزایش کیفیت خدمات یاری کنید.
 - برای امتیاز دهی و آزادسازی مبلغ عکاس در صورت رضایت، از قسمت آلبوم من اقدام فرمایید.
       text

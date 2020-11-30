@@ -1,9 +1,7 @@
 class PhotoUploader < CarrierWave::Uploader::Base
-
-
   CarrierWave.configure do |config|
     if Rails.env.development?
-      config.asset_host = "https://app.kadro.co"
+      config.asset_host = "https://app.kadro.me"
     end
   end
 
@@ -25,13 +23,11 @@ class PhotoUploader < CarrierWave::Uploader::Base
     end
   end
 
-
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
@@ -52,22 +48,21 @@ class PhotoUploader < CarrierWave::Uploader::Base
 
   #
   #
-  version :thumb , from_version: :medium do
+  version :thumb, from_version: :medium do
     process resize_to_fit: [100, 100]
   end
 
-  version :medium , from_version: :large do
+  version :medium, from_version: :large do
     process resize_to_fit: [1080, 1080]
     # process :quality => 50
-    process optimize:[{ quality: 65,quiet: true }]
+    process optimize: [{ quality: 65, quiet: true }]
   end
   #
   #
   version :large do
     process resize_to_fit: [1360, 970]
-    process optimize:[{ quality: 65,quiet: true }]
+    process optimize: [{ quality: 65, quiet: true }]
   end
-
 
   # Create different versions of your uploaded files:
   # version :thumb do

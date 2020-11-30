@@ -627,7 +627,7 @@ class Photographers extends React.Component {
 					              {priceBoxContainer}
 
 				           		  <div className="row submit-photographer-btn-row">
-				           		  		{ item.callable ?<a href={"https://pro.kadro.co/"+(item.uid)+"/call"} target="_blank" className="btn btn-blue more-info-btn call_photographer">تماس با عکاس <span className="fa fa-phone"> </span></a>:<React.Fragment></React.Fragment>}
+				           		  		{ item.callable ?<a href={"https://pro.kadro.me/"+(item.uid)+"/call"} target="_blank" className="btn btn-blue more-info-btn call_photographer">تماس با عکاس <span className="fa fa-phone"> </span></a>:<React.Fragment></React.Fragment>}
 										{/*<button onClick={this.handleClickOnPhotographerMobileButton} mobile_number={item.mobile_number} className="btn btn-blue more-info-btn call_photographer"> تماس با عکاس <span class="fa fa-phone"> </span> </button>*/}
 										<button
 										className={"btn "+( this.state.photographerSelectedId==item.id?'btn-selected':'btn-blue') +" choice"}

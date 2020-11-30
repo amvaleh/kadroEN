@@ -5,7 +5,7 @@
   "provider": {
     "@type": "Brand",
     "name": "عکاسی حرفه ای کادرو",
-    "logo": "https://www.kadro.co/img/logo.png"
+    "logo": "https://www.kadro.me/img/logo.png"
   },
     "offers" : {
     "@type" : "AggregateOffer",

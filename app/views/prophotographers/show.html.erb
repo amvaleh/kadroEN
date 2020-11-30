@@ -92,7 +92,7 @@
                     <% @expertises.order("expertises.order ASC").each_with_index do |ex,index|%>
                       <li style="color:black;">
                         <% if @shoot_location.present? %>
-                          <%= link_to "https://app.kadro.co/book?direct=true&shoot_type=#{ex.shoot_type.id}&photographer=#{@photographer.uid}&has_studio=#{@photographer.has_studio}&studio_lng=#{@shoot_location.address.longtitude}&studio_lat=#{@shoot_location.address.lattitude}",style:"padding: 5px", :rel => 'nofollow' do%>
+                          <%= link_to "https://app.kadro.me/book?direct=true&shoot_type=#{ex.shoot_type.id}&photographer=#{@photographer.uid}&has_studio=#{@photographer.has_studio}&studio_lng=#{@shoot_location.address.longtitude}&studio_lat=#{@shoot_location.address.lattitude}",style:"padding: 5px", :rel => 'nofollow' do%>
                             <div class="row" style="display: flex;
                                 align-items: center;">
                               <div class="col-xs-9">
@@ -105,7 +105,7 @@
                             </div>
                           <% end %>
                         <% else %>
-                          <%= link_to "https://app.kadro.co/book?direct=true&shoot_type=#{ex.shoot_type.id}&photographer=#{@photographer.uid}&has_studio=#{@photographer.has_studio}&studio_lng=#{@photographer.location.working_long}&studio_lat=#{@photographer.location.working_lat}",style:"padding: 5px", :rel => 'nofollow' do%>
+                          <%= link_to "https://app.kadro.me/book?direct=true&shoot_type=#{ex.shoot_type.id}&photographer=#{@photographer.uid}&has_studio=#{@photographer.has_studio}&studio_lng=#{@photographer.location.working_long}&studio_lat=#{@photographer.location.working_lat}",style:"padding: 5px", :rel => 'nofollow' do%>
                             <div class="row" style="display: flex;
                                 align-items: center;">
                               <div class="col-xs-9">
@@ -130,7 +130,7 @@
                 </p>
               </div>
               <div class="col-xs-6">
-                <%= link_to "رزرو خودکار" , "https://app.kadro.co/book",class:"btn btn-white-outline text-white btn-xs btn-block"
+                <%= link_to "رزرو خودکار" , "https://app.kadro.me/book",class:"btn btn-white-outline text-white btn-xs btn-block"
                 %>
                 <p class="text-center" style="font-size: 11px;
                     color: white;margin:0px">
@@ -148,7 +148,7 @@
                 </h2>
               </div>
               <div class="col-xs-6">
-                <%= link_to "ثبت درخواست مشاوره" , "https://app.kadro.co/call_request",class:"btn btn-blue text-white btn-xs btn-block"
+                <%= link_to "ثبت درخواست مشاوره" , "https://app.kadro.me/call_request",class:"btn btn-blue text-white btn-xs btn-block"
                 %>
                 </div>
               <% end %>
@@ -633,7 +633,7 @@
                 "lat": <%=@photographer.location.working_lat%>,
                 "lng": <%=@photographer.location.working_long%>,
                 "picture": {
-                    "url": "https://www.kadro.co/kadroMapMarker.png",
+                    "url": "https://www.kadro.me/kadroMapMarker.png",
                     "width": 50,
                     "height": 50
                 },
@@ -645,7 +645,7 @@
                 "lat": <%= @shoot_location.address.lattitude %>,
                 "lng": <%= @shoot_location.address.longtitude %>,
                 "picture": {
-                    "url": "https://app.kadro.co/img/studio-logo.png",
+                    "url": "https://app.kadro.me/img/studio-logo.png",
                     "width": 50,
                     "height": 50
                 },

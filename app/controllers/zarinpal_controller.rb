@@ -5,7 +5,7 @@ class ZarinpalController < ActionController::Base
     mobile_number = params[:mobile_number]
     project = Project.friendly.find(params[:project_id])
     if Rails.env.production?
-      call_back = "https://app.kadro.co/zarinpal/verify"
+      call_back = "https://app.kadro.me/zarinpal/verify"
     elsif Rails.env.development?
       call_back = "http://app.localhost:3000/"
     elsif Rails.env.staging?
@@ -92,7 +92,7 @@ class ZarinpalController < ActionController::Base
 #             end
 #           else
 #             if Rails.env.production?
-#               redirect_to "https://app.kadro.co/zarinpal/"
+#               redirect_to "https://app.kadro.me/zarinpal/"
 #             else
 #               redirect_to "http://app.localhost:3000/zarinpal/"
 #             end
@@ -111,7 +111,7 @@ class ZarinpalController < ActionController::Base
 #         redirect_to thank_you_project_path(@project), :alert => "کد پیگیری: #{ref_id}"
 #       end
 #       if Rails.env.production?
-#         redirect_to "https://app.kadro.co/zarinpal/"
+#         redirect_to "https://app.kadro.me/zarinpal/"
 #       else
 #         redirect_to "http://app.localhost:3000/zarinpal/"
 #       end
@@ -125,7 +125,7 @@ class ZarinpalController < ActionController::Base
     mobile_number = params[:mobile_number]
     project = Project.friendly.find(params[:project_id])
     if Rails.env.production?
-      call_back = "https://app.kadro.co/extrahour_zarinpal/verify"
+      call_back = "https://app.kadro.me/extrahour_zarinpal/verify"
     elsif Rails.env.development?
       call_back = "http://app.localhost:3000/"
     elsif Rails.env.staging?
@@ -211,7 +211,7 @@ class ZarinpalController < ActionController::Base
       end
     else
       if Rails.env.production?
-        redirect_to "https://app.kadro.co/zarinpal/"
+        redirect_to "https://app.kadro.me/zarinpal/"
       elsif Rails.env.development?
         redirect_to "http://app.localhost:3000/zarinpal/"
       elsif Rails.env.staging?

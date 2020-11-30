@@ -4,7 +4,7 @@ ActiveAdmin.register Photographer do
   #
 
   menu parent: "Photographer", priority: 0
-  permit_params :uid, :join_step_id, :email, :first_name, :last_name, :avatar, :location_id, :ideal_hours, :mobile_number, :approved, :static_number, :instagram, :linkedin, :rejected, :bank_account_id, :business_id, :password, :password_confirmation, :twitter, :qrate, :arate, :checked, :admin_user, :interview_date, :promissory, :contract, :has_studio, :callable, :grade_id, :internal_number, :gender , :auto_book
+  permit_params :uid, :join_step_id, :email, :first_name, :last_name, :avatar, :location_id, :ideal_hours, :mobile_number, :approved, :static_number, :instagram, :linkedin, :rejected, :bank_account_id, :business_id, :password, :password_confirmation, :twitter, :qrate, :arate, :checked, :admin_user, :interview_date, :promissory, :contract, :has_studio, :callable, :grade_id, :internal_number, :gender, :auto_book
   #
   # or
   #
@@ -89,8 +89,8 @@ ActiveAdmin.register Photographer do
     column ("Join Step") { |p| p.join_step.name if p.join_step.present? }
     column ("City") { |p| p.location.city.name if p.location.present? and p.location.city.present? }
     column ("Area") { |p| p.location.area_name if p.location.present? }
-    column ("pro link") { |p| "https://pro.kadro.co/#{p.uid}" if p.uid.present? }
-    column ("admin link") { |p| "https://app.kadro.co/admin/photographers/#{p.slug}" }
+    column ("pro link") { |p| "https://pro.kadro.me/#{p.uid}" if p.uid.present? }
+    column ("admin link") { |p| "https://app.kadro.me/admin/photographers/#{p.slug}" }
     column ("bank name") { |p| p.bank_account.bank_name if p.bank_account.present? }
     column ("bank shaba") { |p| p.bank_account.shaba if p.bank_account.present? }
     column ("bank card") { |p| p.bank_account.card_number if p.bank_account.present? }

@@ -33,7 +33,7 @@ class Gallery < ApplicationRecord
     unless self.shortened_url.present?
       set_shortened_url
     end
-    "http://l.kadro.co/#{self.shortened_url.unique_key}"
+    "http://l.kadro.me/#{self.shortened_url.unique_key}"
   end
 
   def log_activity

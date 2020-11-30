@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="top-right">
-            <img src="<%= Rails.env.development? ? "http://185.53.143.141:3005/img/logo.png" : "https://app.kadro.co/img/logo.png"%>" style="width: 40%">
+            <img src="<%= Rails.env.development? ? "http://185.53.143.141:3005/img/logo.png" : "https://app.kadro.me/img/logo.png"%>" style="width: 40%">
           </div>
         </div>
         <div class="col-md-6">
@@ -59,7 +59,7 @@
               <tr>
                 <td style="vertical-align: inherit; padding: 10px"><%= index + 1 %> </td>
                 <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= ItemType.find_by(category: cart_item.category).title + " " + cart_item.title %></td>
-                <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= image_tag (Rails.env.development? ? "http://185.53.143.141:3005/" : "https://app.kadro.co/") + cart_item.frame.file_url(:light), :width => 100 %></td>
+                <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= image_tag (Rails.env.development? ? "http://185.53.143.141:3005/" : "https://app.kadro.me/") + cart_item.frame.file_url(:light), :width => 100 %></td>
                 <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= link_to cart_item.frame.gallery.project.user.display_name, gallery_path(cart_item.frame.gallery.slug) %></td>
                 <td style="vertical-align: inherit; padding: 10px" class="text-center"><%= cart_item.frame.id %></td>
                 <td style="vertical-align: inherit; padding: 10px" class="text-center" style="text-align: center"> <%= cart_item.quantity.to_s.tr('0123456789', '۰۱۲۳۴۵۶۷۸۹') %> </td>

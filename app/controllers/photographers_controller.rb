@@ -155,7 +155,7 @@ class PhotographersController < ApplicationController
 
         # debugger
         if Rails.env.production?
-          @kadro = "https://app.kadro.co"
+          @kadro = "https://app.kadro.me"
         elsif Rails.env.development?
           @kadro = "http://app.localhost:3000"
         elsif Rails.env.staging?

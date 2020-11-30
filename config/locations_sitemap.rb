@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "https://locations.kadro.co"
+SitemapGenerator::Sitemap.default_host = "https://locations.kadro.me"
 SitemapGenerator::Sitemap.sitemaps_path = "sitemaps/locations"
 SitemapGenerator::Sitemap.create do
   # add '/contact_us'

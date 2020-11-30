@@ -298,7 +298,7 @@ class Details extends React.Component {
 												checked={this.state.checkOneSelected}
             									onChange={this.handleCheckOneSelectedChange}
             									/>
-												<label htmlFor="check1"> من <a href="https://kadro.co/terms/" target="_blank">"شرایط و مقررات"</a> کادرو را می پذیرم.</label>
+												<label htmlFor="check1"> من <a href="https://kadro.me/terms/" target="_blank">"شرایط و مقررات"</a> کادرو را می پذیرم.</label>
 											</div>
 											{/*<div className="checkbox-control">
 												<input

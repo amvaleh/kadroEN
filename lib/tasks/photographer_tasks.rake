@@ -57,7 +57,7 @@ namespace :photographer_tasks do
         sms_message = <<-text
   #{photographer.first_name} عزیز.
   کمتر از یک ساعت تا پروژه #{project.user.full_name} زمان مانده است، برای تولید محتوای تبلیغی جذاب یک ویدئو کوتاه مانند لینک زیر تهیه کنید و در واتس اپ برای ما بفرستید.
-  https://kadro.co/ts
+  https://kadro.me/ts
         text
         puts sms_message
         SmsWorker.perform_async(sms_message, photographer.mobile_number)
@@ -133,7 +133,7 @@ task update_your_calendar_reminder: :environment do
       sms_message = <<-text
 #{ph.display_name} عزیز.
 تقویم شما زمان کافی برای رزرو ندارد، جهت ثبت زمانهای بیشتر:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 دوستدار شما، کادرو
       text
     else
@@ -141,7 +141,7 @@ http://l.kadro.co/#{short_url.unique_key}
 #{ph.display_name} عزیز.
 تقویم جاری شما #{available_hours} ساعت زمان خالی در #{count} روز هفته دارد.
 جهت به روز ماندن تقویم خود:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 دوستدار شما، کادرو
       text
     end

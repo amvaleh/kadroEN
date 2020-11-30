@@ -502,7 +502,7 @@ class GalleriesController < ApplicationController
             give_permission = `chmod -R a+rwx public/uploads/frames/zip/gallery/#{@gallery.slug}`
 
             if Rails.env.production?
-              base = "https://app.kadro.co/"
+              base = "https://app.kadro.me/"
             elsif Rails.env.development?
               base = "http://app.localhost:3000/"
             elsif Rails.env.staging?
@@ -529,7 +529,7 @@ class GalleriesController < ApplicationController
           sms_message = <<-text
 کادرویی عزیز،
 لینک دانلود فایل فشرده عکس ها که خواسته بودید:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 بعد از یک هفته لینک منقضی خواهد شد
 تیم کادرو
           text

@@ -33,7 +33,7 @@
                         انتخاب کارفرما:
                         </span>
                         <% if project.photographer.present? %>
-                          <%= link_to project.photographer.abbrv_name, "https://pro.kadro.co/#{project.photographer.uid}" if project.photographer_id.present? %>
+                          <%= link_to project.photographer.abbrv_name, "https://pro.kadro.me/#{project.photographer.uid}" if project.photographer_id.present? %>
                         <% end %>
                       </h4>
                     </div>
@@ -81,7 +81,7 @@
                     <% end %>
                   </div>
                   <% if project.photographer.present? %>
-                    <%= link_to "مشاهده پروفایل", "https://pro.kadro.co/#{project.photographer.uid}", class: 'portfolio-example btn btn-xs btn-blue', target: '_blank' %>
+                    <%= link_to "مشاهده پروفایل", "https://pro.kadro.me/#{project.photographer.uid}", class: 'portfolio-example btn btn-xs btn-blue', target: '_blank' %>
                   <% end %>
                 </div>
               </div>
@@ -149,7 +149,7 @@
                     <% end %>
                   </div>
 
-                  <%= link_to "مشاهده پروفایل", "https://pro.kadro.co/#{photographer.uid}", class: 'portfolio-example btn btn-xs btn-primary', target: '_blank' %>
+                  <%= link_to "مشاهده پروفایل", "https://pro.kadro.me/#{photographer.uid}", class: 'portfolio-example btn btn-xs btn-primary', target: '_blank' %>
 
                   <p class="price-box-mobile" style="font-size: small; margin-top: 10px"><i class="fa fa-taxi"></i>
                     هزینه رفت و آمد:

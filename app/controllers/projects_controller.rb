@@ -424,7 +424,7 @@ class ProjectsController < ApplicationController
 #{@project.user.display_name} عزیز، سلام،
 ما یک سفارش عکاسی ناتمام با #{@project.photographer.abbrv_name} از شما دریافت کردیم،
 نگران نباشید، اطلاعات شما ذخیره شده است تا نیاز نباشد مجدد وارد کنید، فقط کافیست لینک زیر را لمس کنید و سفارش خود را تکمیل کنید:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 تماس با ما:
 02128425220
 اینستاگرام ما:
@@ -452,7 +452,7 @@ http://bit.ly/2JpM8yZ
     sms_message = <<-text
 کادرو: #{@project.user.display_name} گرامی، با سلام،
 جهت ثبت و تایید نهایی پروژه عکاسی خود، از طریق لینک زیر اقدام فرمایید.
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 پرداخت وجه به معنای قبول قوانین کادرو است.
 با سپاس
     text

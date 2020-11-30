@@ -71,7 +71,7 @@ namespace :user_tasks do
 #{project.user.display_name} عزیز،
 زمان عکاسی شما از ساعت #{project.start_time.strftime("%H:%M")} شروع شده است و به مدت #{project.package.duration} ادامه خواهد داشت.
 در صورت تمایل به تمدید از طریق لینک زیر اقدام فرمایید.
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 با احترام
 کادرو
         text
@@ -94,7 +94,7 @@ http://l.kadro.co/#{short_url.unique_key}
           sms_message = <<-text
 سلام #{project.user.display_name} عزیز،
 عکس های شما در گالری خصوصی تان قرار گرفته است، از طریق لینک زیر می توانید نسبت به دانلود، اشتراک گذاری و سفارش چاپ عکس اقدام فرمایید.
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 با احترام
           text
           puts "send sms for project #{project.id}"
@@ -135,7 +135,7 @@ http://l.kadro.co/#{short_url.unique_key}
 هدیه کادرو به شما کد تخفیف #{value_coupon} درصدی می باشد.
 کد تخفیف : #{code}
 برای رزرو عکاس بزن رو لینک پایین:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 مهلت استفاده #{user.birthday_date.to_pdate.strftime("%e")} #{user.birthday_date.to_pdate.strftime("%b")} ماه
 کادرو
         SMS

@@ -60,7 +60,7 @@
                   </h5></li>
                   <% expertises.order("expertises.order ASC").each_with_index do |ex,index|%>
                   <li style="color:black;">
-                    <%= link_to "https://app.kadro.co/book?direct=true&shoot_type=#{ex.shoot_type.id}&photographer=#{@photographer.uid}",style:"padding: 5px", :rel => 'nofollow' do%>
+                    <%= link_to "https://app.kadro.me/book?direct=true&shoot_type=#{ex.shoot_type.id}&photographer=#{@photographer.uid}",style:"padding: 5px", :rel => 'nofollow' do%>
                     <div class="row" style="display: flex;
                     align-items: center;">
                     <div class="col-xs-9">
@@ -89,7 +89,7 @@
           </h4>
         </div>
         <div class="col-xs-6 ">
-          <%=  link_to "رزرو با پیشنهاد کادرو" , "https://app.kadro.co/book",class:"btn btn-blue btn-xs btn-block"%>
+          <%=  link_to "رزرو با پیشنهاد کادرو" , "https://app.kadro.me/book",class:"btn btn-blue btn-xs btn-block"%>
           <p class="text-left" style="font-size: 12px;
           color: gray;margin:0px">
           اجازه دهید کادرو به شما پیشنهاد دهد.
@@ -157,7 +157,7 @@
       <%else%>
       <h3 class="alert alert-warning text-center">
         متاسفانه امکان تماس تلفنی پیش از پروژه با این عکاس فعال نیست!
-        <%= link_to "تماس با ما", "https://www.kadro.co/contact",class: "btn btn-default"%>
+        <%= link_to "تماس با ما", "https://www.kadro.me/contact",class: "btn btn-default"%>
       </h3>
       <% end %>
       <%= link_to  pro_url(@photographer.uid) ,class: "btn btn-default pull-left" do %>

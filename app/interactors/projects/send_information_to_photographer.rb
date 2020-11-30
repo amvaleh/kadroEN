@@ -15,7 +15,7 @@ module Projects
       else
         sms_message = <<-text
 کادرو: پروژه جدید. لینک:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 تاریخ پروژه:
 #{project.start_time.to_date.to_pdate.to_s.tr('-', '/')} #{project.start_time.strftime("ساعت %H:%M")}
 فقط با هماهنگی و رضایت کارفرما می توانید زمان پروژه را تغییر دهید.

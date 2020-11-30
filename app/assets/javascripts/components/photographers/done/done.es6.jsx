@@ -40,7 +40,7 @@ class Done extends React.Component {
 	            						</p>
 							            <h3 className="text-center">
 							              {'صفحه شما: '}
-							              <a href={'http://'+(this.props.uid)+'.kadro.co'}>{(this.props.uid)+'.kadro.co'}</a>
+							              <a href={'http://'+(this.props.uid)+'.kadro.me'}>{(this.props.uid)+'.kadro.me'}</a>
 							              
 							            </h3>
 							            <div className="text-center">
@@ -52,7 +52,7 @@ class Done extends React.Component {
 											
 											<br />
 											<br />
-											<a className="btn btn-default" href="https://www.instagram.com/kadro.college/">
+											<a className="btn btn-default" href="https://www.instagram.com/kadro.mellege/">
 												<img title="kadro college" src="/logo_college.png" style={{width:'60px'}} />
                                                 پیج اینستاگرام کادرو کالج
 											</a>

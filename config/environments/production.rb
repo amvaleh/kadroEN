@@ -1,6 +1,6 @@
 Rails.application.configure do
   ENV["BLAZER_USERNAME"] = "kadro"
-  ENV["BLAZER_PASSWORD"] = "09027993049Kadro.co"
+  ENV["BLAZER_PASSWORD"] = "09027993049kadro.me"
   ENV["BLAZER_DATABASE_URL"] = "postgres://postgres:12345678@localhost:5432/kadro_db"
   config.time_zone = 'Tehran'
   config.active_record.default_timezone = :utc
@@ -31,7 +31,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-  config.action_mailer.default_url_options = { host: 'app.kadro.co'}
+  config.action_mailer.default_url_options = { host: 'app.kadro.me'}
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -92,7 +92,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: "app.kadro.co" }
+  config.action_mailer.default_url_options = { host: "app.kadro.me" }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
 

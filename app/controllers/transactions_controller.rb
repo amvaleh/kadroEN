@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
     transaction = Transactions::TransactionCreate.call(data: { email: email, description: description, amount: amount, afterwards_url: afterwards_url, mobile_number: mobile_number, slug: random_token })
     if payment_gateway == "zarinpal"
       call_back = if Rails.env.production?
-          "https://app.kadro.co/transactions/do_verify"
+          "https://app.kadro.me/transactions/do_verify"
         elsif Rails.env.development?
           "http://app.localhost:3000/transactions/do_verify"
         elsif Rails.env.staging?
@@ -77,7 +77,7 @@ class TransactionsController < ApplicationController
       end
     elsif payment_gateway == "jibit.ir"
       call_back = if Rails.env.production?
-          "https://app.kadro.co/transactions/do_verify"
+          "https://app.kadro.me/transactions/do_verify"
         elsif Rails.env.development?
           "http://app.localhost:3000/transactions/do_verify"
         elsif Rails.env.staging?

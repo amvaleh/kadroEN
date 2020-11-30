@@ -55,11 +55,11 @@
                   "lat": <%=p.location.working_lat%>,
                   "lng": <%=p.location.working_long%>,
                   "picture": {
-                      "url": "https://kadro.co/wp-content/uploads/photographerActive.png",
+                      "url": "https://kadro.me/wp-content/uploads/photographerActive.png",
                       "width": 50,
                       "height": 50
                   },
-                  infowindow: '<%=link_to p.display_name , admin_photographer_path(p),target: "_blank" %> - <%=link_to "page" , "http://#{p.uid}.kadro.co",:target=>"_blank"%>'
+                  infowindow: '<%=link_to p.display_name , admin_photographer_path(p),target: "_blank" %> - <%=link_to "page" , "http://#{p.uid}.kadro.me",:target=>"_blank"%>'
               },
               <% end %>
               <% end %>
@@ -69,7 +69,7 @@
                   "lat": <%=p.location.working_lat%>,
                   "lng": <%=p.location.working_long%>,
                   "picture": {
-                      "url": "https://kadro.co/wp-content/uploads/photographerMarker.png",
+                      "url": "https://kadro.me/wp-content/uploads/photographerMarker.png",
                       "width": 50,
                       "height": 50
                   },

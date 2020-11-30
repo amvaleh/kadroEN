@@ -2,7 +2,7 @@
 lock "3.12.1"
 
 set :application, "reserveKadro"
-# set :repo_url, "http://git.kadro.co/amvaleh/kadro.git"
+# set :repo_url, "http://git.kadro.me/amvaleh/kadro.git"
 
 set :repo_url, 'http://amvaleh:12345678@localhost:3000/amvaleh/kadro.git'
 # Default branch is :master

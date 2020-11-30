@@ -98,7 +98,7 @@ module ApplicationHelper
 
   def environment_url
     if Rails.env.production?
-      return "kadro.co"
+      return "kadro.me"
     else
       return "localhost:3000"
     end
@@ -106,7 +106,7 @@ module ApplicationHelper
 
   def like_url
     if Rails.env.production?
-      return "https://app.kadro.co/selectable_images/like"
+      return "https://app.kadro.me/selectable_images/like"
     elsif Rails.env.development?
       return "http://app.localhost:3000/selectable_images/like"
     elsif Rails.env.staging?
@@ -116,7 +116,7 @@ module ApplicationHelper
 
   def second_environment_url
     if Rails.env.production?
-      return "app.kadro.co"
+      return "app.kadro.me"
     elsif Rails.env.development?
       return "app.localhost:3000"
     elsif Rails.env.staging?

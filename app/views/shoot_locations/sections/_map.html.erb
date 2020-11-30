@@ -63,7 +63,7 @@
                     "width": 50,
                     "height": 50
                 },
-                infowindow: '<h3 style="font-family: iranyekan-bold;"><%= sh.title %></h3><p class="text-center" style="font-family: iranyekan-light;"><%= sh.shoot_location_type.title %></p><%=link_to "مشاهده" , shoot_location_show_path(sh.slug),class: "btn btn-primary",target: "_blank",style: "font-family: iranyekan-bold;"  %><%=link_to "رزرو اینجا" , "https://app.kadro.co/book?shoot_location=#{sh.slug}",class: "btn btn-primary",target: "_blank", style: "margin-right: 10px; font-family: iranyekan-bold;" %>'
+                infowindow: '<h3 style="font-family: iranyekan-bold;"><%= sh.title %></h3><p class="text-center" style="font-family: iranyekan-light;"><%= sh.shoot_location_type.title %></p><%=link_to "مشاهده" , shoot_location_show_path(sh.slug),class: "btn btn-primary",target: "_blank",style: "font-family: iranyekan-bold;"  %><%=link_to "رزرو اینجا" , "https://app.kadro.me/book?shoot_location=#{sh.slug}",class: "btn btn-primary",target: "_blank", style: "margin-right: 10px; font-family: iranyekan-bold;" %>'
             },
             <% end %>
             <% end %>

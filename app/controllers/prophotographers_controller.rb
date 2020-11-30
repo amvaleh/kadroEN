@@ -226,7 +226,7 @@ class ProphotographersController < ApplicationController
 
   def base_url
     if Rails.env.production?
-      @base_url = "https://pro.kadro.co/"
+      @base_url = "https://pro.kadro.me/"
     else
       @base_url = "http://pro.localhost:3000/"
     end

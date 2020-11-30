@@ -370,14 +370,14 @@ class SocialInfos extends React.Component {
 												<small className="pull-left" >
 												به عنوان مثال:
 													<span style={{fontSize: '15px'}}>
-													<a target="blank" href="http://sample.kadro.co/">sample.kadro.co</a>
-													{/*<%=link_to "sample.kadro.co","http://sample.kadro.co/" , target: :blank %>*/}
+													<a target="blank" href="http://sample.kadro.me/">sample.kadro.me</a>
+													{/*<%=link_to "sample.kadro.me","http://sample.kadro.me/" , target: :blank %>*/}
 													</span>
 												</small>
 
 											</h5>
 											<div className="input-group" style={{marginTop: '4%'}}>
-												<span className="input-group-addon" style={{fontSize:'20px'}} > kadro.co. </span>
+												<span className="input-group-addon" style={{fontSize:'20px'}} > kadro.me. </span>
 												{/*<%= f.text_field "uid" , class: "form-control text-center ltr mytextbox" , 'required' => "",  'aria-describedby'=> "uid" ,placeholder: "فقط یک نام یکتا وارد کنید" %>*/}
 												<input className="form-control text-center ltr mytextbox"
 												 id="uid" aria-describedby="uid" placeholder="فقط یک نام یکتا وارد کنید"  type="text"

@@ -38,7 +38,7 @@ task ph_project_reminder_1_hour_before_start_time: :environment do
       sms_message = <<-text
 یادآوری پروژه عکاسی #{project.shoot_type.title}، #{project.start_time.strftime("ساعت %H:%M")}
 اطلاعات پروژه:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
       text
       puts sms_message
       SmsWorker.perform_async(sms_message, photographer.mobile_number)
@@ -65,7 +65,7 @@ task user_reminder_to_rate: :environment do
           #{project.user.display_name} عزیز،
           از اینکه به ما اعتماد کردید، سپاس گزاریم.
           لطفا از طریق لینک زیر نسبت به آزاد سازی مبلغ عکاسی برای پرداخت به عکاس #{project.photographer.display_name} اقدام کنید و نیز نظر خود را درباره عملکرد ایشان ثبت کنید.
-          http://l.kadro.co/#{short_url.unique_key}
+          http://l.kadro.me/#{short_url.unique_key}
           با احترام
           text
         elsif project.feed_back.nil?
@@ -73,7 +73,7 @@ task user_reminder_to_rate: :environment do
           #{project.user.display_name} عزیز،
           از اینکه به ما اعتماد کردید، سپاس گزاریم.
           لطفا از طریق لینک زیر نظر خود را درباره عملکرد عکاس #{project.photographer.display_name} ثبت کنید.
-          http://l.kadro.co/#{short_url.unique_key}
+          http://l.kadro.me/#{short_url.unique_key}
           با احترام
           text
         elsif project.reserve_step.name == "qualified" or project.reserve_step.name == "downloaded"
@@ -86,7 +86,7 @@ task user_reminder_to_rate: :environment do
           #{project.user.display_name} عزیز،
           از اینکه به ما اعتماد کردید، سپاس گزاریم.
           لطفا از طریق لینک زیر نسبت به آزاد سازی مبلغ عکاسی برای پرداخت به عکاس #{project.photographer.display_name} اقدام کنید.
-          http://l.kadro.co/#{short_url.unique_key}
+          http://l.kadro.me/#{short_url.unique_key}
           با احترام
           text
         end
@@ -159,7 +159,7 @@ task do_you_wanna_extend: :environment do
 #{p.user.display_name} عزیز،
 کمتر از ۳۰ دقیقه تا پایان زمان عکاسی شما باقی مانده است.
 در صورت تمایل به ادامه دادن عکاسی می توانید از طریق لینک زیر پروژه خود را تمدید کنید:
-http://l.kadro.co/#{short_url.unique_key}
+http://l.kadro.me/#{short_url.unique_key}
 با احترام
 text
       puts sms_message
@@ -305,7 +305,7 @@ namespace :general_tasks do
       short_url = Shortener::ShortenedUrl.generate("/galleries/#{gallery.slug}/permission")
       sms_message = <<-text
       #{gallery.project.user.display_name} عزیز، با سلام، عکاس شما #{gallery.project.photographer.last_name} درخواست اجازه برای استفاده از #{count} عکس به عنوان نمونه کار را برای شما قرارداده است. در صورتیکه مایل هستید به او اجازه دهید از طریق این لینک دسترسی را تعیین کنید:
-      http://l.kadro.co/#{short_url.unique_key}
+      http://l.kadro.me/#{short_url.unique_key}
       با احترام
       کادرو
       text

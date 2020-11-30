@@ -1,11 +1,9 @@
 class BookController < ApplicationController
-
   before_action :authenticate_user!
 
-  layout 'book'
+  layout "book"
 
   def show
-
     if params[:direct]
       @studio_lat = params[:studio_lat]
       @studio_lng = params[:studio_lng]
@@ -25,7 +23,7 @@ class BookController < ApplicationController
     end
     @kadro = ""
     if Rails.env.production?
-      @kadro = "https://app.kadro.co"
+      @kadro = "https://app.kadro.me"
     elsif Rails.env.development?
       @kadro = "http://app.localhost:3000"
     elsif Rails.env.staging?

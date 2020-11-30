@@ -1,6 +1,6 @@
 class ShootLocationsController < ApplicationController
   before_action :set_url
-  layout 'shoot_location'
+  layout "shoot_location"
 
   def index
     @shoot_locations = ShootLocation.where(approved: true).not_studio
@@ -9,7 +9,7 @@ class ShootLocationsController < ApplicationController
 
   def show
     @shoot_location = ShootLocation.find_by(slug: params[:id])
-    @shoot_type_locations = ShootTypeLocation.joins(:shoot_location).where(:shoot_locations=>{slug: params[:id]})
+    @shoot_type_locations = ShootTypeLocation.joins(:shoot_location).where(:shoot_locations => { slug: params[:id] })
     @owner_shoot_location_photographer = @shoot_location.photographer
     if @shoot_location.photographer.present? && @shoot_location.is_studio
       @suggested_photographers = Photographer.where(:id => @shoot_location.photographer.id)
@@ -21,14 +21,14 @@ class ShootLocationsController < ApplicationController
   end
 
   def shoot_type_filter
-    @shoot_locations = ShootLocation.joins(:shoot_type_locations => :shoot_type).where(:shoot_types => {title: params[:shoot_type]}, approved: true )
+    @shoot_locations = ShootLocation.joins(:shoot_type_locations => :shoot_type).where(:shoot_types => { title: params[:shoot_type] }, approved: true)
     @shoot_types = ShootTypes::SelectShootTypesHaveShootLocation.call().shoot_types - ShootType.where(title: params[:shoot_type])
     @shoot_type = ShootType.find_by(title: params[:shoot_type])
-    @title =  @shoot_locations.count.to_s + " مکان عکاسی برتر " + " برای عکاسی " + @shoot_type.title
+    @title = @shoot_locations.count.to_s + " مکان عکاسی برتر " + " برای عکاسی " + @shoot_type.title
   end
 
   def shoot_location_type
-    @shoot_locations = ShootLocation.joins(:shoot_location_type).where(:shoot_location_types => {title: params[:id]})
+    @shoot_locations = ShootLocation.joins(:shoot_location_type).where(:shoot_location_types => { title: params[:id] })
 
     @shoot_location_type = ShootLocationType.find_by(title: params[:id])
     # @shoot_locations = ShootLocation.joins(:shoot_type_locations => :shoot_type).where(:shoot_types => {title: params[:shoot_type]}, approved: true )
@@ -41,12 +41,11 @@ class ShootLocationsController < ApplicationController
 
   def set_url
     if Rails.env.production?
-      @base_url = "https://app.kadro.co/"
-      @sub_url = "https://locations.kadro.co/"
+      @base_url = "https://app.kadro.me/"
+      @sub_url = "https://locations.kadro.me/"
     elsif Rails.env.development?
       @base_url = "http://app.localhost:3000/"
       @sub_url = "http://locations.localhost:3000/"
     end
   end
-
 end

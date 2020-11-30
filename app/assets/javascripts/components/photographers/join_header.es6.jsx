@@ -15,7 +15,7 @@ class JoinHeader extends React.Component {
 					<nav className="nav">
 						<div className="container">
 							<div className="wrap">
-								<a href="https://kadro.co" title="" className="logo" target="_blank">
+								<a href="https://kadro.me" title="" className="logo" target="_blank">
 									<img src="/img/logo.png" alt="title" />
 								</a>
 								<div className="btn-group">
@@ -41,7 +41,7 @@ class JoinHeader extends React.Component {
 					<nav className="nav">
 						<div className="container">
 							<div className="wrap">
-								<a href="https://kadro.co" title="" className="logo" target="_blank">
+								<a href="https://kadro.me" title="" className="logo" target="_blank">
 									<img src="/img/logo.png" alt="title" />
 								</a>
 								<div className="btn-group">

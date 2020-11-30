@@ -456,7 +456,7 @@
         onlocationnotfound: function(locationName) {},
         oninitialized: function (component) {},
         // must be undefined to use the default gMaps marker
-        markerIcon: "https://www.kadro.co/kadroMapMarker.png",
+        markerIcon: "https://www.kadro.me/kadroMapMarker.png",
         markerDraggable: true,
         markerVisible : true
     }
