@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
         <h2>
-          برای دیدن قیمت رشته را انتخاب کنید:
+          <%= t(:'general.pricing.section4.title') %>
         </h2>
       </div>
     </div>
@@ -12,12 +12,12 @@
         <div class="row">
           <div class="col-6">
             <button id="personal" class="btn btn-primary btn-block">
-              برای کار شخصی
+              <%= t(:'general.pricing.section4.button1') %>
             </button>
           </div>
           <div class="col-6">
             <button id="business" class="btn btn-outline-primary btn-block">
-              برای کار تجاری
+              <%= t(:'general.pricing.section4.button2') %>
             </button>
           </div>
         </div>
@@ -25,10 +25,10 @@
           <% ShootType.all.is_personal.active.order("shoot_types.order").each do |sh| %>
             <div class="col-4 col-sm-3 pt-5 pt-sm-0 text-center specialty">
               <a href="<%= types_show_path(title: sh.w_url) + '/#prices' %>">
-                <img alt="قیمت عکاسی <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar_url(:medium) %>">
+                <img alt=" <%= t(:'general.pricing.section4.string') %> <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar_url(:medium) %>">
                 <h5 class="text-center">
                   <strong>
-                    قیمت عکاسی <%= sh.title %>
+                     <%= t(:'general.pricing.section4.string') %> <%= sh.title %>
                   </strong>
                 </h5>
               </a>
@@ -42,7 +42,7 @@
                 <img alt="قیمت عکاسی <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar_url(:medium) %>">
                 <h5 class="text-center">
                   <strong>
-                    قیمت عکاسی <%= sh.title %>
+                    <%= t(:'general.pricing.section4.string') %> <%= sh.title %>
                   </strong>
                 </h5>
               </a>

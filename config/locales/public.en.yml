@@ -4,16 +4,20 @@ en:
       seo:
         title: "Book a pro photographer"
         meta_description: "Kadro online photography market includes hundreds of professional photographers and level photography studios throughout Iran"
-        meta_keywords: "Photography, Staff, Photographer reservation, Photographer system, Online photography, Color, On-site photography, Send photographer,
+        meta_keywords: "Photography,Kadro, Photographer reservation, Photographer system, Online photography, Color, On-site photography, Send photographer,
                         Photograph order, Photography project, Photographer platform, Videographer reservation"
         meta_author: "Kadro Team"
       section1:
         title: "The easiest way to have a professional photographer and videographer"
         subtitle: "We ,the most professional, are gathered here"
         buttons:
-          button1: "Book a videographer"
+          button1: "Book a videographer" 
           button2: "Book a photographer and studio"
           button3: "or"
+        dropdown1: "Where to go photography?"
+        dropdown2: "View portfolio"
+        dropdown3: "Free consultation"
+        dropdown4: "Login"
 
       section2: 
         title: "Customer feedback"
@@ -30,14 +34,17 @@ en:
           
           name3: "Mojtaba khodaverdian"
           subtitle3: "Industrial photography"
-          comment3: "I wanted photography for DJ Kala. With the coordination of the photographer, 
+          comment3: "I wanted photography for Digikala. With the coordination of the photographer, 
                     the equipment was brought to our place and we photographed all the products. He was a regular and experienced photographer"
-      section3: #photography feild
+      section3: #photography field
         title: "Kadro Photography expertises"
-        subtitle: "Please click to see the portfolio and the price of each field"
+        subtitle: "Please click to see the portfolio and the price of each expertise"
         buttons:
-          button1: "Personal activities"
-          button2: "Business activities"      
+          button1: "Personal"
+          button2: "Business" 
+        shoot_type: "Photography"  
+        link: "See more" 
+        
 
       section4: #work with us
         title: "How to work with us"
@@ -150,16 +157,16 @@ en:
 
       footer:
         titles:
-          title1: "Letter Kadro"  
+          title1: "News letter"  
           explain1: "Emails including the latest photography trends in the world, 
-                prices and discounts for you; If you are eager become a member of letter kadro"
+                prices and discounts for you; If you are eager become a member of news letter"
           button: "Register"
           explain2: "Enter your email"
           explain3: "Enter your email to be notified first"
           title2: "Kadro"
           title3: "List of photographers and studios"
           title4: "Enter the album"
-          title5: "Employ a photographer"
+          title5: "Join us"
           title6: "About us"
         subtitles:
           subtitle1: "Kadro values"
@@ -178,7 +185,7 @@ en:
           subtitle14: "weblog"
           subtitle14: "Light and color editing"
           subtitle15: "Professional photo retouching"
-          subtitle16: "Photography price"
+          subtitle16: "Photography pricing"
           subtitle17: "Photo printing price"
           subtitle18: "!By your side"
       header:
@@ -187,9 +194,23 @@ en:
           title2: "Login" 
           title3: "Book a Photographer now"
           title4: "Services"
-          title5: "List of photographers"
-          title6: "Show the pricing of photography"
+          title5: "List of photographers" 
+          title6: "pricing"
           title7: "For photographer"
+          #dropdown for services
+          dropdown1: "Book a Photographer"
+          dropdown2: "Where to go photography?"
+          dropdown3: "Free consultation"
+          dropdown4: "Make a teaser"
+          #dropdown for phtographer
+          dropdown5: "Register"
+          dropdown6: "login"
+          dropdown7: "Latest news"
+          dropdown8: "Exit"
+
+
+         
+
     public: 
       seo:
         title: "About us | Kadro"
@@ -268,7 +289,7 @@ en:
           subtitle17-1: "And so it was that"
           subtitle17-2: "Interested in Kadro"
           #9
-          subtitle18: "So far, 50 active photographers have been staff members and more than 200 photography projects have been completed"
+          subtitle18: "So far, 50 active photographers have been Kadro members and more than 200 photography projects have been completed"
           
           year2: "1397"
           #10
@@ -320,8 +341,8 @@ en:
 
       seo_contact:
         title: "Contact us | Kadro"
-        mata_description: "Contact us"
-        meta_keywords:
+        meta_description: "Contact us"
+        meta_keywords: ""
         meta_author: "Kadro team"
       sections_contact:
         section1:
@@ -348,7 +369,7 @@ en:
 
         section5:  
           title: "Consultation request"
-          subtitle: "Do you need consult? Submit your request or question so that the staff expert can contact you and register the best package for you"
+          subtitle: "Do you need consult? Submit your request or question so that the Kadro expert can contact you and register the best package for you"
           lable1: "Name"
           lable2: "Phone number"
           lable3: "?What is your maximum price range"
@@ -359,8 +380,6 @@ en:
           time2: "12:00p.m to 16:00p.m"
           time3: "16:00p.m to 20:00p.m"
           button: "Register"
-
-
 
         section6:
           title: "?Why photography with Kadro" 
@@ -376,8 +395,295 @@ en:
             subtitle3-2: "secure payment Kadro"
             subtitle3-3: "The amount you pay will not be transferred to the photographer until the photo is taken 
                       and you see the photos and are satisfied that the amount is released for the photographer"
+      seo_faq:
+        title: "Kadro Frequently Asked Questions"
+        meta_discription: "Frequently Asked Questions Page"
+        meta_keyword: "FAQ,Frequently Asked Questions"
+        meta_author:  "Kadro team"     
+      section_faq:
+        title: "Frequently Asked Questions in Kadro"
+        subtitle: "Maybe someone has asked the question before"
+        column1: 
+          title: "General"
+          question1: "?What is  Kadro"
+          answer1-1: "At Kadro,we believe that professional photography should not be expensive.We connect you to a professional photographer"
+          answer1-2: "All you have to do is determine the day, date and location. Our photographer will come to your place with the necessary lighting equipment"
+          answer1-3: "You can also book a studio and take photos in the studio"
+          answer1-4: "After taking the photo, you can view and download the photos through your personal online album"
+          button1-1: "Book a studio"
+          button1-2: "Book a photographer"
+          
+          question2: "?In which cities do you have services"
+          answer2-1: "Kadro in the cities of"
+          answer2-2: "The photographer has to provide services"
+          lable1: "See the list of cities"
+          question3: "?What kind of photos can I take"
+          answer3-1: "We do all kinds of photography"
+          answer3-2: "If you need a specific type, you can contact support and tell us what you need, we will provide it for you"
+          lable2: "contact us"
+
+          question4: "?Where is your studio"
+          answer4-1: "Kadro does not have his own studio"
+          answer4-2: "Our photographers come to your project site. 
+                      You can choose any location such as home, company, office, shop, park, tourist place or anywhere else that is convenient"
+          lable3: "Suitable places for the photographer"
+
+          question5: "?Who can publish photos"
+          answer5: "You only have the right to publish photos that you have already paid for
+                      If you purchased all the photos when ordering,you will have the right to publish all the photos in your album"
+        column2:
+          title: "Pricing"
+          question1: "What are your approximate prices"
+          answer1-1: ":You can see our prices at this address"
+          answer1-2: "If you have special circumstances that you would like to share with us
+                      we will be happy to help you and find the most suitable one So contact us"
+          lable1: "Photography price"     
+          lable2: "contact us"
+          lable3: "Consultation request"
+
+          question2: "?How many photos will I recieve"
+          answer2-1: "You"
+          answer2-2: "Whatever package you buy, you will see all the photos"
+          answer2-3: "If you buy the standard package, you can download all the photos
+                      If you buy an economical package, you can download" ####
+          answer2-4: "In each package, we have included the approximate average of photo deliveries according to the statistics of previous projects"
+          
+          question3: "?Will my photos be edited in Photoshop"
+          answer3-1: "Yes, all Kadro packages contain standard"
+          answer3-2: "Light and color editing"
+          answer3-3: "For example, calibrating color temperature, light, sharpness, contrast, and cropping and calibrating other parameters"
+          answer3-4: "Kadro"
+          answer3-5: "Photo retouching service" 
+          answer3-6: "After photography, you can order a professional retouching service by selecting any photo"
+          lable4: "Sample photo retouching"
+          lable5: "Sample of light and color editing"
+          lable6: "Photo editing guide"
+          
+          title4: "Booking process"
+          question4: "?How long do I have to book the photographer"
+          answer4: "Depending on the number of photos you want,select the time you need by guiding the packages Contact us for help if needed"
+          question5: "What happens after booking?"
+          answer5-1: "Project information is sent to the photographer,if the photographer approves,the contact information of the parties will be provided"
+          answer5-2 : "If not approved, you can choose another photographer or let us replace you with another photographer"
+          question6: "?When should I pay"
+          answer6-1: "With a Kadro secure payment system"
+          answer6-2: "You pay the full amount of the project"
+          #answer6-3: "But no amount"
+          answer6-4: "The photographer will not be paid until the photography project is completed and you receive all the photos"
+          answer6-5: "You can then release the photographer if you agree"
+          answer6-6: "Otherwise you can take a photo with another photographer or get a full refund"
+          question7: "?How to pay"
+          answer7: "You can book online. If you do not have access to online payment
+                      you can deposit the amount to the company card number listed on your invoice so that your order can be registered manually"
+          question8: "?Can I book a photographer tomorrow"
+          answer8: "Yes you can book after 12 hours.We may also be able to provide you with a photographer on the same day,just contact us"
+
+          title5: "Special requests"
+          question9: "?Can I choose a photographer myself"
+          answer9-1: "Yes sure!"
+          answer9-2: "Basically, this is one of the advantages of Kadro"
+          answer9-3: "You yourself"
+          answer9-4: "By looking at the portfolio you select the previous comments and background of the photographer"
+          
+          question10: "?If I have special needs, can I see a sample photographer before booking"
+          answer10-1: "Yes, you can choose the one that is closest to your taste according to the portfolio of photographers"
+          answer10-2: "If you need more, you can contact us to offer you the best solution"
+          lable7: "Book a photographer"
+
+          question11: "?Can I take pictures in several different places"
+          answer11-1: "You can take photos"
+          answer11-2: "anywhere near"
+          answer11-3: "your destination during your project"
+          answer11-4: "and the photographer will come with you"
+          answer11-5: "For example, a nearby park, coffee shop or other outdoor space nearby"
+
+          question12: "?Do you offer discounts for a large number of photos"
+          answer12-1: "Yes, you can from"
+          answer12-2: "Commercial packages"
+          answer12-3: "Kadro for businesses"
+          answer12-4: "If you wish, you can share your needs with us"
+          
+          question13: "?Do you offer imaging services"
+          answer13: "Yes, you can enter the filming and teaser section of the Kadro from the link below"
+          lable8: "Make a video and teaser"
+
+          title6: "Change a booking"
+          question14: "?How can I cancel my booking"
+          answer14: "Unfortunately, we are not able to refund when the project is canceled
+                      but you can change the timing of your project,or give it to a friend"
+          question15: "?Can I change the booking time"
+          answer15:  "The first change in booking time will not cost anything
+                      but more than once it will include a certain cost
+                      you can change your project time only up to 24 hours ahead of time"
+          answer15-2: "To change the time,please contact us"
+
+          question16: "?Can I update the price I paid"
+          answer16-1: "Yes you can"
+          answer16-2: "If you decide to have all the photos of the project, contact us so that 
+                      we can invoice and send the cost difference to you"
+          question17: "?Can I extend the shooting time"
+          answer17-1: "Yes you can"
+          answer17-2: "Yes,as long as your photographer has free time and can stay longer for you"
+          answer17-3: "To do this, log in to your project page via the text message sent to you and click the Extension Time button.
+                       An extra time will be charged to you"
+
+          title7: "After booking"
+          question18: "?I made a booking right now, what happens next"
+          answer18-1: "Photographer time is allotted for your booking 
+                        The photographer will contact you to talk about your project"
+          
+          answer18-2: "If there is no problem, the photographer will confirm and a confirmation SMS will be sent to you"
+          answer18-3: "If the photographer does not approve"
+          answer18-4: "You can choose another photographer or let the Kadro replace it you"
+
+          question19: "?How do I contact my photographer"
+          answer19: "If there is no news about your photographer, or you want to contact him sooner,you can click on the button to contact the photographer
+                       through your invoice link and call the photographer's mobile number"
+          
+          question20: "?The photographer did not approve, what should I do"
+          answer20-1: "Do not worry, now we are over
+                      We have an active photographer who can replace you with another professional photographer"
+      
+          answer20-2: "1) You can choose another photographer from your project link"
+          answer20-3: "2)If you do not, the Kadro support will replace another photographer with your coordination"
+          
+          question21: "?When will I take my photos"
+          answer21-1: "Up to 72 hours after the date of the photo, you will receive a 
+                        text message and email stating that your photos are ready"
+          answer21-2: "By" 
+          answer21-3: "you can view and use all your photos with your mobile number"
+          answer21-4: "login to personal album"
+        
+        lastpart:
+          title: "For photographers"
+          q1: "?Why should I work with Kadro"
+          reason1: "Custom time calendar"
+          explain1-1: "Take pictures with Kadro and get good money as an independent contractor freelancer.You will receive your fee as soon as the project is completed 
+                        at the same time you will be your own boss and according to"
+          explain1-2: "time schedule"
+          explain1-3: "you will work yourself"
+          reason2: "Stable monthly income"
+          explain2-1: "If your profile is approved and you have activated good portfolios a high number of photography courses 
+                        a significant monthly income by working in Your free time"
+          explain2-2: "You will have a good economic leverage"
+          reason3: "Automated ads"
+          explain3: "Forget the difficult and annoying process of concluding a contract with the employers and go to the project with the ease of receiving the project cost 
+                    because we will do the hard work of advertising and attracting customers for you"
+          reason4: "Experience and collect work samples"
+          explain4-1: "If you are a photographer who does not have much work experience,you can gain experience in Kadro along with other professional photographers 
+                      by going to different photography projects and various portfolios"
+          explain4-2: "Build and Simply find your regular customers"
+
+          q2: "?I want to be a Kadro photographer, what should I do"
+          explain5: "We look forward to working with you.Please fill out the form below, we will contact you soon"
+          lable1: "Join us"
+          
+          q3: "?I live outside the Kadro service area, can I work as a photographer"
+          explain6: "Yes,you can provided you wish to travel to the Kadro service areas to work"
+    pricing:
+      seo:
+        title: "Economical prices photography | Kadro"
+        meta_discription: "Reasonable prices in all photography extersise"
+        meta_keyword: "Photography prices and tariffs, the most reasonable prices"
+        meta_author: "The most suitable photography price"
+      section1: 
+        title: "Economical prices photography"
+        subtitle1: "We tried to set the best photography models at reasonable prices"
+        subtitle2: ":4 reasons why Kadro photography prices are economical"
+        reason1-1: "Prices are hourly"
+        reason1-2: "All prices are hourly, because an unlimited number of photos are 
+                    taken per hour, which increases the number of photos"
+        reason2-1: "Unlimited number of photos"
+        reason2-2: "Your photographer can take photos indefinitely and you will receive
+                   all the photos after editing in your personal album"
+        reason3-1: "File delivery of all photos"
+        reason3-2: "The value of professional photography is to have a photo file
+                    We will give you the photo file"
+        reason4-1: "To be economical"
+        reason4-2: "Standard"
+        reason4-3: "and"
+        reason4-4: "economical"
+        reason4-5: packages Kadro according to your economic situation"
+      section2: 
+        title1: "55 seconds pricing"
+        subtitle: "This pricing model came for the first time in Iran,
+                  if you want to understand, watch this video"
+        title2: "Standard packages"
+        explain2-1: "If you can afford it"
+        explain2-2: "Take photos easily and take all photos with original file an
+        quality without any restrictions"
+        title3: "Economic packages"
+        explain3-1: "If you can not afford it"
+        explain3-2: "Take your professional photographer and download some files that you have booked as a professional photographer
+                    have the rest of the photos online"
+      section3: 
+        title: "Features of Kadro photography packages"
+        subtitle: "The list below tells you all the features of Kadro photography packages"
+        feature1: "Edit light and color of all photos"
+        feature2: "The presence of the photographer in the loction"
+        feature3: "Booking in the studio"
+        feature4: "See all photos"
+        feature5: "Print and retouch order"
+        feature6: "Possibility to extend the time"
+        feature7: "Online Archive"
+        feature8: "delivery at your location"
+        feature9: "Buy more photos"
+        feature10: "Download group photos"
+        feature11: "Ability to download the original file of all package photos" 
+        lable: "Price feature"
+        lable1: "Economic"
+        lable2: "Standard"
+        lable3: "As many as the number of packages each photo more +10,000"
+      section4: #shoot_types
+        title: "Select the extersise to see prices "
+        button1: "Personal"
+        button2: "Business"
+        string: "Photography price"
+      section5: 
+        title: "Customer feedback"
+        subtitle: "Previous customers opinions about the prices of Kadro"
+        lable: "Kadro customer"
+      section6: 
+        title: "Frequently Asked Questions About Prices"
+        q1: "?How much is the price of cost photography"
+        ans1: "The price of photography is based on the clock.the number of photos a photographer takes 
+                in an hour is unlimited and you can get all the original files, so this mode is better than shot or frame prices.it is Up to 4 times cheaper."  
+        q2: "?How much is the price of each package"
+        ans2: "This number means that in similar photography projects, other photographers have delivered several photos to the customer
+                 only for new photography projects,this number is 10 more or 10 less in each package"
+        q3: "?Can you see all the photos"
+        ans3: "Yes, any photo taken by a photographer will be uploaded to your private gallery after editing the light and color;
+                both in economic and in standard" 
+        q4: "?How many people can take pictures"
+        ans4: "The number of people in each package is unlimited"    
+
+        q5: "?What is the difference between economical and standard photography price packages"
+        ans5: "In the economic package,you can select and download a certain number from the private gallery,but in the standard package,
+                you can select and download all the photos"
+        q6: "?Are photos retouched"
+        ans6: "No. All photos are edited by a light and color photographer. 
+                you should know that light and color editing is different from photo retouching, and if needed,
+                you can use the service by paying for retouching"
+        q7: "?Do you print photos"    
+        ans7: "Yes! After receiving your photo file from the private gallery, you can also order photo printing online view" 
+        ans7-2: "photo printing prices"
+        ans7-3: "on the site"
+        q8: "?What is the difference between price of photography in Kadro and other photographs"  
+        ans8: "You should know that one of the sources of photography prices in our country is the Association of Photographers of the country. Compare the price of photography on the website of the association with the price of photography in the frame,
+                  you will find that the price of photography in the frame is completely frugal"  
+        q9: "?If i want additional photos What are the prices"
+        ans9: "If you use the economic photography price package,
+              you can download any additional photo by paying 10 thousand tomans more"
+        q10: "?Can shooting time be extended"
+        ans10: "Yes, the extension fee for each photography 
+                  course is listed at the bottom of the package"
+        q11: "?Can we not pay but book on a trial basis"
+        ans11: "Yes, you can make an order from the photographer reservation section and get acquainted with the photographer reservation process.
+                    You can pay online at any time and register your project"
+        q12: "?Is hourly photography cheaper than a frame"
+        ans12: "Because photos are unlimited, the hourly rate is up to 4 times cheaper than the frame or shot price"  
     types:  
-      seo: #types (expertises)
+      seo: #types (expertises)    
         title: "Active Photography expertise | Kadro"
         meta_discription:
           part1: "From"
@@ -391,6 +697,7 @@ en:
           part4: "in place"
         meta_author: "Kadro team"
       sections:
+        word: "Photography"
         button1: "Book now"
         button2: "Or"
         section1: 
@@ -424,7 +731,7 @@ en:
           subtitle6: "Write a message"
         section4:
           title: "Customer feedback"
-          subtitle1: "Listen to what previous clients (staff) have to say about their experience"
+          subtitle1: "Previous Customer Experiences Kadro"
           subtitle2: "the average score of"
           subtitle3: "from"
           subtitle4: "the comment is equal to"
@@ -513,6 +820,17 @@ en:
           title: "More services"
           subtitle: "Support for business partners Kadro"
           subtitle2: "go to"
+        main_page: #types page
+          seo: 
+            meta_description: "Active photography expertise in Kadro with the best price and delivery of 
+                 the original file of all photos by your selected professional photographer"
+            meta_keywords: "Photography expertises, photography genres"
+            meta_author: "Kadro team"
+          title: "Kadro Photography expertises"
+          subtitle: "Please click to see the portfolio and the price of each field"
+          button1: "Personal"
+          button2: "Business"
+
     pro_photographers:
       sections:
         section1:  #index2:(adress)

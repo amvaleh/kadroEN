@@ -36,17 +36,17 @@
           <a href="<%=book_url %>" class="btn btn-primary">
             <%= t(:'general.home.section1.buttons.button2') %>
           </a>
-          <a href="<%=videography_url %>" class="btn btn-warning">
-            <%= t(:'general.home.section1.buttons.button1') %>
-          </a>
+          <!-- <a href="<%=videography_url %>" class="btn btn-warning">
+          <%= t(:'general.home.section1.buttons.button1') %>
+          </a> -->
           <div class="dropdown-menu text-right">
             <a class="dropdown-item" href="<%=shoot_location_root_url %>">
-              کجا بریم عکاسی؟
+             <%= t(:'general.home.section1.dropdown1') %>
             </a>
-            <a class="dropdown-item" href="#home-expertise"> مشاهده نمونه کارها </a>
-            <a class="dropdown-item" href="<%= call_request_url %>"> مشاوره رایگان </a>
+            <a class="dropdown-item" href="#home-expertise">  <%= t(:'general.home.section1.dropdown2') %> </a>
+            <a class="dropdown-item" href="<%= call_request_url %>"> <%= t(:'general.home.section1.dropdown3') %> </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<%=galleries_url%>">ورود</a>
+            <a class="dropdown-item" href="<%=galleries_url%>"> <%= t(:'general.home.section1.dropdown4') %></a>
           </div>
         </div>
       </div>

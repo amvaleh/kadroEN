@@ -18,7 +18,7 @@
         </ul>
         <ul class="navbar-nav mx-auto justify-content-between" style="text-align:center">
           <li class="nav-item">
-            <a class="nav-link text-light mx-2" href="<%=all_pros_url %>"> <%= t(:'general.home.header.titles.title5') %>  </a>
+            <a class="nav-link text-light mx-2" href="<%=all_pros_url %>"> <%#= t(:'general.home.header.titles.title5') %>  </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-light mx-2" href="<%=pricing_url %>"> <%= t(:'general.home.header.titles.title6') %></a>
@@ -28,12 +28,12 @@
              <%= t(:'general.home.header.titles.title4') %>
             </a>
             <div class="dropdown-menu dropdown-menu-left text-right">
-              <a class="dropdown-item" href="<%=book_url %>"> رزرو عکاس / آتلیه </a>
-              <a class="dropdown-item" href="<%=shoot_location_root_url %>"> کجا بریم عکاسی؟ </a>
+              <a class="dropdown-item" href="<%=book_url %>"> <%# t(:'general.home.header.titles.dropdown1') %> </a>
+              <a class="dropdown-item" href="<%=shoot_location_root_url %>"> <%# t(:'general.home.header.titles.dropdown2') %> </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="<%= call_request_url %>"> مشاوره رایگان </a>
+              <a class="dropdown-item" href="<%= call_request_url %>"> <%= t(:'general.home.header.titles.dropdown3') %> </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="<%= videography_url %>"> سفارش ساخت تیزر  </a>
+              <a class="dropdown-item" href="<%= videography_url %>"> <%# t(:'general.home.header.titles.dropdown4') %> </a>
             </div>
           </li>
         </ul>
@@ -43,12 +43,12 @@
             <%= t(:'general.home.header.titles.title7') %>
             </a>
             <div class="dropdown-menu text-right">
-              <a class="dropdown-item" href="<%=join_us_url %>"> ثبت نام </a>
-              <a class="dropdown-item" href="<%=new_photographer_session_url %>"> ورود </a>
-              <a class="dropdown-item" href="<%=updates_url %>"> آخرین اخبار </a>
+              <a class="dropdown-item" href="<%=join_us_url %>"><%= t(:'general.home.header.titles.dropdown5') %> </a>
+              <a class="dropdown-item" href="<%=new_photographer_session_url %>"> <%= t(:'general.home.header.titles.dropdown6') %> </a>
+              <a class="dropdown-item" href="<%=updates_url %>"><%# t(:'general.home.header.titles.dropdown7') %> </a>
               <% if photographer_signed_in? %>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-warning border border-warning" href="<%=destroy_photographer_session_url%>"> خروج </a>
+                <a class="dropdown-item text-warning border border-warning" href="<%=destroy_photographer_session_url%>"> <%= t(:'general.home.header.titles.dropdown8') %> </a>
               <%end %>
             </div>
           </li>

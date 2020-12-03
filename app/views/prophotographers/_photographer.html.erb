@@ -14,7 +14,7 @@
               background-color: #f8faff;
               color: #2a87f9;">
           </i>
-          آتلیه دار
+          <%= t(:'general.pro_photographers.sections.section2.lable1') %>
         </span>
       <% end %>
     </h5>
@@ -23,16 +23,16 @@
         <% art = ((p.qrate + p.arate) / 2).round(2).to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹') %>
         <%= p.location.city.name if p.location.city.present? %>
         <p class="photographer-rating">
-        <%= art==0? 10 : art %> از ۱۰ </p>
+        <%= art==0? 10 : art %>  <%= t(:'general.pro_photographers.sections.section3.num2') %> </p>
       </em>
     </span>
     <span class="badge text-primary" style="background-color: #f8f9fa;color: #007bff !important;">
       <%= p.equipment.equip_cameras.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
-      دوربین
+      <%= t(:'general.pro_photographers.sections.section2.lable2') %>
     </span>
     <span class="badge text-primary" style="background-color: #f8f9fa;color: #007bff !important;">
       <%= p.equipment.equip_lenzs.count.to_s.tr!('0123456789','۰۱۲۳۴۵۶۷۸۹')  %>
-      لنز
+      <%= t(:'general.pro_photographers.sections.section2.lable3') %>
     </span>
   </a>
   <p style="font-size: 12px;color: gray;text-align: justify;max-height: 100px;" class="hidden-xs">
@@ -41,6 +41,6 @@
     <% end %>
   </p>
   <a href="<%= p.pro_url %>"class="btn btn-blue btn-sm" style="font-size: 12px;">
-    مشاهده و رزرو
+     <%= t(:'general.pro_photographers.sections.section2.lable4') %>
   </a>
 </div>
