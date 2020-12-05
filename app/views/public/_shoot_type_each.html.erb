@@ -20,7 +20,7 @@
       <p class="text-white text-right">
         <a href="<%= types_show_path(title: sh.w_url) %>">
           <span class="d-none d-md-inline"  style="color:white !important;">
-            عکاسی
+           <%=t(:'general.home.section3.shoot_type') %>
           </span>
           <span class="" style="color:white !important;">
           <%= sh.title %>
@@ -29,7 +29,7 @@
       </p>
     </div>
     <div class="col-12 col-xl-3 d-none d-sm-none d-md-none d-xl-block">
-      <%= link_to "مشاهده", types_show_path(title: sh.w_url) ,class:"btn btn-outline-primary shaddow-lg btn-sm btn-xs pull-left" %>
+      <%= link_to t(:'general.home.section3.link') , types_show_path(title: sh.w_url) ,class:"btn btn-outline-primary shaddow-lg btn-sm btn-xs pull-left" %>
     </div>
   </div>
 </div>

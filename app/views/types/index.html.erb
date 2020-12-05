@@ -8,12 +8,12 @@
 
 <% end %>
   <title>
-    <%= t(:'general.public.seo_types.title') %>
+  <%= t(:'general.types.seo.title')%>
   </title>
   <meta charset="UTF-8">
-  <meta name="description" content="<%= t(:'general.public.seo_types.meta_description') %>">
-  <meta name="keywords" content="<%= t(:'general.public.seo_types.meta_keywords') %>">
-  <meta name="author" content="<%= t(:'general.public.seo_types.meta_author') %>">
+  <meta name="description" content="<%= t(:'general.types.sections.main_page.seo.meta_description')%>">
+  <meta name="keywords" content="<%= t(:'general.types.sections.main_page.seo.meta_keywords')%>">
+  <meta name="author" content="<%= t(:'general.types.sections.main_page.seo.meta_author')%>">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
   <%= csrf_meta_tags %>
@@ -35,10 +35,10 @@
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
         <h2>
-          رشته های عکاسی کادرو
+         <%= t(:'general.types.sections.main_page.title')%>
         </h2>
         <p class="text-center lead">
-          برای مشاهده نمونه کارها و قیمت هر رشته کلیک کنید.
+          <%= t(:'general.types.sections.main_page.subtitle')%>
         </p>
       </div>
     </div>
@@ -47,12 +47,12 @@
         <div class="row">
           <div class="col-6">
             <button id="personal" class="btn btn-primary btn-block" style="height: 50px">
-              برای کار شخصی
+             <%= t(:'general.types.sections.main_page.button1')%>
             </button>
           </div>
           <div class="col-6">
             <button id="business" class="btn btn-outline-primary btn-block" style="height: 50px">
-              برای کار تجاری
+              <%= t(:'general.types.sections.main_page.button2')%>
             </button>
           </div>
         </div>

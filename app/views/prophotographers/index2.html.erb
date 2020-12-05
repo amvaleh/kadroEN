@@ -6,12 +6,10 @@
       <div class="entry-content top_head" style="background-image: url('/img/header.jpg');background-size:cover">
         <div class="container">
           <h1 class="text-right">
-            لیست عکاسان و آتلیه های عکاسی کادرو
+            <%= t(:'general.pro_photographers.sections.section1.title') %>
           </h1>
           <p class="text-right">
-            کادرو شما را به بهترین عکاسان منتخب و آتلیه های عکاسی برتر
-            در سراسر شهر های ایران
-            وصل می کند.
+           <%= t(:'general.pro_photographers.sections.section1.subtitle') %>
           </p>
 
           <br>
@@ -33,8 +31,7 @@
               <div class="col-xs-12" style="background: #1d1d1d;">
                 <br>
                 <h3 class="text-center" style="color:white;">
-                  نظرات کاربران درباره
-                  عکاسان کادرو
+                <%= t(:'general.pro_photographers.sections.section3.title') %>
                 </h3>
                 <div id="slider-container" style="margin: 6% 0px 4% 0;" >
                   <% @good_feedbacks.each do |r| %>
@@ -44,7 +41,7 @@
                         <div class="row">
                           <div class="col-xs-12 col-sm-5">
                             <span style="color: white;">
-                              <%= r.ph_display_name %> <small style="color:gray">(عکاسی <%=r.title%>):</small>
+                              <%= r.ph_display_name %> <small style="color:gray">( <%= t(:'general.pro_photographers.sections.section3.lable1') %> <%=r.title%>):</small>
                             </span>
                           </div>
                           <div class="col-xs-12 col-sm-12">
@@ -69,7 +66,8 @@
                       <div class="col-xs-3 text-center">
                         <p style="color: white;">
                           <span class="fa fa-picture-o"></span><br>
-                          <%= r.total_frames %> عکس نهایی
+                          <%= r.total_frames %>
+                          <%= t(:'general.pro_photographers.sections.section3.lable2')%>
                         </p>
                       </div>
                       <div class="col-xs-3 text-center">
@@ -78,9 +76,9 @@
                           <% if r.order.present?%>
                     				<%= r.order + r.extend_hours %>
                     				<% else %>
-                    				2
+                    				<%= t(:'general.pro_photographers.sections.section3.num1') %>
                             <% end %>
-                          ساعت عکاسی
+                          <%= t(:'general.pro_photographers.sections.section3.lable3') %>
                         </p>
                       </div>
                       <div class="col-xs-3 text-center">
@@ -95,14 +93,14 @@
                           <span class="fa fa-star" style="color:yellow"></span>
                           <% end %>
                           <br>
-                          <%=r.qrate%> از 10
+                          <%=r.qrate%> <%= t(:'general.pro_photographers.sections.section3.num2') %>
                         </p>
                       </div>
                     </div>
                   </div>
                   <div class="cbp-l-grid-slider-testimonials-footer">
                     <span class="fa fa-arrow-right" ></span>
-                    ورق بزنید
+                    <%= t(:'general.pro_photographers.sections.section3.lable4') %>
                   </div>
                 </div>
               </div>
@@ -154,11 +152,10 @@
           <div class="row">
             <div class="col-md-12">
               <h2 class="text-muted text-center">
-                میخواهی راحت تر پیدا کنی؟
+                <%= t(:'general.pro_photographers.sections.section4.title') %>
               </h2>
               <h5 class="text-center">
-                مشاهده عکاسان
-                در شهر های مختلف
+              <%= t(:'general.pro_photographers.sections.section4.subtitle') %>
               </h5>
               <div class="row">
                 <% @cities.each do |city| %>
@@ -173,12 +170,12 @@
                 </div>
                 <div class="col-xs-9">
                   <h5>
-                    بهترین عکاسان
+                   <%= t(:'general.pro_photographers.sections.section4.lable1') %>
                     <%= city.name %>
                   </h5>
                   <hr>
                   <p style="font-size:10px;">
-                    مشاهده لیست
+                   <%= t(:'general.pro_photographers.sections.section4.lable2') %>
                   </p>
                 </div>
               </div>
