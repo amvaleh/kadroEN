@@ -3,42 +3,40 @@ en:
     home:
       seo:
         title: "Book a pro photographer"
-        meta_description: "Kadro online photography market includes hundreds of professional photographers and level photography studios throughout Iran"
-        meta_keywords: "Photography,Kadro, Photographer reservation, Photographer system, Online photography, Color, On-site photography, Send photographer,
-                        Photograph order, Photography project, Photographer platform, Videographer reservation"
+        meta_description: "Kadro is an online photography marketplace where you can book pre-vetted professional photographers with fixed prices for almost everything. Kadro is Uber-like photography."
+        meta_keywords: "photography, photography studios, hire a photographer, freelancer"
         meta_author: "Kadro Team"
       section1:
-        title: "The easiest way to have a professional photographer and videographer"
-        subtitle: "We ,the most professional, are gathered here"
+        title: "Book a photographer for almost everything"
+        subtitle: "book your photographer in 3 steps, with fixed and afforable prices"
         buttons:
           button1: "Book a videographer" 
-          button2: "Book a photographer and studio"
-          button3: "or"
-        dropdown1: "Where to go photography?"
+          button2: "Book a photographer now!"
+          button3: "more"
+        dropdown1: "Best photography locations"
         dropdown2: "View portfolio"
-        dropdown3: "Free consultation"
+        dropdown3: "Talk to an expert"
         dropdown4: "Login"
 
       section2: 
-        title: "Customer feedback"
+        title: "What do customers say about us"
         comments:
           name1: "Zohre alavi"
           subtitle1: "Baby photography"
-          comment1: "I wanted to photograph a baby with decor, clothes and lighting, 
-                    so I took a photo from Kadro and he was very kind and patient Thank you for your efforts"
+          comment1: "I wanted to shoot my baby with decor, clothes and lightning, 
+                    so I booked a photographer from Kadro and he was very kind and patient, Thank you for your efforts"
 
           name2: "Mehrdad hajipasha"
           subtitle2: "Wedding photography"
-          comment2: "We photographed kadro for an hour in person and for an hour outdoors, 
-                    and our photographer was really energetic, very professional and very creative."
+          comment2: "We had a 1-hour portrait photo shoot indoor, then 1-hour outdoors, my photographer was really energetic, professional and creative."
           
           name3: "Mojtaba khodaverdian"
           subtitle3: "Industrial photography"
-          comment3: "I wanted photography for Digikala. With the coordination of the photographer, 
-                    the equipment was brought to our place and we photographed all the products. He was a regular and experienced photographer"
+          comment3: "I wanted some photos of my product for Digikala. With the help of the photographer, 
+                    the equipment was brought to our place and we shooted all the products. He was a talented photographer"
       section3: #photography field
         title: "Kadro Photography expertises"
-        subtitle: "Please click to see the portfolio and the price of each expertise"
+        subtitle: "You'll be matched to a pre-vetted specialist for whatever you're shooting."
         buttons:
           button1: "Personal"
           button2: "Business" 
@@ -47,42 +45,41 @@ en:
         
 
       section4: #work with us
-        title: "How to work with us"
-        alt1: "Photographer prices"
-        subtitle1: "Package selection"
-        explain: "Kadro prices Are hourly You can buy a package from one hour to seven hours"
+        title: "How it works"
+        alt1: "Photographey pricing"
+        subtitle1: "How long?"
+        explain: "Kadro prices Are hourly, you can book a pro from one hour to seven hours daily."
         
         alt2: "Choosing a professional photographer"
-        subtitle2: "photographer selection"
-        explain1: "The kadro algorithm offers the best photographers"
-        explain2: "time and place"
-        explain3: "based on your"
-        explain4: "which you can select by looking at previous portfolios and comments"
+        subtitle2: "Find your photographer"
+        explain1: "Kadro algorithm's offers the best photographers"
+        explain2: "based on your"
+        explain3: "location and date,"
+        explain4: "you get to choose which one you like."
         
         alt3: "Pay the price of photography with a 7-day guarantee"
         subtitle3: "Secure payment"
-        explain5: "The amount you pay will not be paid to the photographer until"
-        explain6: "7 days after the photo"
-        explain7: "You can release the amount for the photographer if he agrees or get the full amount back"
+        explain5: "All shoots covered by Kadro Insurance,"
+        explain6: "you can have your money "
+        explain7: "back in seven days if you don't like your photos"
         
         alt4: "Doing on-site photography"
-        subtitle4: "workmanship photography"
-        explain8: "A photographer with great photography equipment will come to your place"
-        explain9: "You can extend your time if needed"
-        explain10: "72 hours in the album!"
-        explain11: "After editing the light and color, a photographer puts all your photos in your personal album 
-        and you can view, download, share or order photo printing in 72 hours."
+        subtitle4: "At your location"
+        explain8: "Your photographer, at your location, at your desired time and date."
+        explain9: "All shoots are extendable"
+        explain10: "Fast turnaround"
+        explain11: "Edited photos at your personal gallery within 72 hours."
         alt5: "Delivery of photos in personal album"
-        subtitle5: "Rate and comment"
-        explain12: "After receiving the photos, you comment to your photographer and if you are satisfied, you release the amount for the photographer" 
-        explain13: "Otherwise, you can take a photo with another photographer or get your full amount back in 7 days warranty"
+        subtitle5: "Give feedback"
+        explain12: "After receiving the photos, you comment on your photographer and if you are satisfied, you unlock the photographer's payment." 
+        explain13: "Otherwise, you can book another photographer or get your full amount back in 7 days warranty."
         
         alt6: "Comment to the photographer"
         subtitle6: "Video about kadro"
         explain14: "In this video, you can see how kadro works perfectly"
 
       section5: #featurs
-        title: "?What are the benefits of kadro"
+        title: "Our FEATURES"
       
         subtitle1: "7 days service guarantee"
         explain1: "Up to 7 days after receiving the photos, you can get a full refund if you are not satisfied"
@@ -93,20 +90,20 @@ en:
         subtitle3: "Original image file .jpg"
         explain3: "The photo file in original quality will be delivered to you in high quality .jpg format"
         
-        subtitle4: "Photographer Ms. and Mr."
+        subtitle4: "Male/Femalte photographers"
         explain4: "Depending on your needs, you can book both a female photographer and a male photographer, everything is by yourself"
         
         subtitle5: "Photo printing"
         explain5: "It is very easy for you to order any photo from your personal album and receive it at home"
         
-        subtitle6: "Edit light and color of all photos"
-        explain6: "All your photos are edited by a light and color photographer. In all packages and all disciplines"
+        subtitle6: "Standard photo edit"
+        explain6: "Standard photo editing included in all shoots."
         
-        subtitle7: "privacy"
-        explain7: "The photos can only be seen by you and your photographer, and if necessary, Ms. Kadro's expert checks the photos for quality control"
+        subtitle7: "Privacy"
+        explain7: "Only you and your photographer have access to your photos."
         
-        subtitle8: "Ethical commitment"
-        explain8: "All Kadro photographers have submitted a contract and a cash guarantee in order to abide by Kadro's terms and conditions."
+        subtitle8: "Insurance"
+        explain8: "All Kadro photographers are covered bt Kadro insurance."
 
       section6: #barandegan
         title: "Kadro customer winners"   
@@ -151,9 +148,9 @@ en:
             link4: "Sample professional photo retouching"
 
       section9:
-        title: "?Are you a photographer"
-        subtitle: "Kadro is now hiring a professional photographer, join Kadro and make money easily from photography"
-        button:    "Kadro registration conditions" 
+        title: "Need a pro-photographer?"
+        subtitle: "Kadro connects you to specialists near you,book in 90 seconds."
+        button:    "Book now" 
 
       footer:
         titles:
@@ -368,14 +365,14 @@ en:
           num_code: "1439956191"
 
         section5:  
-          title: "Consultation request"
-          subtitle: "Do you need consult? Submit your request or question so that the Kadro expert can contact you and register the best package for you"
+          title: "Need a photographer ?"
+          subtitle: "Submit your request, we'll call you in 20 minutes."
           lable1: "Name"
           lable2: "Phone number"
-          lable3: "?What is your maximum price range"
-          lable4:  "When should we contact you?"
+          lable3: "How much do you want to pay ?"
+          lable4:  "What time is best to call you ?"
           lable5: "Describe your needs"
-          lable6: "I have 40 products that I want to shoot with white background for online sale"
+          lable6: "I have 40 products that I want to shoot with white background for online sales"
           time1: "9:00a.m  to 12:00p.m"
           time2: "12:00p.m to 16:00p.m"
           time3: "16:00p.m to 20:00p.m"
@@ -582,12 +579,12 @@ en:
           explain6: "Yes,you can provided you wish to travel to the Kadro service areas to work"
     pricing:
       seo:
-        title: "Economical prices photography | Kadro"
+        title: "Economic photography prices | Kadro"
         meta_discription: "Reasonable prices in all photography extersise"
         meta_keyword: "Photography prices and tariffs, the most reasonable prices"
         meta_author: "The most suitable photography price"
       section1: 
-        title: "Economical prices photography"
+        title: "Affordable photography is made possible!"
         subtitle1: "We tried to set the best photography models at reasonable prices"
         subtitle2: ":4 reasons why Kadro photography prices are economical"
         reason1-1: "Prices are hourly"
@@ -638,7 +635,7 @@ en:
         title: "Select the extersise to see prices "
         button1: "Personal"
         button2: "Business"
-        string: "Photography price"
+        string: "Photography"
       section5: 
         title: "Customer feedback"
         subtitle: "Previous customers opinions about the prices of Kadro"

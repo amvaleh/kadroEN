@@ -11,55 +11,41 @@
       </div>
       <div class="col-12 align-items-center text-center justify-content-center my-5">
 
-<!--          <a href="<%#=galleries_url%>" class="btn btn-outline-primary btn-lg">-->
-<!--            ورود-->
-<!--          </a>-->
-<!--        <button class="btn btn-link dropdown btn-lg">-->
-<!--          <a class=" dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">-->
-<!--            دیگر-->
-
-<!--          </a>-->
-<!--          <div class="dropdown-menu dropdown-menu-right text-right">-->
-<!--            <a class="dropdown-item" href="<%#=all_pros_url %>"> رزرو آتلیه </a>-->
-<!--            <a class="dropdown-item" href="<%#=shoot_location_root_url %>">انتخاب مکان برای عکاسی </a>-->
-<!--            <div class="dropdown-divider"></div>-->
-<!--            <a class="dropdown-item" href="<%#= call_request_url %>"> مشاوره رایگان </a>-->
-<!--          </div>-->
-<!--        </button>-->
-        <!-- Example split danger button -->
-
         <div class="btn-group btn-group-lg dropleft" id="intro_ctas">
-          <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<!--           <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="sr-only">Toggle Dropdown</span>
             <%= t(:'general.home.section1.buttons.button3') %>
-          </button>
+          </button> -->
           <a href="<%=book_url %>" class="btn btn-primary">
             <%= t(:'general.home.section1.buttons.button2') %>
           </a>
           <!-- <a href="<%=videography_url %>" class="btn btn-warning">
           <%= t(:'general.home.section1.buttons.button1') %>
           </a> -->
-          <div class="dropdown-menu text-right">
-            <a class="dropdown-item" href="<%=shoot_location_root_url %>">
+
+          <!-- <div class="dropdown-menu text-right"> -->
+            <!-- <a class="dropdown-item" href="<%=shoot_location_root_url %>">
              <%= t(:'general.home.section1.dropdown1') %>
-            </a>
-            <a class="dropdown-item" href="#home-expertise">  <%= t(:'general.home.section1.dropdown2') %> </a>
+            </a> -->
+<!--             <a class="dropdown-item" href="#home-expertise">  <%= t(:'general.home.section1.dropdown2') %> </a>
             <a class="dropdown-item" href="<%= call_request_url %>"> <%= t(:'general.home.section1.dropdown3') %> </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<%=galleries_url%>"> <%= t(:'general.home.section1.dropdown4') %></a>
-          </div>
+            <a class="dropdown-item" href="<%=galleries_url%>"> <%= t(:'general.home.section1.dropdown4') %></a> -->
+          <!-- </div> -->
+
         </div>
       </div>
     </div>
     <div class="row pt-0 justify-content-center">
       <div class="col-12 col-sm-8 col-md-6">
-        <img alt="رزرو آنلاین عکاسی کادرو" class="img-fluid " src="/img/home/kadro.png">
+        <img alt="<%= t(:'general.home.section1.title') %>" class="img-fluid " src="/img/home/kadro.png">
       </div>
     </div>
     <h2 style="color:white">
       <strong>
         kadro
-      </strong> | کادرو - سامانه رزرو آنلاین عکاس
+      </strong> | 
+      <%= t(:'general.home.section1.title') %>
     </h2>
   </div>
 </section>

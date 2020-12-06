@@ -26,13 +26,13 @@
     src: url("/fonts/iranyekanweblight.eot");
     src: url("/fonts/iranyekanweblight.eot?#iefix") format("embedded-opentype"), url("/fonts/iranyekanweblight.woff2") format("woff2"), url("/fonts/iranyekanweblight.woff") format("woff"), url("/fonts/iranyekanweblight.ttf") format("truetype"); }
 html , body , h1,h2,h3,h4,h5,h6,p{
-    font-family: "iranyekan-light";
-    direction: rtl;
+    font-family: "Lato";
+    direction: ltr;
 }
 
 p{
     text-align: justify;
-    direction: rtl;
+    direction: ltr;
 }
 .lead{
     text-align: justify;
