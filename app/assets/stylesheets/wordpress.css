@@ -339,3 +339,6 @@ p{
     line-height: 1.4em;
     margin: 0.1em;
 }
+.features h3{
+  text-align: left;
+}

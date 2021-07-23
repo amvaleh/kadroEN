@@ -29,7 +29,7 @@
 <%= render "public/shared/wordpress_header" %>
 <body>
 <%= render "public/home/intro" %>
-<%= render :partial => 'user_comments' %>
+<%#= render :partial => 'user_comments' %>
 <% if Rails.env.production? %>
   <%= render 'shared/externals/gtag_body' %>
 <% end %>
@@ -76,8 +76,6 @@
   </div>
 </section>
 <%= render :partial => 'public/home/how_works' %>
-
-
 
 <%= render :partial => 'public/home/features' %>
 
