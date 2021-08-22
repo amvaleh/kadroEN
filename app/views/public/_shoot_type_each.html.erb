@@ -3,7 +3,7 @@
     <div class="row px-0 px-sm-2 fill_imgs">
       <%SelectableImages::SelectTopImages.call(shoot_type: sh.id).photos.first(3).each do |si| %>
         <div class="p-0 m-0">
-          <%=image_tag si.file_url_address , class:"img-fluid" %>
+          <%=image_tag si.file_url_address, class:"img-fluid" %>
           <span class="d-none">
           <%= si.file_url_address %>
             <%= si.image_id %>

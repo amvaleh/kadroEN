@@ -215,19 +215,19 @@ en:
         meta_author: "Kadro Team"
       sections:
         section1:
-          title: "Contact us"
-          subtitle: "We are also on social media"
+          title: "About us"
+          subtitle: "Follow us on twitter for latest news!"
         section2:
-          title: "?Why are we"
+          title: "What do we do?"
           subtitle1: "Life these days is going so fast that one day we open our eyes and see that years have passed and only memories remain!
                      We are here to record your memories,your most important moments and your joys in the easiest way
-                     so that you can easily go back in time and review your memories whenever you want"
+                     so that you can easily go back in time and review your memories whenever you want."
           subtitle2: "Kadro is here for you to"
-          subtitle3: "touch the memories of your life at a glance"
+          subtitle3: "reminisced about your valuable memories of your life at a glance."
         section3:
-          title: "Kadro team members"
-          subtitle1: "We have gathered the best of Iran around us, this includes"
-          subtitle2: "The photography that makes up our team is also possible"
+          title: "Our team"
+          subtitle1: "The operation, management and call center memebers"
+          subtitle2: ""
         section4:
           title: "Our consultants"
           subtitle: "All those who have accompanied us so far."
@@ -378,7 +378,7 @@ en:
           button: "Register"
 
         section6:
-          title: "?Why photography with Kadro"
+          title: "why Kadro ?"
           reasons:
             reason1: "Get the file"
             subtitle1: "Kadro gives you the original file of the photos.

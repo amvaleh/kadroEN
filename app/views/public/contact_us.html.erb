@@ -34,8 +34,7 @@
         <h1>
           <%= t(:'general.public.sections_contact.section1.title') %>
         </h1>
-       <!-- <p class="text-center">
-        </p>-->
+
       </div>
       <div class="col-12 col-md-6 ml-md-auto mt-4 mt-md-0">
         <img alt="image" class="img-fluid" src="<%=assets_url("/img/contact_us_man.png")%>">
@@ -77,35 +76,7 @@
     </div>
   </div>
 </section>
-<section class="fdb-block">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-12  my-2 pb-5">
-        <h3>
-         <%= t(:'general.public.sections_contact.section3.title') %>
-        </h3>
-      </div>
-      <div class="col-12 col-md-8 m-auto col-lg-4">
-        <div class="fdb-box fdb-touch">
-          <h2> <%= t(:'general.public.sections_contact.section3.part1') %> </h2>
-          <p class="text-center"> <a href="mailto:marketing@kadro.me">marketing@kadro.me</a> </p>
-        </div>
-      </div>
-      <div class="col-12 col-md-8 m-auto col-lg-4 pt-5 pt-lg-0">
-        <div class="fdb-box fdb-touch">
-          <h2> <%= t(:'general.public.sections_contact.section3.part2') %> </h2>
-          <p class="text-center"> <a href="mailto:photographers@kadro.me">photographers@kadro.me</a> </p>
-        </div>
-      </div>
-      <div class="col-12 col-md-8 m-auto col-lg-4 pt-5 pt-lg-0">
-        <div class="fdb-box fdb-touch">
-          <h2> <%= t(:'general.public.sections_contact.section3.part3') %> </h2>
-          <p class="text-center"> <a href="mailto:info@kadro.me">info@kadro.me</a> </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 <section class="fdb-block pt-0">
   <div class="container">
     <div class="row justify-content-center">
@@ -134,5 +105,3 @@
 <%= render "public/shared/section_of_call_request" , dest_url: create_call_request_path %>
 
 <%= render "types/sections/why_kadro"%>
-
-
