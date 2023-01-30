@@ -1,27 +1,20 @@
 <div class="col-6 col-sm-4 pt-0 pt-sm-2 px-4">
   <a href="<%= types_show_path(title: sh.w_url) %>">
     <div class="row px-0 px-sm-2 fill_imgs">
-      <%SelectableImages::SelectTopImages.call(shoot_type: sh.id).photos.first(3).each do |si| %>
+      <% sh.samples.first(3).each do |si| %>
         <div class="p-0 m-0">
-          <%=image_tag si.file_url_address, class:"img-fluid" %>
+          <%=image_tag si.url(:optimum) , class:"img-fluid" %>
           <span class="d-none">
-          <%= si.file_url_address %>
-            <%= si.image_id %>
+          <%= si.url %>
           </span>
         </div>
       <%end %>
     </div>
   </a>
   <div class="row px-0 py-2">
-    <!--    <div class="col-4 col-lg-3 col-xl-2 text-right">-->
-    <!--      <img alt=" عکاسی <%#= sh.title %>" class="img-fluid fill_avatar bg-light" src="<%#= sh.avatar_url(:medium) %>">-->
-    <!--    </div>-->
     <div class="col-12 col-sm-9 text-right" style="min-height: 50px;">
       <p class="text-white text-right">
         <a href="<%= types_show_path(title: sh.w_url) %>">
-          <!-- <span class="d-none d-md-inline"  style="color:white !important;">
-           <%=t(:'general.home.section3.shoot_type') %>
-          </span> -->
           <span class="" style="color:white !important;">
           <%= sh.title %>
           </span>

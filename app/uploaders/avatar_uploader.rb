@@ -1,9 +1,5 @@
 class AvatarUploader < CarrierWave::Uploader::Base
-  CarrierWave.configure do |config|
-    if Rails.env.development?
-      config.asset_host = "https://app.kadro.me"
-    end
-  end
+
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick

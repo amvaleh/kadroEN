@@ -246,10 +246,10 @@ p{
     width: 100%;
 }
 .fill_imgs > div:first-child > img {
-    border-radius: 0px 0px 40px 0px;
+    border-radius: 0px 0px 0px 40px;
 }
 .fill_imgs > div:last-child > img {
-    border-radius: 40px 0px 0px 0px;
+    border-radius: 0px 40px 0px 0px;
 }
 .fill_imgs div{
     width: 25%;

@@ -1,7 +1,7 @@
 class PhotoUploader < CarrierWave::Uploader::Base
   CarrierWave.configure do |config|
     if Rails.env.development?
-      config.asset_host = "https://app.kadro.me"
+      # config.asset_host = "https://app.kadro.me"
     end
   end
 

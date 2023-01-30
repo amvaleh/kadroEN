@@ -2,13 +2,13 @@ en:
   general:
     home:
       seo:
-        title: "Book a pro photographer"
-        meta_description: "Kadro is an online photography marketplace where you can book pre-vetted professional photographers with fixed prices for almost everything. Kadro is Uber-like photography."
+        title: "Book a pro photographer | kadro"
+        meta_description: "Kadro is an online photography marketplace where you can book pre-vetted professional photographers with fixed prices for almost everything."
         meta_keywords: "photography, photography studios, hire a photographer, freelancer"
         meta_author: "Kadro Team"
       section1:
         title: "Book a pre-vetted pro photographer"
-        subtitle: "affordable photography for everyone!"
+        subtitle: "outdoor, indoor, wherever & whenever you want it!"
         buttons:
           button1: "Book a videographer"
           button2: "Book a photographer now!"
@@ -35,63 +35,63 @@ en:
           comment3: "I wanted some photos of my product for Digikala. With the help of the photographer,
                     the equipment was brought to our place and we shooted all the products. He was a talented photographer"
       section3: #photography field
-        title: "Kadro’s Areas of Expertise"
-        subtitle: "You will be matched with a pre-vetted specialist for all your photography needs!"
+        title: "Available Shoot Types"
+        subtitle: "Here are our available photography shooting types you can book!"
         buttons:
           button1: "Personal"
           button2: "Business"
         shoot_type: "Photography"
-        link: "See more"
+        link: "book"
 
 
       section4: #work with us
         title: "How it works"
         alt1: "Photographey pricing"
-        subtitle1: "How long?"
-        explain: "Kadro’s rates are hourly. You can book a pro for an hour and up to seven hours daily."
+        subtitle1: "Pricing"
+        explain: "Our pricing is per hour. You can book a photographer from 1 hour and up to 7 hours in a day."
 
         alt2: "Choosing a professional photographer"
-        subtitle2: "Find your photographer"
-        explain1: "Kadro’s algorithm suggests the best photographers "
-        explain2: "based on your"
-        explain3: "location and date,"
-        explain4: "and then you get to pick based on your preferences."
+        subtitle2: "AI photographer matchmaking"
+        explain1: "Our AI mathcing algorithm finds the best photographers "
+        explain2: "according to your"
+        explain3: "location, time, experience and shoot type,"
+        explain4: "then you get to choose your favourite one!"
 
-        alt3: "Pay the price of photography with a 7-day guarantee"
-        subtitle3: "Secure payment"
-        explain5: "All shoots are covered by Kadro’s Money-Back Guarantee."
-        explain6: "You can request for a full refund within seven days "
-        explain7: "if you do not like the finished product."
+        alt3: "7-days money back guarantee"
+        subtitle3: "Money back guarantee"
+        explain5: "All shoots are covered by our 7 days-money back guarantee."
+        explain6: "You can request full refund within seven days after you received your photos"
+        explain7: "if you do not approved the photos delivered to you."
 
         alt4: "Doing on-site photography"
-        subtitle4: "Convenience"
-        explain8: "The photographer of your choice, at your location, and at your desired time and date!"
-        explain9: "Also, all photoshoots are extendable!"
-        explain10: "Quick turnaround"
-        explain11: "The edited photos will be delivered to your personal gallery within 72 hours!"
+        subtitle4: "Say cheese!"
+        explain8: "Get ready to take best photos ever and say cheese!"
+        explain9: "All bookings are extendable if you need."
+        explain10: "Fast delivery"
+        explain11: "All edited photos will be delivered to your personal gallery within 72 hours!"
         alt5: "Delivery of photos in personal album"
         subtitle5: "Customer satisfaction is key!"
-        explain12: "After receiving the photos, you may comment on your photos and if you are satisfied, the photographer's payment will be released."
-        explain13: "Otherwise, you can book another photographer or get a full refund within 7 days."
+        explain12: "After reviewing the photos, you can provide feedback and if satisfied, the photographer will receive payment."
+        explain13: "If not, you can rebook with another photographer or request a full refund within 7 days"
 
         alt6: "Comment to the photographer"
         subtitle6: "Video about kadro"
         explain14: "In this video, you can see how kadro works perfectly"
 
       section5: #featurs
-        title: "Our features"
+        title: "Why book through us?"
 
-        subtitle1: "7-day service guarantee"
-        explain1: "If you are not satisfied after receiving your photos, you may request a full refund within seven days."
+        subtitle1: "7-days money back guarantee"
+        explain1: "If you are not satisfied after reviewing your photos, you can request a full refund within 7 days."
 
-        subtitle2: "Delivery on the spot!"
-        explain2: "As an extra option, you may receive the photos on the spot and the photographer will then delete them from their camera."
+        subtitle2: "Best Photography Locations"
+        explain2: "You may select your photography location after consulting with your photographer to receive the best recommendations."
 
-        subtitle3: "Original image files in .jpg format"
-        explain3: "The photos will be delivered to you in high-quality .jpg format and in their original form as well."
+        subtitle3: "High Quality .Jpg files"
+        explain3: "The photos will be delivered to you in high-quality JPEG format, both edited and post-processed."
 
-        subtitle4: "Diverse collection of photographers"
-        explain4: "Based on the occasion and your preferences you may book either a male or female photographer. Everything is up to you!"
+        subtitle4: "You Get To Choose"
+        explain4: "Photography is a matter of personal preference, so you are free to choose who takes your photos."
 
         subtitle5: "Physical Photos"
         explain5: "You can order physical copies of your photos as well and have them delivered to you for maximum convenience!"
@@ -148,14 +148,14 @@ en:
             link4: "Sample professional photo retouching"
 
       section9:
-        title: "In need of a professional?"
-        subtitle: "Kadro connects you with professional photographers near you. Book one in 90 seconds!"
-        button:    "Book now"
+        title: "Are you a photographer ?"
+        subtitle: "Join our Middle East Photography Network now and fill your calendar with fully payed bookings."
+        button:    "Join now!"
 
       footer:
         titles:
-          title1: "News letter"
-          explain1: "Sign up to receive emails about the latest trends in the world of photography, offers and discounts tailored for you!"
+          title1: "Newsletter"
+          explain1: "Sign up for photography trend updates, personalized offers and discounts via email."
           button: "Register"
           explain2: "Enter your email"
           explain3: "Enter your email to join our newsletter"
