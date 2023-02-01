@@ -8,13 +8,13 @@
     <%= render 'shared/externals/yandex' %>
   <% end %>
   <title>
-    صفحه مورد نظر یافت نشد
-    | کادرو
+    Page Not Found
+    | Kadro
   </title>
   <meta charset="UTF-8">
-  <meta name="description" content="صفحه مورد نظر یافت نشد">
+  <meta name="description" content="Page Not Found">
   <meta name="keywords" content="">
-  <meta name="author" content="تیم کادرو">
+  <meta name="author" content="Kadro">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
     <%= csrf_meta_tags %>
@@ -37,30 +37,24 @@
       <div class="row justify-content-center pb-xl-5">
         <div class="col-8 col-sm-8 text-center">
           <img alt="image" class="img-fluid" src=<%=assets_url("/img/404.jpg")%> >
-          <h2>
-            آخ، محتوای اینجا پاک شده یا به آدرس دیگه ای رفته!
-          </h2>
+          <h1>
+            <%= t(:'general.not_found.sections.h1') %> 
+          </h1>
         </div>
       </div>
 
-      <div class="row text-left justify-content-center pt-5">
+      <div class="row text-left justify-content-center py-5">
         <div class="col-12 ">
           <div class="row">
             <div class="col-12">
-              <h3><strong> صفحه اصلی </strong></h3>
+              <h3>
+                <strong>
+                  <%= t(:'general.not_found.sections.subtitle') %>
+                 </strong>
+                </h3>
               <p class="text-center">
-                برو به صفحه اصلی، از اونجا به همه چیز دسترسی داری.
-                <br><%= link_to "صفحه اصلی" , "https://www.kadro.me",class:"btn btn-primary" %>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-12  pt-5 pt-sm-5 pt-md-5">
-          <div class="row">
-            <div class="col-12">
-              <h3><strong> قیمت های عکاسی </strong></h3>
-              <p class="text-center"> برای دیدن قیمت های عکاسی و رزرو یک عکاس حرفه ای برو اینجا
-                <br> <%= link_to "مشاهده قیمتها" , pricing_url ,class:"btn btn-outline-primary"%>
+                <%= t(:'general.not_found.sections.cta') %>
+                <br><%= link_to t(:'general.not_found.sections.cta_button') , "https://www.kadro.me",class:"btn btn-primary" %>
               </p>
             </div>
           </div>
@@ -68,5 +62,3 @@
       </div>
     </div>
   </section>
-
-  <%#= render "types/sections/footer", :@shoot_type=>@shoot_type%>

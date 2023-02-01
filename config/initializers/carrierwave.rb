@@ -20,3 +20,10 @@ module CarrierWave
     end
   end
 end
+if Rails.env.development?
+  CarrierWave.configure do |config|
+    # if Rails.env.development?
+    #   config.asset_host = "https://app.kadro.co"
+    # end
+  end
+end

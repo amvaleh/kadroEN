@@ -6,7 +6,7 @@
 <% @projects.order("start_time DESC").each do |project| %>
   <div class="col-md-4 col-sm-6 col-xs-12" style="">
 
-    <div class="row well" style=" <%if project.is_shooted%>background-color: #3b3b3b;<% else %> background-color: #a2d0f7;
+    <div class="row well" style="<% if project.is_shooted%>background-color: #3b3b3b;<% else %> background-color: #a2d0f7;
         <% end %>
         border: 1px solid #ffffff;">
       <div class="row">
@@ -18,7 +18,7 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li style="    background: #e7e7e7;">
+                <li style="background: #e7e7e7;">
                   <p class="text-center">
                     ارزیابی:
                   </p>

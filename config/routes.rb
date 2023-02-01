@@ -315,14 +315,14 @@ Rails.application.routes.draw do
     # App Constraint
   end
 
-  constraints subdomain: "locations" do
-    root to: "shoot_locations#index", as: "shoot_location_root"
-    get "/list", to: "shoot_locations#index", as: "shoot_location_list"
-    get "/:id", to: "shoot_locations#show", as: "shoot_location_show"
-    get "/shoot_type/:shoot_type", to: "shoot_locations#shoot_type_filter", as: "shoot_location_shoot_type_filter"
-    get "/location_type/:id", to: "shoot_locations#shoot_location_type", as: "shoot_location_type_filter"
-    match "*a", :to => "application#page_not_found", via: :get
-  end
+  # constraints subdomain: "locations" do
+  #   root to: "shoot_locations#index", as: "shoot_location_root"
+  #   get "/list", to: "shoot_locations#index", as: "shoot_location_list"
+  #   get "/:id", to: "shoot_locations#show", as: "shoot_location_show"
+  #   get "/shoot_type/:shoot_type", to: "shoot_locations#shoot_type_filter", as: "shoot_location_shoot_type_filter"
+  #   get "/location_type/:id", to: "shoot_locations#shoot_location_type", as: "shoot_location_type_filter"
+  #   match "*a", :to => "application#page_not_found", via: :get
+  # end
 
   constraints subdomain: "pro" do
     get "/" => "prophotographers#index2", as: "all_pros"
@@ -355,23 +355,23 @@ Rails.application.routes.draw do
     get "join_us", to: "public#join_us"
     get "join-kadro-photographers", to: "public#join_us", as: "join"
     get "pricing", to: "public#pricing"
-    get "print_prices", to: "public#print_prices"
-    get "print-prices", to: "public#print_prices"
+    # get "print_prices", to: "public#print_prices"
+    # get "print-prices", to: "public#print_prices"
     get "terms", to: "public#terms"
     get "privacy", to: "public#privacy"
     get "faq", to: "public#faq"
-    get "enterprises", to: "public#enterprises"
-    get "affiliate", to: "public#affiliate"
-    get "backstages", to: "public#backstages"
-    get "news", to: "public#news"
-    get "standard_edit", to: "public#standard_edit"
-    get "retouch_edit", to: "public#retouch_edit"
-    get "videography/:id", to: "videography#show", as: "video"
-    get "videography/", to: "videography#index", as: "videography"
+    # get "enterprises", to: "public#enterprises"
+    # get "affiliate", to: "public#affiliate"
+    # get "backstages", to: "public#backstages"
+    # get "news", to: "public#news"
+    # get "standard_edit", to: "public#standard_edit"
+    # get "retouch_edit", to: "public#retouch_edit"
+    # get "videography/:id", to: "videography#show", as: "video"
+    # get "videography/", to: "videography#index", as: "videography"
     get "types", to: "types#index", as: "types"
     get "types/:title", to: "types#show", as: "types_show"
-    get "submit-project", to: "video_leads#new", as: "new_video_leads"
-    post "submit-project", to: "video_leads#create", as: "create_video_leads"
+    # get "submit-project", to: "video_leads#new", as: "new_video_leads"
+    # post "submit-project", to: "video_leads#create", as: "create_video_leads"
     post "selectable_images/like" => "selectable_images#like", as: "kd_like"
     get "single_photo", to: "selectable_images#single_photo", as: "single_photo"
 

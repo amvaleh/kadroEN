@@ -1,5 +1,11 @@
 en:
   general:
+    not_found:
+      sections:
+        h1: "Oops, Content may have been removed or transferred to another address."
+        subtitle: "Main page"
+        cta: "Please navigate to main page, you have access to everything from there."
+        cta_button: "main page"
     home:
       seo:
         title: "Book a pro photographer | kadro"
