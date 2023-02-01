@@ -1,5 +1,11 @@
 en:
   general:
+    not_found:
+      sections:
+        h1: "Content not present or transferred to another address."
+        subtitle: "Please navigate to homepage, then find the proper address."
+        cta: "Please navigate to homepage."
+        cta_button: "home page"
     home:
       seo:
         title: "Book a pro photographer | kadro"
@@ -17,7 +23,6 @@ en:
         dropdown2: "View portfolio"
         dropdown3: "Talk to an expert"
         dropdown4: "Login"
-
       section2:
         title: "What do customers say about us"
         comments:
