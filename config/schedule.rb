@@ -53,7 +53,7 @@ every "0 16 20 * *" do
 end
 
 every 1.day, at: "4:00 am" do
-  command "backup perform -t db_backup -c /home/deploy/Backup/models/db_backup.rb"
+  #command "backup perform -t db_backup -c /home/deploy/Backup/models/db_backup.rb"
   rake "photographer_tasks:calculate_rate"
   rake "gallery_tasks:check_zip_created_at"
 end
@@ -75,7 +75,7 @@ every 1.day, at: "01:00 pm" do
 end
 
 every 1.day, at: "11:00 pm" do
-  command "cd /home/deploy/kadro_repo/kadro.git && git fetch origin '*:*'"
+  #command "cd /home/deploy/kadro_repo/kadro.git && git fetch origin '*:*'"
 end
 
 every 30.minutes do

@@ -2,18 +2,20 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: amirmahdivaleh
+  username: deploy
+  password: 12345678
   host: localhost
   port: 5432
 
 development:
   <<: *default
-  database: kadro_db_en
+  database: kadro_en_db
 
 test:
   <<: *default
-  database: kadro_db_en_test
+  database: kadro_en_db_test
 
 production:
   <<: *default
-  database: kadro_db_en
+  database: kadro_en_db
+
