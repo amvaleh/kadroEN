@@ -9,8 +9,8 @@ class AdminUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :recoverable, :rememberable, :trackable, :validatable ,:database_authenticatable, :authentication_keys => [:email]
   has_one :business
-    scope :in_about, -> {
-    where(:about_display => true)
+  scope :in_about, -> {
+    where(about_display: true)
   }
 
 
