@@ -8,7 +8,7 @@ title: "Latest News"             # Give your blog a meaningful title. This is us
 title_short: "Kadro"                                                            # Place the name of your blog or a short title here
 short_description: "Latest Kadro News"         # Short description for your blog
 meta_description: "Latest Kadro News"  # meta description tag
-meta_author: "Amirmahdi Valeh Valeh                                                         # meta tag for author
+meta_author: "Amirmahdi Valeh Valeh"                                                     # meta tag for author
 keywords: "kadro, photography, NEWS"                                          # your keywords
 og_logo: "https://opoloo.github.io/lines-engine/assets/images/lines-logo.jpg"   # OpenGraph logo
 geo_position: "35.7242574; 51.3870327"                                                     # Geo tags for position and address
