@@ -41,7 +41,7 @@ en:
                     the equipment was brought to our place and we shooted all the products. He was a talented photographer"
       section3: #photography field
         title: "Available Shoot Types"
-        subtitle: "Here are our available photography shooting types you can book!"
+        subtitle: "Here are our available photography shoot types you can book!"
         buttons:
           button1: "Personal"
           button2: "Business"
@@ -583,12 +583,12 @@ en:
           explain6: "Yes,you can provided you wish to travel to the Kadro service areas to work"
     pricing:
       seo:
-        title: "Affordable photography made accessible | kadro "
+        title: "Affordable photography made possible | kadro "
         meta_discription: "Reasonable prices in all photography extersise"
         meta_keyword: "Photography prices and tariffs, the most reasonable prices"
         meta_author: "The most suitable photography price"
       section1:
-        title: "Affordable photography made accessible!"
+        title: "Affordable photography made possible!"
         subtitle1: "We constantly strive to set the best photography standards at reasonable prices."
         subtitle2: "Here are four reasons that make our prices competitive! "
         reason1-1: "Our prices are hourly"
@@ -633,7 +633,7 @@ en:
         lable2: "Standard"
         lable3: "As many as the number of packages each photo more +10,000"
       section4: #shoot_types
-        title: "Select the extersise to see prices "
+        title: "Select the shoot type to see prices "
         button1: "Personal"
         button2: "Business"
         string: "Photography"
