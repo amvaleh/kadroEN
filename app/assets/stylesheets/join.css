@@ -260,3 +260,7 @@ label + input[type=radio] + label {
   padding: 0 15px 0 15px!important;
   margin-top: 10px;
 }
+
+.join_steps h3 {
+  text-align: left;
+}

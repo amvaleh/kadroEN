@@ -342,3 +342,8 @@ p{
 .features h3{
   text-align: left;
 }
+
+.join_steps h3 , p {
+    text-align: left;
+    direction: ltr !important;
+  }

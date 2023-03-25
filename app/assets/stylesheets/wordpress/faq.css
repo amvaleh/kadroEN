@@ -1,6 +1,6 @@
 
 .faq-page h2{
-    text-align: right;
+    text-align: left;
     color: #375bff;
 }
 .faq{
@@ -57,9 +57,9 @@
 .answer p{
     color: #5a5a5a;
     font-size: 1.2em;
-    text-align: right;
+    text-align: left;
 }
 .answer h6{
-    text-align: right;
+    text-align: left;
     color: purple;
 }

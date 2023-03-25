@@ -1,0 +1,85 @@
+en:
+  head:
+    meta_title: "Join kadro as a photographer."
+    meta_description: "Kadro is an online photography marketplace where you can fill your free times with full payed bookings in every shoot type that you want."
+    meta_keywords: "kadro, photography, dubai, freelance"
+  intro:
+    title: "Many Free times in your Calendar?"
+    subtitle: "Join kadro and fill your free times with full payed bookings in every shoot type that you want."
+    cta_sign_in: "sign in"
+    cta_sign_up: "join now!"
+    alt: "kadro photography"
+  section1:
+    title: "For photographers"
+    description: "Convert your free times to easy bookings. Photographers can join Kadro and get photography bookings in every shoot type that they want. Here are main benefits in working with Kadro:"
+    benefits:
+      feature_1:
+        title: "Direct Bookings"
+        desc: "Users can book you directly from your page in Kadro."
+      feature_2:
+        title: "Payment Guarantee"
+        desc: "Users pay 100% of booking in the beginning. So rest assured the money has been paid."
+      feature_3:
+        title: "As near as possible"
+        desc: "Receive bookings near your designated location. Get payed more for farther routes."
+      feature_4:
+        title: "Fast Money"
+        desc: "Earn money easily without the marginal work, just foucs on photography."
+      feature_5: 
+        title: "Customizable Calendar"
+        desc: "Update your working calendar as you want, when you want."
+  section2:
+    title: "Membership Procedures"
+    description: "Everything is online, before you begin, make your portfolio ready to complete the steps faster and easier."
+    steps:
+      one: 
+        title: "Basic Info"
+        desc: "Enter information such as name, email, mobile number and working location."
+      two: 
+        title: "Photography Equipment"
+        desc: "Submit your camera mode, lenses and lighting photography that you posses and can take with you to customer's locations."
+      three:
+        title: "Your Portfolio "
+        desc: "Upload your photos in every shoot type that you want to work. Your portfolio is the most important element in your membership. Also, upload a High quality portrait of yourself."
+      four:
+        title: "Your Experience"
+        desc: "Tell us a little about your background, experiences, hobbies, achivments so that we could know you better."
+      five:
+        title: "And it's done!"
+        desc: "Your registration is complete. We check your profile for any problems and if there is one, we'll let you know and resolve it."
+      six:
+        title: "Welcome to Kadro"
+        desc: "From now on, you are a part of our professional photographers."
+      cta: "Join now!"
+  section3:
+    title: "Requirements "
+    desc: "We are mostly looking for people who are highly motivated, have good artistic taste, are inquisitive, have energy and have strong social relationships."
+    subtitle: "One can join Kadro if they," 
+    conditions:
+      full_part_time: "can work full time or part time."
+      experience: "have at least 1 year experience in photography."
+      equipments: "have proper camera, lenses or lighting equipments."
+      googling: "be familiar with google and searching."
+      poses: "Be familiar with photography poses and styles."
+      post_processing: "Be skilled in working with Lightroom for post processing."
+      social_media: "Be familiar with social media trends."
+      energetic: "Are energetic, cheerful and ethical and have a friendly interaction with customers."
+  section4:
+    title: "Your Payment"
+    desc: "You own 80% of each booking based on our pricing method. Check out here for a full help of our pricing structure."
+    bookings:
+      title: "Bookings"
+      desc: "80% of each booking goas directly to your wallet which you can checkout any time you want."
+    extension:
+      title: "Time Extenstions"
+      desc: "You can earn more if your customers want to extend their primary booking."
+  faq:
+    title: "FAQ"
+
+
+
+
+
+      
+      
+      

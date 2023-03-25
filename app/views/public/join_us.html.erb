@@ -7,12 +7,12 @@
     <%= render 'shared/externals/raychat' %>
 <% end %>
   <title>
-    استخدام عکاس | عکاسی پروژه ای و پاره وقت | کادرو
+    <%= t(:'head.meta_title') %>
   </title>
   <meta charset="UTF-8">
-  <meta name="description" content="✓ استخدام عکاس ✓ کادرو دغدغه های مالی و بازاریابی شما را حل می کند و به شما پروژه های عکاسی در رشته تخصصی تان می دهد. برای ثبت نام کلیک کنید.">
-  <meta name="keywords" content="استخدام عکاس, عکاس پروژه ای, پروژه عکاسی, درآمد عکاسی">
-  <meta name="author" content="تیم کادرو">
+  <meta name="description" content="<%=t(:'head.meta_description')%>">
+  <meta name="keywords" content="<%=t(:'head.meta_keywords')%>">
+  <meta name="author" content="kadro">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
   <%= csrf_meta_tags %>
@@ -28,41 +28,20 @@
 <%= render "public/shared/wordpress_header" %>
 
 <%= render "public/join/join_intro" %>
-<section class="fdb-block bg-dark py-5">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-12">
-        <%= link_to "http://instagram.com/kadro.mellege" , target:"_blank" do %>
-          <h6 class="text-center">
-            پیج اینستای کادرو کالج
-          </h6>
-          <p class="text-muted text-center">
-            فقط اگر عکاس هستی فالو کن
-            <i class="fa fa-angle-double-left text-danger">
-            </i>
-          </p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</section>
+
 <section class="fdb-block" data-block-type="features" data-id="2" draggable="true">
   <div class="container">
     <div class="row align-items-center pb-xl-5">
       <div class="col-12 col-md-7 col-xl-5">
-        <h2 class="text-right">
-          مزایای کادرو برای عکاس
+        <h2 class="text-left">
+          <%=t(:'section1.title')  %>
         </h2>
         <p class="">
-          شما اگر به عنوان عکاس کادرو فعالیت کنید، بازاریابی و تبلیغات بر عهده کادرو خواهد بود و پروژه ها در محله و منطقه انتخابی تان به شما داده می شود. در برنامه زمانی دلخواه و رشته های تخصصی خودتان پروژه می گیرید و کسب درآمد می کنید.
-          شما به عنوان عکاس حرفه ای معرفی می شوید و  کاربران می توانند از پروفایل تان شما را به عنوان عکاس انتخاب کنند.
-          دیگر فرآیند سخت عقد قرارداد با کارفرما و دغدغه دریافت مبلغ از کارفرما را نخواهید داشت. بعد از هر پروژه مبلغ به حساب شما واریز خواهد شد.
+          <%=t(:'section1.description')  %>
         </p>
       </div>
-      <div class="col-12 col-sm-6 col-md-4 m-sm-auto mr-md-0 ml-md-auto pt-4 pt-md-0 ">
-        <p>
-          <img alt="مزایا عضویت در کادرو" class="img-fluid " src="https://cdn.jsdelivr.net/gh/froala/design-blocks@master/dist/imgs//draws/developer.svg">
-        </p>
+      <div class="col-12 col-sm-6 col-md-4 pt-4 mx-auto">
+          <img alt="<%=t(:'section1.title')%>" class="img-fluid" src="/img/for_photographers.jpg">
       </div>
     </div>
 
@@ -75,11 +54,11 @@
           <div class="col-12">
             <h3>
               <strong>
-                تقویم کاری دلخواه
+                <%=t(:'section1.benefits.feature_5.title')  %>
               </strong>
             </h3>
             <p>
-              داخل تقویم هفتگی ات زمان های خالی که میخواهی عکاسی کنی را ثبت کن.
+              <%=t(:'section1.benefits.feature_5.desc')  %>
             </p>
           </div>
         </div>
@@ -92,11 +71,11 @@
           <div class="col-12">
             <h3>
               <strong>
-                پاره وقت
+                <%=t(:'section1.benefits.feature_4.title')  %>
               </strong>
             </h3>
             <p>
-              لازم نیست تمام-وقت فعال باشی، هر زمان دوست داشتی میتونی حسابت رو فعال کنی و کار کنی.
+              <%=t(:'section1.benefits.feature_4.desc')  %>
             </p>
           </div>
         </div>
@@ -109,11 +88,11 @@
           <div class="col-12">
             <h3>
               <strong>
-                نزدیک تو
+                <%=t(:'section1.benefits.feature_3.title')  %>
               </strong>
             </h3>
             <p>
-              پروژه های عکاسی، نزدیک منطقه فعالیتی که ثبت کردی برات میاد.
+              <%=t(:'section1.benefits.feature_3.desc')  %>
             </p>
           </div>
         </div>
@@ -126,11 +105,11 @@
           <div class="col-12">
             <h3>
               <strong>
-                تضمین مبلغ
+                <%=t(:'section1.benefits.feature_2.title')  %>
               </strong>
             </h3>
             <p>
-              تمام مبلغ پروژه توسط کادرو از کارفرما گرفته میشه، خیالت راحت بشه که نیازی نیست چک و چونه بزنی.
+              <%=t(:'section1.benefits.feature_2.desc')  %>
             </p>
           </div>
         </div>
@@ -143,11 +122,11 @@
           <div class="col-12">
             <h3>
               <strong>
-                رزرو مستقیم
+                <%=t(:'section1.benefits.feature_1.title')  %>
               </strong>
             </h3>
             <p>
-              همه می تونند از پروفایلی که برات ساخته میشه نمونه کارهات رو ببیند و مستقیم رزروت کنند.
+              <%=t(:'section1.benefits.feature_1.desc')  %>
             </p>
           </div>
         </div>
@@ -159,96 +138,76 @@
   <div class="container">
     <div class="row justify-content-center pb-xl-5">
       <div class="col-12 col-md-8 text-center">
-        <h2>مراحل عضویت در کادرو</h2>
+        <h2>
+          <%=t(:'section2.title')  %>
+        </h2>
         <p class="lead">
-          همه مراحل عضویت
-          <em> آنلاین </em>
-          انجام میشه و خیلی سادست. کافیه مراحل زیر رو با حوصله طی کنی. قبل از شروع، حتما نمونه کارهای عکاسی تو آماده کن که سریعتر بتونی پروفایلت رو تکمیل کنی.
+          <%=t(:'section2.description')  %>
         </p>
       </div>
     </div>
 
     <div class="row text-right align-items-center-lg align-items-end pt-5">
-      <div class="col-7 col-sm-4 m-auto mb-md-0 mt-md-0 m-lg-auto bg-white"><p>
-        <img alt="image" class="img-fluid rounded shadow-lg bg-white" src="<%=assets_url("/img/join/join.jpg") %>">
-      </p>
-      </div>
-
       <div class="col-12 col-md-7 col-lg-6 col-xl-5 m-auto text-left pt-5 pt-md-0 join_steps border-right border-light">
         <h3>
           <strong>
-            اطلاعات اولیه
+          <%=t(:'section2.steps.one.title')%>
           </strong>
         </h3>
         <p>
-          در این مرحله اطلاعاتی مانند نام و نام خانوادگی، ایمیل، شماره همراه، آدرس و موقعیت محل زندگی خود را وارد می کنید.
+          <%=t(:'section2.steps.one.desc')%>
         </p>
 
         <h3>
           <strong>
-            تجهیزات عکاسی
+          <%=t(:'section2.steps.two.title')%>
           </strong>
         </h3>
         <p>
-          در این مرحله مدل دوربین، لنز ها و تجهیزات نوری که با آن عکاسی می کنید را باید دقیق وارد کنید.
+          <%=t(:'section2.steps.two.desc')%>
         </p>
         <h3>
           <strong>
-            نمونه کارها
+          <%=t(:'section2.steps.three.title')%>
           </strong>
         </h3>
         <p>
-          در این بخش در رشته های موردنظرتان، نمونه کار آپلود می کنید. همینطور عکسی از خودتان را قرار می دهید.
-        </p>
-
-        <h3>
-          <strong>
-            سابقه کاری
-          </strong>
-        </h3>
-        <p>
-          در این بخش، شما از تجربیات خود در کار و سابقه کاری خود برای ما می نویسید تا با شما بیشتر آشنا شویم.
+          <%=t(:'section2.steps.three.desc')%>
         </p>
 
         <h3>
           <strong>
-            بررسی کارشناس
+          <%=t(:'section2.steps.four.title')%>
           </strong>
         </h3>
         <p>
-          کارشناسان کادرو اطلاعات شما رو بررسی می کنند و در صورتیکه نقصی در پروفایل شما باشه به شما اطلاع می دهند.
-        </p>
-
-        <h3>
-          <strong>
-            تاییدیه اولیه
-          </strong>
-        </h3>
-        <p>
-          در صورتیکه پروفایل شما مورد تایید کارشناسان ما باشد، پروفایل شما تایید می شود و به تنظیمات بیشتر پروفایل دسترسی پیدا می کنید.
-        </p>
-
-        <h3>
-          <strong>
-            قرارداد و مدارک
-          </strong>
-        </h3>
-        <p>
-          مدارک مورد نیاز و نسخه امضا شده قرارداد را به
-          <%= link_to "آدرس پستی کادرو" , contact_us_path %>
-          ارسال می کنید.
+          <%=t(:'section2.steps.four.desc')%>
         </p>
         <h3>
           <strong>
-            به کادرو خوش آمدید!
+          <%=t(:'section2.steps.five.title')%>
           </strong>
         </h3>
         <p>
-          از این لحظه به بعد، شما یکی از عکاسان حرفه ای مجموعه ما خواهید بود. مفتخریم از حضور شما در کنارمان.
+          <%=t(:'section2.steps.five.desc')%>
+        </p>
+        <h3>
+          <strong>
+            <%=t(:'section2.steps.six.title')%>
+          </strong>
+        </h3>
+        <p>
+          <%=t(:'section2.steps.six.desc')%>
         </p>
         <p class="text-center">
-          <a href="<%=photographers_join_url %>" class="btn btn-lg btn-outline-primary"> همین الان ثبت نام کن </a>
+          <a href="<%=photographers_join_url %>" class="btn btn-lg btn-outline-primary"> 
+          <%=t(:'section2.steps.cta')%>
+          </a>
         </p>
+      </div>
+      <div class="col-7 col-sm-4 m-auto mb-md-0 mt-md-0 m-lg-auto bg-white"><p>
+        <img alt="image" class="img-fluid rounded shadow-lg bg-white" src="<%=assets_url("/img/join/join.jpg") %>">
+      </p>
       </div>
     </div>
   </div>
@@ -257,23 +216,19 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 text-left">
-        <h2 style="text-align: right;">
-          چه شرایطی برای عضویت لازمه؟
+        <h2>
+          <%=t(:'section3.title') %>
         </h2>
         <p class="lead">
-          ما بیشتر به دنبال افرادی هستیم که با انگیزه بالا، ذوق هنری خوب، جستجوگر، با انرژی و روابط اجتماعی قوی هستند.
-        </p>
-        <p>
-          <img alt="شرایط عضویت در کادرو" class="img-fluid mt-5 fr-fic fr-dii" src="<%=assets_url("/img/join/who_can.jpg") %>">
+          <%=t(:'section3.desc') %>
         </p>
       </div>
     </div>
-
-    <div class="row text-left pt-5 photographer_income">
-      <div class="row text-left my-5">
+    <div class="row text-left pt-2 photographer_income">
+      <div class="row text-left my-2">
         <div class="col-12 mx-5">
-          <h4 class="text-right text-primary">
-            عکاسی می تونه عضو کادرو باشه که ...
+          <h4 class="text-left text-primary">
+           <%= t(:'section3.subtitle') %>
           </h4>
         </div>
       </div>
@@ -281,26 +236,26 @@
         <div class="col-12 col-sm-6 col-lg-3 col-xl-2 ml-xl-auto mr-xl-auto">
           <p class="text-dark">
             <span class="fa fa-check"> </span>
-            بتونه به صورت پاره وقت یا تمام وقت کار کنه.
+            <%= t(:'section3.conditions.full_part_time') %>
           </p>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 col-xl-2 ml-xl-auto mr-xl-auto pt-3 pt-md-0 pt-lg-0">
           <p class="text-dark">
             <span class="fa fa-check"> </span>
-            حداقل یک سال از عکاسی کسب درآمد کرده باشه.
+            <%= t(:'section3.conditions.experience') %>
           </p>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 col-xl-2 ml-xl-auto mr-xl-auto pt-3 pt-lg-0">
           <p class="text-dark">
             <span class="fa fa-check"> </span>
-            دوربین عکاسی، لنز و تجهیزات نوری داشته باشه.
+            <%= t(:'section3.conditions.equipments') %>
           </p>
         </div>
 
         <div class="col-12 col-sm-6 col-lg-3 col-xl-2 ml-xl-auto mr-xl-auto pt-3 pt-lg-0">
           <p class="text-dark">
             <span class="fa fa-check"> </span>
-            به خوبی با گوگل و سرچ کردن آشنا باشه.
+            <%= t(:'section3.conditions.googling') %>
           </p>
         </div>
       </div>
@@ -309,51 +264,27 @@
         <div class="col-12 col-sm-6 col-lg-3 col-xl-2 ml-xl-auto mr-xl-auto">
           <p class="text-dark">
             <span class="fa fa-check"> </span>
-            با ژست ها و استایل های عکاسی آشنایی داشته باشه.
+            <%= t(:'section3.conditions.poses') %>
           </p>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 col-xl-2 ml-xl-auto mr-xl-auto pt-3 pt-md-0 pt-lg-0">
           <p class="text-dark">
             <span class="fa fa-check"> </span>
-            در کار کردن با نرم افزار
-            <em> لایت روم </em>
-            مهارت داشته باشه.
+            <%= t(:'section3.conditions.post_processing') %>
           </p>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 col-xl-2 ml-xl-auto mr-xl-auto pt-3 pt-lg-0">
           <p class="text-dark">
             <span class="fa fa-check"> </span>
-            با شبکه های اجتماعی به خوبی آشنایی داشته باشه.
-
+            <%= t(:'section3.conditions.social_media') %>
           </p>
         </div>
         <div class="col-12 col-sm-6 col-lg-3 col-xl-2 ml-xl-auto mr-xl-auto pt-3 pt-lg-0">
           <p class="text-dark">
             <span class="fa fa-check"> </span>
-            پر انرژی، خوش رو و اخلاق مدار و با کارفرما تعامل دوستانه داشته باشد.
+            <%= t(:'section3.conditions.energetic') %>
           </p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="fdb-block" data-block-type="contents" data-id="8" draggable="true">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-10 col-sm-6 m-auto col-md-4 pb-4 pb-md-0"><p>
-        <img alt="image" class="img-fluid shadow-lg rounded-0"
-             src="<%=assets_url("/img/join/sample_profile.png") %>">
-      </p>
-      </div>
-
-      <div class="col-12 ml-auto col-md-6 col-lg-5">
-        <h2 class="text-right">نمونه پروفایل عکاس</h2>
-        <p class="lead">
-          پس از تکمیل فرم استخدام عکاس، پروفایل هر عکاس به این صورت قابل نمایش خواهد بود. کاربران می توانند از طریق پروفایل عکاسان تایید شده به صورت مستقیم آنها را رزرو کنند.
-        </p>
-        <p>
-          <a class="btn btn-outline-primary mt-4 mb-5 mb-md-0" href="https://pro.kadro.me/mehranbakhtiari"> مشاهده نمونه پروفایل عکاس </a>
-        </p>
       </div>
     </div>
   </div>
@@ -363,67 +294,52 @@
   <div class="container photographer_income">
     <div class="row justify-content-center">
       <div class="col-12 text-center">
-        <h2>میزان دریافتی عکاس</h2>
+        <h2>
+          <%=t(:'section4.title') %>
+        </h2>
         <p class="text-center text-dark">
-          عکاسان فعال کادرو میانگین به ازای هر ساعت کار ۱۲۰.۰۰۰ تومان درآمد تضمین شده داشته اند. همچنین عکاسان از روش های زیر نیز درآمد کسب می کنند:
+          <%=t(:'section4.desc') %>
         </p>
       </div>
     </div>
 
     <div class="row text-center mt-5">
-      <div class="col-12 col-sm-4">
+      <div class="col">
         <span class="fa fa-money fa-2x"></span>
         <h3>
           <strong>
-            از پروژه
+            <%= t(:'section4.bookings.title') =%>
           </strong>
         </h3>
         <p>
-          در پروژه های عکاسی، ۶۵٪ تا ۹۰٪ مبلغ پرداختی، سهم عکاسان متناسب با زمان، مکان و تخصص پروژه مورد نظر خواهد بود.
+            <%= t(:'section4.bookings.desc') =%>
         </p>
       </div>
 
-      <div class="col-12 col-sm-4 pt-4 pt-sm-0">
+      <!-- <div class="col-12 col-sm-4 pt-4 pt-sm-0">
         <span class="fa fa-car fa-2x"></span>
         <h3>
-          <strong> از رفت و آمد </strong>
+          <strong> 
+            Distances
+          </strong>
         </h3>
         <p>
-          اگر محل پروژه خارج از منطقه شما باشه، کمک هزینه ای معادل هزینه رفت و آمد با اسنپ برای شما منظور می گردد.
+          !!
         </p>
-      </div>
+      </div> -->
 
-      <div class="col-12 col-sm-4 pt-4 pt-sm-0">
+      <div class="col pt-4 pt-sm-0">
         <span class="fa fa-clock-o fa-2x"></span>
         <h3>
-          <strong>  از تمدید زمان عکاسی </strong>
+          <strong> 
+            <%= t(:'section4.extension.title') =%>
+          </strong>
         </h3>
         <p>
-          اگر کارفرمای شما زمان بیشتری تمدید کند، در لحظه کارفرما مبلغ تمدید را می پردازد و به حساب شما اضافه می گردد.
+            <%= t(:'section4.extension.desc') =%>
         </p>
       </div>
-
-      <div class="col-12 col-sm-4 pt-4 pt-sm-0">
-        <span class="fa fa-photo fa-2x"></span>
-        <h3>
-          <strong> از سفارش چاپ عکس </strong>
-        </h3>
-        <p>
-          <strong class="text-dark">  هر زمان </strong>
-          کارفرمای شما از عکس هایش سفارش چاپ عکس و شاسی بدهد، شما به میزان ۲۰٪ مبلغ سفارش در سود سفارش سهیم هستید که به حساب شما اضافه می گردد.
-        </p>
-      </div>
-
-      <div class="col-12 col-sm-4 pt-4 pt-sm-0">
-        <span class="fa fa-hand-grab-o fa-2x"></span>
-        <h3>
-          <strong> از معرفی پروژه (بازاریابی) </strong>
-        </h3>
-        <p>
-          در صورتیکه به کادرو مشتری معرفی کنید، چه خودتان عکاسی کنید چه عکاس دیگری، به میزان ۱۰٪ از درآمد پروژه به عنوان کمیسیون بازاریابی برای شما منظور میگردد.
-        </p>
-      </div>
-      
+       
     </div>
   </div>
 </section>
@@ -431,159 +347,71 @@
   <div class="container">
     <div class="row">
       <div class="col col-md-8 text-center">
-        <h2 class="text-center">سوالات متداول</h2>
+        <h2 class="text-center">
+          <%= t(:'faq.title') %>          
+        </h2>
       </div>
       <div class="col-12 col-sm-6 mx-auto justify-content-right my-5">
         <div class="faqs">
           <div class="faq">
             <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
               <h3>
-                چطور عکاس کادرو شوم ؟
+                How can I join Kadro as a photographer?
               </h3>
             </div>
             <div class="answer">
               <p>
-                برای استخدام در کادرو به عنوان عکاس باید در سایت یک پروفایل برای خود بسازید. برای این کار شما باید یک فرم ۴ مرحله ای را پر کنید تا اطلاعات شما توسط کارشناسان کادرو مورد بررسی قرار بگیرد. برای شروع ثبت نام می توانید
-                <%= link_to "اینجا کلیک کنید." , photographers_join_url%>
+                To join as a photographer, you must create a profile on the site. For this, you have to fill out a 4-step form so that your information can be checked by our membership team. 
               </p>
             </div>
           </div>
 
           <div class="faq">
             <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
               <h3>
-                ثبت نام در سایت هزینه دارد ؟
+                Does it cost me anything to register on the site ?
               </h3>
             </div>
             <div class="answer">
               <p>
-                ثبت نام در سایت به عنوان عکاس هیچ هزینه ای ندارد و می توانید به صورت رایگان برای خود یک پروفایل در سایت کادرو بسازید.
+                No, you don't pay anything by registring as a photographer in kadro. It's totally free.
               </p>
             </div>
           </div>
 
           <div class="faq">
             <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
               <h3>
-                برای ثبت نام در سایت، باید نمونه کار آپلود کنم ؟
+                What Should I upload as a photographer ?
               </h3>
             </div>
             <div class="answer">
               <p>
-                بله. در مرحله سوم ثبت نام، شما باید رشته هایی که می خواهید در آن فعالیت داشته باشید را انتخاب کنید و در همان رشته ها نمونه کارهای خود را آپلود کنید.
+                You must upload a nice portrait of you for your profile picture, choose you shoot types and upload at least 12 pieces of your portfolio in each of them and fill out some forms for us.
               </p>
             </div>
           </div>
+           
           <div class="faq">
             <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
               <h3>
-                بعد از ثبت نام بلافاصله برایم پروژه می آید ؟
+                How much time does it take for you to check my profile ?
               </h3>
             </div>
             <div class="answer">
               <p>
-                زمانی که در سایت ثبت نام کنید، پروفایل شما توسط کارشناسان کادرو بررسی می شود. در صورتی که از نظر کارشناسان پروفایل شما مورد تایید باشد برای مصاحبه حضوری از شما دعوت می شود. پس از مصاحبه و سنجش مهارت شما، تفاهم نامه ای میان کادرو و شما به عنوان عکاس امضا خواهد شد. پس از امضا تفاهم نامه، شما به عنوان عکاس کادرو معرفی خواهید شد و پروژه های عکاسی به شما داده می شود.
+                We try our best to check your profile within 24-36 hours and get in touch with you through Whatsapp, Telegram or Email.
               </p>
             </div>
           </div>
 
-
-          <div class="faq">
-            <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-              <h3>
-                چقدر زمان می برد تا پروفایلم بررسی شود ؟
-              </h3>
-            </div>
-            <div class="answer">
-              <p>
-                به صورت کلی پروفایل هایی که تا مرحله آخر اطلاعات خود را وارد کرده باشند، مورد بررسی قرار خواهند گرفت. مدت زمان بررسی هر پروفایل بین ۱۰ روز تا ۲۰ روز خواهد بود.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq">
-            <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-              <h3>
-                پروفایل من برای همه نمایش داده می شود ؟
-              </h3>
-            </div>
-            <div class="answer">
-              <p>
-                زمانی که ثبت نام شما به اتمام می رسد پروفایل شما برای همه قابل نمایش خواهد بود. اما باید لینک انتخابی صفحه شما را داشته باشند. زمانی که شما عکاس کادرو شوید، پروفایل شما برای عموم نمایش داده می شود و به عنوان عکاس از سمت کادرو معرفی خواهید شد.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq">
-            <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-              <h3>
-                چه اطلاعاتی از من در پروفایل قرار می گیرد ؟
-              </h3>
-            </div>
-            <div class="answer">
-              <p>
-                نام شما به همراه عکس خودتان، نوع دوربین و لنز ها، نمونه کارهایی که آپلود کرده اید و همینطور تجربه کاری شما برای همه نمایش داده خواهد شد.
-                اطلاعات شخصی شما مانند شماره تماس، محل سکونت نمایش داده نمی شوند.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq">
-            <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-              <h3>
-                کادرو در شهر محل سکونت من هم فعالیت دارد ؟
-              </h3>
-            </div>
-            <div class="answer">
-              <p>
-                کادرو به زودی در تمام شهر های ایران فعالیت خود را شروع خواهد کرد. شما می توانید در سایت ثبت نام کنید. زمانی که کادرو وارد شهر محل سکونت شما شود، میتوانید پروژه بگیرید و کسب درآمد کنید.
-              </p>
-              <%= link_to "مشاهده شهر های فعال" , all_pros_url , class:"btn btn-outline-dark" %>
-            </div>
-          </div>
-
-          <div class="faq">
-            <div class="question">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-              <h3>
-                عکاسان غیر تهرانی، باید برای مصاحبه، حضوری بیایند ؟
-              </h3>
-            </div>
-            <div class="answer">
-              <p>
-                عکاسانی که محل سکونت آنها تهران نباشد، از طریق تماس تصویری با آنها مصاحبه خواهد شد.
-                اطلاعات شخصی شما مانند شماره تماس، محل سکونت نمایش داده نمی شوند.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 <%= render "public/join/join_intro.html.erb" %>
-<section class="fdb-block">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col col-md-8 text-center">
-        <p class="lead" style="height: 100px; overflow: scroll;font-size: 12px">
-          <% ShootType.all.each do |sh| %>
-            استخدام عکاس
-            <%= sh.title %>
-            و
-            پروژه عکاسی
-            <%= sh.title %>.
-          <% end %>
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
