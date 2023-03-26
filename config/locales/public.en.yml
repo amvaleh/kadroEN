@@ -370,10 +370,10 @@ en:
 
         section5:
           title: "Need a photographer ?"
-          subtitle: "Submit your request, we'll call you in 20 minutes."
+          subtitle: "Submit your request, we'll call you in 30 minutes."
           lable1: "Name"
-          lable2: "Phone number"
-          lable3: "How much do you want to pay ?"
+          lable2: "Phone number (city code required)"
+          lable3: "What is your average budget?"
           lable4:  "What time is best to call you ?"
           lable5: "Describe your needs"
           lable6: "I have 40 products that I want to shoot with white background for online sales"

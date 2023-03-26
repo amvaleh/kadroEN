@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount Lines::Engine => "/updates"
   constraints subdomain: "app" do
-    get "/" => "bookv2#show", as: "app"
+    # get "/" => "bookv2#show", as: "app"
     get "callbook" => "bookv2#callbook", as: "callbook"
     get "free_times/:id/close_all", to: "free_times#close_all", as: "close_all_times"
     get "free_times/:id/open_most", to: "free_times#open_most", as: "open_most_times"
@@ -357,9 +357,9 @@ Rails.application.routes.draw do
     get "pricing", to: "public#pricing"
     # get "print_prices", to: "public#print_prices"
     # get "print-prices", to: "public#print_prices"
-    get "terms", to: "public#terms"
-    get "privacy", to: "public#privacy"
-    get "faq", to: "public#faq"
+    # get "terms", to: "public#terms"
+    # get "privacy", to: "public#privacy"
+    # get "faq", to: "public#faq"
     # get "enterprises", to: "public#enterprises"
     # get "affiliate", to: "public#affiliate"
     # get "backstages", to: "public#backstages"
