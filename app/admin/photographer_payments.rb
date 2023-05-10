@@ -32,9 +32,9 @@ ActiveAdmin.register PhotographerPayment do
   # end
   #
 
-  filter :project, as: :select, collection: Project.joins(:photographer_payments).collect { |p| [p.slug, p.id] }.uniq
+  # filter :project, as: :select, collection: Project.joins(:photographer_payments).collect { |p| [p.slug, p.id] }.uniq
   filter :price
-  filter :status, as: :select, collection: Lookup.where(category: "payment_status").collect { |l| [l.title, l.code] }
+  # filter :status, as: :select, collection: Lookup.where(category: "payment_status").collect { |l| [l.title, l.code] }
   filter :photographer
   filter :payment_type
   filter :payment_date

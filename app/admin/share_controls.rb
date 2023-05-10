@@ -20,8 +20,8 @@ ActiveAdmin.register ShareControl do
   filter :last_seen_user
   filter :created_at
   filter :updated_at
-  filter :shoot_type_select, as: :select, collection: ShootType.all.collect { |l| [l.title, l.id] }
-  filter :photographer_select, as: :select, collection: Photographer.approved.collect { |l| [l.display_name, l.id] }
+  # filter :shoot_type_select, as: :select, collection: ShootType.all.collect { |l| [l.title, l.id] }
+  # filter :photographer_select, as: :select, collection: Photographer.approved.collect { |l| [l.display_name, l.id] }
 
   show do
     render "shared/modal"

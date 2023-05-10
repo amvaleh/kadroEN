@@ -21,7 +21,7 @@ ActiveAdmin.register Business do
 
   form do |f|
     f.inputs "Status" do
-      f.input :admin_user, :label => "Admin", :as => :select, :collection => AdminUser.all.sort_by { |e| e[:email] }.map { |u| [u.email, u.id] }
+      # f.input :admin_user, :label => "Admin", :as => :select, :collection => AdminUser.all.sort_by { |e| e[:email] }.map { |u| [u.email, u.id] }
       f.input :name
       f.input :refers
       f.input :photographer_share

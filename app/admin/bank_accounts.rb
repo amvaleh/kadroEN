@@ -26,7 +26,7 @@ ActiveAdmin.register BankAccount do
 
   form do |f|
     f.inputs "Information" do
-      f.input :photographer, :as => :select, :collection => Photographer.approved.all.sort_by { |e| e[:first_name] }.sort_by { |a| a.approved ? 0 : 1 }.map { |u| [u.display_name + u.pointer, u.id] }
+      # f.input :photographer, :as => :select, :collection => Photographer.approved.all.sort_by { |e| e[:first_name] }.sort_by { |a| a.approved ? 0 : 1 }.map { |u| [u.display_name + u.pointer, u.id] }
       f.input :card_number
       f.input :shaba
       f.input :card_name

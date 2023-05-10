@@ -8,13 +8,13 @@ en:
         cta_button: "home page"
     home:
       seo:
-        title: "Book a pro photographer | kadro"
-        meta_description: "Kadro is an online photography marketplace where you can book pre-vetted professional photographers with fixed prices for almost everything."
+        title: "Book a pro photographer | ShootEmpire"
+        meta_description: "ShootEmpire is an online photography marketplace where you can book pre-vetted professional photographers with fixed prices for almost everything."
         meta_keywords: "photography, photography studios, hire a photographer, freelancer"
-        meta_author: "Kadro Team"
+        meta_author: "ShootEmpire Team"
       section1:
-        title: "Book a pre-vetted pro photographer"
-        subtitle: "outdoor, indoor, wherever & whenever you want it!"
+        title: "Portrait Photography in Dubai"
+        subtitle: "Locations + Photographers + Poses"
         buttons:
           button1: "Book a videographer"
           button2: "Book a photographer now!"
@@ -29,7 +29,7 @@ en:
           name1: "Zohre alavi"
           subtitle1: "Baby photography"
           comment1: "I wanted to shoot my baby with decor, clothes and lightning,
-                    so I booked a photographer from Kadro and he was very kind and patient, Thank you for your efforts"
+                    so I booked a photographer from ShootEmpire and he was very kind and patient, Thank you for your efforts"
 
           name2: "Mehrdad hajipasha"
           subtitle2: "Wedding photography"
@@ -80,8 +80,8 @@ en:
         explain13: "If not, you can rebook with another photographer or request a full refund within 7 days"
 
         alt6: "Comment to the photographer"
-        subtitle6: "Video about kadro"
-        explain14: "In this video, you can see how kadro works perfectly"
+        subtitle6: "Video about ShootEmpire"
+        explain14: "In this video, you can see how ShootEmpire works perfectly"
 
       section5: #featurs
         title: "Why book through us?"
@@ -108,19 +108,19 @@ en:
         explain7: "Access to your photos is only extended to you and your photographer."
 
         subtitle8: "Commitment to quality service"
-        explain8: "All of Kadro’s photographers are covered by Kadro’s assurance and are pre-vetted."
+        explain8: "All of ShootEmpire’s photographers are covered by ShootEmpire’s assurance and are pre-vetted."
 
       section6: #barandegan
-        title: "Kadro customer winners"
+        title: "ShootEmpire customer winners"
 
       section7: # bartarin phtographer
         title: "Best photographers"
         subtitle: "All photographers have passed the hard filters and been accepted Here we see the top photographers"
         subtitle1: "Top female photographers"
         subtitle2: "Newest members"
-        subtitle3: "The best kadro studio owners"
+        subtitle3: "The best ShootEmpire studio owners"
         explain:
-          explain1: "Kadro is the same as Snape of Iranian photography, it is very valuable to have a professional photographer for yourself"
+          explain1: "ShootEmpire is the same as Snape of Iranian photography, it is very valuable to have a professional photographer for yourself"
           button: "Book a photographer"
         lable1: "lens"
         lable2: "Camera"
@@ -128,7 +128,7 @@ en:
         lable4: "Active in"
         lable5: "Photography expertise"
       section8: #khadamt digar
-        title: "Other services kadro"
+        title: "Other services ShootEmpire"
         subtitle: "We have a professional team of photographers who can offer many other services"
         img:
           alt:
@@ -144,7 +144,7 @@ en:
 
             alt3: "Online photo printing"
             title3: "Edit and color light"
-            explain3: "All your photos in Kadro are edited by a light and color photographer. All your photos"
+            explain3: "All your photos in ShootEmpire are edited by a light and color photographer. All your photos"
             link3: "Sample editing and color light"
 
             alt4: "Online photo printing"
@@ -154,7 +154,7 @@ en:
 
       section9:
         title: "Are you a photographer ?"
-        subtitle: "Join our Middle East Photography Network now and fill your calendar with fully payed bookings."
+        subtitle: "Join our Dubai Photography Network now and fill your calendar with fully payed bookings."
         button:    "Join now!"
 
       footer:
@@ -164,19 +164,19 @@ en:
           button: "Register"
           explain2: "Enter your email"
           explain3: "Enter your email to join our newsletter"
-          title2: "Kadro"
+          title2: "ShootEmpire"
           title3: "List of photographers and studios"
           title4: "Enter the album"
           title5: "Join us"
           title6: "About us"
         subtitles:
-          subtitle1: "Kadro values"
+          subtitle1: "ShootEmpire values"
           subtitle2: "contact us"
           subtitle3: "Terms and Conditions"
           subtitle4: "Privacy"
           subtitle5: "Frequently Asked Questions"
           subtitle6: "Report a problem"
-          subtitle7: "Kadro in the news"
+          subtitle7: "ShootEmpire in the news"
           subtitle8: "Commercial services"
           subtitle9: "Filming and making a teaser"
           subtitle10: "Photography locations"
@@ -191,7 +191,7 @@ en:
           subtitle18: "Check our twitter!"
       header:
         titles:
-          title1: "Menu"
+          title1: "..."
           title2: "Login"
           title3: "Book a Photographer now"
           title4: "Services"
@@ -214,10 +214,10 @@ en:
 
     public:
       seo:
-        title: "About us | Kadro"
+        title: "About us | ShootEmpire"
         meta_description: "About us"
-        meta_keywords: "About the executive team and the founders of Kadro"
-        meta_author: "Kadro Team"
+        meta_keywords: "About the executive team and the founders of ShootEmpire"
+        meta_author: "ShootEmpire Team"
       sections:
         section1:
           title: "About us"
@@ -227,7 +227,7 @@ en:
           subtitle1: "Life these days is going so fast that one day we open our eyes and see that years have passed and only memories remain!
                      We are here to record your memories,your most important moments and your joys in the easiest way
                      so that you can easily go back in time and review your memories whenever you want."
-          subtitle2: "Kadro is here for you to"
+          subtitle2: "ShootEmpire is here for you to"
           subtitle3: "reminisced about your valuable memories of your life at a glance."
         section3:
           title: "Our team"
@@ -257,10 +257,10 @@ en:
           title: "The path we took"
           year: "1396"
           #1
-          subtitle1: "The idea of a Kadro was created"
-          subtitle2: "kadro is the Latin translation of the word FRAME"
+          subtitle1: "The idea of a ShootEmpire was created"
+          subtitle2: "ShootEmpire is the Latin translation of the word FRAME"
           #2
-          subtitle3: "The first version of Kadro site"
+          subtitle3: "The first version of ShootEmpire site"
           subtitle4: "came up on a half wordpress and"
           subtitle5: "half ROR platform"
           #3
@@ -273,33 +273,33 @@ en:
           subtitle9-3: "who was with us for 3 months left the team and
                         Mohammad Mehdi Hosseini Nasab joined the team as the founder"
           #5
-          subtitle10: "Kadro's office was established in Dezashib"
+          subtitle10: "ShootEmpire's office was established in Dezashib"
           subtitle11: "People in the photo: Amir Mehdi Valeh, Mohammad Mehdi Hosseini Nasab, Amir Hossein Zahedi"
           #6
           subtitle12: "Channel 3 interview with one of the photographers in charge of the Iftar photography project in Ramadan"
           subtitle13-1: "The photographer you see is"
           subtitle13-2: "Mr. M. Bakhtiari"
-          subtitle13-3: "one of the top photographers of Kadro"
+          subtitle13-3: "one of the top photographers of ShootEmpire"
           #7
-          subtitle14: "Signing a contract for Kadro advertising teaser"
+          subtitle14: "Signing a contract for ShootEmpire advertising teaser"
           subtitle15: "The above project was directed by Mr. Saleh Abdi and filmed, compiled and delivered in 3 months"
           #8
           subtitle16-1: "achieve"
           subtitle16-2: "second rank"
           subtitle16-3: "in the Dmond Pitches in the field of fashion"
           subtitle17-1: "And so it was that"
-          subtitle17-2: "Interested in Kadro"
+          subtitle17-2: "Interested in ShootEmpire"
           #9
-          subtitle18: "So far, 50 active photographers have been Kadro members and more than 200 photography projects have been completed"
+          subtitle18: "So far, 50 active photographers have been ShootEmpire members and more than 200 photography projects have been completed"
 
           year2: "1397"
           #10
           subtitle19: "Gain capital from Dmond"
           subtitle20: "There were three other investment offers
-                      after many consultations Kadro joined the big team Dmond News link and details"
+                      after many consultations ShootEmpire joined the big team Dmond News link and details"
           link1: "To read here"
           #don't have subtitle21
-          subtitle22: "Mashhad, Shiraz, Isfahan joined the Kadro"
+          subtitle22: "Mashhad, Shiraz, Isfahan joined the ShootEmpire"
           subtitle23: "List of all cities where Kadre is active and photographers are ready"
           link2: "List of photographers"
 
@@ -308,12 +308,12 @@ en:
           link3: "The best photographer"
           subtitle26: "To do the best quality control possible"
 
-          subtitle27: "Kadro sponsorship in the Yalda of 97 startup entrepreneurs (Milad Tower)"
+          subtitle27: "ShootEmpire sponsorship in the Yalda of 97 startup entrepreneurs (Milad Tower)"
           subtitle28: "More than ten thousand photos were taken at the event by ten photographers which are categorized"
           link4: "You can see here"
 
-          subtitle29: "1397year of construction of Kadro substructure"
-          subtitle30: "The 5-member technical team of Kadro in 1397 created the most basic technical infrastructure including:"
+          subtitle29: "1397year of construction of ShootEmpire substructure"
+          subtitle30: "The 5-member technical team of ShootEmpire in 1397 created the most basic technical infrastructure including:"
           subtitle30-1: "Ability to deliver files on site"
           subtitle30-2: "Secure and online private album and print order"
           subtitle30-3: "Accelerate the photographer booking process with ReactJs technology"
@@ -323,8 +323,8 @@ en:
 
           year3: "1398"
 
-          subtitle31: "Kadro in the Maidoon program channel Three"
-          subtitle32: "He invited Maidoon Kadro program to introduce his services, Everything is in the movie"
+          subtitle31: "ShootEmpire in the Maidoon program channel Three"
+          subtitle32: "He invited Maidoon ShootEmpire program to introduce his services, Everything is in the movie"
 
           subtitle33: "Not only booking a photographer, but also booking a studio"
           subtitle34: "There were so many requests that we added the ability to book a studio"
@@ -341,10 +341,10 @@ en:
           subtitle39: "This section will be updated frequently"
 
       seo_contact:
-        title: "Contact us | Kadro"
+        title: "Contact us | ShootEmpire"
         meta_description: "Contact us"
         meta_keywords: ""
-        meta_author: "Kadro team"
+        meta_author: "ShootEmpire team"
       sections_contact:
         section1:
           title: "contact us"
@@ -356,7 +356,7 @@ en:
           central_office_title: "Central office"
           central_office_address: "Tehran Province, Tehran, DMOND Accelerator, N Kargar, Central Library Basement, College 2 of Engineering Faculty"
         section3:
-          title: "If you know Which Kadro section you want"
+          title: "If you know Which ShootEmpire section you want"
           part1: "Marketing"
           part2: "Photographers"
           part3: "Information"
@@ -383,31 +383,31 @@ en:
           button: "Register"
 
         section6:
-          title: "why Kadro ?"
+          title: "why ShootEmpire ?"
           reasons:
             reason1: "Get the file"
-            subtitle1: "Kadro gives you the original file of the photos.
+            subtitle1: "ShootEmpire gives you the original file of the photos.
                 All edited files with the original size of the camera will be uploaded in the My Album section.You can also order photo printing"
             reason2: "Privacy"
             subtitle2: "Only you and your photographer have access to the photos.
                     If you have a complaint about the photographer's performance, only a female expert will review your photos at your request"
             reason3: "Refund"
             subtitle3-1: "With"
-            subtitle3-2: "secure payment Kadro"
+            subtitle3-2: "secure payment ShootEmpire"
             subtitle3-3: "The amount you pay will not be transferred to the photographer until the photo is taken
                       and you see the photos and are satisfied that the amount is released for the photographer"
       seo_faq:
-        title: "Kadro Frequently Asked Questions"
+        title: "ShootEmpire Frequently Asked Questions"
         meta_discription: "Frequently Asked Questions Page"
         meta_keyword: "FAQ,Frequently Asked Questions"
-        meta_author:  "Kadro team"
+        meta_author:  "ShootEmpire team"
       section_faq:
-        title: "Frequently Asked Questions in Kadro"
+        title: "Frequently Asked Questions in ShootEmpire"
         subtitle: "Maybe someone has asked the question before"
         column1:
           title: "General"
-          question1: "?What is  Kadro"
-          answer1-1: "At Kadro,we believe that professional photography should not be expensive.We connect you to a professional photographer"
+          question1: "?What is  ShootEmpire"
+          answer1-1: "At ShootEmpire,we believe that professional photography should not be expensive.We connect you to a professional photographer"
           answer1-2: "All you have to do is determine the day, date and location. Our photographer will come to your place with the necessary lighting equipment"
           answer1-3: "You can also book a studio and take photos in the studio"
           answer1-4: "After taking the photo, you can view and download the photos through your personal online album"
@@ -415,7 +415,7 @@ en:
           button1-2: "Book a photographer"
 
           question2: "?In which cities do you have services"
-          answer2-1: "Kadro in the cities of"
+          answer2-1: "ShootEmpire in the cities of"
           answer2-2: "The photographer has to provide services"
           lable1: "See the list of cities"
           question3: "?What kind of photos can I take"
@@ -424,7 +424,7 @@ en:
           lable2: "contact us"
 
           question4: "?Where is your studio"
-          answer4-1: "Kadro does not have his own studio"
+          answer4-1: "ShootEmpire does not have his own studio"
           answer4-2: "Our photographers come to your project site.
                       You can choose any location such as home, company, office, shop, park, tourist place or anywhere else that is convenient"
           lable3: "Suitable places for the photographer"
@@ -450,10 +450,10 @@ en:
           answer2-4: "In each package, we have included the approximate average of photo deliveries according to the statistics of previous projects"
 
           question3: "?Will my photos be edited in Photoshop"
-          answer3-1: "Yes, all Kadro packages contain standard"
+          answer3-1: "Yes, all ShootEmpire packages contain standard"
           answer3-2: "Light and color editing"
           answer3-3: "For example, calibrating color temperature, light, sharpness, contrast, and cropping and calibrating other parameters"
-          answer3-4: "Kadro"
+          answer3-4: "ShootEmpire"
           answer3-5: "Photo retouching service"
           answer3-6: "After photography, you can order a professional retouching service by selecting any photo"
           lable4: "Sample photo retouching"
@@ -467,7 +467,7 @@ en:
           answer5-1: "Project information is sent to the photographer,if the photographer approves,the contact information of the parties will be provided"
           answer5-2 : "If not approved, you can choose another photographer or let us replace you with another photographer"
           question6: "?When should I pay"
-          answer6-1: "With a Kadro secure payment system"
+          answer6-1: "With a ShootEmpire secure payment system"
           answer6-2: "You pay the full amount of the project"
           #answer6-3: "But no amount"
           answer6-4: "The photographer will not be paid until the photography project is completed and you receive all the photos"
@@ -482,7 +482,7 @@ en:
           title5: "Special requests"
           question9: "?Can I choose a photographer myself"
           answer9-1: "Yes sure!"
-          answer9-2: "Basically, this is one of the advantages of Kadro"
+          answer9-2: "Basically, this is one of the advantages of ShootEmpire"
           answer9-3: "You yourself"
           answer9-4: "By looking at the portfolio you select the previous comments and background of the photographer"
 
@@ -501,11 +501,11 @@ en:
           question12: "?Do you offer discounts for a large number of photos"
           answer12-1: "Yes, you can from"
           answer12-2: "Commercial packages"
-          answer12-3: "Kadro for businesses"
+          answer12-3: "ShootEmpire for businesses"
           answer12-4: "If you wish, you can share your needs with us"
 
           question13: "?Do you offer imaging services"
-          answer13: "Yes, you can enter the filming and teaser section of the Kadro from the link below"
+          answer13: "Yes, you can enter the filming and teaser section of the ShootEmpire from the link below"
           lable8: "Make a video and teaser"
 
           title6: "Change a booking"
@@ -535,7 +535,7 @@ en:
 
           answer18-2: "If there is no problem, the photographer will confirm and a confirmation SMS will be sent to you"
           answer18-3: "If the photographer does not approve"
-          answer18-4: "You can choose another photographer or let the Kadro replace it you"
+          answer18-4: "You can choose another photographer or let the ShootEmpire replace it you"
 
           question19: "?How do I contact my photographer"
           answer19: "If there is no news about your photographer, or you want to contact him sooner,you can click on the button to contact the photographer
@@ -546,7 +546,7 @@ en:
                       We have an active photographer who can replace you with another professional photographer"
 
           answer20-2: "1) You can choose another photographer from your project link"
-          answer20-3: "2)If you do not, the Kadro support will replace another photographer with your coordination"
+          answer20-3: "2)If you do not, the ShootEmpire support will replace another photographer with your coordination"
 
           question21: "?When will I take my photos"
           answer21-1: "Up to 72 hours after the date of the photo, you will receive a
@@ -557,9 +557,9 @@ en:
 
         lastpart:
           title: "For photographers"
-          q1: "?Why should I work with Kadro"
+          q1: "?Why should I work with ShootEmpire"
           reason1: "Custom time calendar"
-          explain1-1: "Take pictures with Kadro and get good money as an independent contractor freelancer.You will receive your fee as soon as the project is completed
+          explain1-1: "Take pictures with ShootEmpire and get good money as an independent contractor freelancer.You will receive your fee as soon as the project is completed
                         at the same time you will be your own boss and according to"
           explain1-2: "time schedule"
           explain1-3: "you will work yourself"
@@ -571,19 +571,19 @@ en:
           explain3: "Forget the difficult and annoying process of concluding a contract with the employers and go to the project with the ease of receiving the project cost
                     because we will do the hard work of advertising and attracting customers for you"
           reason4: "Experience and collect work samples"
-          explain4-1: "If you are a photographer who does not have much work experience,you can gain experience in Kadro along with other professional photographers
+          explain4-1: "If you are a photographer who does not have much work experience,you can gain experience in ShootEmpire along with other professional photographers
                       by going to different photography projects and various portfolios"
           explain4-2: "Build and Simply find your regular customers"
 
-          q2: "?I want to be a Kadro photographer, what should I do"
+          q2: "?I want to be a ShootEmpire photographer, what should I do"
           explain5: "We look forward to working with you.Please fill out the form below, we will contact you soon"
           lable1: "Join us"
 
-          q3: "?I live outside the Kadro service area, can I work as a photographer"
-          explain6: "Yes,you can provided you wish to travel to the Kadro service areas to work"
+          q3: "?I live outside the ShootEmpire service area, can I work as a photographer"
+          explain6: "Yes,you can provided you wish to travel to the ShootEmpire service areas to work"
     pricing:
       seo:
-        title: "Affordable photography made possible | kadro "
+        title: "Affordable photography made possible | ShootEmpire "
         meta_discription: "Reasonable prices in all photography extersise"
         meta_keyword: "Photography prices and tariffs, the most reasonable prices"
         meta_author: "The most suitable photography price"
@@ -615,8 +615,8 @@ en:
         explain3-2: "Take your professional photographer and download some files that you have booked as a professional photographer
                     have the rest of the photos online"
       section3:
-        title: "Features of Kadro photography packages"
-        subtitle: "The list below tells you all the features of Kadro photography packages"
+        title: "Features of ShootEmpire photography packages"
+        subtitle: "The list below tells you all the features of ShootEmpire photography packages"
         feature1: "Edit light and color of all photos"
         feature2: "The presence of the photographer in the loction"
         feature3: "Booking in the studio"
@@ -639,8 +639,8 @@ en:
         string: "Photography"
       section5:
         title: "Customer feedback"
-        subtitle: "Previous customers opinions about the prices of Kadro"
-        lable: "Kadro customer"
+        subtitle: "Previous customers opinions about the prices of ShootEmpire"
+        lable: "ShootEmpire customer"
       section6:
         title: "Frequently Asked Questions About Prices"
         q1: "?How much is the price of cost photography"
@@ -666,7 +666,7 @@ en:
         ans7: "Yes! After receiving your photo file from the private gallery, you can also order photo printing online view"
         ans7-2: "photo printing prices"
         ans7-3: "on the site"
-        q8: "?What is the difference between price of photography in Kadro and other photographs"
+        q8: "?What is the difference between price of photography in ShootEmpire and other photographs"
         ans8: "You should know that one of the sources of photography prices in our country is the Association of Photographers of the country. Compare the price of photography on the website of the association with the price of photography in the frame,
                   you will find that the price of photography in the frame is completely frugal"
         q9: "?If i want additional photos What are the prices"
@@ -682,7 +682,7 @@ en:
         ans12: "Because photos are unlimited, the hourly rate is up to 4 times cheaper than the frame or shot price"
     types:
       seo: #types (expertises)
-        title: "Active Photography expertise | Kadro"
+        title: "Active Photography expertise | ShootEmpire"
         meta_discription:
           part1: "From"
           part2: "Tomans for"
@@ -693,7 +693,7 @@ en:
           part2: "Photography Range"
           part3: "Photography"
           part4: "in place"
-        meta_author: "Kadro team"
+        meta_author: "ShootEmpire team"
       sections:
         word: "Photography"
         button1: "Book now"
@@ -716,30 +716,30 @@ en:
           item7: "Prices are cheaper in other cities"
         section2:
           title: "Photo printing price"
-          subtitle: "Prices for Kadro photo printing are very competitive compared to the market
+          subtitle: "Prices for ShootEmpire photo printing are very competitive compared to the market
                     you can take as many photos as you want and order photo printing"
           link: "Photo printing price"
         section3:
           title: "Some portfolio"
           subtitle1: "Would you like to contribute to the ranking of photographers? Vote for the portfolio"
           subtitle2: "Photography Portfolio"
-          subtitle3: "Photo by certified photographer Kadro"
+          subtitle3: "Photo by certified photographer ShootEmpire"
           subtitle4: "We are not able to display portfolios in this field, please ask for advice"
           subtitle5: "This link"
           subtitle6: "Write a message"
         section4:
           title: "Customer feedback"
-          subtitle1: "Previous Customer Experiences Kadro"
+          subtitle1: "Previous Customer Experiences ShootEmpire"
           subtitle2: "the average score of"
           subtitle3: "from"
           subtitle4: "the comment is equal to"
           subtitle5: "Of 10"
-          subtitle6: "Kadro photogerapher"
+          subtitle6: "ShootEmpire photogerapher"
 
         section5:
-          title1-1: "Kadro"
+          title1-1: "ShootEmpire"
           title1-2: "Photographers"
-          subtitle1-1:  "Kadro you will find the best photographers in your area connects to the choice of booking"
+          subtitle1-1:  "ShootEmpire you will find the best photographers in your area connects to the choice of booking"
           subtitle1-2: "Knowing the place and time of your photography, the best options for photography"
           subtitle1-3: "We introduce you."
           button1: "A photographer"
@@ -756,7 +756,7 @@ en:
           alt1: "Photo printing price"
 
           title3: "Select a photographer"
-          explain2-1: "Search algorithm Kadro of the best photographers"
+          explain2-1: "Search algorithm ShootEmpire of the best photographers"
           explain2-2: "Based on your time and place offers that you can see by portfolio
                        and select and book previous comments"
           alt2: "Choosing a professional photographer"
@@ -808,23 +808,23 @@ en:
 
           subtitle7: "privacy"
           explain7-1: "The photos can only be seen by you and your photographer, and if necessary"
-          explain7-2: "Ms. Kadro's expert checks the photos for quality control"
+          explain7-2: "Ms. ShootEmpire's expert checks the photos for quality control"
 
           subtitle8: "Ethical commitment"
-          explain8: "All Kadro photographers have submitted a contract and a cash guarantee in order to abide by Kadro's terms and conditions"
+          explain8: "All ShootEmpire photographers have submitted a contract and a cash guarantee in order to abide by ShootEmpire's terms and conditions"
         section8:
           title: ":Suitable for"
         partners:
           title: "More services"
-          subtitle: "Support for business partners Kadro"
+          subtitle: "Support for business partners ShootEmpire"
           subtitle2: "go to"
         main_page: #types page
           seo:
-            meta_description: "Active photography expertise in Kadro with the best price and delivery of
+            meta_description: "Active photography expertise in ShootEmpire with the best price and delivery of
                  the original file of all photos by your selected professional photographer"
             meta_keywords: "Photography expertises, photography genres"
-            meta_author: "Kadro team"
-          title: "Kadro Photography expertises"
+            meta_author: "ShootEmpire team"
+          title: "ShootEmpire Photography expertises"
           subtitle: "Please click to see the portfolio and the price of each field"
           button1: "Personal"
           button2: "Business"
@@ -832,8 +832,8 @@ en:
     pro_photographers:
       sections:
         section1:  #index2:(adress)
-          title: "List of photographers and Kadro photography studios"
-          subtitle: "Kadro introduces you to the best photographers and the best photography studios in all cities of Iran"
+          title: "List of photographers and ShootEmpire photography studios"
+          subtitle: "ShootEmpire introduces you to the best photographers and the best photography studios in all cities of Iran"
           button1: "Photography"
           button2: "Show studio owners"
           button3: "Man"
@@ -847,7 +847,7 @@ en:
           lable3: "Camera"
           lable4: "View and book"
         section3: #comment
-          title: "User comments about Kadro photographers"
+          title: "User comments about ShootEmpire photographers"
           lable1: "Photography"
           lable2: "The final photo"
           lable3: "Photography time"

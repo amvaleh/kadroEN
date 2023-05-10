@@ -33,7 +33,7 @@
 <% if Rails.env.production? %>
   <%= render 'shared/externals/gtag_body' %>
 <% end %>
-<section class="fdb-block py-3 pt-5 bg-dark" id="home-expertise">
+<section class="fdb-block py-3 pt-5 bg-light" id="home-expertise">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
@@ -47,27 +47,10 @@
     </div>
     <div class="row text-left mt-4 py-0 justify-content-center">
       <div class="col-12 col-sm-10 col-md-10 col-lg-12 mx-2">
-        <div class="row">
-           <div class="col-6">
-            <button id="personal" class="btn btn-primary btn-block" style="height: 50px">
-              <%= t(:'general.home.section3.buttons.button1') %>
-            </button>
-          </div>
-          <div class="col-6">
-            <button id="business" class="btn btn-outline-primary btn-block" style="height: 50px">
-              <%= t(:'general.home.section3.buttons.button2') %>
-            </button>
-          </div>
-        </div>
         <div class="container-fluid">
           <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
-            <% ShootType.all.is_personal.active.order("shoot_types.order").each do |sh| %>
+            <% ShootType.all.active.order("shoot_types.order").each do |sh| %>
               <%= render :partial => 'shoot_type_each' , locals:{sh:sh}%>
-            <% end %>
-          </div>
-          <div class="row text-left mt-0 py-3 justify-content-center d-none" id="business_types">
-            <% ShootType.all.is_business.active.order("shoot_types.order").each do |sh| %>
-              <%= render :partial => 'shoot_type_each' , locals:{sh:sh} %>
             <% end %>
           </div>
         </div>
@@ -75,13 +58,12 @@
     </div>
   </div>
 </section>
-<%= render :partial => 'public/home/how_works' %>
 
 <%= render :partial => 'public/home/features' %>
 
 
 <section class="fdb-block py-0">
-  <div class="container py-5 my-5" style="background-image: url(/types/imgs/shapes/1.svg);">
+  <div class="container py-5 my-5">
     <div class="row justify-content-center py-5">
       <div class="col-12 col-md-10 col-lg-8 text-center">
         <div class="fdb-box bg-primary">
@@ -102,29 +84,4 @@
     </div>
   </div>
 </section>
-
-<script>
-    $(document).ready(function () {
-        //DOM manipulation code
-        console.log("inside");
-        $('#personal').click(function () {
-                console.log("personal clicked.");
-                $(this).removeClass("btn-outline-primary");
-                $(this).addClass("btn-primary");
-                $('#business').removeClass("btn-primary").addClass("btn-outline-primary");
-                $("#personal_types").removeClass("d-none");
-                $("#business_types").addClass("d-none");
-            }
-        );
-        $('#business').click(function () {
-                console.log("business clicked.");
-                $(this).removeClass("btn-outline-primary");
-                $(this).addClass("btn-primary");
-                $('#personal').removeClass("btn-primary").addClass("btn-outline-primary");
-                $("#business_types").removeClass("d-none");
-                $("#personal_types").addClass("d-none");
-            }
-        )
-    });
-</script>
 </body>

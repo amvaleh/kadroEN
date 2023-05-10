@@ -1,33 +1,25 @@
 <header style="direction:ltr !important;" >
-  <div class="" style="padding: 0">
 
-    <nav class="navbar navbar-expand-lg  bg-dark-blue" style="left: 0px;
-    right: 0px;
-    position: static;
-    z-index: 10;" id="main_navbar">
-    <button class="mr-auto navbar-toggler btn-light" type="button" data-toggle="collapse" data-target="#navbarNav5" aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light " id="main_navbar">
+    <button class="mr-auto navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav5" aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
       <%= t(:'general.home.header.titles.title1') %>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav5">
       <ul class="nav nav-pills nav-fill text-left navbar-nav ml-0 mr-auto justify-content-center " style="text-align:center">
-        <li class="mx-auto nav-item btn-group text-center">
-          <a class="btn btn-outline-primary btn-sm" href="<%=galleries_url%>">
-            <%= t(:'general.home.header.titles.title2') %> </a>
-            <a class="btn btn-primary btn-sm" href="<%=call_request_url%>">
-              <%= t(:'general.home.header.titles.title3') %> </a>
-            </li>
-          </ul>
-
+        <a class="navbar-brand text-center" href="<%=root_url%>">
+          <img src=<%=assets_url("/img/shootempire.png")%> width="150"  alt="ShootEmpire.com">
+        </a>
+      </ul>
           <ul class="navbar-nav justify-content-end ml-auto text-center">
             <li class="nav-item">
-              <a class="nav-link text-light mx-2" href="<%=pricing_url %>"> <%= t(:'general.home.header.titles.title6') %></a>
+              <a class="nav-link text-dark mx-2" href="<%=pricing_url %>"> <%= t(:'general.home.header.titles.title6') %></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-light mx-2" href="<%= call_request_url %>"> <%= t(:'general.home.header.titles.dropdown3') %> </a>
+              <a class="nav-link text-dark mx-2" href="<%= call_request_url %>"> <%= t(:'general.home.header.titles.dropdown3') %> </a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle mr-md-5 text-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle mr-md-5 text-dark" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <%= t(:'general.home.header.titles.title7') %>
               </a>
               <div class="dropdown-menu text-right">
@@ -39,11 +31,15 @@
                 <%end %>
               </div>
             </li>
+            <li>
+              <!-- <a class="btn btn-outline-primary btn-sm" href="<%=galleries_url%>">
+                <%= t(:'general.home.header.titles.title2') %> 
+              </a> -->
+                <a class="btn btn-primary btn-sm" href="<%=call_request_url%>">
+                  <%= t(:'general.home.header.titles.title3') %> 
+                </a>
+            </li>
           </ul>
         </div>
-        <a class="navbar-brand" href="<%=root_url%>">
-          <img src=<%=assets_url("/img/kadro_logo.png")%>  height="30" alt="لوگوی کادرو">
-        </a>
       </nav>
-    </div>
   </header>

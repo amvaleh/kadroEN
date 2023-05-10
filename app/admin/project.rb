@@ -63,10 +63,10 @@ ActiveAdmin.register Project do
   scope :checked_out
   scope :publishable
 
-  filter :photographer # , :as => :select, :collection => Photographer.all.sort_by{|e| e[:first_name]}.sort_by{ |a| a.approved ? 0 : 1 }.map{|u| [u.display_name + u.pointer , u.id]}
+  # filter :photographer # , :as => :select, :collection => Photographer.all.sort_by{|e| e[:first_name]}.sort_by{ |a| a.approved ? 0 : 1 }.map{|u| [u.display_name + u.pointer , u.id]}
   filter :reserve_step
   filter :admin_user
-  filter :user, :as => :select, :collection => User.all.sort_by { |e| e[:mobile_number] }.map { |u| [u.mobile_number, u.id] }
+  # filter :user, :as => :select, :collection => User.all.sort_by { |e| e[:mobile_number] }.map { |u| [u.mobile_number, u.id] }
   filter :coupon
   filter :package
   filter :shoot_type
