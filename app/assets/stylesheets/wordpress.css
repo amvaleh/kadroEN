@@ -20,10 +20,14 @@
 *= require_self
 */
 
+@font-face {
+  font-family: Montserrat;
+  src: url("/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
 
 
 html , body , h1,h2,h3,h4,h5,h6,p{
-    font-family: "Lato";
+    font-family: Montserrat;
     direction: ltr;
 }
 

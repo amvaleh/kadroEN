@@ -1,21 +1,21 @@
 en:
   head:
-    meta_title: "Join kadro as a photographer."
-    meta_description: "Kadro is an online photography marketplace where you can fill your free times with full payed bookings in every shoot type that you want."
-    meta_keywords: "kadro, photography, dubai, freelance"
+    meta_title: "Join ShootEmpire as a photographer."
+    meta_description: "ShootEmpire is an online photography marketplace where you can fill your free times with full payed bookings in every shoot type that you want."
+    meta_keywords: "ShootEmpire, photography, dubai, freelance"
   intro:
     title: "Many Free times in your Calendar?"
-    subtitle: "Join kadro and fill your free times with full payed bookings in every shoot type that you want."
+    subtitle: "Join ShootEmpire and fill your free times with full payed bookings in every shoot type that you want."
     cta_sign_in: "sign in"
     cta_sign_up: "join now!"
-    alt: "kadro photography"
+    alt: "ShootEmpire photography"
   section1:
     title: "For photographers"
-    description: "Convert your free times to easy bookings. Photographers can join Kadro and get photography bookings in every shoot type that they want. Here are main benefits in working with Kadro:"
+    description: "Convert your free times to easy bookings. Photographers can join ShootEmpire and get photography bookings in every shoot type that they want. Here are main benefits in working with ShootEmpire:"
     benefits:
       feature_1:
         title: "Direct Bookings"
-        desc: "Users can book you directly from your page in Kadro."
+        desc: "Users can book you directly from your page in ShootEmpire."
       feature_2:
         title: "Payment Guarantee"
         desc: "Users pay 100% of booking in the beginning. So rest assured the money has been paid."
@@ -48,13 +48,13 @@ en:
         title: "And it's done!"
         desc: "Your registration is complete. We check your profile for any problems and if there is one, we'll let you know and resolve it."
       six:
-        title: "Welcome to Kadro"
+        title: "Welcome to ShootEmpire"
         desc: "From now on, you are a part of our professional photographers."
       cta: "Join now!"
   section3:
     title: "Requirements "
     desc: "We are mostly looking for people who are highly motivated, have good artistic taste, are inquisitive, have energy and have strong social relationships."
-    subtitle: "One can join Kadro if they," 
+    subtitle: "One can join ShootEmpire if they," 
     conditions:
       full_part_time: "can work full time or part time."
       experience: "have at least 1 year experience in photography."
@@ -75,10 +75,10 @@ en:
       desc: "You can earn more if your customers want to extend their primary booking."
   faq:
     title: "FAQ"
-    q1: "How can I join Kadro as a photographer?"
+    q1: "How can I join ShootEmpire as a photographer?"
     a1: "To join as a photographer, you must create a profile on the site. For this, you have to fill out a 4-step form so that your information can be checked by our membership team."
     q2: "Does it cost me anything to register on the site ?"
-    a2: "No, you don't pay anything by registring as a photographer in kadro. It's totally free."
+    a2: "No, you don't pay anything by registring as a photographer in ShootEmpire. It's totally free."
     q3: "What Should I upload as a photographer ?"
     a3: "You must upload a nice portrait of you for your profile picture, choose you shoot types and upload at least 12 pieces of your portfolio in each of them and fill out some forms for us."
     q4: "How much time does it take for you to check my profile ?"

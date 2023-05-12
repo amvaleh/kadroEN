@@ -14,7 +14,7 @@ en:
         meta_author: "ShootEmpire Team"
       section1:
         title: "Portrait Photography in Dubai"
-        subtitle: "Locations + Photographers + Poses"
+        subtitle: "Find locations, explore photographers, check portfolio and book anytime you want"
         buttons:
           button1: "Book a videographer"
           button2: "Book a photographer now!"
@@ -165,7 +165,7 @@ en:
           explain2: "Enter your email"
           explain3: "Enter your email to join our newsletter"
           title2: "ShootEmpire"
-          title3: "List of photographers and studios"
+          title3: "Book now!"
           title4: "Enter the album"
           title5: "Join us"
           title6: "About us"
@@ -204,7 +204,7 @@ en:
           dropdown3: "Free consultation"
           dropdown4: "Make a teaser"
           #dropdown for phtographer
-          dropdown5: "Join us"
+          dropdown5: "Join as a photographer"
           dropdown6: "login"
           dropdown7: "Latest news"
           dropdown8: "Exit"
@@ -300,7 +300,7 @@ en:
           link1: "To read here"
           #don't have subtitle21
           subtitle22: "Mashhad, Shiraz, Isfahan joined the ShootEmpire"
-          subtitle23: "List of all cities where Kadre is active and photographers are ready"
+          subtitle23: "List of all cities where ShootEmpire is active and photographers are ready"
           link2: "List of photographers"
 
           subtitle24: "Siavash Bagheri is coming"
@@ -375,12 +375,12 @@ en:
           lable2: "Phone number (city code required)"
           lable3: "What is your average budget?"
           lable4:  "What time is best to call you ?"
-          lable5: "Describe your needs"
-          lable6: "I have 40 products that I want to shoot with white background for online sales"
+          lable5: "What do you need? tell us."
+          lable6: "I want a portait photoshoot in Dubai, next week."
           time1: "9:00a.m  to 12:00p.m"
           time2: "12:00p.m to 16:00p.m"
           time3: "16:00p.m to 20:00p.m"
-          button: "Register"
+          button: "Confirm"
 
         section6:
           title: "why ShootEmpire ?"

@@ -1,45 +1,28 @@
 <header style="direction:ltr !important;" >
 
-    <nav class="navbar navbar-expand-lg navbar-light " id="main_navbar">
-    <button class="mr-auto navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav5" aria-controls="navbarNav5" aria-expanded="false" aria-label="Toggle navigation">
-      <%= t(:'general.home.header.titles.title1') %>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <a class="navbar-brand" href="<%=root_url%>">
+      <img src=<%=assets_url("/img/shootempire.png")%> width="150" class="d-inline-block align-top" alt="shootempire.com">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarNav5">
-      <ul class="nav nav-pills nav-fill text-left navbar-nav ml-0 mr-auto justify-content-center " style="text-align:center">
-        <a class="navbar-brand text-center" href="<%=root_url%>">
-          <img src=<%=assets_url("/img/shootempire.png")%> width="150"  alt="ShootEmpire.com">
-        </a>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="<%= call_request_url %>">
+             <%= t(:'general.home.header.titles.dropdown1') %>
+             <span class="sr-only"></span>
+           </a>
+          <!-- <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=join_us_url %>">
+            <%= t(:'general.home.header.titles.dropdown5') %>
+          </a>
+        </li>
       </ul>
-          <ul class="navbar-nav justify-content-end ml-auto text-center">
-            <li class="nav-item">
-              <a class="nav-link text-dark mx-2" href="<%=pricing_url %>"> <%= t(:'general.home.header.titles.title6') %></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-dark mx-2" href="<%= call_request_url %>"> <%= t(:'general.home.header.titles.dropdown3') %> </a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle mr-md-5 text-dark" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <%= t(:'general.home.header.titles.title7') %>
-              </a>
-              <div class="dropdown-menu text-right">
-                <a class="dropdown-item" href="<%=join_us_url %>"><%= t(:'general.home.header.titles.dropdown5') %> </a>
-                <a class="dropdown-item" href="<%=new_photographer_session_url %>"> <%= t(:'general.home.header.titles.dropdown6') %> </a>
-                <% if photographer_signed_in? %>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-warning border border-warning" href="<%=destroy_photographer_session_url%>"> <%= t(:'general.home.header.titles.dropdown8') %> </a>
-                <%end %>
-              </div>
-            </li>
-            <li>
-              <!-- <a class="btn btn-outline-primary btn-sm" href="<%=galleries_url%>">
-                <%= t(:'general.home.header.titles.title2') %> 
-              </a> -->
-                <a class="btn btn-primary btn-sm" href="<%=call_request_url%>">
-                  <%= t(:'general.home.header.titles.title3') %> 
-                </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    </div>
+  </nav>
   </header>
