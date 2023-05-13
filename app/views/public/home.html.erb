@@ -2,10 +2,6 @@
   <% if Rails.env.production? %>
     <%= render 'shared/externals/gtag_header' %>
     <%= render 'shared/externals/ganalytics' %>
-    <%= render 'shared/yektanet_header' %>
-    <%= render 'shared/externals/yandex' %>
-    <%= render 'shared/externals/raychat' %>
-
 <% end %>
   <title>
   <%= t(:'general.home.seo.title') %>
@@ -16,6 +12,19 @@
   <meta name="author" content="<%= t(:'general.home.seo.meta_author') %>">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+  <link rel="icon" type="image/png" href="/img/shootempire.png">
+  <meta name="theme-color" content="RGB(41, 135, 249)" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://shootempire.com",
+      "logo": "https://shootempire.com/img/shootempire.png",
+    }
+    </script>
+
   <%= csrf_meta_tags %>
   <% if Rails.env.production? %>
     <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -24,7 +33,6 @@
     <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
   <% end %>
-  <link rel="icon" type="image/png" href="">
 </head>
 <%= render "public/shared/wordpress_header" %>
 <body>
