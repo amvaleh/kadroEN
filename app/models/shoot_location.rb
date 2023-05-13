@@ -9,23 +9,10 @@ class ShootLocation < ApplicationRecord
   has_many :shoot_location_attachments
   accepts_nested_attributes_for :shoot_location_attachments
 
-  after_save :check_has_studio
   after_destroy :check_photographer_has_studio
   before_save :check_studio_shoot_location_type
 
-  def check_has_studio
-    if self.is_studio_changed? || self.approved_changed?
-      if self.photographer.present? && self.is_studio == true && self.approved == true
-        self.photographer.has_studio = true
-      elsif (self.photographer.present? && self.is_studio == false) || (self.photographer.present? && self.is_studio == true && self.approved == false)
-        studio_location = ShootLocation.find_by(photographer_id: self.photographer_id, is_studio: true, approved: true)
-        if !studio_location.present?
-          self.photographer.has_studio = false
-        end
-      end
-      self.photographer.save
-    end
-  end
+  
 
   def check_photographer_has_studio
     if self.photographer.present? && self.is_studio == true

@@ -33,6 +33,39 @@
 <% if Rails.env.production? %>
   <%= render 'shared/externals/gtag_body' %>
 <% end %>
+
+<!-- 
+<section class="fdb-block py-3 pt-5 bg-light" id="home-expertise">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col col-md-8 text-center">
+        <h2>
+          Available Shoot Locations
+        </h2>
+        <p class="text-center lead">
+          best photography locations in Dubai
+        </p>
+      </div>
+    </div>
+    <div class="row text-left mt-4 py-0 justify-content-center">
+      <div class="col-12 col-sm-10 col-md-10 col-lg-12 mx-2">
+        <div class="container-fluid">
+          <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
+            <% ShootLocation.all.each do |sl| %>
+            <div class="col-3">
+              <h2>
+                <%= sl.title %>
+              </h2>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
 <section class="fdb-block py-3 pt-5 bg-light" id="home-expertise">
   <div class="container">
     <div class="row justify-content-center">

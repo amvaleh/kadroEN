@@ -4,7 +4,7 @@ class Address < ApplicationRecord
   has_many :shoot_locations
   belongs_to :city
 
-  before_save :get_city_name
+  # before_save :get_city_name
 
   require "json"
   require "net/http"
