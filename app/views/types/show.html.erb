@@ -10,6 +10,9 @@
     <%= @shoot_type.w_title %>
     <%=t(:'general.types.seo.title') %>
   </title>
+
+  <% @cheapest_package = Package.new(price: 99, duration: "1 hour") %>
+
   <meta charset="UTF-8">
   <meta name="description" content=" <%=t(:'general.types.seo.meta_discription.part1') %>
     <%= @cheapest_package.price%>
@@ -43,7 +46,7 @@
       "logo": "https://www.kadro.me/img/logo.png"
     }
     </script>
-  <%= render "types/sections/schema_code"%>
+  <%#= render "types/sections/schema_code"%>
 </head>
 
 
@@ -68,14 +71,14 @@
 
 <%= render "public/shared/wordpress_header", :@shoot_type=>@shoot_type%>
 <%= render "types/sections/intro", :@shoot_type=>@shoot_type%>
-<%= render "types/sections/prices", :@shoot_type=>@shoot_type%>
+<%#= render "types/sections/prices", :@shoot_type=>@shoot_type%>
 <%= render "types/sections/portfolios", :@shoot_type=>@shoot_type%>
 
 <% if @good_feedbacks.count > 4 %>
   <%= render "types/sections/feedbacks", :@shoot_type=>@shoot_type%>
 <% end %>
 <%= render "types/sections/best_pros", :@shoot_type=>@shoot_type%>
-<%= render "types/sections/how_works", :@shoot_type=>@shoot_type%>
+<%#= render "types/sections/how_works", :@shoot_type=>@shoot_type%>
 <%= render "types/sections/features", :@shoot_type=>@shoot_type%>
 <%= render "types/sections/partners", :@shoot_type=>@shoot_type%>
 <%= render "public/shared/section_of_call_request" , dest_url: create_call_request_path %>

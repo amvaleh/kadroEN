@@ -1,5 +1,5 @@
 <div class="col-6 col-sm-4 pt-0 pt-sm-2 px-4">
-  <a href="<%= types_show_path(title: sh.w_url) %>">
+  <a href="<%=call_request_url%>">
     <div class="row px-0 px-sm-2 fill_imgs">
       <% sh.samples.first(3).each do |si| %>
         <div class="p-0 m-0">
@@ -14,7 +14,7 @@
   <div class="row px-0 py-2">
     <div class="col-12 col-sm-9 text-right" style="min-height: 50px;">
       <p class="text-white text-left">
-        <a href="<%= types_show_path(title: sh.w_url) %>">
+        <a href="<%=call_request_url%>">
           <span class="text-dark">
           <%= sh.title %>
           </span>
@@ -22,7 +22,7 @@
       </p>
     </div>
     <div class="col-12 col-xl-3 d-none d-sm-none d-md-none d-xl-block">
-      <%= link_to t(:'general.home.section3.link') , types_show_path(title: sh.w_url) ,class:"btn btn-outline-primary shaddow-lg btn-sm btn-xs pull-left" %>
+      <%= link_to t(:'general.home.section3.link') , call_request_url ,class:"btn btn-outline-primary shaddow-lg btn-sm btn-xs pull-left" %>
     </div>
   </div>
 </div>
