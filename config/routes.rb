@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   # mount Lines::Engine => "/updates"
 
   constraints subdomain: "app" do
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
+
     # get "/" => "bookv2#show", as: "app"
 
     get "callbook" => "bookv2#callbook", as: "callbook"
@@ -14,7 +13,6 @@ Rails.application.routes.draw do
     get "partner/show"
     get "photographers/apply"
     get "photographers/welcome"
-
 
     post "share_controll/create"
     post "share_controll/allow"
@@ -343,6 +341,9 @@ Rails.application.routes.draw do
   end
 
   defaults :subdomain => false do
+
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
 
     # root to: "shoot_locations#index", as: "shoot_location_root"
     get "/locations", to: "shoot_locations#index", as: "shoot_location_root"
