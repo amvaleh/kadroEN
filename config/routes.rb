@@ -4,9 +4,6 @@ Rails.application.routes.draw do
 
   constraints subdomain: "app" do
 
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
-
     # get "/" => "bookv2#show", as: "app"
 
     get "callbook" => "bookv2#callbook", as: "callbook"
@@ -307,6 +304,9 @@ Rails.application.routes.draw do
 
     devise_for :photographers, path: "photographers", controllers: { sessions: "photographers/sessions", registrations: "photographers/registrations", passwords: "photographers/passwords", confirmations: "photographers/confirmations" }
     devise_for :users, path: "users", controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
+
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
 
     
     resources :photographers do

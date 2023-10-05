@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "پنل مدیریت کادرو"
+  config.site_title = "ShootEmpire HQ"
   config.comments_menu = { parent: "General Settings", priority: 1 }
 
   meta_tags_options = { viewport: "width=device-width, initial-scale=1" }
@@ -13,7 +13,7 @@ ActiveAdmin.setup do |config|
 
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
-      menu.add label: "Kadro Land", priority: 0
+      menu.add label: "ShootLocations", priority: 0
       menu.add label: "General Settings", priority: 1
       menu.add label: "Project", priority: 2
       menu.add label: "User", priority: 3
