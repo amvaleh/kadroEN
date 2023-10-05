@@ -3,14 +3,15 @@
     margin: 0;
   }
 </style>
+
 <% @projects.order("start_time DESC").each do |project| %>
-  <div class="col-md-4 col-sm-6 col-xs-12" style="">
+  <div class="col-md-4 col-sm-6 col-12" style="">
 
     <div class="row well" style="<% if project.is_shooted%>background-color: #3b3b3b;<% else %> background-color: #a2d0f7;
         <% end %>
         border: 1px solid #ffffff;">
       <div class="row">
-        <div class="col-xs-4">
+        <div class="col-4">
           <div class="text-left" style="">
             <div class="dropdown" style="list-style: none">
               <a href="#" class="dropdown-toggle btn btn-info btn-xs" style="color: black" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +63,7 @@
           </div>
           <%= image_tag project.shoot_type.avatar_url(:medium) , class:"img-responsive" %>
         </div>
-        <div class="col-xs-8">
+        <div class="col-8">
           <h5 class="text-right" style="color:white">
             <%= project.user.display_name %>
           </h5>
@@ -77,7 +78,7 @@
       </div>
       <div class="row">
 
-        <div class="col-xs-6 col-sm-6">
+        <div class="col-6 col-sm-6">
           <% if project.gallery.present? %>
             <%= link_to edit_gallery_path(project.gallery.slug), class: "btn btn-blue btn-xs btn-block" do %>
               <span class="fa fa-photo"></span>
@@ -92,7 +93,7 @@
             <button class="btn btn-xs btn-primary btn-block" disabled> ساخت گالری</button>
           <% end %>
         </div>
-        <div class="col-xs-6 col-sm-6">
+        <div class="col-6 col-sm-6">
           <%= link_to project_information_project_path(project), class: "btn btn-block btn-default", target: '_blank' do %>
             <small>
               <% if not project.confirmed %>
@@ -144,7 +145,7 @@
 
           <div class="tab-content" style="height: 11rem; overflow: scroll">
             <div id="user_feedback_<%= project.slug %>" class="tab-pane fade in active" style="margin:0.8em">
-              <div class="col-xs-6 text-center" style="font-size:14px;">
+              <div class="col-6 text-center" style="font-size:14px;">
               <span style="font-size: 7px;">
                 کیفیت:
               </span>
@@ -157,7 +158,7 @@
                   بدون نمره
                 <% end %>
               </div>
-              <div class="col-xs-6 text-center" style="font-size:14px;">
+              <div class="col-6 text-center" style="font-size:14px;">
               <span style="font-size: 8px;">
                 سرویس:
               </span>
@@ -171,7 +172,7 @@
                 <% end %>
               </div>
 
-              <div class="col-xs-12" style=" overflow-y: scroll;color: white;
+              <div class="col-12" style=" overflow-y: scroll;color: white;
                   text-align: justify; padding-right: 0px; box-sizing: content-box">
                 <% if project.feed_back.present? %>
                   <% if project.feed_back.description.present? %>
@@ -191,7 +192,7 @@
 
               <div id="kadro_feedback_<%= project.slug %>" class="tab-pane fade" style="margin:0.8em">
                 <% project.feed_back.supervisor_rates.each do |sr| %>
-                  <div class="col-xs-12">
+                  <div class="col-12">
                     <span style="color:gray; font-size: 10px">
                       کارشناس کنترل کیفیت کادرو:
                     </span>
@@ -200,7 +201,7 @@
                       از ۱۰
                     </span>
                   </div>
-                  <div class="col-xs-12">
+                  <div class="col-12">
                     <p style="color: white;">
                       <%= sr.description %>
                     </p>

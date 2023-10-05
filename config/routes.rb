@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   constraints subdomain: "app" do
 
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
+
     # get "/" => "bookv2#show", as: "app"
 
     get "callbook" => "bookv2#callbook", as: "callbook"
@@ -11,7 +14,6 @@ Rails.application.routes.draw do
     get "free_times/:id/open_most", to: "free_times#open_most", as: "open_most_times"
     get "free_times/:id/open_optimum", to: "free_times#open_optimum", as: "open_optimum_times"
     get "partner/show"
-    get "photographers/apply"
     get "photographers/welcome"
 
     post "share_controll/create"
@@ -265,8 +267,51 @@ Rails.application.routes.draw do
         match "/do_verify", to: "transactions#do_verify", as: :do_verify, via: [:get, :post]
       end
     end
+    
+
+    mount Blazer::Engine, at: "kadro_blazer"
+    # mount Lines::Engine => "/updates", as: "updates"
+    match "*a", :to => "application#page_not_found", via: :get
+    # App Constraint
+  end
+
+  # constraints subdomain: "locations" do
+
+  #   match "*a", :to => "application#page_not_found", via: :get
+  # end
+
+  # constraints subdomain: "pro" do
+  #   get "/" => "prophotographers#index2", as: "all_pros"
+  #   get "/list" => "prophotographers#index2"
+  #   get "/city/:city_name", to: "prophotographers#city_list", as: "city"
+  #   get "/city/:city_name/expertise/:shoot_type", to: "prophotographers#city_expertise_list", as: "city_expertise"
+  #   get "/expertise/:shoot_type", to: "prophotographers#expertise_list", as: "expertise_only"
+  #   get "/:id", to: "prophotographers#show", as: "pro"
+  #   get "/:id", to: "prophotographers#show", as: "prophotographer_show"
+  #   get "/:id/call", to: "prophotographers#call", as: "call_photographer"
+  #   post "/query", to: "prophotographers#query", as: "query_pro_photographers"
+  #   match "*a", :to => "application#page_not_found", via: :get
+  #   post "selectable_images/like" => "selectable_images#like", as: "pro_like_selectable_image"
+  #   post "selectable_images/create" => "selectable_images#create", as: "pro_create_selectable"
+  # end
+
+  constraints(ShortenedLink) do
+    get "/:id" => "shortener/shortened_urls#show"
+  end
+
+  constraints(SubdomainRequired) do
+    get "/" => "subdomain#show"
+  end
+
+  defaults :subdomain => false do
+
+    devise_for :photographers, path: "photographers", controllers: { sessions: "photographers/sessions", registrations: "photographers/registrations", passwords: "photographers/passwords", confirmations: "photographers/confirmations" }
+    devise_for :users, path: "users", controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
+
+    
     resources :photographers do
       member do
+        get "home"
         get "studio_locations", to: "photographers#studio_locations", as: "studio_locations"
         post "submit_studio_locations", to: "photographers#submit_studio_locations"
         get "page_setting", to: "photographers#page_setting"
@@ -305,46 +350,7 @@ Rails.application.routes.draw do
         post "confirm_my_email", as: "confirm_my_email"
       end
     end
-
-    mount Blazer::Engine, at: "kadro_blazer"
-    # mount Lines::Engine => "/updates", as: "updates"
-    match "*a", :to => "application#page_not_found", via: :get
-    # App Constraint
-  end
-
-  # constraints subdomain: "locations" do
-
-  #   match "*a", :to => "application#page_not_found", via: :get
-  # end
-
-  # constraints subdomain: "pro" do
-  #   get "/" => "prophotographers#index2", as: "all_pros"
-  #   get "/list" => "prophotographers#index2"
-  #   get "/city/:city_name", to: "prophotographers#city_list", as: "city"
-  #   get "/city/:city_name/expertise/:shoot_type", to: "prophotographers#city_expertise_list", as: "city_expertise"
-  #   get "/expertise/:shoot_type", to: "prophotographers#expertise_list", as: "expertise_only"
-  #   get "/:id", to: "prophotographers#show", as: "pro"
-  #   get "/:id", to: "prophotographers#show", as: "prophotographer_show"
-  #   get "/:id/call", to: "prophotographers#call", as: "call_photographer"
-  #   post "/query", to: "prophotographers#query", as: "query_pro_photographers"
-  #   match "*a", :to => "application#page_not_found", via: :get
-  #   post "selectable_images/like" => "selectable_images#like", as: "pro_like_selectable_image"
-  #   post "selectable_images/create" => "selectable_images#create", as: "pro_create_selectable"
-  # end
-
-  constraints(ShortenedLink) do
-    get "/:id" => "shortener/shortened_urls#show"
-  end
-
-  constraints(SubdomainRequired) do
-    get "/" => "subdomain#show"
-  end
-
-  defaults :subdomain => false do
-
-    devise_for :admin_users, ActiveAdmin::Devise.config
-    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
-
+    
     # root to: "shoot_locations#index", as: "shoot_location_root"
     get "/locations", to: "shoot_locations#index", as: "shoot_location_root"
     # get "/list", to: "shoot_locations#index", as: "shoot_location_list"
@@ -359,26 +365,13 @@ Rails.application.routes.draw do
     get "about_us", to: "public#about_us"
     get "join_us", to: "public#join_us"
     get "join-kadro-photographers", to: "public#join_us", as: "join"
-    get "photographers/join"
+    get "apply", as: "apply", to: "photographers#apply"
 
-    devise_for :photographers, path: "photographers", controllers: { sessions: "photographers/sessions", registrations: "photographers/registrations", passwords: "photographers/passwords", confirmations: "photographers/confirmations" }
-    devise_for :users, path: "users", controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
+    # get "photographers/join"
+
 
     get "pricing", to: "public#pricing"
 
-    # get "print_prices", to: "public#print_prices"
-    # get "print-prices", to: "public#print_prices"
-    # get "terms", to: "public#terms"
-    # get "privacy", to: "public#privacy"
-    # get "faq", to: "public#faq"
-    # get "enterprises", to: "public#enterprises"
-    # get "affiliate", to: "public#affiliate"
-    # get "backstages", to: "public#backstages"
-    # get "news", to: "public#news"
-    # get "standard_edit", to: "public#standard_edit"
-    # get "retouch_edit", to: "public#retouch_edit"
-    # get "videography/:id", to: "videography#show", as: "video"
-    # get "videography/", to: "videography#index", as: "videography"
 
     get "types", to: "types#index", as: "types"
     get "types/:title", to: "types#show", as: "types_show"

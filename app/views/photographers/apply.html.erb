@@ -1,540 +1,91 @@
-<script type="text/javascript" src='https://maps.google.com/maps/api/js?key=AIzaSyBqAlo6eTQeSbkOn3xYIjJ4e1zr4ewrSxU&sensor=false&libraries=places&language=fa&region=IR'></script>
-<%= javascript_include_tag "locationpicker.jquery"  %>
-<%= javascript_include_tag "bootstrap.min"  %>
-<% @top_title = "عضو کادرو شو" %>
-<%= render 'shared/join_dynamic_header' , title: @top_title %>
-<section id="main">
-  <div class="container">
-    <div class="main">
-      <div class="tracker">
-        <div class="process-tabs-line w-hidden-tiny">
-          <span class="step-line step-line-package"
-          style="width: 33.3333%; right: 0%;"></span>
-          <span class="step-line step-line-datetime"
-          style="width: 33.3333%; right: 33.3333%;"></span>
-          <span class="step-line step-line-details"
-          style="width: 33.3333%; right: 66.6667%;"></span>
-        </div>
-        <div class="process-tab-button tracker-circle selected" style="right: 0%;">
-          <div class="tracker-text">
-            اطلاعات اولیه
-          </div>
-        </div>
-        <div class="process-tab-button tracker-circle " style="right: 33.3333%;">
-          <div class="tracker-text">
-            تجهیزات عکاسی
-          </div>
-        </div>
-        <div class="process-tab-button tracker-circle" style="right: 66.6667%;">
-          <div class="tracker-text">
-            نمونه کارها
-          </div>
-        </div>
-        <div class="process-tab-button tracker-circle" style="right: 100%;">
-          <div class="tracker-text">
-            تجربه کاری
-          </div>
-        </div>
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+<% end %>
+  <title>
+     apply for ShootEmpire 
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="<%= t(:'general.home.seo.meta_description') %>">
+  <meta name="keywords" content="<%= t(:'general.home.seo.meta_keywords') %>">
+  <meta name="author" content="<%= t(:'general.home.seo.meta_author') %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
 
-      </div><!-- /.tracker -->
+  <link rel="icon" type="image/png" href="/img/shootempire.png">
+  <meta name="theme-color" content="RGB(41, 135, 249)" />
 
-      <div class="wrapper">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name) , html: {class: "form form-group"}) do |f| %>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://shootempire.com",
+      "logo": "https://shootempire.com/img/shootempire.png",
+    }
+  </script>
 
-        <%- flash.each do |name, msg| -%>
-        <%= content_tag :div, msg,class: "alert alert-danger", :id => "flash_#{name}" if msg.is_a?(String) %>
-        <%- end -%>
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+</head>
+<%= render "public/shared/wordpress_header" %>
 
-        <% if notice %>
-        <div class="alert alert-danger">
-          <%= notice %>
-        </div>
-        <% end %>
-        <input type="text" id="geolocation_status" name="geolocation_status" style="display:none"  />
-        <input type="text" id="living_lat" name="photographer[living_lat]" style="display:none"  />
-        <input type="text" id="living_long" name="photographer[living_long]" style="display:none" />
+<body>
+  <section class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>
+          Join ShootEmpire 
+        </h1>
+      </div>
+      <div class="col-12">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name) , html: {class: "form form-group"}) do |f| %>
         <input type="text" id="work_lat" name="photographer[working_lat]" style="display:none"  />
         <input type="text" id="work_long" name="photographer[working_long]" style="display:none" />
         <div class="row" style="margin-bottom: 30px;">
-          <div class="col-sm-6">
-            <div class="col-sm-12">
-              <div class="text-right text-muted">
-                برای راحتی کار با مرورگر دسکتاپ شروع کنید.
-              </div>
+          <div class="col-12 col-sm-6 mx-auto">
+            <div class="col-sm-12 my-1">
               <label for="name"></label>
               <!-- trying to run parsley on form submition -->
-              <input class="form-control mytextbox" type="text" name="photographer[first_name]" id="first_name" placeholder="نام شما" required="">
-              <%#= f.text_field :first_name , placeholder: "نام شما" , class: "form-control" , name: "name" , id: "name", :requried => "" %>
+              <input class="form-control mytextbox" type="text" name="photographer[first_name]" id="first_name" placeholder="first name" required="">
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12 my-1">
               <label for="name"></label>
-              <input class="form-control mytextbox" type="text" id="last_name" name="photographer[last_name]"  placeholder="نام خانوادگی تون " required="">
+              <input class="form-control mytextbox" type="text" id="last_name" name="photographer[last_name]"  placeholder="last name" required="">
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12 my-1">
+              <label for="email"></label>
+              <input class="form-control" type="email" name="photographer[email]" id="email" placeholder="Email" required="">
+            </div>
+            <div class="col-sm-12 my-1">
               <label for="mobile_number"></label>
-              <input class="form-control" type="number" style="direction: ltr; text-align: right;" name="photographer[mobile_number]" id="mobile_number" placeholder="شماره موبایل تون" required="" data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" >
+              <input class="form-control" type="number"  name="photographer[mobile_number]" id="mobile_number" placeholder="mobile number" required="" data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" >
             </div>
-            <div class="text-center col-sm-12" style="margin-top: 5px;margin-bottom: 5px;">
-              <span data-html="true" class="text-muted" style="font-size: 11px;font-style: italic;" data-toggle="why_mobile_number" data-placement="top" >
-                <img src="/img/information.png" alt="" style="width: 30px;">
-                چرا شماره موبایل نیاز است؟
-              </span>
-            </div>
-            <div class="col-sm-12">
-              <input class="form-control" type="number" name="photographer[static_number]" id="static_number" placeholder="شماره تلفن ثابت با کد شهر: ۰۲۱۲۸۴۲۵۲۲۰" required="">
-            </div>
-            <div class="text-center col-sm-12" style="margin-top: 5px;margin-bottom: 5px;">
-              <span data-html="true" class="text-muted" style="font-size: 11px;font-style: italic;" data-toggle="why_static_number" data-placement="top" >
-                <img src="/img/information.png" alt="" style="width: 30px;">
-                چرا شماره تلفن ثابت نیاز است؟
-              </span>
-            </div>
-            <div class="col-sm-12">
-              <!-- <label for="email"></label> -->
-              <input class="form-control" type="email" name="photographer[email]" id="email" placeholder="ایمیل شما" required="">
-            </div>
-            <div class="col-sm-12">
+            <div class="col-sm-12 my-1">
               <label for="email"></label>
-              <input class="form-control" type="password" name="photographer[password]" id="password" placeholder="رمز عبور جدید &#8203;&#8203; * حداقل ۶ حرف *" required="" autocomplete="new-password" >
+              <input class="form-control" type="password" name="photographer[password]" id="password" placeholder="password" required="" autocomplete="new-password" >
             </div>
-            <div class="col-sm-12">
-              <label for="email"></label>
-              <input class="form-control" type="number" name="photographer[ideal_hours]" id="ideal_hours" placeholder="چند ساعت در هفته علاقه به کار با کادرو دارید؟" required="">
+            <div class="col-sm-12 my-1">
+              <button type="submit" class="btn btn-primary btn-block"> submit </button>
             </div>
-            <div class="col-sm-12">
-              <label for="postal_address"></label>
-              <textarea class="form-control" type="text" name="photographer[living_address]" id="living_address" placeholder="لطفا آدرس دقیق پستی محل زندگی تان را بنویسید:" required=""  ></textarea>
-            </div>
-          </div>
-          <div class="col-sm-6 hidden-xs">
-            <%= image_tag "become_kadro.jpg" %>
-          </div>
-          <div class="col-sm-6" style="margin-top: 3%;">
-            <label for="parent">
-              اگر کسی کادرو را به شما معرفی کرده است:
-            </label>
-            <input class="form-control" type="text" name="photographer[parent_id]" id="parent_id" placeholder="آیدی معرف خود را وارد نمایید">
           </div>
         </div>
         <div class="row">
-          <!-- map information -->
-          <div class="col-sm-6">
-            <label for="home_map">
-              آدرس محل زندگی شما:
-              <p style="color: #b2bcc7; font-size: 0.9em;">
-                <!-- آدرس دقیق پستی تان را روی نقشه مشخص کنید. -->
-              </p>
-            </label>
-            <input  type="text" name="photographer[living_input]" class="form-control" id="living_input"
-            placeholder= "نام منطقه را وارد کنید" required>
-            <br>
-            <div id="home_map" style="width: 100%; height: 400px;"></div>
-            <br>
+          <div class="col-12 col-sm-6 mx-auto text-center">
+            <h3>
+              already have an account ?
+            </h3>
+            <%= link_to "login", new_session_path(resource_name) , class: "btn-lg btn btn-default" %>
           </div>
-          <div class="col-sm-6">
-            <label for="work_map">
-              محل کار شما:
-              <p style="color: #b2bcc7; font-size: 0.9em;">
-                <!-- پروژه ها بر اساس موقیتی که برای محل کارتان اعلام می کنید به شما پیشنهاد می شود. -->
-              </p>
-            </small>
-          </label>
-          <input  type="text" name="photographer[working_input]" class="form-control" id="working_input"
-          placeholder="نام منطقه را وارد کنید" required>
-          <br>
-          <div id="work_map" style="width: 100%; height: 400px;"></div>
-
-          <br>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group" style="margin-top: 30px;">
-            <div class="checkbox-control">
-              <input type="checkbox" id="check1" value="انتخاب توافق" required="" data-parsley-multiple="check1">
-              <label for="check1">
-                من
-                <a href="https://kadro.me/terms/" target="_blank">
-                  شرایط و مقررات
-                </a>
-                کادرو را خوانده و پذیرفته ام.
-              </label>
-            </div>
-            <div class="checkbox-control">
-              <input type="checkbox" id="check2" value="قوانین" required="" data-parsley-multiple="check2">
-              <label for="check2">
-                من تصدیق می کنم تمامی اطلاعات وارد شده مربوط به اینجانب می باشد.
-              </label>
-            </div>
-          </div><!-- /.form-group -->
-          <p style="color: #b2bcc7; font-size: 0.9em;">
-          </p>
-        </div>
-      </div>
-    </form>
     <% end %>
   </div>
-</div><!-- /.main -->
-</div><!-- /.container -->
-</section>
-
-<footer id="footer">
-  <div class="container">
-    <div class="wrap">
-      <a href="https://kadro.me" class="btn btn-gray"> خانه </a>
-      <button type="submit" id = "submit_page_form" class="btn btn-blue">ذخیره و ادامه
-      </button>
-    </div>
   </div>
-</footer>
-
-
-
-<script>
-$(document).ready(function () {
-
-  $(function () {
-    $('[data-toggle="why_static_number"]').tooltip({
-      title: "کادرو برای احراز هویت عکاسان با شماره ثابتی که می دهند تماس می گیرد و مصاحبه تلفنی کوتاهی از این طریق انجام می دهد."
-    });
-    $('[data-toggle="why_mobile_number"]').tooltip({
-      title: "کادرو پروژه های جدید عکاسی را از طریق پیامک به شما اطلاع می دهد و یا در صورت وجود مشکل یا تغییری در برنامه به شما زنگ می زند."
-    });
-
-  })
-
-  $('#submit_page_form').click(function(){
-    $('#new_photographer').submit();
-  })
-
-  // handel input phone_number and email for show other input
-  $('#mobile_number, #email').on('change paste keyup', function () {
-    var len1 = $('#mobile_number').val().length;
-    var len2 = $('#email').val().length;
-    if (len1 > 2 && len2 > 2) {
-      $('#ask').removeClass('hidden');
-    }
-  });
-
-  $('#new_photographer').parsley().on('field:validated', function () {
-    $('button').prop('disabled', false);
-  }).on('form:submit', function () {
-  });
-  var mapStyle = [
-    {
-      "featureType": "water",
-      "stylers": [
-        {
-          "saturation": 43
-        },
-        {
-          "lightness": -11
-        },
-        {
-          "hue": "#0088ff"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "hue": "#ff0000"
-        },
-        {
-          "saturation": -100
-        },
-        {
-          "lightness": 99
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "color": "#808080"
-        },
-        {
-          "lightness": 54
-        }
-      ]
-    },
-    {
-      "featureType": "landscape.man_made",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#ece2d9"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#ccdca1"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#767676"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#ffffff"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "stylers": [
-        {
-          "visibility": "on"
-        }
-      ]
-    },
-    {
-      "featureType": "landscape.natural",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "visibility": "on"
-        },
-        {
-          "color": "#EBE5E0"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "stylers": [
-        {
-          "visibility": "on"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.sports_complex",
-      "stylers": [
-        {
-          "visibility": "on"
-        }
-      ]
-    }
-  ]
-
-  var latitude = 35.7745054;
-  var longitude = 51.3967018;
-  $('#home_map').locationpicker({
-    location: {
-      latitude: 35.7745054,
-      longitude: 51.3967018
-    },
-    radius: 10,
-    zoom: 13,
-    inputBinding: {
-      longitudeInput: $('#living_long'),
-      latitudeInput: $('#living_lat'),
-      locationNameInput: $('#living_input')
-    },
-    // markerInCenter: true,
-    enableAutocomplete: true,
-    autocompleteOptions: {
-      types: ['geocode'],
-      componentRestrictions: {country: 'ir'}
-    },
-    onchanged: function (currentLocation, radius, isMarkerDropped) {
-    },
-    styles: mapStyle,
-    oninitialized: function(component) {
-      $('#living_input').val("");
-    }
-  });
-
-  $('#work_map').locationpicker({
-    location: {
-      latitude: 35.7745054,
-      longitude: 51.3967018
-    },
-    radius: 10,
-    zoom: 13,
-    inputBinding: {
-      longitudeInput: $('#work_long'),
-      latitudeInput: $('#work_lat'),
-      locationNameInput: $('#working_input')
-    },
-    // markerInCenter: true,
-    enableAutocomplete: true,
-    autocompleteOptions: {
-      types: ['geocode'],
-      componentRestrictions: {country: 'ir'}
-    },
-    onchanged: function (currentLocation, radius, isMarkerDropped) {
-      // alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
-    },
-    styles: mapStyle,
-    oninitialized: function(component) {
-      $('#working_input').val("");
-    }
-  });
-  // automatic location:
-  var x = document.getElementById("geolocation_status");
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    console.log("found.");
-  } else {
-    x.value = "Geolocation is not supported by this browser.";
-  }
-  function showPosition(position) {
-    // x.innerHTML = "Latitude: " + position.coords.latitude +
-    // "<br>Longitude: " + position.coords.longitude;
-    latt = position.coords.latitude;
-    long = position.coords.longitude;
-    document.getElementById("work_long").value = long;
-    document.getElementById("work_lat").value = latt;
-
-    document.getElementById("living_long").value = long;
-    document.getElementById("living_lat").value = latt;
-
-    console.log(document.getElementById("work_long").value);
-    console.log(document.getElementById("work_lat").value);
-    console.log(document.getElementById("work_long").value);
-    console.log(document.getElementById("work_long").value);
-    $('#home_map').locationpicker({
-      location: {
-        latitude: latt,
-        longitude: long
-      }
-    });
-    $('#work_map').locationpicker({
-      location: {
-        latitude: latt,
-        longitude: long
-      }
-    });
-  }
-  // end of automatic location
-});
-</script>
-
-<script type="text/javascript">
-
-
-function getLocation_home()
-{
-  document.getElementById("myButton1").value="در حال تشخیص ...";
-  var x = document.getElementById("geolocation_status");
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    console.log("found.");
-  } else {
-    x.value = "Geolocation is not supported by this browser.";
-  }
-  function showPosition(position) {
-    // x.innerHTML = "Latitude: " + position.coords.latitude +
-    // "<br>Longitude: " + position.coords.longitude;
-    latt = position.coords.latitude;
-    long = position.coords.longitude;
-    document.getElementById("work_long").value = long;
-    document.getElementById("work_lat").value = latt;
-
-    document.getElementById("living_long").value = long;
-    document.getElementById("living_lat").value = latt;
-
-    console.log(document.getElementById("work_long").value);
-    console.log(document.getElementById("work_lat").value);
-    console.log(document.getElementById("work_long").value);
-    console.log(document.getElementById("work_long").value);
-    $('#home_map').locationpicker({
-      location: {
-        latitude: latt,
-        longitude: long
-      }
-    });
-    document.getElementById("myButton1").value="موقعیت الان";
-  }
-}
-
-function getLocation_work()
-{
-  document.getElementById("myButton2").value="در حال تشخیص ...";
-  var x = document.getElementById("geolocation_status");
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    console.log("found.");
-  } else {
-    x.value = "Geolocation is not supported by this browser.";
-  }
-  function showPosition(position) {
-    // x.innerHTML = "Latitude: " + position.coords.latitude +
-    // "<br>Longitude: " + position.coords.longitude;
-    latt = position.coords.latitude;
-    long = position.coords.longitude;
-    document.getElementById("work_long").value = long;
-    document.getElementById("work_lat").value = latt;
-
-    document.getElementById("living_long").value = long;
-    document.getElementById("living_lat").value = latt;
-
-    console.log(document.getElementById("work_long").value);
-    console.log(document.getElementById("work_lat").value);
-    console.log(document.getElementById("work_long").value);
-    console.log(document.getElementById("work_long").value);
-    $('#work_map').locationpicker({
-      location: {
-        latitude: latt,
-        longitude: long
-      }
-    });
-    document.getElementById("myButton2").value="موقعیت الان";
-  }
-}
-
-</script>
-<script>
-$(".mytextbox").on("keypress", function(event) {
-
-  // Disallow anything not matching the regex pattern (A to Z uppercase, a to z lowercase and white space)
-  // For more on JavaScript Regular Expressions, look here: https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions
-  var englishAlphabetAndWhiteSpace = /[A-Za-z ]/g;
-
-  // Retrieving the key from the char code passed in event.which
-  // For more info on even.which, look here: http://stackoverflow.com/q/3050984/114029
-  var key = String.fromCharCode(event.which);
-
-  //alert(event.keyCode);
-
-  // For the keyCodes, look here: http://stackoverflow.com/a/3781360/114029
-  // keyCode == 8  is backspace
-  // keyCode == 37 is left arrow
-  // keyCode == 39 is right arrow
-  // englishAlphabetAndWhiteSpace.test(key) does the matching, that is, test the key just typed against the regex pattern
-  if (event.keyCode == 32) {
-    return true;
-  }
-  if (event.keyCode == 8 || event.keyCode == 37 || event.keyCode == 39 || englishAlphabetAndWhiteSpace.test(key)) {
-    alert("لطفا فارسی تایپ کنید");
-    return false;
-  }
-
-  // If we got this far, just return false because a disallowed key was typed.
-  return true;
-});
-
-$('#mytextbox').on("paste",function(e)
-{
-  e.preventDefault();
-});
-
-</script>
+</section>
+</body>

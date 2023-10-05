@@ -1,14 +1,14 @@
 <div class="btn-group">
   <%- if controller_name != 'sessions' %>
-  <%= link_to "ورود", new_session_path(resource_name) , class: "btn-lg btn btn-default" %>
+  <%= link_to "login", new_session_path(resource_name) , class: "btn-lg btn btn-default" %>
   <% end -%>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "ثبت نام", photographers_join_url , class: "btn btn-blue btn-lg"%>
+  <%= link_to "create an account", apply_path , class: "btn btn-blue btn-lg"%>
   <% end -%>
 
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to "فراموشی رمز عبور", new_password_path(resource_name),class: " btn-lg btn btn-info" %>
+  <%= link_to "forget password?" , new_password_path(resource_name),class: " btn-lg btn btn-info" %>
   <br>
   <% end -%>
 </div>

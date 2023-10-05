@@ -1,12 +1,13 @@
 class Photographers::RegistrationsController < Devise::RegistrationsController
-  layout 'photographer'
+  
+  layout 'wordpress'
 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
-    redirect_to photographers_apply_path
+    # redirect_to photographers_apply_path
   end
 
   # POST /resource
@@ -32,7 +33,7 @@ class Photographers::RegistrationsController < Devise::RegistrationsController
       # set_flash_message! :notice, :"خطا در ذخیره سازی اطلاعات، لطفا مجدد تلاش کنید."
       # redirect_to photographers_apply_path , :notice => "خطا در ذخیره سازی اطلاعات، لطفا مجدد تلاش کنید."
       resource.errors.full_messages.each {|x| flash[x] = x}
-      redirect_to photographers_apply_path
+      redirect_to apply_path
       # response_to_sign_up_failure resource
       # respond_with resource , location: photographers_apply_path
     end
@@ -40,9 +41,8 @@ class Photographers::RegistrationsController < Devise::RegistrationsController
     @photographer.first_name = params[:photographer][:first_name]
     @photographer.last_name = params[:photographer][:last_name]
     @photographer.email = params[:photographer][:email]
-    @photographer.ideal_hours = params[:photographer][:ideal_hours]
     @photographer.static_number = params[:photographer][:static_number]
-    @photographer.join_step_id = JoinStep.find_by_name("اطلاعات اولیه").id
+    @photographer.join_step_id = JoinStep.find_by_name("primary_info").id
     #location:
     location = Location.new
     location.living_address = params[:photographer][:living_address]
@@ -54,12 +54,7 @@ class Photographers::RegistrationsController < Devise::RegistrationsController
     location.working_input = params[:photographer][:working_input]
     location.save
     @photographer.location = location
-    if params[:photographer][:parent_id].present?
-      parent = Photographer.find_by_uid(params[:photographer][:parent_id])
-      if parent.present?
-        @photographer.parent = parent
-      end
-    end
+
     #
     @photographer.unconfirmed_email = params[:photographer][:email]
     if @photographer.save
@@ -127,7 +122,7 @@ class Photographers::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    equipments_photographer_path(resource)
+    studio_photographer_path(resource)
   end
 
   def after_update_path_for(resource)

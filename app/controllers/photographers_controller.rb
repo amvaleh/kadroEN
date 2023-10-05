@@ -187,7 +187,7 @@ class PhotographersController < ApplicationController
 
   def apply
     if photographer_signed_in?
-      redirect_to new_photographer_session_path
+      redirect_to studio_photographer_path(current_photographer)
     end
     # byebug
   end
@@ -198,21 +198,21 @@ class PhotographersController < ApplicationController
       @location = Location.find_by_id(@photographer.location_id)
       @photographer.first_name = photographers_params[:first_name]
       @photographer.last_name = photographers_params[:last_name]
-      @photographer.static_number = photographers_params[:static_number]
-      seperated_date = photographers_params[:birthday].to_s.tr("۰۱۲۳۴۵۶۷۸۹", "0123456789").split("/")
-      birth_day = PDate.new(seperated_date[0].to_i, seperated_date[1].to_i, seperated_date[2].to_i).to_date
-      @photographer.birthday = "#{birth_day.to_s} 00:00:00".to_datetime
-      @location.living_lat = photographers_params[:living_lat]
-      @location.living_long = photographers_params[:living_long]
-      @location.working_lat = photographers_params[:working_lat]
-      @location.working_long = photographers_params[:working_long]
-      @location.living_input = photographers_params[:living_input]
+      @photographer.mobile_number = photographers_params[:mobile_number]
+      @photographer.uid = photographers_params[:uid]
+      @photographer.birthday = photographers_params[:birthday]
       @location.working_input = photographers_params[:working_input]
-      @location.living_address = photographers_params[:living_address]
+      # @location.living_lat = photographers_params[:living_lat]
+      # @location.living_long = photographers_params[:living_long]
+      # @location.working_lat = photographers_params[:working_lat]
+      # @location.working_long = photographers_params[:working_long]
+      # @location.living_input = photographers_params[:living_input]
+      # @location.working_input = photographers_params[:working_input]
+      # @location.living_address = photographers_params[:living_address]
       @photographer.save
       @location.save
       @photographer.create_activity :ph_update_info, owner: @photographer
-      redirect_to edit_info_photographer_path(@photographer), alert: "اطلاعات با موفقیت ذخیره شد."
+      redirect_to edit_info_photographer_path(@photographer), alert: "Profile successfuly updated!"
     end
   end
 
@@ -687,10 +687,10 @@ class PhotographersController < ApplicationController
 
   def projects
     Photographers::AuthorizePhotographer.call(photographer: current_photographer, id: params[:id])
-    # @projects = @photographer.projects.payed
-    @projects = @photographer.projects.where(
-      :reserve_step_id => ReserveStep.find_by(name: "wating_for_ph").id..ReserveStep.find_by(name: "checkout").id,
-    )
+    @projects = @photographer.projects.payed
+    # @projects = @photographer.projects.where(
+    #   :reserve_step_id => ReserveStep.find_by(name: "wating_for_ph").id..ReserveStep.find_by(name: "checkout").id,
+    # )
   rescue Rw::PermissionError
     redirect_to controller: "photographers", action: "studio",
                 id: current_photographer.mobile_number,
@@ -775,6 +775,10 @@ class PhotographersController < ApplicationController
     redirect_to studio_photographer_url(@photographer), alert: "ایمیلی حاوی لینک تاییدیه برای آدرس ایمیل شما ارسال گردید."
   end
 
+
+  def home
+  end
+
   private
 
   def resolve_layout
@@ -783,8 +787,10 @@ class PhotographersController < ApplicationController
       "kadro"
     when "join"
       "join"
+    when "apply"
+      "wordpress"
     else
-      "photographer"
+      "wordpress"
     end
   end
 
@@ -797,7 +803,7 @@ class PhotographersController < ApplicationController
   end
 
   def photographers_params
-    params.require(:photographer).permit(:first_name, :last_name, :static_number, :birthday, :living_lat, :living_long, :working_lat, :working_long, :living_input, :working_input, :living_address, :card_name, :card_last_name, :card_number, :shaba, :bank_name)
+    params.require(:photographer).permit(:uid, :mobile_number, :first_name, :last_name, :static_number, :birthday, :living_lat, :living_long, :working_lat, :working_long, :living_input, :working_input, :living_address, :card_name, :card_last_name, :card_number, :shaba, :bank_name)
   end
 
   def free_times_params

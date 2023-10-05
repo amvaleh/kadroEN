@@ -1,24 +1,50 @@
-<% @top_title = "فقط برای حرفه ای ها" %>
-<%= render 'shared/join_dynamic_header' , title: @top_title %>
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+    <%= render 'shared/yektanet_header' %>
+    <%= render 'shared/externals/yandex' %>
+    <%= render 'shared/externals/raychat' %>
+<% end %>
+  <title>
+    Enter the Empire
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="<%=t(:'head.meta_description')%>">
+  <meta name="keywords" content="<%=t(:'head.meta_keywords')%>">
+  <meta name="author" content="kadro">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+  <link rel="icon" type="image/png" href="">
+</head>
+<%= render "public/shared/wordpress_header" %>
 <section id="main">
   <div class="container">
     <div class="main">
       <div class="wrapper">
         <div class="row">
-          <div class="col-md-6 col-sm-offset-3 col-sm-12">
+          <div class="col-10 col-sm-6 mx-auto">
             <%= form_for(resource, as: resource_name, url: session_path(resource_name) , html: {class: "form form-group"} ) do |f| %>
             <div class="col-sm-12">
-              <%= f.label "شماره موبایل" %><br />
-              <%= f.number_field :mobile_number, autofocus: true , class: "form-control"  %>
+              <%= f.label "email" %><br />
+              <%= f.email_field :email, autofocus: true , class: "form-control"  %>
             </div>
 
             <div class="col-sm-12">
-              <%= f.label "رمز عبور" %><br />
+              <%= f.label "password" %><br />
               <%= f.password_field :password, autocomplete: "new-password" , class: "form-control" %>
             </div>
 
             <div class="col-sm-12 text-center" style="margin-top: 30px;">
-              <%= f.submit "ثبت" , class: "btn btn-blue btn-block" %>
+              <%= f.submit "submit" , class: "btn btn-blue btn-block" %>
             </div>
             <div class="col-sm-12" style="margin-top: 30px;">
               <%= render "photographers/shared/links" %>

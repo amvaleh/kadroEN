@@ -1,26 +1,48 @@
-<% @top_title = "پروژه های شما" %>
-<%= render 'shared/studio_header', title: @top_title %>
-<section id="main">
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+<% end %>
+  <title>
+    my Projects
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="<%= t(:'general.home.seo.meta_description') %>">
+  <meta name="keywords" content="<%= t(:'general.home.seo.meta_keywords') %>">
+  <meta name="author" content="<%= t(:'general.home.seo.meta_author') %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  <link rel="icon" type="image/png" href="/img/shootempire.png">
+  <meta name="theme-color" content="RGB(41, 135, 249)" />
+
+  <%= csrf_meta_tags %>
+  <% if Rails.env.production? %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% else %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  <% end %>
+</head>
+  <%= render "public/shared/wordpress_header" %>
+<body>
   <div class="container">
-    <div class="main">
-      <div class="wrapper">
-        <div class="row">
-          <%= render 'shared/studio_top_navigation' %>
-          <div class="col-xs-12" style="margin-top: 3%">
-            <%= render 'filter_panel' %>
-            <div id="project_section"><%= render 'project_section' %></div>
-          </div>
+    <div class="row">
+      <div class="col-12">
+        <% if @projects.any? %>
+        <div id="project_section">
+          <%= render 'project_section' %>
         </div>
+        <% else %>
+        <h1 class="h3">
+          Your projects will apear here.
+        </h1>
+        <p class="text-center">
+          plug in your camera!
+        </p>
+        <% end %>
       </div>
-    </div><!-- /.main -->
-  </div><!-- /.container -->
+    </div>
+  </div>
 </section>
-
-
-<script>
-    $(function () {
-        if ($.fn.cloudinary_fileupload !== undefined) {
-            $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
-        }
-    });
-</script>
+</body>

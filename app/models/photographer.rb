@@ -7,14 +7,12 @@ class Photographer < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :registerable,
-         :recoverable, :rememberable, :confirmable, :trackable, :validatable, :database_authenticatable,
-         :authentication_keys => [:mobile_number]
+         :recoverable, :rememberable, :confirmable, :trackable, :validatable, :database_authenticatable
+
 
   require "carrierwave/orm/activerecord"
-  validates_uniqueness_of :mobile_number
-  validates_uniqueness_of :email, if: :check_email_is_nil
-  validates_uniqueness_of :uid, if: :check_uid_is_nil
-  validates_presence_of :first_name, :last_name
+  validates_uniqueness_of :email
+  # validates_presence_of :first_name, :last_name
 
   has_many :calls
   has_many :photographer_attachments
@@ -56,8 +54,6 @@ class Photographer < ApplicationRecord
   after_update :log_activity
   before_save :check_state
   before_save :set_last_step_time
-  before_save :set_approved_join_step
-  before_save :check_mobile_number_changed
 
   def registering
     if self.join_step.name == "اطلاعات اولیه" or self.join_step.name == "تجهیزات عکاسی" or self.join_step.name == "اطلاعات مکانی" or self.join_step.name == "نمونه کارها" or self.join_step.name == "تجربه کاری" or self.join_step.name == "پروفایل ناقص"
@@ -66,12 +62,7 @@ class Photographer < ApplicationRecord
       return false
     end
   end
-
-  def check_mobile_number_changed
-    if self.mobile_number.present? and self.mobile_number_changed? and self.valid?
-      self.slug = self.mobile_number
-    end
-  end
+ 
 
   def total_done_projects_in_lifetime
     if self.experience.present?
@@ -102,13 +93,7 @@ class Photographer < ApplicationRecord
     end
   end
 
-  def set_approved_join_step
-    if self.approved_changed?
-      if self.approved?
-        self.join_step_id = JoinStep.find_by(name: "تایید نهایی").id
-      end
-    end
-  end
+
 
   def check_join_step
     if self.join_step_id_changed? and self.join_step_id.present?
@@ -142,15 +127,12 @@ class Photographer < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   extend FriendlyId
-  friendly_id :mobile_number, use: :slugged
+  friendly_id :email, use: :slugged
 
   def check_uid_is_nil
     uid != nil && uid != ""
   end
 
-  def check_email_is_nil
-    email != nil
-  end
 
   def check_state
     if self.rejected_changed?
@@ -169,7 +151,7 @@ class Photographer < ApplicationRecord
     if first_name or last_name
       first_name.chars.first + ".  " + last_name
     else
-      mobile_number
+      email
     end
   end
 
@@ -177,7 +159,7 @@ class Photographer < ApplicationRecord
     if first_name or last_name
       first_name + " " + last_name
     else
-      mobile_number
+      email
     end
   end
 

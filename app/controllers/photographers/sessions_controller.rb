@@ -1,5 +1,5 @@
 class Photographers::SessionsController < Devise::SessionsController
-  layout "photographer"
+  layout "wordpress"
   include JoinStepsHelper
 
   # before_action :configure_sign_in_params, only: [:create]
@@ -51,14 +51,6 @@ class Photographers::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource_or_scope)
-    if current_photographer.approved? || current_photographer.join_step.name == "تایید نهایی"
-      studio_photographer_path(current_photographer)
-    elsif current_photographer.join_step.id == 13 || current_photographer.join_step.id == 5
-      studio_photographer_path(current_photographer)
-    elsif current_photographer.registering
-      photographers_join_path(current_photographer)
-    else
-      studio_photographer_path(current_photographer)
-    end
+    studio_photographer_path(current_photographer)
   end
 end
