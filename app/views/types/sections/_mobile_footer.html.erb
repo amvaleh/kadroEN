@@ -1,0 +1,47 @@
+<style>
+    /* Custom styles */
+    body {
+      margin-bottom: 56px; /* Adjust according to the height of the fixed bottom navigation */
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #fff;
+      border-top: 1px solid #ccc;
+      z-index: 999;
+    }
+    .footer-item {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.8em;
+    }
+  </style>
+   <!-- Fixed bottom navigation -->
+   <nav class="navbar navbar-light bg-light footer">
+    <div class="container">
+      <div class="row w-100">
+        <div class="col-3 footer-item">
+          <%= link_to studio_photographer_path(current_photographer) do %>
+          Home
+          <% end %>
+        </div>
+        <div class="col-3 footer-item">
+          <%= link_to projects_photographer_path(current_photographer) do %>
+            Bookings
+            <% end %>
+        </div>
+        <div class="col-3 footer-item">
+          <a href="<%=portfolio_photographer_path(current_photographer)%>">
+            Portfolio
+          </a>
+        </div>
+        <div class="col-3 footer-item">
+          <%= link_to settings_photographer_path(current_photographer) do %>
+          Settings
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>

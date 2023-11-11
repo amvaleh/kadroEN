@@ -1,7 +1,8 @@
-
 <%- flash.each do |name, msg| -%>
 <%= content_tag :div, msg,class: "alert alert-info text-center", :id => "flash_#{name}" if msg.is_a?(String) %>
 <%- end -%>
+
+<% if not photographer_signed_in? %>
 <header style="direction:ltr !important;" >
   <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <a class="navbar-brand" href="<%=root_url%>">
@@ -13,44 +14,6 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-
-        <% if photographer_signed_in? %>
-        <li class="nav-item">
-          <%= link_to edit_info_photographer_path(current_photographer), :class => "nav-link" do %>
-          profile
-          <% end %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to projects_photographer_path(current_photographer), class:"nav-link" do %>
-          my orders
-        <% end %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to checkout_photographer_path(current_photographer), class:"nav-link"  do %>
-            monetization
-          <% end %>
-        </li>
-
-        <li class="nav-item">
-          <%= link_to "calendar", times_photographer_path(current_photographer), class:"nav-link" %>
-        </li>
-
-        <li class="nav-item">
-          <a href="/photographers/join.<%= current_photographer.mobile_number %>?step=1" class="nav-link">
-            equipments
-          </a>
-        </li>
-
-
-        <li class="nav-item">
-          <%= link_to destroy_photographer_session_url , class: "nav-link" do %>
-            sign out
-          <% end %>
-        </li>
-        <% else %>
-
         <li class="nav-item active">
           <a class="nav-link" href="<%= call_request_url %>">
              <%= t(:'general.home.header.titles.dropdown1') %>
@@ -67,11 +30,11 @@
             <%= t(:'general.home.header.titles.dropdown2') %>
           </a>
         </li>
-        <% end %>
-
-
-
       </ul>
     </div>
   </nav>
   </header>
+<% end %>
+
+
+

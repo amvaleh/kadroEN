@@ -1,11 +1,14 @@
 <head>
+
   <% if Rails.env.production? %>
     <%= render 'shared/externals/gtag_header' %>
     <%= render 'shared/externals/ganalytics' %>
-<% end %>
+  <% end %>
+
   <title>
   <%= t(:'general.home.seo.title') %>
   </title>
+
   <meta charset="UTF-8">
   <meta name="description" content="<%= t(:'general.home.seo.meta_description') %>">
   <meta name="keywords" content="<%= t(:'general.home.seo.meta_keywords') %>">
@@ -26,6 +29,7 @@
   </script>
 
   <%= csrf_meta_tags %>
+
   <% if Rails.env.production? %>
     <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
@@ -33,8 +37,11 @@
     <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
   <% end %>
+  
 </head>
+
 <%= render "public/shared/wordpress_header" %>
+
 <body>
 <%= render "public/home/intro" %>
 <%#= render :partial => 'user_comments' %>
@@ -42,7 +49,7 @@
   <%= render 'shared/externals/gtag_body' %>
 <% end %>
 
-<!-- 
+
 <section class="fdb-block py-3 pt-5 bg-light" id="home-expertise">
   <div class="container">
     <div class="row justify-content-center">
@@ -60,10 +67,16 @@
         <div class="container-fluid">
           <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
             <% ShootLocation.all.each do |sl| %>
-            <div class="col-3">
-              <h2>
+            <div class="col-6 col-sm-3">
+              <%= image_tag sl.shoot_location_attachments.first.photo.url(:medium) , class: "img-fluid" , height: "10rem", style: "height: 10em;object-fit: cover;width: 100%;"%>
+              <h3 class="my-0 py-0 text-left">
                 <%= sl.title %>
-              </h2>
+              </h3>
+              <p class="text-left mt-0 pt-0">
+                <small>
+                  <%= sl.description %>
+                </small>
+              </p>            
             </div>
             <% end %>
           </div>
@@ -71,18 +84,18 @@
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 
-<section class="fdb-block py-3 pt-5 bg-light" id="home-expertise">
+<section class="fdb-block py-3 pt-5 " id="home-expertise">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
         <h2>
-          <%= t(:'general.home.section3.title') %>
+          Our best dubai photographers
         </h2>
         <p class="text-center lead">
-          <%= t(:'general.home.section3.subtitle') %>
+          book less than 30 seconds
         </p>
       </div>
     </div>
@@ -90,8 +103,18 @@
       <div class="col-12 col-sm-10 col-md-10 col-lg-12 mx-2">
         <div class="container-fluid">
           <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
-            <% ShootType.all.active.order("shoot_types.order").each do |sh| %>
-              <%= render :partial => 'shoot_type_each' , locals:{sh:sh}%>
+            <% Photographer.all.approved.each do |ph| %>
+            <div class="col-6 col-sm-3">
+              <%= image_tag ph.avatar_url(:mini) , class: "img-fluid" , height: "10rem", style: "height: 10em;object-fit: cover;width: 100%;"%>
+              <h3 class="my-0 py-0 text-left">
+                <%= ph.abbrv_name %>
+              </h3>
+              <p class="text-left mt-0 pt-0">
+                <small>
+                  <%#= ph.experience.bio %>
+                </small>
+              </p>            
+            </div>
             <% end %>
           </div>
         </div>

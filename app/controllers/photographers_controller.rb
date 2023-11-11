@@ -198,7 +198,7 @@ class PhotographersController < ApplicationController
       @location = Location.find_by_id(@photographer.location_id)
       @photographer.first_name = photographers_params[:first_name]
       @photographer.last_name = photographers_params[:last_name]
-      @photographer.mobile_number = photographers_params[:mobile_number]
+      @photographer.mobile_number = photographers_params[:full_phone]
       @photographer.uid = photographers_params[:uid]
       @photographer.birthday = photographers_params[:birthday]
       @location.working_input = photographers_params[:working_input]
@@ -212,11 +212,11 @@ class PhotographersController < ApplicationController
       @photographer.save
       @location.save
       @photographer.create_activity :ph_update_info, owner: @photographer
-      redirect_to edit_info_photographer_path(@photographer), alert: "Profile successfuly updated!"
+      redirect_to settings_photographer_path(@photographer), alert: "Profile successfuly updated!"
     end
   end
 
-  def edit_info
+  def settings
     @photographer = current_photographer
     Photographers::AuthorizePhotographer.call(photographer: current_photographer, id: params[:id])
   rescue Rw::PermissionError
@@ -803,7 +803,7 @@ class PhotographersController < ApplicationController
   end
 
   def photographers_params
-    params.require(:photographer).permit(:uid, :mobile_number, :first_name, :last_name, :static_number, :birthday, :living_lat, :living_long, :working_lat, :working_long, :living_input, :working_input, :living_address, :card_name, :card_last_name, :card_number, :shaba, :bank_name)
+    params.require(:photographer).permit(:uid, :mobile_number, :first_name, :last_name, :static_number, :birthday, :living_lat, :living_long, :working_lat, :working_long, :living_input, :working_input, :living_address, :card_name, :card_last_name, :card_number, :shaba, :bank_name,:full_phone)
   end
 
   def free_times_params

@@ -16,9 +16,22 @@ class SampleUploader < CarrierWave::Uploader::Base
   end
 
 
+
   version :optimum do
     process resize_to_limit: [1000, 1000]
     process optimize:[{ quality: 65,quiet: true }]
+  end
+
+# For Desktop
+  version :desktop do
+    process resize_to_limit: [1600, nil]
+    process optimize: [{ quality: 80, quiet: true }]
+  end
+
+  # For Mobile
+  version :mobile do
+    process resize_to_limit: [800, nil]
+    process optimize: [{ quality: 70, quiet: true }]
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

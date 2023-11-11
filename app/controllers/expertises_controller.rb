@@ -1,4 +1,13 @@
 class ExpertisesController < ApplicationController
+
+
+
+  def new
+    @photographer = Photographer.find(params[:photographer_id])
+    @shoot_type = ShootType.find(params[:shoot_type_id])
+    Expertise.create!(photographer_id: @photographer.id,shoot_type_id: @shoot_type.id)
+  end
+
   def receive_photo
     @photographer = Photographer.find(params[:photographer_id])
     @photo = Photo.new(file: params[:file])
@@ -11,6 +20,7 @@ class ExpertisesController < ApplicationController
 
     shoot_type = params[:shoot_type_id]
     expertise = Expertise.where(:shoot_type => ShootType.find(shoot_type), :photographer => @photographer).first
+
     if expertise
       @photo.expertise = expertise
     else
@@ -20,6 +30,7 @@ class ExpertisesController < ApplicationController
       expertise.save
       @photo.expertise = expertise
     end
+
     respond_to do |format|
       if @photo.save
         format.html {
@@ -32,6 +43,7 @@ class ExpertisesController < ApplicationController
         format.html {render action: "new"}
         format.json {render json: @photo.errors, status: :unprocessable_entity}
       end
+
     end
   end
 end

@@ -1,0 +1,236 @@
+<head>
+  <% if Rails.env.production? %>
+    <%= render 'shared/externals/gtag_header' %>
+    <%= render 'shared/externals/ganalytics' %>
+<% end %>
+  <title>
+     apply for ShootEmpire 
+  </title>
+  <meta charset="UTF-8">
+  <meta name="description" content="<%= t(:'general.home.seo.meta_description') %>">
+  <meta name="keywords" content="<%= t(:'general.home.seo.meta_keywords') %>">
+  <meta name="author" content="<%= t(:'general.home.seo.meta_author') %>">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+  <link rel="icon" type="image/png" href="/img/shootempire.png">
+  <meta name="theme-color" content="RGB(41, 135, 249)" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://shootempire.com",
+      "logo": "https://shootempire.com/img/shootempire.png",
+    }
+  </script>
+
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+
+</head>
+
+<%= render "public/shared/wordpress_header" %>
+
+<style>
+  .centered-section {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+  .collapse{
+    height: 80vh;
+    overflow: scroll;
+  }
+</style>
+<body>
+  <section class="container centered-section">
+    <div class="row">
+      <div class="col-12 shadow">
+        <a data-toggle="collapse" data-target="#personal_info" aria-expanded="false" aria-controls="collapseExample">
+          <h3>
+            Personal Info
+          </h3>
+        </a>
+      </div>
+      
+      <div class="col-12 collapse" id="personal_info">
+      <div class="row">
+          <div class="col-12 col-sm-10 mx-auto">
+            <%= form_for :photographer, url: update_info_photographer_path, method: "post" , html: {class: "form form-group" , :id => "update_info"} do |f| %>
+            <!-- <input type="text" id="geolocation_status" name="geolocation_status" style="display:none"  /> -->
+            <!-- <input type="text" id="living_lat" name="photographer[living_lat]" value="<%= @photographer.location.living_lat.to_s%>" style="display:none"  /> -->
+            <!-- <input type="text" id="living_long" name="photographer[living_long]" value="<%= @photographer.location.living_long.to_s%>" style="display:none" /> -->
+            <!-- <input type="text" id="work_lat" name="photographer[working_lat]" value="<%= @photographer.location.working_lat.to_s%>" style="display:none"  /> -->
+            <!-- <input type="text" id="work_long" name="photographer[working_long]" value="<%= @photographer.location.working_long.to_s%>" style="display:none" /> -->
+            <div class="col-12 my-3">
+              <label for="uid"> page id
+                <small>
+                  (will be Available at www.shootemprie.com{your page id})
+                </small> </label>
+              <input class="form-control mytextbox" type="text" name="photographer[uid]" id="uid" value="<%=@photographer.uid%>" required="" placeholder="ex: jackson">
+            </div>
+            <div class="col-12 my-3">
+              <label for="first_name"> first name</label>
+              <input class="form-control mytextbox" type="text" name="photographer[first_name]" id="first_name" value="<%= @photographer.first_name%>" required="">
+            </div>
+            <div class="col-12 my-3">
+              <label for="last_name"> last name </label>
+            
+              <input class="form-control mytextbox" type="text" id="last_name" name="photographer[last_name]"  value="<%= @photographer.last_name%>" required="">
+            </div>
+            <div class="col-12 my-3">
+              <label for="email"> email </label>
+            
+              <input class="form-control" type="text" id="email" name="photographer[email]"  value="<%= @photographer.email %>" required="" disabled>
+            </div>
+            <div class="col-12 my-3">
+              <label for="mobile_number"> mobile number </label>
+  
+              <input class="form-control" type="mobilenumber" name="photographer[mobile_number]" id="mobile_number" value="<%= @photographer.mobile_number %>" required="" data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" >
+              <button id="btn" type="button">Validate</button>
+              <span id="valid-msg" class="d-none">✓ Valid</span>
+              <span id="error-msg" class="d-none"></span>
+  
+            </div>
+  
+            <div class="col-12 my-3">
+              <label for="birthday"> birthday </label>
+              <input class="form-control" type="date" name="photographer[birthday]" id="date" value="<%= @photographer.birthday.to_date.to_pdate.to_s.tr('-0123456789','/۰۱۲۳۴۵۶۷۸۹') if @photographer.birthday.present? %>">
+            </div>
+            <div class="col-12 my-3">
+              <label for="address"> address </label>
+              <input  type="text" name="photographer[working_input]" class="form-control" id="working_input">
+            </div>
+            <div class="col-6 mx-auto text-center">
+              <button type="submit" id ="submit_page_form" class="btn btn-dark btn-block btn-block">
+                submit
+              </button>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row mt-3">
+      <div class="col-12  shadow">
+        <a data-toggle="collapse" data-target="#social_info" aria-expanded="false" aria-controls="collapseExample">
+          <h3>
+            Social Info
+          </h3>
+        </a>
+      </div>
+
+      <div class="col-12 collapse " id="social_info">
+        <div class="row">
+          <div class="col-12 col-sm-10 mx-auto">
+
+          <%= form_for @photographer, :url=> submit_portfolio_photographer_path, html: {class: "form form-group", multipart:
+            true}, method: :post do |f| %>
+            <div class="col-12 my-3">
+              <label for="address"> Instagm  </label>
+
+                <%= f.text_field "instagram" , class: "form-control ltr" , 'aria-describedby'=> "instagram", placeholder: "@example" %>
+            </div>
+            <div class="col-12 my-3">
+              <label for="address"> Twitter </label>
+
+                <%= f.text_field "twitter" , class: "form-control ltr" , 'aria-describedby'=> "twitter", placeholder: "@example" %>
+            </div>
+            <div class="col-12 my-3">
+              <label for="address"> Linkedin </label>
+              <%= f.text_field "linkedin" , class: "form-control ltr" , placeholder: "https://www.linkedin.com/in/example" %>
+            </div>
+            <div class="col-12 my-3">
+              <label for="address"> Website </label>
+
+              <%= f.text_field "online_portfolio" , class: "form-control ltr" , placeholder: "www.example.com" %>
+            </div>
+
+            <div class="col-6 mx-auto text-center">
+              <button type="submit" class="btn btn-dark btn-block">
+                submit
+              </button>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-12 text-center">
+        <%= link_to destroy_photographer_session_url , class: "btn text-danger btn-sm p-2 m-2" do %>
+        sign out
+      <% end %>
+      </div>
+    </div>
+
+  </section>
+  <%= render "types/sections/mobile_footer"%>
+</body>
+
+
+<script>
+  const input = document.querySelector("#mobile_number");
+  const iti = window.intlTelInput(input,
+   {
+    autoInsertDialCode: true,
+    separateDialCode: true,
+    hiddenInput: "full_phone",
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+    initialCountry: "auto",
+    geoIpLookup: function(callback) {
+      fetch("https://ipapi.co/json")
+        .then(function(res) { return res.json(); })
+        .then(function(data) { callback(data.country_code); })
+        .catch(function() { callback("us"); });
+    }
+  });
+
+  
+</script>
+
+
+<script>
+const button = document.querySelector("#btn");
+const errorMsg = document.querySelector("#error-msg");
+const validMsg = document.querySelector("#valid-msg");
+
+// here, the index maps to the error code returned from getValidationError - see readme
+const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+
+const reset = () => {
+  input.classList.remove("error");
+  errorMsg.innerHTML = "";
+  errorMsg.classList.add("d-none");
+  validMsg.classList.add("d-none");
+};
+
+// on click button: validate
+button.addEventListener('click', () => {
+  reset();
+  if (input.value.trim()) {
+    if (iti.isPossibleNumber()) {
+      validMsg.classList.remove("d-none");
+    } else {
+      input.classList.add("error");
+      const errorCode = iti.getValidationError();
+      errorMsg.innerHTML = errorMap[errorCode];
+      errorMsg.classList.remove("d-none");
+    }
+  }
+});
+
+// on keyup / change flag: reset
+input.addEventListener('change', reset);
+input.addEventListener('keyup', reset);
+</script>

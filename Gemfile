@@ -157,3 +157,5 @@ gem "blazer"
 gem "redirector"
 
 gem "sitemap_generator"
+
+# gem 'rails-intl-tel-input'

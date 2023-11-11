@@ -1,0 +1,76 @@
+<head>
+    <% if Rails.env.production? %>
+      <%= render 'shared/externals/gtag_header' %>
+      <%= render 'shared/externals/ganalytics' %>
+  <% end %>
+    <title>
+        Edit Shoot Type
+    </title>
+    <meta charset="UTF-8">
+    <meta name="description" content="<%= t(:'general.home.seo.meta_description') %>">
+    <meta name="keywords" content="<%= t(:'general.home.seo.meta_keywords') %>">
+    <meta name="author" content="<%= t(:'general.home.seo.meta_author') %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+  
+  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+    
+    <link rel="icon" type="image/png" href="/img/shootempire.png">
+    <meta name="theme-color" content="RGB(41, 135, 249)" />
+  
+    <%= csrf_meta_tags %>
+   
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
+  
+  
+  
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"/>
+  
+  </head> 
+  <%= render "public/shared/wordpress_header" %>
+  
+  
+  <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+  <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+  
+  <body>
+    <section class="container">
+      <div class="row">
+          <div class="col-12 col-sm-10 mx-auto">
+            <h3>
+              <%=@shoot_type.title%>
+            </h3>
+          </div>
+      </div>
+    </section>  
+  
+    <section class="container">
+      <div class="row" style="margin-bottom: 30px;">
+        <div class="col-12 col-sm-8 mx-auto">
+          <input type="file" multiple data-allow-reorder="true" />
+        </div>
+      </div>
+    </section>
+    <%= render "types/sections/mobile_footer"%>
+  </body>
+  
+  
+  <script>
+      // Get a reference to the file input element
+      const inputElement = document.querySelector('input[type="file"]');
+  
+      FilePond.registerPlugin(FilePondPluginImagePreview);
+  
+      // Create a FilePond instance
+      const pond = FilePond.create(inputElement);
+      create(pond, {
+      server: '/upload',
+  });
+  </script>
