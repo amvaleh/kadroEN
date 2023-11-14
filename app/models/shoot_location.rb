@@ -46,4 +46,8 @@ class ShootLocation < ApplicationRecord
     where(:is_studio => false)
   }
 
+  scope :active, -> {
+    where(:approved => true)
+  }
+
 end

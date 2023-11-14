@@ -36,7 +36,7 @@ ActiveAdmin.register ShootLocation do
       f.input :is_studio
       f.input :approved
       f.input :address, :wrapper_html => { :style => "display: none;" }
-      render partial: "map_input", locals: { object: object }
+      # render partial: "map_input", locals: { object: object }
     end
     f.actions
   end
@@ -51,7 +51,7 @@ ActiveAdmin.register ShootLocation do
         row :shoot_location_type
         row :is_studio
         row :approved
-        render partial: "map_show", locals: { object: shoot_location }
+        # render partial: "map_show", locals: { object: shoot_location }
         row :address
         row "Detail" do |p|
           if p.address.present?

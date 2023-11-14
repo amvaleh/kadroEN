@@ -17,16 +17,19 @@
   }
 </style>
 <section class="fdb-block pt-0">
-  <div class="container-fluid p-0 pb-md-5">
-    <div  id="map" style="width: 100%;height:300px;">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <img src="<%=@shoot_location.shoot_location_attachments.first.photo_url(:large)%>" style="width: 100%; height: 50vh; object-fit: cover;" alt="<%= @shoot_location.title %>">
+      </div>
     </div>
   </div>
   <!--  bread crumbs-->
-  <div class="container">
-    <div class="row align-items-center p-2">
+  <div class="container-fluid mt-2">
+    <div class="row">
       <div class="col-12">
-        <p style="">
-          <%= link_to "لیست مکان ها" , shoot_location_root_path %>   >   <%= link_to @shoot_location.title , shoot_location_show_path(@shoot_location.slug) %>
+        <p style="text-left">
+          <%= link_to "All Locations" , shoot_location_root_path %>   >   <%= link_to @shoot_location.title , shoot_location_show_path(@shoot_location.slug) %>
         </p>
       </div>
     </div>
@@ -58,37 +61,28 @@
       <div class="col-12 ml-auto col-md-6 col-lg-5">
         <div class="row">
           <div class="col-12">
-            <h1 class="text-right"><%= @shoot_location.title %></h1>
-            <p class="text-right">
+            <h1 class="text-left"><%= @shoot_location.title %></h1>
+            <p class="text-left">
               <%= @shoot_location.shoot_location_type.title %>
-              <%= link_to  shoot_location_type_filter_url(@shoot_location.shoot_location_type.title) do %>
-                <small style="color:#a1a1a1">
-                  مشاهده همه
-                  <%=  @shoot_location.shoot_location_type.title %>
-                  ها
-                  <i class="fa fa-arrow-left"></i>
-                </small>
-              <% end %>
             </p>
-            <p class=" text-right">
+            <p class="lead text-left">
               <%= h auto_link(simple_format(@shoot_location.description), :html => {:class=>'lead',:target => '_blank'}) %>
             </p>
-            <p class=" text-right"><%= @shoot_location.address.detail %></p>
+            <p class=" text-left"><%= @shoot_location.address.detail %></p>
           </div>
           <div class="col-12 text-center justify-content-center mb-5">
             <div class="btn-group mx-auto" style="direction: ltr;">
-              <%= link_to "https://www.google.com/maps/dir/Current+Location/#{@shoot_location.address.lattitude},#{@shoot_location.address.longtitude}",class:"btn btn-success mt-4 mb-1 mb-md-0", target: :_blank do %>
-                <span class="fa fa-location-arrow"></span> مسیریابی
+              <%= link_to "https://www.google.com/maps/dir/Current+Location/#{@shoot_location.address.lattitude},#{@shoot_location.address.longtitude}",class:"btn btn-primary btn-block mt-4 mb-1 mb-md-0", target: :_blank do %>
+                <span class="fa fa-location-arrow"></span> 
+                Navigation
               <%end %>
-              <a class="btn btn-primary mt-4 mb-1 mb-md-0" href="<%= @base_url %>/book?shoot_location=<%= @shoot_location.slug %>">
-                رزرو عکاس برای این مکان
-              </a>
+              
             </div>
           </div>
           <div class="col-12">
             <% if @owner_shoot_location_photographer.present? %>
               <p style="font-size: 12px !important;">
-                معرفی این مکان توسط :
+                added by:
               </p>
               <p style="font-size: 15px !important;">
                 <a href="https://pro.kadro.me/<%= @owner_shoot_location_photographer.uid %>">
@@ -110,7 +104,7 @@
     <div class="container">
       <div class="row">
         <div class="col text-center">
-          <h2>مناسب رشته های عکاسی </h2>
+          <h2> Good for:</h2>
         </div>
       </div>
       <div class="row pt-2 align-items-center">
@@ -118,10 +112,10 @@
           <div class="col-4 col-sm-3 m-sm-auto">
             <div class="row align-items-center">
               <div class="col-12 col-md-4">
-                <img alt="عکاسی <%=sht.shoot_type.title%>" class="img-fluid rounded-circle" src="<%= assets_url(sht.shoot_type.avatar_url(:medium)) %>">
+                <img alt="<%=sht.shoot_type.title%>" class="img-fluid rounded-circle" src="<%= assets_url(sht.shoot_type.avatar_url(:medium)) %>">
               </div>
               <div class="col-12 col-md-8">
-                <h4 class="text-right"><%=sht.shoot_type.title%></h4>
+                <h4 class="text-left"><%=sht.shoot_type.title%></h4>
               </div>
             </div>
           </div>
@@ -130,56 +124,7 @@
     </div>
   </section>
 <% end %>
-<% if @suggested_photographers.present? %>
-  <section class="fdb-block team-3 pt-1">
-    <div class="container">
-      <div class="row text-center justify-content-center">
-        <div class="col-8">
-          <h2>عکاسان مناسب برای این مکان:</h2>
-        </div>
-      </div>
-      <div class="row-70"></div>
-      <div class="row text-center justify-content-center">
-        <% @suggested_photographers.each do |ph| %>
-          <div class="col-6 col-sm-2 m-sm-auto">
-            <img alt="image" class="img-fluid rounded-circle" src="https://app.kadro.me<%= ph.avatar_url(:medium) %>">
-            <h3><strong><%= ph.abbrv_name %></strong></h3>
-            <p class="text-center"><a class="btn btn-dark mt-4 mb-5 mb-md-0" href="https://pro.kadro.me/<%= ph.uid %>" style="margin-top: 0px !important;">مشاهده</a></p>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </section>
-<% end %>
 
-<script>
-    handler2 = Gmaps.build('Google');
-    handler2.buildMap({
-        provider: {
-            zoomOut: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            styles: mapStyleee,
-        }, internal: {id: 'map'}
-    }, function () {
-        markers2 = handler2.addMarkers([
-            <% if @shoot_location.address.present? %>
-            {
-                "lat": <%=@shoot_location.address.lattitude%>,
-                "lng": <%=@shoot_location.address.longtitude%>,
-                "picture": {
-                    "url": "<%= @base_url %>img/land_logo.png",
-                    "width": 50,
-                    "height": 50
-                },
-                infowindow: '<h3 style="font-family: iranyekan-bold;"><%= @shoot_location.title %></h3><p class="text-center" style="font-family: iranyekan-light;"><%= @shoot_location.shoot_location_type.title %></p><%=link_to "رزرو اینجا" , "https://app.kadro.me/book?shoot_location=#{@shoot_location.slug}" ,class: "btn btn-primary",target: "_blank", style: "margin-right: 10px; font-family: iranyekan-bold;" %>'
-            },
-            <% end %>
 
-        ]);
-        handler2.bounds.extendWith(markers2);
-        handler2.fitMapToBounds();
-        handler2.getMap().setZoom(11);
-    });
-</script>
 <script src="/lightgallery/lg-thumbnail.min.js"></script>
 <script src="/lightgallery/lg-fullscreen.min.js"></script>

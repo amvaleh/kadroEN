@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <% if Rails.env.production? %>
-    <%= render 'shared/externals/gtag_header' %>
-    <%= render 'shared/externals/ganalytics' %>
-    <%= render 'shared/yektanet_header' %>
-    <%= render 'shared/externals/yandex' %>
-    <%= render 'shared/externals/raychat' %>
-<% end %>
+ 
+    <% if Rails.env.production? %>
+      <%= render 'shared/externals/gtag_header' %>
+        <%= render 'shared/externals/ganalytics' %>
+          <% end %>
+
   <title>
     <% if @title.present? %>
       <%= @title %>
     <% else %>
-      بهترین مکان ها برای عکاسی
+    Best Photography Locations
     <% end %>
-    | کادرو
+    | ShootEmpire
   </title>
   <meta name="theme-color" content="RGB(41, 135, 249)" />
 
   <meta charset="UTF-8">
-  <meta name="description" content="بهترین مکان های عکاسی،<%ShootLocationType.all.each do|sht|%><%=sht.title %>،<%end%> با دسته بندی مناسب انواع رشته عکاسی با پیشنهاد بهترین عکاسها برای هر مکان، با عکس و قیمت ورودی هر کدام">
-  <meta name="keywords" content="مکان عکاسی , مکان برای عکاسی , فضای عکاسی , لوکیشن عکاسی ">
-  <meta name="author" content="تیم کادرو">
+  <!-- <meta name="description" content="بهترین مکان های عکاسی،<%ShootLocationType.all.each do|sht|%><%=sht.title %>،<%end%> با دسته بندی مناسب انواع رشته عکاسی با پیشنهاد بهترین عکاسها برای هر مکان، با عکس و قیمت ورودی هر کدام"> -->
+  <!-- <meta name="keywords" content="مکان عکاسی , مکان برای عکاسی , فضای عکاسی , لوکیشن عکاسی "> -->
+  <!-- <meta name="author" content="تیم کادرو"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+      <link rel="icon" type="image/png" href="/img/shootempire.png">
+      <meta name="theme-color" content="RGB(41, 135, 249)" />
+
+
   <%= csrf_meta_tags %>
   <% if Rails.env.production? %>
     <%= stylesheet_link_tag   'shoot_locations', media: 'all', 'data-turbolinks-track': 'reload'%>
@@ -37,24 +41,35 @@
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
   <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
 </head>
-<%= render "shoot_locations/header" %>
+
+<%#= render "shoot_locations/header" %>
+<%= render "public/shared/wordpress_header" %>
+
 <body>
+
   <%= render 'shared/externals/gtag_body' %>
 <%= yield %>
 </body>
 
 
+
+<% if not photographer_signed_in? %>
+  <%= render "types/sections/footer" %>
+    <% end %>
+
+    
 <%#= render "public/shared/section_of_call_request" , dest_url: create_call_request_path %>
 
-<%= render "types/sections/footer", :@shoot_type=>@shoot_type%>
+<%#= render "types/sections/footer", :@shoot_type=>@shoot_type%>
+
 <script>
-    $(window).on('load', function () {
-        $('.img-replace').each(function(i, obj) {
-            console.log(i);
-            newUrl = $(this).attr('id');
-            console.log(newUrl);
-            $(this).attr('src', newUrl);
-        });
+  $(document).ready(function () {
+    $('.img-replace').each(function (i, obj) {
+      console.log(i);
+      newUrl = $(this).attr('id');
+      console.log(newUrl);
+      $(this).attr('src', newUrl);
     });
+  });
 </script>
 </html>

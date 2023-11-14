@@ -6,82 +6,23 @@
           <% if @title.present? %>
           <%= @title %>
           <% else %>
-           کجا بریم عکاسی؟
+          Photography Shoot Locations
         <% end %>
         </h1>
         <p class="text-center">
-          مکان های مناسب عکاسی
-          <strong>
-            به پیشنهاد کادرو
-            </strong>
+          best photography locations choosen by professionals
         </p>
       </div>
-      <div class="col-10">
-        <div class="w3-bar">
-          <div class="w3-dropdown-hover locations-list  align-items-center">
-            <% if @shoot_type.present? %>
-              <button class="btn-outline-success p-2" style="border: 1px solid green">
-                برای عکاسی  <%= @shoot_type.title %></button>
-            <% else %>
-              <button class=" btn-outline-success p-2" style="border: 1px solid green">
-              برای رشته عکاسی خاصی میخواهی؟
-             </button>
-            <% end %>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4 ">
-              <% if @shoot_type.present? %>
-                <%= @shoot_type.title %>
-              <% else %>
 
-              <% end %>
-              <a class="dropdown-item" href="<%=shoot_location_root_path %>">
-                تمام موارد</a>
-              <% @shoot_types.each do |sh| %>
-                <a class="dropdown-item text-center" href="<%= shoot_location_shoot_type_filter_path(sh.title)%>">
-                  عکاسی
-                  <%= sh.title %>
-                </a>
-              <% end %>
-            </div>
-          </div>
-        </div>
-        </div>
     </div>
 
-    <% if not @shoot_location_type.present? %>
-    <div class="row justify-content-center mt-4">
-      <div class="col-10">
-        <div class="row">
-          <div class="col">
-            <button class="btn btn-success btn-block m-1 p-1 slts slt_0" onclick='filter(0)'>
-              همه
-            </button>
-          </div>
-          <% ShootLocationType.order("created_at").all.each do |slt| %>
-            <% if slt.title != "آتلیه" %>
-              <div class="col">
-                <button class="btn btn-block btn-outline-success m-1 p-1 slts slt_<%=slt.id%>" onclick='filter(<%=slt.id%>)'>
-                  <%= slt.title %>
-                </button>
-
-                <%= link_to shoot_location_type_filter_url(slt.title),class:"d-none d-md-block" do %>
-                 لیست همه
-                  <%= slt.title %>
-                  ها
-                  <span class="fa fa-arrow-left"></span>
-                <% end %>
-              </div>
-            <%end %>
-          <%end %>
-        </div>
-      </div>
-    </div>
-    <% end %>
+    
 
     <div class="row text-center mt-5">
       <% @shoot_locations.order("shoot_location_type_id DESC").each do |sh| %>
-      <% if sh.shoot_location_type.title != "آتلیه"%>
+      <% if sh.shoot_location_type.title != "studio"%>
         <div class="col-6 col-sm-4 col-md-3 col-lg-3 py-5 types type_<%=sh.shoot_location_type.id %> ">
-          <%= link_to shoot_location_show_path(sh.slug) do %>
+          <%= link_to shoot_location_show_url(sh.slug) do %>
             <% if sh.shoot_location_attachments.present? %>
               <img alt="image" class="img-fluid rounded" src="<%= @base_url %><%= sh.shoot_location_attachments.first.photo_url(:medium)%>" style="width: 150px;height: 150px; object-fit: cover !important;">
             <% else %>
@@ -89,7 +30,8 @@
             <% end %>
             <h3><strong><%= sh.title %></strong></h3>
             <p class="text-center"><%= sh.shoot_location_type.title %></p>
-            <p class="text-center"><a class="btn btn-outline-success mt-4 mb-5 mb-md-0" href="<%= @sub_url %><%= sh.slug %>" style="margin-top: 0px !important;">مشاهده</a></p>
+            <p class="text-center">
+              <button class="btn btn-outline-success mt-4 mb-5 mb-md-0" style="margin-top: 0px !important;"> check out </button></p>
           <% end %>
         </div>
         <% end %>
@@ -97,19 +39,4 @@
     </div>
   </div>
 </section>
-<script>
-    function filter(type_id) {
-        if (type_id===0){
-            $(".types").removeClass("d-none");
-            $('.slts').removeClass("btn-success").addClass("btn-outline-success");
-            $(".slt_0").removeClass("btn-outline-success").addClass("btn-success");
-        }
-        else{
-            $('.types').addClass("d-none");
-            $('.type_'+type_id).removeClass("d-none");
-            $('.slts').removeClass("btn-success").addClass("btn-outline-success");
-            $('.slt_'+type_id).removeClass("btn-outline-success").addClass("btn-success");
-        }
 
-    }
-</script>

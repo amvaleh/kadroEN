@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   # mount Lines::Engine => "/updates"
 
-  # constraints subdomain: "app" do
+  constraints subdomain: "app" do
 
-  #   devise_for :admin_users, ActiveAdmin::Devise.config
-  #   ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
+    devise_for :admin_users, ActiveAdmin::Devise.config
+    ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
 
     
   #   # get "/" => "bookv2#show", as: "app"
@@ -273,7 +273,7 @@ Rails.application.routes.draw do
   #   # mount Lines::Engine => "/updates", as: "updates"
   #   match "*a", :to => "application#page_not_found", via: :get
   #   # App Constraint
-  # end
+  end
 
   # constraints subdomain: "locations" do
 
@@ -308,8 +308,6 @@ Rails.application.routes.draw do
     devise_for :photographers, path: "photographers", controllers: { sessions: "photographers/sessions", registrations: "photographers/registrations", passwords: "photographers/passwords", confirmations: "photographers/confirmations" }
     devise_for :users, path: "users", controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
 
-
-    
     resources :photographers do
       member do
         get "home"
@@ -356,9 +354,7 @@ Rails.application.routes.draw do
     post "expertises/receive_photo" => "expertises#receive_photo", as: "receive_photo_expertise"
 
 
-    # root to: "shoot_locations#index", as: "shoot_location_root"
     get "/locations", to: "shoot_locations#index", as: "shoot_location_root"
-    # get "/list", to: "shoot_locations#index", as: "shoot_location_list"
     get "/locations/:id", to: "shoot_locations#show", as: "shoot_location_show"
     get "/locations/:shoot_type", to: "shoot_locations#shoot_type_filter", as: "shoot_location_shoot_type_filter"
     get "/locations/type/:id", to: "shoot_locations#shoot_location_type", as: "shoot_location_type_filter"

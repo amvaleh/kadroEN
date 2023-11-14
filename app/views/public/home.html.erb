@@ -66,8 +66,9 @@
       <div class="col-12 col-sm-10 col-md-10 col-lg-12 mx-2">
         <div class="container-fluid">
           <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
-            <% ShootLocation.all.each do |sl| %>
+            <% ShootLocation.active.each do |sl| %>
             <div class="col-6 col-sm-3">
+              <a href="<%=shoot_location_show_url(sl)%>">
               <%= image_tag sl.shoot_location_attachments.first.photo.url(:medium) , class: "img-fluid" , height: "10rem", style: "height: 10em;object-fit: cover;width: 100%;"%>
               <h3 class="my-0 py-0 text-left">
                 <%= sl.title %>
@@ -77,6 +78,7 @@
                   <%= sl.description %>
                 </small>
               </p>            
+              </a>
             </div>
             <% end %>
           </div>
