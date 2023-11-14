@@ -42,7 +42,7 @@
             <% if @shoot_location.shoot_location_attachments.present? %>
             <% @shoot_location.shoot_location_attachments.each_with_index do |sha, index| %>
               <div class="item col-6 col-md-12 col-lg-12 col-xl-12 bg-light mobile-sc-size" data-src="<%= sha.photo_url(:large) %>">
-                <img class="mobile-sc-size img-replace" id=<%=sha.photo_url(:medium) %> src="<%= sha.photo_url(:thumb) %>" style="height: 180px; width:180px; object-fit: cover;" alt="<%=@shoot_location.title%> از مکان های عکاسی کادرو ">
+                <img class="mobile-sc-size img-replace" id=<%=sha.photo_url(:medium) %> src="<%= sha.photo_url(:thumb) %>" style="height: 180px; width:180px; object-fit: cover;" alt="<%=@shoot_location.title%>">
               </div>
             <% end %>
           </div>
