@@ -211,7 +211,6 @@ Rails.application.routes.draw do
   #     end
   #   end
   #   resources :scanned_profiles, only: [:show, :create, :destroy]
-  #   resources :shoot_location_attachments, only: [:create, :destroy]
   #   get "/galleries", to: "galleries#complete_project"
   #   get "/galleries/reserved", to: "galleries#reserved_projects"
   #   get "/galleries/not_payed", to: "galleries#not_payed_projects"
@@ -311,6 +310,10 @@ Rails.application.routes.draw do
     devise_for :photographers, path: "photographers", controllers: { sessions: "photographers/sessions", registrations: "photographers/registrations", passwords: "photographers/passwords", confirmations: "photographers/confirmations" }
     devise_for :users, path: "users", controllers: { sessions: "users/sessions", registrations: "users/registrations", passwords: "users/passwords" }
 
+
+    resources :shoot_location_attachments, only: [:create, :destroy]
+
+    
     resources :photographers do
       member do
         get "home"
