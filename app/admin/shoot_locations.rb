@@ -19,10 +19,11 @@ ActiveAdmin.register ShootLocation do
   controller do
     def address_check
       if params[:action] == "create"
-        address = Addresses::CreateAddress.call(lattitude: params[:shoot_location][:latitude], longtitude: params[:shoot_location][:longitude], input: params[:shoot_location][:input], detail: params[:shoot_location][:detail]).address
+        address = Addresses::CreateAddress.call(lattitude: params[:shoot_location][:latitude], longtitude: params[:shoot_location][:longitude], input: params[:shoot_location][:input], detail: params[:shoot_location][:title]).address
         params[:shoot_location][:address_id] = address.id
       else
-        address = Addresses::UpdateAddress.call(id: params[:shoot_location][:address_id], lattitude: params[:shoot_location][:latitude], longtitude: params[:shoot_location][:longitude], input: params[:shoot_location][:input], detail: params[:shoot_location][:detail]).address
+        address = Addresses::UpdateAddress.call(id: params[:shoot_location][:address_id], lattitude: params[:shoot_location][:latitude], longtitude: params[:shoot_location][:longitude], input: params[:shoot_location][:input], detail: params[:shoot_location][:title]).address
+        params[:shoot_location][:address_id] = address.id
       end
     end
   end
@@ -36,7 +37,14 @@ ActiveAdmin.register ShootLocation do
       f.input :is_studio
       f.input :approved
       f.input :address, :wrapper_html => { :style => "display: none;" }
-      # render partial: "map_input", locals: { object: object }
+      if object.address.present?
+        lat = object.address.lattitude
+        lng = object.address.longtitude
+      else
+        lat = "35.7219"
+        lng = "51.3347"
+      end
+      render partial: "/shared/map_leaflet_input", locals: { object: object, map_id: "work_map", map_width: "100%", map_height: "400px", map_center_lat: lat , map_center_lng: lng, lat_input_name: "shoot_location[latitude]" , lng_input_name: "shoot_location[longitude]" }
     end
     f.actions
   end
@@ -51,11 +59,12 @@ ActiveAdmin.register ShootLocation do
         row :shoot_location_type
         row :is_studio
         row :approved
-        # render partial: "map_show", locals: { object: shoot_location }
-        row :address
-        row "Detail" do |p|
+        if shoot_location.address.present?
+          render partial: "/shared/map_leaflet_show", locals: { lat: shoot_location.address.lattitude, lng: shoot_location.address.longtitude, map_width: "100%", map_height: "400px", dragging: true }
+        end
+        row "Address Detail" do |p|
           if p.address.present?
-            p.address.detail
+            link_to "#{p.address.detail}", admin_address_path(p.address.id)
           end
         end
         row :created_at
