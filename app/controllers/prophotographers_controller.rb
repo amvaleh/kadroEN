@@ -1,5 +1,7 @@
 class ProphotographersController < ApplicationController
-  layout "kadro"
+
+  layout "wordpress"
+  
   before_action :find_photographer, :only => [:show, :call]
   before_action :authenticate_user!, only: :call
   before_action :base_url
@@ -211,7 +213,7 @@ class ProphotographersController < ApplicationController
         end
       end
     end
-    @header_photo = @photographer.expertises.sample.photos.sample
+    # @header_photo = @photographer.expertises.sample.photos.sample
     set_cookie
   end
 

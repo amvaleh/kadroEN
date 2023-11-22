@@ -3,9 +3,13 @@ class Photo < ApplicationRecord
   validates :file, presence: true
 
   mount_uploader :file, PhotoUploader
+
   belongs_to :expertise
+
   has_many :selectable_images, as: :image
+
   has_many :images , through: :selectable_images
+  
   belongs_to :exif
 
   before_destroy :delete_exif, :expertise_update

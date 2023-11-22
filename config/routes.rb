@@ -299,9 +299,6 @@ Rails.application.routes.draw do
     get "/" => "subdomain#show"
   end
 
-  defaults :subdomain => false do
-
-
 
     devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
@@ -316,11 +313,13 @@ Rails.application.routes.draw do
     
     resources :photographers do
       member do
+        get "expertises/new" => "expertises#new", as: "new_expertise"
+        get "expertises/edit" => "expertises#edit", as: "edit_expertise"
         get "home"
         get "studio_locations", to: "photographers#studio_locations", as: "studio_locations"
         post "submit_studio_locations", to: "photographers#submit_studio_locations"
         get "page_setting", to: "photographers#page_setting"
-        get "pro", to: "prophotographers#show"
+        get "pro", to: "prophotographers#show" , as: "page"
         get "show"
         get "studio"
         get "done"
@@ -331,7 +330,7 @@ Rails.application.routes.draw do
         post "submit_equipment"
         post "submit_experience"
         post "submit_portfolio"
-        post "receive_photo"
+        # post "receive_photo"
         get "projects"
         get "remove_expertise"
         get "times"
@@ -356,7 +355,7 @@ Rails.application.routes.draw do
       end
     end
 
-    post "expertises/new" => "expertises#new", as: "new_shoot_type"
+
     post "expertises/receive_photo" => "expertises#receive_photo", as: "receive_photo_expertise"
 
 
@@ -389,8 +388,9 @@ Rails.application.routes.draw do
 
     root to: "public#home"
     get "/", to: "public#home", as: "kadro"
-  end
-  post "call_request" => "public#create_call_request", as: "create_call_request"
+
+
+    post "call_request" => "public#create_call_request", as: "create_call_request"
   get "call_request" => "public#call_request", as: "call_request"
 
   post "subscribers", to: "public#create_subscribers", as: "create_subscribers"
@@ -400,4 +400,5 @@ Rails.application.routes.draw do
   get "/500", :to => "application#page_not_found"
   get "/422", :to => "application#page_not_found"
   match "*a", :to => "application#page_not_found", via: :get
+
 end

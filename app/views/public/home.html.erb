@@ -68,7 +68,7 @@
           <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
             <% ShootLocation.active.each do |sl| %>
             <div class="col-6 col-sm-3">
-              <a href="<%=shoot_location_show_url(sl)%>">
+              <a href="<%=shoot_location_show_path(sl)%>">
               <%= image_tag sl.shoot_location_attachments.first.photo.url(:medium) , class: "img-fluid" , height: "10rem", style: "height: 10em;object-fit: cover;width: 100%;"%>
               <h3 class="my-0 py-0 text-left">
                 <%= sl.title %>
@@ -107,6 +107,7 @@
           <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
             <% Photographer.all.approved.each do |ph| %>
             <div class="col-6 col-sm-3">
+              <a href="<%=page_photographer_url(ph.uid)%>" target="_blank">
               <%= image_tag ph.avatar_url(:mini) , class: "img-fluid" , height: "10rem", style: "height: 10em;object-fit: cover;width: 100%;"%>
               <h3 class="my-0 py-0 text-left">
                 <%= ph.abbrv_name %>
@@ -115,7 +116,8 @@
                 <small>
                   <%#= ph.experience.bio %>
                 </small>
-              </p>            
+              </p> 
+              </a>
             </div>
             <% end %>
           </div>

@@ -57,13 +57,19 @@
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="<%=st.avatar_url%>" alt="<%=st.w_subtitle%>">
             <div class="card-body">
-              <h5 class="card-title">
+              <h4 class="card-title">
                 <%= st.title %>
-              </h5>
+              </h4>
               <p class="card-text">
                 <%= st.w_title %>
               </p>
-              <a href="<%=new_expertise_url(photographer_id: current_photographer.id , shoot_type_id: st.id)%>" class="btn btn-primary"> Add </a>
+              <% if current_photographer.expertises.find_by(shoot_type_id: st.id) %>
+              <a href="<%=edit_expertise_photographer_url(current_photographer, expertise_id: current_photographer.expertises.find_by(shoot_type_id: st.id).id,shoot_type_id:st.id  )%>" class="btn btn-primary"> 
+                Edit
+              </a>
+              <% else %>
+              <a href="<%=new_expertise_photographer_url(current_photographer, shoot_type_id: st.id)%>" class="btn btn-primary"> Add </a>
+              <% end %>
             </div>
         </div>
         <% end %>
