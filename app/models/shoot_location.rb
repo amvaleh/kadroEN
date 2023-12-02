@@ -21,8 +21,8 @@ class ShootLocation < ApplicationRecord
       if !studio_location.present?
         self.photographer.has_studio = false
       end
+      self.photographer.save
     end
-    self.photographer.save
   end
 
   def check_studio_shoot_location_type
