@@ -21,22 +21,22 @@
    <nav class="navbar navbar-light bg-light footer">
     <div class="container">
       <div class="row w-100">
-        <div class="col-3 footer-item">
-          <%= link_to studio_photographer_path(current_photographer) do %>
+        <!-- <div class="col-3 footer-item">
+          <%#= link_to studio_photographer_path(current_photographer) do %>
           Home
-          <% end %>
-        </div>
-        <div class="col-3 footer-item">
+          <%# end %>
+        </div> -->
+        <div class="col footer-item">
           <%= link_to projects_photographer_path(current_photographer) do %>
             Bookings
             <% end %>
         </div>
-        <div class="col-3 footer-item">
+        <div class="col footer-item">
           <a href="<%=portfolio_photographer_path(current_photographer)%>">
             Portfolio
           </a>
         </div>
-        <div class="col-3 footer-item">
+        <div class="col footer-item">
           <%= link_to settings_photographer_path(current_photographer) do %>
           Settings
           <% end %>

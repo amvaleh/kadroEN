@@ -40,103 +40,107 @@
 
 </head>
 
-
 <%= render "public/shared/wordpress_header" %>
 
-
 <main>
-
   <section class=" mt-0 pt-2" style="background-color: white;">
     <div class="container">
       <div class="row">
-        <div class="col-6 mx-auto text-center">
+        <div class="col-12 col-md-6 mx-auto text-center">
           <%=image_tag @photographer.avatar_url(:medium), width: "100" , style:"border-radius: 50%"%>
             <h1 class="text-center text-white" style="margin-bottom: 20px;">
               <%=@photographer.abbrv_name%>
             </h1>
             <p>
-              <%= @photographer.experience.present? ? @photographer.experience.self_describe : "bio" %>
+              <%= @photographer.experience.present? ? @photographer.experience.bio : "bio" %>
             </p>
         </div>
       </div>
 
-      <div class="row justify-content-end">
-        <div class="col-3 col-lg-2" style="position: fixed; right: 0;top: 10vh;">
-          <p class="text-right">
-            رشته های من:
-          </p>
-          <% expertises=Expertise.order(order: :asc).joins(:shoot_type).where(:photographer_id=> @photographer.id,
-            :approved => true) %>
-            <% expertises.select("expertises.*, shoot_types.title").order("expertises.order DESC").each do |ex| %>
-              <a style="cursor:pointer;margin: auto;background-color: #ffffff;padding: 3x;flex-grow: 20;"
-                class="top_expertises" onclick="Scroll_to_expertise('#field_<%=ex.id%>');" role="tab">
-                <p id="titleEx_<%= ex.id %>" class="text-right text-white <%= expertises.first == ex ? " active-ex" : ""
-                  %> link_to_expertise">
-                  <%= ex.title %>
-                </p>
-              </a>
-              <% end %>
+      <div class="row py-4 my-2 justify-content-center">
+        
+        <% if @photographer.instagram.present? %>
+        <div class="col mx-auto text-center">
+          <a href="https://www.instagram.com/<%=@photographer.instagram%>" target="_blank">
+          <span class="fa fa-instagram">
+          </span>
+          <%= @photographer.instagram %>
+          </a>
         </div>
-        <div class="col-9 col-lg-9">
-          <div class="row" id="portfo-experts">
-            <% i=1 %>
-              <% expertises.each do |e| %>
-                <div id="field_<%= e.id %>" class="col-12 expertiseDiv my-4" style="position: relative">
-                  <% is_censorship=((e.shoot_type.censorship and @photographer.approved) and @censorship) %>
-                    <% expertise_widgets=e.expertise_widgets %>
-                      <% i=i + 1 %>
-                        <div class="row">
-                          <div class="col-12">
-                            <h2 class="text-right text-white">
-                              <%= e.shoot_type.type_name %>
-                            </h2>
-                          </div>
-                        </div>
-                        <div class="row align-content-center justify-content-center">
-                          <% e.photos.each do |p| %>
-                            <div class="col-3 col-lg-2 p-1">
-                              <img src="<%= p.file_url(:mini_webp) %>" class="img-fluid rounded"
-                                alt="عکس <%= e.shoot_type.title %> توسط <%= @photographer.last_name %>">
-                            </div>
-                            <% end %>
-                        </div>
+        <% end %>
 
-                        <!--                 
-                <% if e.expertise_widgets.any? %>
-                <div class="row bg-light">
-                  <div class="col-12">
-                    <h3 class="text-right text-secondary mt-3">
-                      لوازم جانبی <%=@photographer.abbrv_name%> که در عکاسی <%=e.shoot_type.title%>
-                      میتواند استفاده کند:
-                    </h3>
-                  </div>
-
-                  <% e.expertise_widgets.each do |ex| %>
-                  <div class="col-2 p-1 text-center">
-                    <% if ex.expertise_widget_attachments.any? %>
-                    <img src="<%= ex.expertise_widget_attachments.first.photo_url(:medium) %>" class="rounded" alt="<%= ex.widget.name %>" width="100%">
-                    <p class=" text-right">
-                      <%= ex.widget.name %>
-                    </p>
-
-                    <% else %>
-                    <img src="/img/accessories.png" width="100%" alt="<%= ex.widget.name %>" class="rounded">
-                    <p class=" text-right">
-                      <%= ex.widget.name %>
-                    </p>
-                    <% end %>
-                  </div>
-                  <% end %>
-                </div>
-                <% end %>
- -->
-
-
-                </div>
-                <% end %>
+        <% if @photographer.twitter.present? %>
+          <div class="col mx-auto text-center">
+          <a href="https://www.x.com/<%=@photographer.instagram%>" target="_blank">
+            <span class="fa fa-twitter">
+            </span>
+            <%= @photographer.twitter %>
+          </a>
           </div>
+          <% end %>
+
+        <% if @photographer.linkedin.present? %>
+          <div class="col mx-auto text-center">
+          <a href="<%=@photographer.linkedin%>" target="_blank">
+            <span class="fa fa-linkedin">
+            </span>
+            LinkedIn
+          </a>  
+          </div>
+          <% end %>
+
+
+        <% if @photographer.online_portfolio.present? %>
+          <div class="col mx-auto text-center">
+          <a href="<%=@photographer.online_portfolio%>" target="_blank">
+            <span class="fa fa-external-link">
+            </span>
+            Website
+            </a>
+          </div>
+          <% end %>
+
+
+      </div>
+      
+
+      <div class="row justify-content-center">
+        <div class="col-12" >
+          <p class="text-left">
+            My Shoot Types
+          </p>
+          <ul style="line-height: 2.3em;">
+            <% @photographer.shoot_types.each do |sh| %>
+            <li>
+              <%= sh.title %>
+            </li>
+            <% end %>
+          </ul>
         </div>
       </div>
+
+
+        <% @photographer.expertises.approved.each do |ex| %>
+        <div class="row border-top my-3">
+          <div class="col">
+            <h6 class="h5 text-left">
+              <%= ex.shoot_type.title%>
+            </h6>
+          </div>
+        </div>
+
+        <div class="row align-items-center justify-content-center">
+          <% ex.photos.each do |photo| %>
+            <div class="col-4 p-1">
+              <%= link_to photo.file_url , target: "_blank" do %>
+                <img src="<%=photo.file_url(:medium)%>" alt="" class="img-fluid">
+                <% end %>
+            </div>
+            <% end %>
+        </div>
+        <% end %>
+
+
     </div>
   </section>
 </main>
@@ -159,28 +163,3 @@
     font-size: 2vh !important;
   }
 </style>
-<script>
-  window.addEventListener('scroll', (event) => {
-    expertises = <%= expertises.select("expertises.*, shoot_types.title").order("expertises.order DESC").map{ | e | e.id } %>
-      current_active = document.getElementsByClassName("active-ex")[0]
-    for (let index = 0; index < expertises.length; ++index) {
-      id = expertises[index];
-      element = document.getElementById("field_" + id);
-      px = element.getBoundingClientRect();
-      if (px.top <= 1) {
-        last_active_id = id
-      }
-    }
-    if (current_active.id != ("titleEx_" + last_active_id)) {
-      $(".link_to_expertise").removeClass("active-ex");
-      $("#titleEx_" + last_active_id).addClass("active-ex");
-    }
-  });
-
-  function Scroll_to_expertise(id) {
-    $('html, body').animate({
-      scrollTop: $(id).offset().top
-    }, 100);
-  }
-
-</script>

@@ -37,7 +37,6 @@
 
 
 </head> 
-<%= render "public/shared/wordpress_header" %>
 
 <body>
   <section class="container">
@@ -54,24 +53,40 @@
     <div class="row" style="margin-bottom: 30px;">
       <div class="col-12 col-sm-8 mx-auto">
         <% ShootType.all.active.each do |st| %>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="<%=st.avatar_url%>" alt="<%=st.w_subtitle%>">
-            <div class="card-body">
-              <h4 class="card-title">
-                <%= st.title %>
-              </h4>
-              <p class="card-text">
-                <%= st.w_title %>
-              </p>
-              <% if current_photographer.expertises.find_by(shoot_type_id: st.id) %>
-              <a href="<%=edit_expertise_photographer_url(current_photographer, expertise_id: current_photographer.expertises.find_by(shoot_type_id: st.id).id,shoot_type_id:st.id  )%>" class="btn btn-primary"> 
+            <div class="row border p-2 m-2">
+              <div class="col-6">
+            <img src="<%=st.avatar_url(:mini)%>" alt="<%=st.w_subtitle%>">
+            <h4 class="text-left">
+              <%= st.title %>
+            </h4>
+            <p class="text-left">
+              <%= st.w_title %>
+            </p>
+            <% if current_photographer.expertises.find_by(shoot_type_id: st.id) %>
+              <% @expertise = current_photographer.expertises.find_by(shoot_type_id: st.id) %>
+              <a href="<%=edit_expertise_photographer_url(current_photographer, expertise_id: current_photographer.expertises.find_by(shoot_type_id: st.id).id,shoot_type_id:st.id  )%>"
+                class="btn btn-outline-primary">
                 Edit
               </a>
               <% else %>
-              <a href="<%=new_expertise_photographer_url(current_photographer, shoot_type_id: st.id)%>" class="btn btn-primary"> Add </a>
-              <% end %>
+                <a href="<%=new_expertise_photographer_url(current_photographer, shoot_type_id: st.id)%>" class="btn btn-primary">
+                  Add </a>
+                <% end %>
+              </div>
+              <div class="col-6">
+                <div class="row">
+                  <% if @expertise %>
+                    <% @expertise.photos.last(9).each do |photo| %>
+                      <div class="col-4 p-1">
+                        <%= link_to photo.file_url , target: "_blank" do %>
+                          <img src="<%=photo.file_url(:medium)%>" alt="" class="img-fluid">
+                          <% end %>
+                      </div>
+                      <% end %>
+                  <% end %>
+                </div>
+              </div>
             </div>
-        </div>
         <% end %>
       </div>
     </div>

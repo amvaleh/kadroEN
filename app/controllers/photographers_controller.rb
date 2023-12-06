@@ -202,6 +202,16 @@ class PhotographersController < ApplicationController
       @photographer.uid = photographers_params[:uid]
       @photographer.birthday = photographers_params[:birthday]
       @location.working_input = photographers_params[:working_input]
+
+      if @photographer.experience
+        experience = @photographer.experience
+      else
+        experience = Experience.create(:photographer_id => @photographer.id)
+      end
+
+      experience.bio = photographers_params[:bio]
+      experience.save
+
       # @location.living_lat = photographers_params[:living_lat]
       # @location.living_long = photographers_params[:living_long]
       # @location.working_lat = photographers_params[:working_lat]
@@ -499,24 +509,19 @@ class PhotographersController < ApplicationController
   end
 
   def submit_portfolio
-    if ph = Photographer.find_by(:uid => params[:photographer][:uid]) and ph != @photographer
-      redirect_to portfolio_photographer_path(@photographer), alert: "'#{params[:photographer][:uid]}' قبلا گرفته شده است، لطفا آی دی دیگری انتخاب کنید."
-    else
-      @photographer.uid = params[:photographer][:uid]
+
       @photographer.online_portfolio = params[:photographer][:online_portfolio]
       @photographer.instagram = params[:photographer][:instagram]
       @photographer.linkedin = params[:photographer][:linkedin]
       @photographer.twitter = params[:photographer][:twitter]
-      @photographer.avatar = params[:photographer][:avatar] if not params[:photographer][:avatar].nil?
+ 
 
-      unless @photographer.has_passed("نمونه کارها")
-        @photographer.join_step_id = JoinStep.find_by_name("نمونه کارها").id # to skip update if ph is confirmed
-      end
       @photographer.save
       @photographer.create_activity :ph_edit_portfolio, owner: @photographer
-      Photographers::CheckPhotographerJoinStep.call(photographer_id: @photographer.id)
-      redirect_to experience_photographer_path(@photographer)
-    end
+
+      # Photographers::CheckPhotographerJoinStep.call(photographer_id: @photographer.id)
+      
+      redirect_to settings_photographer_path(@photographer)
   end
 
   def submit_avatars
@@ -803,7 +808,7 @@ class PhotographersController < ApplicationController
   end
 
   def photographers_params
-    params.require(:photographer).permit(:uid, :mobile_number, :first_name, :last_name, :static_number, :birthday, :living_lat, :living_long, :working_lat, :working_long, :living_input, :working_input, :living_address, :card_name, :card_last_name, :card_number, :shaba, :bank_name,:full_phone)
+    params.require(:photographer).permit(:bio, :uid, :mobile_number, :first_name, :last_name, :static_number, :birthday, :living_lat, :living_long, :working_lat, :working_long, :living_input, :working_input, :living_address, :card_name, :card_last_name, :card_number, :shaba, :bank_name,:full_phone)
   end
 
   def free_times_params

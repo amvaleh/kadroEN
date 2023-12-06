@@ -34,7 +34,6 @@
 
 </head>
 
-<%= render "public/shared/wordpress_header" %>
 
 <style>
   .centered-section {
@@ -49,17 +48,15 @@
   }
 </style>
 <body>
-  <section class="container centered-section">
+  <section class="container">
     <div class="row">
-      <div class="col-12 shadow">
-        <a data-toggle="collapse" data-target="#personal_info" aria-expanded="false" aria-controls="collapseExample">
-          <h3>
+      <div class="col-12 border-bottom">
+          <h3 class="text-left">
             Personal Info
           </h3>
-        </a>
       </div>
       
-      <div class="col-12 collapse" id="personal_info">
+      <div class="col-12 " id="personal_info">
       <div class="row">
           <div class="col-12 col-sm-10 mx-auto">
             <%= form_for :photographer, url: update_info_photographer_path, method: "post" , html: {class: "form form-group" , :id => "update_info"} do |f| %>
@@ -103,6 +100,12 @@
               <label for="birthday"> birthday </label>
               <input class="form-control" type="date" name="photographer[birthday]" id="date" value="<%= @photographer.birthday.to_date.to_pdate.to_s.tr('-0123456789','/۰۱۲۳۴۵۶۷۸۹') if @photographer.birthday.present? %>">
             </div>
+
+            <div class="col-12 my-3">
+              <label for="bio"> bio </label>
+              <textarea type="textarea" name="photographer[bio]" class="form-control" id="bio"><%=@photographer.experience.bio%></textarea>
+            </div>
+
             <div class="col-12 my-3">
               <label for="address"> address </label>
               <input  type="text" name="photographer[working_input]" class="form-control" id="working_input">
@@ -120,15 +123,13 @@
 
 
     <div class="row mt-3">
-      <div class="col-12  shadow">
-        <a data-toggle="collapse" data-target="#social_info" aria-expanded="false" aria-controls="collapseExample">
-          <h3>
+      <div class="col-12  border-bottom">
+          <h3 class="text-left">
             Social Info
           </h3>
-        </a>
       </div>
 
-      <div class="col-12 collapse " id="social_info">
+      <div class="col-12  " id="social_info">
         <div class="row">
           <div class="col-12 col-sm-10 mx-auto">
 
@@ -150,8 +151,10 @@
             </div>
             <div class="col-12 my-3">
               <label for="address"> Website </label>
-
-              <%= f.text_field "online_portfolio" , class: "form-control ltr" , placeholder: "www.example.com" %>
+              <%= f.text_field "online_portfolio" , class: "form-control ltr" , placeholder: "https://www.example.com" %>
+              <p><small>
+                enter full address including https://www. ...
+              </small></p>
             </div>
 
             <div class="col-6 mx-auto text-center">
