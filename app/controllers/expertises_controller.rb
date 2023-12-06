@@ -30,10 +30,6 @@ class ExpertisesController < ApplicationController
     if expertise
       @photo.expertise = expertise
 
-      # update photographer join step to check again if is updating expertise files
-      if @photographer.join_step_id > 10
-        @photographer.join_step_id = JoinStep.find_by(code: 16).id
-      end
     else
       expertise = Expertise.new
       expertise.photographer = @photographer
@@ -41,11 +37,6 @@ class ExpertisesController < ApplicationController
       expertise.approved = true
       expertise.save
       @photo.expertise = expertise
-      if @photographer.join_step.code < JoinStep.find_by(name:"نمونه کارها").code
-        if @photographer.expertises.approved.count > 2
-          @photographer.join_step_id = JoinStep.find_by(name:"نمونه کارها").id
-        end
-      end
       
     end
     @photo.save
