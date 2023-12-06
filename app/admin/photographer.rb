@@ -162,11 +162,7 @@ ActiveAdmin.register Photographer do
           end
         end
         row :interview_date
-        row "UID" do |p|
-          if p.uid.present?
-            link_to p.uid, p.pro_url, :class => "btn btn-blue", target: "_blank"
-          end
-        end
+
         row :mobile_number
         row :static_number
         row :internal_number
