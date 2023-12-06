@@ -51,6 +51,10 @@ class Photographers::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource_or_scope)
-    studio_photographer_path(current_photographer)
+    if current_photographer.uid.present?
+      studio_photographer_path(current_photographer)
+    else
+      projects_photographer_path(current_photographer)
+    end
   end
 end

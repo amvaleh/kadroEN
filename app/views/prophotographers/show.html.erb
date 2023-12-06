@@ -48,8 +48,8 @@
       <div class="row">
         <div class="col-12 col-md-6 mx-auto text-center">
           <%=image_tag @photographer.avatar_url(:medium), width: "100" , style:"border-radius: 50%"%>
-            <h1 class="text-center text-white" style="margin-bottom: 20px;">
-              <%=@photographer.abbrv_name%>
+            <h1 class="text-center " style="margin-bottom: 20px;">
+              <%=@photographer.display_name%>
             </h1>
             <p>
               <%= @photographer.experience.present? ? @photographer.experience.bio : "bio" %>

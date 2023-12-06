@@ -16,6 +16,10 @@
   <link rel="icon" type="image/png" href="/img/shootempire.png">
   <meta name="theme-color" content="RGB(41, 135, 249)" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css">
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -63,9 +67,13 @@
               <label for="email"></label>
               <input class="form-control" type="email" name="photographer[email]" id="email" placeholder="Email" required="">
             </div>
-            <div class="col-sm-12 my-1">
+            <div class="col-sm-12 my-3">
               <label for="mobile_number"></label>
+              mobile number:
               <input class="form-control" type="number"  name="photographer[mobile_number]" id="mobile_number" placeholder="mobile number" required="" data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4|9]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" >
+              <button id="btn" type="button">Validate</button>
+              <span id="valid-msg" class="d-none">✓ Valid</span>
+              <span id="error-msg" class="d-none"></span>
             </div>
             <div class="col-sm-12 my-1">
               <label for="email"></label>
@@ -89,3 +97,57 @@
   </div>
 </section>
 </body>
+
+<script>
+  const input = document.querySelector("#mobile_number");
+  const iti = window.intlTelInput(input,
+    {
+      autoInsertDialCode: true,
+      separateDialCode: true,
+      hiddenInput: "full_phone",
+      utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+      initialCountry: "auto",
+      geoIpLookup: function (callback) {
+        fetch("https://ipapi.co/json")
+          .then(function (res) { return res.json(); })
+          .then(function (data) { callback(data.country_code); })
+          .catch(function () { callback("us"); });
+      }
+    });
+</script>
+
+<script>
+  const button = document.querySelector("#btn");
+  const errorMsg = document.querySelector("#error-msg");
+  const validMsg = document.querySelector("#valid-msg");
+
+  // here, the index maps to the error code returned from getValidationError - see readme
+  const errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long", "Invalid number"];
+
+
+  const reset = () => {
+    input.classList.remove("error");
+    errorMsg.innerHTML = "";
+    errorMsg.classList.add("d-none");
+    validMsg.classList.add("d-none");
+  };
+
+  // on click button: validate
+  button.addEventListener('click', () => {
+    reset();
+    if (input.value.trim()) {
+      if (iti.isPossibleNumber()) {
+        validMsg.classList.remove("d-none");
+      } else {
+        input.classList.add("error");
+        const errorCode = iti.getValidationError();
+        errorMsg.innerHTML = errorMap[errorCode];
+        errorMsg.classList.remove("d-none");
+      }
+    }
+  });
+
+  // on keyup / change flag: reset
+  input.addEventListener('change', reset);
+  input.addEventListener('keyup', reset);
+</script>

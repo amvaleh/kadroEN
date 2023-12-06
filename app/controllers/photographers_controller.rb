@@ -203,6 +203,8 @@ class PhotographersController < ApplicationController
       @photographer.birthday = photographers_params[:birthday]
       @location.working_input = photographers_params[:working_input]
 
+      @photographer.avatar = photographers_params[:avatar]
+
       if @photographer.experience
         experience = @photographer.experience
       else
@@ -691,6 +693,11 @@ class PhotographersController < ApplicationController
   end
 
   def projects
+
+    if not current_photographer.uid.present?
+      redirect_to settings_photographer_path(current_photographer) , alert: "Please complete your profile here:"
+    end
+
     Photographers::AuthorizePhotographer.call(photographer: current_photographer, id: params[:id])
     @projects = @photographer.projects.payed
     # @projects = @photographer.projects.where(
@@ -808,7 +815,7 @@ class PhotographersController < ApplicationController
   end
 
   def photographers_params
-    params.require(:photographer).permit(:bio, :uid, :mobile_number, :first_name, :last_name, :static_number, :birthday, :living_lat, :living_long, :working_lat, :working_long, :living_input, :working_input, :living_address, :card_name, :card_last_name, :card_number, :shaba, :bank_name,:full_phone)
+    params.require(:photographer).permit(:avatar , :bio, :uid, :mobile_number, :first_name, :last_name, :static_number, :birthday, :living_lat, :living_long, :working_lat, :working_long, :living_input, :working_input, :living_address, :card_name, :card_last_name, :card_number, :shaba, :bank_name,:full_phone)
   end
 
   def free_times_params

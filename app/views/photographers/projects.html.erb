@@ -26,6 +26,18 @@
 </head>
 <body>
   <div class="container">
+
+    <div class="row">
+      <div class="col-12 my-4 py-4 text-center">
+        <p class="text-center">
+          checkout your profile here:
+          <%= link_to page_photographer_url(current_photographer.uid) ,target:"_blank" do  %>
+            <%= current_photographer.uid %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-12">
         <% if @projects.any? %>

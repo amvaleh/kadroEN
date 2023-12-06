@@ -171,22 +171,22 @@ class Photographer < ApplicationRecord
     end
   end
 
-  def page_url
-    if Rails.env.development?
-      "http://" + self.uid.to_s + ".localhost:3000"
-    else
-      "http://#{self.uid.to_s}.kadro.me"
-    end
-  end
+  # def page_url
+  #   if Rails.env.development?
+  #     "http://" + self.uid.to_s + ".localhost:3000"
+  #   else
+  #     "http://#{self.uid.to_s}.kadro.me"
+  #   end
+  # end
 
-  def pro_url
-    if Rails.env.development?
-      # self.uid.to_s
-      "http://pro.localhost:3000/" + self.uid.to_s
-    else
-      "https://pro.kadro.me/" + self.uid.to_s
-    end
-  end
+  # def pro_url
+  #   if Rails.env.development?
+  #     # self.uid.to_s
+  #     "http://pro.localhost:3000/" + self.uid.to_s
+  #   else
+  #     "https://pro.kadro.me/" + self.uid.to_s
+  #   end
+  # end
 
   def email_required?
     false

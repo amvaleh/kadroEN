@@ -13,6 +13,7 @@ class Photographers::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     # super:
+
     build_resource(sign_up_params)
 
     resource.save
@@ -42,6 +43,7 @@ class Photographers::RegistrationsController < Devise::RegistrationsController
     @photographer.last_name = params[:photographer][:last_name]
     @photographer.email = params[:photographer][:email]
     @photographer.static_number = params[:photographer][:static_number]
+    @photographer.mobile_number = params[:photographer][:full_phone]
     @photographer.join_step_id = JoinStep.find_by_name("primary_info").id
     #location:
     location = Location.new
@@ -122,7 +124,12 @@ class Photographers::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    studio_photographer_path(resource)
+    # studio_photographer_path(resource)
+    if current_photographer.uid.present?
+      studio_photographer_path(resource)
+    else
+      projects_photographer_path(resource)
+    end
   end
 
   def after_update_path_for(resource)

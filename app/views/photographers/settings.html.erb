@@ -60,35 +60,49 @@
       <div class="row">
           <div class="col-12 col-sm-10 mx-auto">
             <%= form_for :photographer, url: update_info_photographer_path, method: "post" , html: {class: "form form-group" , :id => "update_info"} do |f| %>
+
+            <div class="col-12 my-4 py-2 ">
+              <label for="uid" class="">
+                *
+                profile picture
+              <!-- <input class="form-control" type="file" name="photographer[avatar]" id="uid" required="" > -->
+              <%= f.file_field :avatar , class:"form-control" %>
+
+              <% if current_photographer.avatar_url.present? %>
+                <img src="<%=current_photographer.avatar_url(:mini)%>" alt="" class="my-4 rounded-circle img-fluid">
+              <% end %>
+            </div>
+
             <!-- <input type="text" id="geolocation_status" name="geolocation_status" style="display:none"  /> -->
             <!-- <input type="text" id="living_lat" name="photographer[living_lat]" value="<%= @photographer.location.living_lat.to_s%>" style="display:none"  /> -->
             <!-- <input type="text" id="living_long" name="photographer[living_long]" value="<%= @photographer.location.living_long.to_s%>" style="display:none" /> -->
             <!-- <input type="text" id="work_lat" name="photographer[working_lat]" value="<%= @photographer.location.working_lat.to_s%>" style="display:none"  /> -->
             <!-- <input type="text" id="work_long" name="photographer[working_long]" value="<%= @photographer.location.working_long.to_s%>" style="display:none" /> -->
-            <div class="col-12 my-3">
-              <label for="uid"> page id
+            <div class="col-12 my-4 py-2 ">
+              <label for="uid" class="border-bottom border-primary"> 
+                * 
+                page id
                 <small>
                   (will be Available at www.shootemprie.com{your page id})
                 </small> </label>
-              <input class="form-control mytextbox" type="text" name="photographer[uid]" id="uid" value="<%=@photographer.uid%>" required="" placeholder="ex: jackson">
+              <input class="form-control mytextbox " type="text" name="photographer[uid]" id="uid" value="<%=@photographer.uid%>" required="" placeholder="ex: jackson">
             </div>
-            <div class="col-12 my-3">
+            <div class="col-12 my-4 py-2">
               <label for="first_name"> first name</label>
               <input class="form-control mytextbox" type="text" name="photographer[first_name]" id="first_name" value="<%= @photographer.first_name%>" required="">
             </div>
-            <div class="col-12 my-3">
+            <div class="col-12 my-4 py-2">
               <label for="last_name"> last name </label>
             
               <input class="form-control mytextbox" type="text" id="last_name" name="photographer[last_name]"  value="<%= @photographer.last_name%>" required="">
             </div>
-            <div class="col-12 my-3">
+            <div class="col-12 my-4 py-2">
               <label for="email"> email </label>
             
               <input class="form-control" type="text" id="email" name="photographer[email]"  value="<%= @photographer.email %>" required="" disabled>
             </div>
-            <div class="col-12 my-3">
+            <div class="col-12 my-4 py-2">
               <label for="mobile_number"> mobile number </label>
-  
               <input class="form-control" type="mobilenumber" name="photographer[mobile_number]" id="mobile_number" value="<%= @photographer.mobile_number %>" required="" data-parsley-pattern="(0|\+98)?([ ]|,|-|[()]){0,2}9[0|1|2|3|4]([ ]|,|-|[()]){0,2}(?:[0-9]([ ]|,|-|[()]){0,2}){8}" >
               <button id="btn" type="button">Validate</button>
               <span id="valid-msg" class="d-none">✓ Valid</span>
@@ -96,18 +110,18 @@
   
             </div>
   
-            <div class="col-12 my-3">
+            <div class="col-12 my-4 py-2">
               <label for="birthday"> birthday </label>
               <input class="form-control" type="date" name="photographer[birthday]" id="date" value="<%= @photographer.birthday.to_date.to_pdate.to_s.tr('-0123456789','/۰۱۲۳۴۵۶۷۸۹') if @photographer.birthday.present? %>">
             </div>
 
-            <div class="col-12 my-3">
-              <label for="bio"> bio </label>
-              <textarea type="textarea" name="photographer[bio]" class="form-control" id="bio"><%=@photographer.experience.bio%></textarea>
+            <div class="col-12 my-4 py-2">
+              <label for="bio" class="border-bottom border-primary"> * bio </label>
+              <textarea type="textarea" name="photographer[bio]" class="form-control" id="bio"><%=@photographer.experience.present? ? @photographer.experience.bio : ""%></textarea>
             </div>
 
-            <div class="col-12 my-3">
-              <label for="address"> address </label>
+            <div class="col-12 my-4 py-2">
+              <label for="address" class="border-bottom border-primary"> * address </label>
               <input  type="text" name="photographer[working_input]" class="form-control" id="working_input">
             </div>
             <div class="col-6 mx-auto text-center">
@@ -197,8 +211,6 @@
         .catch(function() { callback("us"); });
     }
   });
-
-  
 </script>
 
 
