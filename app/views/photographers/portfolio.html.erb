@@ -75,8 +75,9 @@
               </div>
               <div class="col-6">
                 <div class="row">
-                  <% if @expertise %>
-                    <% @expertise.photos.last(9).each do |photo| %>
+                  <% if current_photographer.expertises.find_by(shoot_type_id: st.id) %>
+                  <% expertise = current_photographer.expertises.find_by(shoot_type_id: st.id) %>
+                    <% expertise.photos.last(9).each do |photo| %>
                       <div class="col-4 p-1">
                         <%= link_to photo.file_url , target: "_blank" do %>
                           <img src="<%=photo.file_url(:medium)%>" alt="" class="img-fluid">
