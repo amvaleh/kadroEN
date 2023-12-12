@@ -16,15 +16,13 @@
 
     </div>
 
-    
-
     <div class="row text-center mt-5">
       <% @shoot_locations.order("shoot_location_type_id DESC").each do |sh| %>
       <% if sh.shoot_location_type.title != "studio"%>
         <div class="col-6 col-sm-4 col-md-3 col-lg-3 py-5 types type_<%=sh.shoot_location_type.id %> ">
           <%= link_to shoot_location_show_url(sh.slug) do %>
             <% if sh.shoot_location_attachments.present? %>
-              <img alt="image" class="img-fluid rounded" src="<%= @base_url %><%= sh.shoot_location_attachments.first.photo_url(:medium)%>" style="width: 150px;height: 150px; object-fit: cover !important;">
+              <img alt="image" class="img-fluid rounded" src="<%= sh.shoot_location_attachments.first.photo_url(:medium)%>" style="width: 150px;height: 150px; object-fit: cover !important;">
             <% else %>
               <img alt="image" class="img-fluid rounded" src="/img/locations/map.svg" style="width: 150px;height: 150px; object-fit: cover !important;">
             <% end %>
