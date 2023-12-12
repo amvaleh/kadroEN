@@ -1,4 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-providers@latest/leaflet-providers.js"></script>
 <style>
   @media (min-width: 700px) {
     .mobile-sc-size{
@@ -19,8 +22,7 @@
 <section class="fdb-block pt-0">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <img src="<%=@shoot_location.shoot_location_attachments.first.photo_url(:large)%>" style="width: 100%; height: 50vh; object-fit: cover;" alt="<%= @shoot_location.title %>">
+      <div class="col-xs-12 well" id="map" style="width: 100%; height: 50vh">
       </div>
     </div>
   </div>
@@ -125,6 +127,31 @@
   </section>
 <% end %>
 
+<script>
+  var LeafIcon = L.Icon.extend({
+    options: {
+      iconSize: [50, 50]
+    }
+  });
+  var locIcon = new LeafIcon({
+    iconUrl: '/img/location_pin.png'
+  })
+
+  var map = new L.Map('map', {
+    poi: true,
+    traffic: false,
+    center: [<%= @shoot_location.address.lattitude %>, <%= @shoot_location.address.longtitude %>],
+    zoom: 13,
+    dragging: false,
+    });
+
+  var OpenStreetMap_Mapnik = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: ''
+  });
+  map.addLayer(OpenStreetMap_Mapnik);
+
+  var marker = L.marker([<%= @shoot_location.address.lattitude %>, <%= @shoot_location.address.longtitude %>], { icon: locIcon }).addTo(map);
+</script>
 
 <script src="/lightgallery/lg-thumbnail.min.js"></script>
 <script src="/lightgallery/lg-fullscreen.min.js"></script>

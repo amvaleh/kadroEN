@@ -38,8 +38,18 @@ ActiveAdmin.register ShootLocation do
       f.input :approved
       f.input :address, :wrapper_html => { :style => "display: none;" }
       if object.address.present?
+        if object.address.lattitude == ""
+          lat = object.address.city.latitude
+        else
         lat = object.address.lattitude
+        end
+
+        if object.address.longtitude == ""
+          lng = object.address.city.longitude
+        else
         lng = object.address.longtitude
+        end
+        
       else
         lat = "35.7219"
         lng = "51.3347"

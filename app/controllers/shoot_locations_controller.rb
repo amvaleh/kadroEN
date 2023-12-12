@@ -17,14 +17,14 @@ class ShootLocationsController < ApplicationController
       shoot_type_ids = @shoot_location.shoot_type_locations.map(&:shoot_type_id.to_proc)
       @suggested_photographers = ShootLocations::FindTheBestPhotographer.call(shoot_type_ids: shoot_type_ids, latitude: @shoot_location.address.lattitude.to_f, longitude: @shoot_location.address.longtitude.to_f).photographers
     end
-    @title = @shoot_location.title + " - " + " مکان عکاسی برتر"
+    @title = @shoot_location.title + " - " + "Shoot Location"
   end
 
   def shoot_type_filter
     @shoot_locations = ShootLocation.joins(:shoot_type_locations => :shoot_type).where(:shoot_types => { title: params[:shoot_type] }, approved: true)
     @shoot_types = ShootTypes::SelectShootTypesHaveShootLocation.call().shoot_types - ShootType.where(title: params[:shoot_type])
     @shoot_type = ShootType.find_by(title: params[:shoot_type])
-    @title = @shoot_locations.count.to_s + " مکان عکاسی برتر " + " برای عکاسی " + @shoot_type.title
+    @title = @shoot_locations.count.to_s + " Shoot Locations" + " for" + @shoot_type.title
   end
 
   def shoot_location_type
@@ -34,7 +34,7 @@ class ShootLocationsController < ApplicationController
     # @shoot_locations = ShootLocation.joins(:shoot_type_locations => :shoot_type).where(:shoot_types => {title: params[:shoot_type]}, approved: true )
     @shoot_types = ShootTypes::SelectShootTypesHaveShootLocation.call().shoot_types - ShootType.where(title: params[:shoot_type])
     # @shoot_type = ShootType.find_by(title: params[:shoot_type])
-    @title = @shoot_locations.count.to_s + " مکان عکاسی " + " - " + @shoot_location_type.title
+    @title = @shoot_locations.count.to_s + " Shoot Location" + " - " + @shoot_location_type.title
   end
 
   private
