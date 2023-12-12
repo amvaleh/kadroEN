@@ -112,7 +112,9 @@
           <ul style="line-height: 2.3em;">
             <% @photographer.shoot_types.each do |sh| %>
             <li>
-              <%= sh.title %>
+              <a href="#shoot_<%=sh.id%>">
+                <%= sh.title %>
+              </a>
             </li>
             <% end %>
           </ul>
@@ -121,23 +123,30 @@
 
 
         <% @photographer.expertises.approved.each do |ex| %>
-        <div class="row border-top my-3">
-          <div class="col">
-            <h6 class="h5 text-left">
-              <%= ex.shoot_type.title%>
-            </h6>
-          </div>
-        </div>
-
-        <div class="row align-items-center justify-content-center">
-          <% ex.photos.each do |photo| %>
-            <div class="col-4 p-1">
-              <%= link_to photo.file_url , target: "_blank" do %>
-                <img src="<%=photo.file_url(:medium)%>" alt="" class="img-fluid">
-                <% end %>
+          <div class="row my-4 py-3" id="shoot_<%=ex.shoot_type.id%>">
+            <div class="col">
+              <h3 class="text-center">
+                <%= ex.shoot_type.title%>
+              </h3>
             </div>
-            <% end %>
-        </div>
+          </div>
+
+          <div class="row align-items-center justify-content-center">
+            <% ex.photos.each do |photo| %>
+              <div class="col-4 p-1">
+                <%= link_to photo.file_url , target: "_blank" do %>
+                  <picture class="img-fluid">
+                    <source media="(max-width: 799px)" srcset="<%=photo.file_url(:medium)%>" />
+                    <source media="(min-width: 800px)" srcset="<%=photo.file_url(:medium)%>" />
+                    <source media="(min-width: 12000px)" srcset="<%=photo.file_url(:large)%>" />
+                    <img src="<%=photo.file_url(:large)%>" style="height: 30vh;object-fit: cover;width: 100%;"
+                      alt="portfolio of <%= @photographer.display_name %>" />
+                  </picture>
+                  
+                  <% end %>
+              </div>
+              <% end %>
+          </div>
         <% end %>
 
 
@@ -163,3 +172,22 @@
     font-size: 2vh !important;
   }
 </style>
+
+<script>
+  // Select all anchor tags with href starting with #
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      // Add click event listener to each anchor tag
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Get the target element using the href attribute
+        const targetElement = document.querySelector(this.getAttribute('href'));
+
+        // Scroll to the target element with smooth behavior
+        targetElement.scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+</script>

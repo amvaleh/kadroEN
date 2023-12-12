@@ -53,7 +53,7 @@
           <% @expertise.photos.each do |photo| %>
             <div class="col-4 p-1">
               <%= link_to  photo.file_url , target: "_blank" do %>
-                <img src="<%=photo.file_url(:medium)%>" alt="" class="img-fluid">
+                <img src="<%=photo.file_url(:thumb)%>" alt="" class="img-fluid">
               <% end %>
             </div>
           <% end %>
