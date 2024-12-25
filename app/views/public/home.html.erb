@@ -49,6 +49,52 @@
   <%= render 'shared/externals/gtag_body' %>
 <% end %>
 
+<section class="fdb-block py-3 pt-5 " id="home-expertise">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col col-md-8 text-center">
+        <h2>
+          Our best dubai photographers
+        </h2>
+        <p class="text-center lead">
+          book less than 30 seconds
+        </p>
+      </div>
+    </div>
+    <div class="row text-left mt-4 py-0 justify-content-center">
+      <div class="col-12 col-sm-10 col-md-10 col-lg-12 mx-2">
+        <div class="container-fluid">
+          <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
+            <% Photographer.all.approved.each do |ph| %>
+              <div class="col-6 col-sm-3 text-center">
+                <a href="<%=page_photographer_url(ph.uid)%>" target="_blank">
+                  <%= image_tag ph.avatar_url(:medium) , class: "img-fluid rounded-circle" ,
+                    style: "height: 10em;object-fit: cover;width: 10rem;" %>
+                    <h3 class="my-0 py-0 text-center">
+                      <%= ph.display_name %>
+                    </h3>
+                    <p>
+                      <% ph.expertises.approved.each do |ex| %>
+                        <span class="badge badge-primary">
+                          <%= ex.shoot_type.w_title %>
+                        </span>  
+                      <% end %>
+                    </p>
+                    <p class="text-left mt-0 pt-0">
+                      <small>
+                        <%= truncate(ph.experience.bio,length: 100) %>
+                      </small>
+                    </p>
+                </a>
+              </div>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <section class="fdb-block py-3 pt-5 bg-light" id="home-expertise">
   <div class="container">
@@ -89,43 +135,6 @@
 </section>
 
 
-<section class="fdb-block py-3 pt-5 " id="home-expertise">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col col-md-8 text-center">
-        <h2>
-          Our best dubai photographers
-        </h2>
-        <p class="text-center lead">
-          book less than 30 seconds
-        </p>
-      </div>
-    </div>
-    <div class="row text-left mt-4 py-0 justify-content-center">
-      <div class="col-12 col-sm-10 col-md-10 col-lg-12 mx-2">
-        <div class="container-fluid">
-          <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
-            <% Photographer.all.approved.each do |ph| %>
-            <div class="col-6 col-sm-3 text-center">
-              <a href="<%=page_photographer_url(ph.uid)%>" target="_blank">
-              <%= image_tag ph.avatar_url(:medium) , class: "img-fluid rounded-circle" , style: "height: 10em;object-fit: cover;width: 10rem;"%>
-              <h3 class="my-0 py-0 text-center">
-                <%= ph.display_name %>
-              </h3>
-              <p class="text-left mt-0 pt-0">
-                <small>
-                  <%= truncate(ph.experience.bio,length: 100) %>
-                </small>
-              </p> 
-              </a>
-            </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <%= render :partial => 'public/home/features' %>
 
