@@ -43,7 +43,7 @@
 <%= render "public/shared/wordpress_header" %>
 
 <body>
-<%= render "public/home/intro" %>
+<%#= render "public/home/intro" %>
 <%#= render :partial => 'user_comments' %>
 <% if Rails.env.production? %>
   <%= render 'shared/externals/gtag_body' %>
@@ -53,11 +53,11 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
-        <h2>
-          Our best dubai photographers
-        </h2>
+        <h1>
+          Pro Middle East Photographers
+        </h1>
         <p class="text-center lead">
-          book less than 30 seconds
+          direct and fast booking
         </p>
       </div>
     </div>
@@ -73,19 +73,23 @@
                     <h3 class="my-0 py-0 text-center">
                       <%= ph.display_name %>
                     </h3>
-                    <p>
-                      <% ph.expertises.approved.each do |ex| %>
-                        <span class="badge badge-primary">
-                          <%= ex.shoot_type.w_title %>
-                        </span>  
-                      <% end %>
-                    </p>
-                    <p class="text-left mt-0 pt-0">
-                      <small>
-                        <%= truncate(ph.experience.bio,length: 100) %>
-                      </small>
-                    </p>
                 </a>
+                <p>
+                  <a  href="tel:<%= ph.mobile_number %>" class="btn btn-link" > call ***<%=ph.mobile_number.last(4)%> </a>
+                  <a  class="btn btn-blue" href="https://api.whatsapp.com/send?phone=<%=ph.mobile_number%>&text=Hi%2C%20I%20want%20to%20book%20a%20photoshoot."> whatsapp </a>
+                </p>
+                <p>
+                  <% ph.expertises.approved.each do |ex| %>
+                    <span class="badge badge-primary">
+                      <%= ex.shoot_type.title %>
+                    </span>  
+                  <% end %>
+                </p>
+                <p class="text-left mt-0 pt-0">
+                  <small>
+                    <%= truncate(ph.experience.bio,length: 100) %>
+                  </small>
+                </p>
               </div>
               <% end %>
           </div>
@@ -101,10 +105,10 @@
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
         <h2>
-          Available Shoot Locations
+          Available Destinations
         </h2>
         <p class="text-center lead">
-          best photography locations in Dubai
+          Best photoraphy destinations
         </p>
       </div>
     </div>
