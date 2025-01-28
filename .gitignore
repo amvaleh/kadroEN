@@ -39,3 +39,4 @@ print_orders/*
 /config/application.yml
 /cron.log
 /node_modules/
+config/database.yml
