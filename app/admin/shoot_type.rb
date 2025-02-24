@@ -68,7 +68,7 @@ ActiveAdmin.register ShootType do
     end
 
     f.inputs "Files" do
-      f.input :avatar, as: :file
+      f.input :avatar
       f.input :samples, as: :file, :input_html => { :multiple => true }
     end
 

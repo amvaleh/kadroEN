@@ -12,7 +12,7 @@ class ShootType < ApplicationRecord
   has_many :partners , through: :shoot_type_partners
 
 
-  mount_uploader :avatar, AvatarUploader
+  # mount_uploader :avatar, AvatarUploader
   mount_uploaders :samples, SampleUploader
 
   scope :personalz, -> { where(is_personal: true) }

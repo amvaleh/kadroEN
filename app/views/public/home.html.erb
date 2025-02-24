@@ -54,7 +54,7 @@
     <div class="row justify-content-center">
       <div class="col col-md-8 text-center">
         <h1>
-          Pro Middle East Photographers
+          Hire a Photographer in Dubai
         </h1>
         <p class="text-center lead">
           direct and fast booking
@@ -79,7 +79,7 @@
                   <a  class="btn btn-blue" href="https://api.whatsapp.com/send?phone=<%=ph.mobile_number%>&text=Hi%2C%20I%20want%20to%20book%20a%20photoshoot."> whatsapp </a>
                 </p>
                 <p>
-                  <% ph.expertises.approved.each do |ex| %>
+                  <% ph.expertises.approved.first(4).each do |ex| %>
                     <span class="badge badge-primary">
                       <%= ex.shoot_type.title %>
                     </span>  
@@ -139,30 +139,122 @@
 </section>
 
 
-
 <%= render :partial => 'public/home/features' %>
 
 
-<section class="fdb-block py-0">
-  <div class="container py-5 my-5">
-    <div class="row justify-content-center py-5">
-      <div class="col-12 col-md-10 col-lg-8 text-center">
-        <div class="fdb-box bg-primary">
-          <h2 class="text-light"> 
-            <%= t(:'general.home.section9.title') %>
-          </h2>
-          <p class="lead text-left text-light">
-          <%= t(:'general.home.section9.subtitle') %>
-          </p>
-          <p class="mt-4 text-center text-light">
-            <a class="text-light btn btn-outline-light" href="<%=join_url %>">
-             <%= t(:'general.home.section9.button') %>
-              <i class="fa fa-angle-right"></i>
-            </a>
-          </p>
+
+<section class="fdb-block bg-light py-5">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col">
+        <h2 class="mb-4 font-weight-bold">Our Photography Services in Dubai</h2>
+        <p class="text-muted text-center">Find the perfect photography service for your needs.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <% ShootType.active.each_with_index do |sh, index| %>
+        <div class="col-md-4 col-sm-6 mb-4 col-6 <%= 'd-none d-sm-block' if index >= 4 %>">
+          <div class="card border-0 shadow-sm p-3 d-flex align-items-center text-center">
+            <img src="<%= sh.avatar %>" alt="<%= sh.title %>" class="service-img mb-3">
+            <h4 class="font-weight-bold">
+              <%= sh.title %>
+            </h4>
+          </div>
+        </div>
+        <% end %>
+    </div>
+
+
+    <% if ShootType.active.count> 4 %>
+    <div class="row d-sm-none">
+      <%# This ensures the button is only visible on mobile and only when there are more than 4 shoot types %>
+        <div class="col text-center">
+          <button id="showMoreBtn" class="btn btn-dark mt-3">Show More</button>
+        </div>
+    </div>
+    <% end %>
+    
+  </div>
+</section>
+
+
+
+<section class="fdb-block bg-light">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col">
+        <h2 class="mb-5">How It Works</h2>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="card p-4 border-0 shadow">
+          <div class="icon mb-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/2965/2965879.png" width="60" alt="Browse">
+          </div>
+          <h4>1) Browse Photographers</h4>
+          <p>View portfolios and select a photographer.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-4 border-0 shadow">
+          <div class="icon mb-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/2620/2620855.png" width="60" alt="Choose Package">
+          </div>
+          <h4>2) Choose Your Package</h4>
+          <p>Select a service that fits your needs.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-4 border-0 shadow">
+          <div class="icon mb-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/609/609803.png" width="60" alt="Book & Confirm">
+          </div>
+          <h4>3) Book & Confirm</h4>
+          <p>Schedule easily & receive confirmation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center mt-md-4">
+      <div class="col-md-6">
+        <div class="card p-4 border-0 shadow">
+          <div class="icon mb-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/2820/2820728.png" width="60" alt="Photoshoot">
+          </div>
+          <h4>4) Enjoy Your Photoshoot</h4>
+          <p>Relax while our professionals handle the magic.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-4 border-0 shadow">
+          <div class="icon mb-3">
+            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" width="60" alt="Receive Photos">
+          </div>
+          <h4>5) Receive Edited Photos</h4>
+          <p>Get high-quality edited images delivered online.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
+<section class="fdb-block text-center">
+  <div class="container">
+    <h2  >Book Your Photographer Today</h2>
+    <p class="text-center" > Don't miss capturing your special moments with the best photographers in Dubai.</p>
+    <a id="booking" href="#" class="btn btn-primary">Get Started</a>
+  </div>
+</section>
+
+
+
 </body>
+
+<%= render "types/sections/footer" %>

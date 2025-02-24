@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 <%- flash.each do |name, msg| -%>
     <%= content_tag :div, msg,class: "alert alert-info text-center" , :id=> "flash_#{name}" if msg.is_a?(String) %>
         <%- end -%>
 
 <%= yield %>
+
+<a href="https://wa.me/989932533239" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+</a>
+
 
 <% if not photographer_signed_in? %>
     <%= render "types/sections/footer"%>
@@ -12,7 +20,19 @@
 
 
 <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var showMoreBtn = document.getElementById("showMoreBtn");
+        if (showMoreBtn) {
+            showMoreBtn.addEventListener("click", function () {
+                document.querySelectorAll(".d-none.d-sm-block").forEach(el => {
+                    el.classList.remove("d-none");
+                });
+                showMoreBtn.style.display = "none"; // Hide button after expanding
+            });
+        }
+    });
+</script>
 <script>
     $(document).ready(function() {
         $('.img-replace').each(function(i, obj) {

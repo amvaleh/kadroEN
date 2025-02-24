@@ -1479,20 +1479,205 @@
 # ReserveStep.create!(:name=>"happy_call")
 # ReserveStep.create!(:name=>"checkout")
 
-JoinStep.create!(:name=>"اطلاعات مکانی")
+# JoinStep.create!(:name=>"اطلاعات مکانی")
 
-ItemType.find_or_create_by(:title=> "دور بری")
-ItemType.find_or_create_by(:title=> "دانلود فایل")
-ItemType.find_or_create_by(:title=> "چاپ روی شاسی")
-ItemType.find_or_create_by(:title=> "چاپ ساده")
+# ItemType.find_or_create_by(:title=> "دور بری")
+# ItemType.find_or_create_by(:title=> "دانلود فایل")
+# ItemType.find_or_create_by(:title=> "چاپ روی شاسی")
+# ItemType.find_or_create_by(:title=> "چاپ ساده")
 
-ItemType.where(title: 'دور بری').update_all(category: 'transfer')
-ItemType.where(title: 'دانلود فایل').update_all(category: 'download')
-ItemType.where(title: 'چاپ روی شاسی').update_all(category: 'print_type_1')
-ItemType.where(title: 'چاپ ساده').update_all(category: 'print_type_2')
+# ItemType.where(title: 'دور بری').update_all(category: 'transfer')
+# ItemType.where(title: 'دانلود فایل').update_all(category: 'download')
+# ItemType.where(title: 'چاپ روی شاسی').update_all(category: 'print_type_1')
+# ItemType.where(title: 'چاپ ساده').update_all(category: 'print_type_2')
 
 #Item.find_or_create_by(:title=>"سایز ۱۰*۱۰",:price=>"10000",:description=>"چاپ با کیفیت عالی روی کاغذ مات", :item_type_id=>ItemType.find_by(title: "چاپ ساده").id)
 
 #Item.find_or_create_by(:title=>"سایز ۲۰*۲۰",:price=>"20000",:description=>"چاپ با کیفیت عالی روی کاغذ مات", :item_type_id=>ItemType.find_by(title: "چاپ ساده").id)
 
 #Item.find_or_create_by(:title=>"دانلود فایل",:price=>"10000",:description=>"با رزولوشن تقریبا ۱۲۰۰ پیکسل در ۲۵۰۰ پیکسل", :item_type_id=>ItemType.find_by(title: "دانلود فایل").id)
+
+ShootType.create!(
+  [
+    {
+      title: "Wedding Photography",
+      avatar: "img/vectors/wedding.svg",
+      is_personal: true,
+      order: 1,
+      is_active: true,
+      recommended_hours: 4.0,
+      w_url: "/wedding",
+      w_title: "Beautiful Wedding Photography",
+      w_subtitle: "Capture your special day with our expert photographers",
+      delivery_deadline_hours: 48,
+      ideas_url: "/ideas/wedding",
+      samples: [{ url: "sample1.jpg" }, { url: "sample2.jpg" }],
+      is_business: false,
+      half_hour_extend_cost: 100000,
+      max_frame_size: 10,
+      min_frame_size: 5
+    },
+    {
+      title: "Corporate Event Photography",
+      avatar: "img/vectors/event.svg",
+      is_personal: false,
+      order: 2,
+      is_active: true,
+      recommended_hours: 3.0,
+      w_url: "/corporate",
+      w_title: "Professional Corporate Event Photography",
+      w_subtitle: "Capture key moments from your business events",
+      delivery_deadline_hours: 24,
+      ideas_url: "/ideas/corporate",
+      samples: [{ url: "sample3.jpg" }, { url: "sample4.jpg" }],
+      is_business: true,
+      half_hour_extend_cost: 120000,
+      max_frame_size: 8,
+      min_frame_size: 3
+    },
+    {
+      title: "Family Portraits",
+      avatar: "img/vectors/family.svg",
+      is_personal: true,
+      order: 3,
+      is_active: true,
+      recommended_hours: 2.0,
+      w_url: "/family",
+      w_title: "Memorable Family Portraits",
+      w_subtitle: "Preserve beautiful family moments",
+      delivery_deadline_hours: 24,
+      ideas_url: "/ideas/family",
+      samples: [{ url: "sample5.jpg" }],
+      is_business: false,
+      half_hour_extend_cost: 80000,
+      max_frame_size: 5,
+      min_frame_size: 2
+    },
+    {
+      title: "Fashion Photography",
+      avatar: "img/vectors/dress.png",
+      is_personal: false,
+      order: 4,
+      is_active: true,
+      recommended_hours: 3.5,
+      w_url: "/fashion",
+      w_title: "High-End Fashion Photography",
+      w_subtitle: "Showcase your fashion in style",
+      delivery_deadline_hours: 48,
+      ideas_url: "/ideas/fashion",
+      samples: [{ url: "sample6.jpg" }, { url: "sample7.jpg" }],
+      is_business: true,
+      half_hour_extend_cost: 150000,
+      max_frame_size: 6,
+      min_frame_size: 3
+    },
+    {
+      title: "Product Photography",
+      avatar: "img/vectors/product.svg",
+      is_personal: false,
+      order: 5,
+      is_active: true,
+      recommended_hours: 2.5,
+      w_url: "/product",
+      w_title: "High-Quality Product Photography",
+      w_subtitle: "Perfect shots for your eCommerce business",
+      delivery_deadline_hours: 36,
+      ideas_url: "/ideas/product",
+      samples: [{ url: "sample8.jpg" }],
+      is_business: true,
+      half_hour_extend_cost: 90000,
+      max_frame_size: 7,
+      min_frame_size: 3
+    },
+    {
+      title: "Real Estate Photography",
+      avatar: "img/vectors/realestate.svg",
+      is_personal: false,
+      order: 6,
+      is_active: true,
+      recommended_hours: 3.0,
+      w_url: "/real-estate",
+      w_title: "Stunning Real Estate Photography",
+      w_subtitle: "Highlight your properties with professional photography",
+      delivery_deadline_hours: 24,
+      ideas_url: "/ideas/real-estate",
+      samples: [{ url: "sample9.jpg" }],
+      is_business: true,
+      half_hour_extend_cost: 110000,
+      max_frame_size: 8,
+      min_frame_size: 4
+    },
+    {
+      title: "Food Photography",
+      avatar: "img/vectors/food.svg",
+      is_personal: false,
+      order: 7,
+      is_active: true,
+      recommended_hours: 2.0,
+      w_url: "/food",
+      w_title: "Delicious Food Photography",
+      w_subtitle: "Make your dishes look irresistible",
+      delivery_deadline_hours: 24,
+      ideas_url: "/ideas/food",
+      samples: [{ url: "sample10.jpg" }],
+      is_business: true,
+      half_hour_extend_cost: 95000,
+      max_frame_size: 6,
+      min_frame_size: 3
+    },
+    {
+      title: "Maternity Photography",
+      avatar: "img/vectors/maternity.svg",
+      is_personal: true,
+      order: 8,
+      is_active: true,
+      recommended_hours: 2.5,
+      w_url: "/maternity",
+      w_title: "Cherish Your Maternity Moments",
+      w_subtitle: "Celebrate your pregnancy with a beautiful photoshoot",
+      delivery_deadline_hours: 36,
+      ideas_url: "/ideas/maternity",
+      samples: [{ url: "sample11.jpg" }],
+      is_business: false,
+      half_hour_extend_cost: 85000,
+      max_frame_size: 5,
+      min_frame_size: 2
+    },
+    {
+      title: "Newborn Photography",
+      avatar: "img/vectors/newborn.svg",
+      is_personal: true,
+      order: 9,
+      is_active: true,
+      recommended_hours: 3.0,
+      w_url: "/newborn",
+      w_title: "Precious Newborn Photography",
+      w_subtitle: "Capture the innocence of your newborn baby",
+      delivery_deadline_hours: 48,
+      ideas_url: "/ideas/newborn",
+      samples: [{ url: "sample12.jpg" }],
+      is_business: false,
+      half_hour_extend_cost: 95000,
+      max_frame_size: 4,
+      min_frame_size: 2
+    },
+    {
+      title: "Travel Photography",
+      avatar: "img/vectors/travel.svg",
+      is_personal: true,
+      order: 10,
+      is_active: true,
+      recommended_hours: 4.0,
+      w_url: "/travel",
+      w_title: "Capture Your Travels",
+      w_subtitle: "Take professional photos of your adventures",
+      delivery_deadline_hours: 72,
+      ideas_url: "/ideas/travel",
+      samples: [{ url: "sample13.jpg" }],
+      is_business: false,
+      half_hour_extend_cost: 120000,
+      max_frame_size: 7,
+      min_frame_size: 3
+    }
+  ]
+)
