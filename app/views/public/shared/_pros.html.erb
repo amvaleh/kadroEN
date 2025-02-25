@@ -1,0 +1,52 @@
+<section class="fdb-block py-3 pt-5 " id="home-expertise">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col col-md-8 text-center">
+                <h1>
+                    Hire a Photographer in Dubai
+                </h1>
+                <p class="text-center lead">
+                    direct and fast booking
+                </p>
+            </div>
+        </div>
+        <div class="row text-left mt-4 py-0 justify-content-center">
+            <div class="col-12 col-sm-10 col-md-10 col-lg-12 mx-2">
+                <div class="container-fluid">
+                    <div class="row text-left mt-0 py-3 justify-content-center" id="personal_types">
+                        <% Photographer.all.approved.each do |ph| %>
+                            <div class="col-6 col-sm-3 text-center">
+                                <a href="<%=page_photographer_url(ph.uid)%>" target="_blank">
+                                    <%= image_tag ph.avatar_url(:medium) , class: "img-fluid rounded-circle" ,
+                                        style: "height: 10em;object-fit: cover;width: 10rem;" %>
+                                        <h3 class="my-0 py-0 text-center">
+                                            <%= ph.display_name %>
+                                        </h3>
+                                </a>
+                                <p>
+                                    <a href="tel:<%= ph.mobile_number %>" class="btn btn-link"> call ***
+                                        <%=ph.mobile_number.last(4)%> </a>
+                                    <a class="btn btn-blue"
+                                        href="https://api.whatsapp.com/send?phone=<%=ph.mobile_number%>&text=Hi%2C%20I%20want%20to%20book%20a%20photoshoot.">
+                                        whatsapp </a>
+                                </p>
+                                <p>
+                                    <% ph.expertises.approved.first(4).each do |ex| %>
+                                        <span class="badge badge-primary">
+                                            <%= ex.shoot_type.title %>
+                                        </span>
+                                        <% end %>
+                                </p>
+                                <p class="text-left mt-0 pt-0">
+                                    <small>
+                                        <%= truncate(ph.experience.bio,length: 100) %>
+                                    </small>
+                                </p>
+                            </div>
+                            <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

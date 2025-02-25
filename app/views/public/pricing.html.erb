@@ -6,14 +6,92 @@
     <%= render 'shared/externals/yandex' %>
 <% end %>
   <title>
-    <%= t(:'general.pricing.seo.title') %>
+    Photography Pricing in Dubai | Affordable Packages
   </title>
   <meta charset="UTF-8">
-  <meta name="description" content="Affordable photography made accessible!">
-  <meta name="keywords" content="Affordable photography made accessible!">
-  <meta name="author" content="Kadro Team">
+
+  <meta name="description"
+    content="Book professional photography services in Dubai with transparent pricing. Choose from wedding, corporate, real estate, fashion, and more!">
+  <meta name="keywords"
+    content="Dubai photography prices, professional photographer Dubai, wedding photography Dubai, corporate photography, event photography, product photography">
+  <meta name="author" content="ShootEmpire Team">
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ShootEmpire",
+      "image": "https://www.shootempire.com/img/shootempire.png",
+      "@id": "https://www.shootempire.com/",
+      "url": "https://www.shootempire.com/",
+      "telephone": "+971XXXXXXXX",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Your Business Address",
+        "addressLocality": "Dubai",
+        "addressRegion": "Dubai",
+        "postalCode": "00000",
+        "addressCountry": "AE"
+      },
+      "sameAs": [
+        "https://www.instagram.com/shootempire",
+        "https://www.facebook.com/shootempire",
+        "https://www.linkedin.com/company/shootempire"
+      ],
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-20:00",
+      "serviceArea": {
+        "@type": "Place",
+        "name": "Dubai, UAE"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Photography Packages",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "ShootEmpire",
+        "image": "https://www.shootempire.com/img/shootempire.png",
+        "url": "https://www.shootempire.com/",
+        "telephone": "+971XXXXXXXX",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Your Business Address",
+          "addressLocality": "Dubai",
+          "addressRegion": "Dubai",
+          "postalCode": "00000",
+          "addressCountry": "AE"
+        }
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Photography Packages in Dubai",
+        "itemListElement": [
+          <% ShootType.active.find_each do |shoot_type| %>
+          {
+            "@type": "Offer",
+            "name": "<%= shoot_type.title %>",
+            "description": "Professional <%= shoot_type.title.downcase %> sessions in Dubai.",
+            "price": "<%= shoot_type.packages.first&.price || '0.00' %>",
+            "priceCurrency": "AED",
+            "url": "https://www.shootempire.com/<%= shoot_type.title.parameterize %>-photography",
+            "availability": "https://schema.org/InStock"
+          }<% if shoot_type != ShootType.active.last %>,<% end %>
+          <% end %>
+        ]
+      }
+    }
+    </script>
+
+
+
   <%= csrf_meta_tags %>
   <% if Rails.env.production? %>
     <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -22,6 +100,40 @@
     <%= stylesheet_link_tag 'wordpress', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'wordpress', 'data-turbolinks-track': 'reload' %>
   <% end %>
+
+  <style>
+  #pills-tab {
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+  padding-bottom: 10px; /* Optional: for better spacing */
+}
+
+.nav-item {
+  margin-right: 10px; /* Optional: spacing between items */
+}
+
+.nav-pills {
+  display: flex;
+  flex-wrap: nowrap; /* Ensure items stay on a single row */
+}
+
+.nav-link {
+  white-space: nowrap; /* Prevent wrapping of text */
+  text-overflow: ellipsis; /* Add ellipsis if text overflows */
+  overflow: hidden; /* Hide overflow if text is too long */
+  display: flex;
+  align-items: center;
+}
+
+.shoot-type-avatar {
+  width: 20px; /* Size of the avatar */
+  height: 20px; /* Size of the avatar */
+  margin-right: 8px; /* Space between image and text */
+}
+
+
+  </style>
 </head>
 <%= render "public/shared/wordpress_header" %>
 
@@ -29,97 +141,129 @@
 
 <%#= render "public/pricing/features" %>
 
-<%= render "public/pricing/shoot_type_prices" %>
+<%#= render "public/pricing/shoot_type_prices" %>
+
+<section class="fdb-block bg-light py-5">
+  <div class="container">
+    
+
+    <section class="fdb-block bg-light py-5">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col">
+            <h2 class="mb-4 font-weight-bold"> Our photography packages <span class="badge bg-warning text-dark">10%
+                OFF</span></h2>
+            <p class="text-muted text-center">Get high-quality photography services at the best prices in Dubai.</p>
+          </div>
+        </div>
+
+      <ul class="nav nav-pills mb-3 justify-content-start flex-nowrap overflow-auto" id="pills-tab" role="tablist">
+        <% ShootType.active.each_with_index do |shoot_type, index| %>
+          <li class="nav-item">
+            <a class="nav-link <%= 'active' if index == 0 %>" id="pills-home-tab" data-toggle="pill"
+              href="#content-<%= shoot_type.id %>" role="tab" aria-controls="pills-home" aria-selected="true" type="button">
+      
+              <!-- Image inside the <a> tag -->
+              <img src="<%= shoot_type.avatar %>" alt="<%= shoot_type.title %>" class="shoot-type-avatar">
+      
+              <%= shoot_type.title %>
+            </a>
+          </li>
+          <% end %>
+      </ul>
+        <div class="tab-content mt-4">
+          <% ShootType.active.each_with_index do |shoot_type, index| %>
+            <div class="tab-pane fade <%= 'show active' if index == 0 %>" id="content-<%= shoot_type.id %>" role="tabpanel" aria-labelledby="content-<%= shoot_type.id %>-tab">
+    
+              <!-- Pricing Table -->
+              <div class="row">
+                <% ["photo", "video" , "combined" ].each do |category| %>
+                  <% packages=shoot_type.packages.where(category: category) %>
+                    <% if packages.any? %>
+                      <div class="col-12 mb-4">
+                        <div class="card border-0 shadow-sm p-3">
+                          <h4 class="text-left font-weight-bold">
+                            <%= category.capitalize %> Packages
+                          </h4>
+                          <table class="table table-striped text-center">
+                            <thead>
+                              <tr>
+                                <th class="text-left" >Duration</th>
+                                <th class="text-left">Details</th>
+                                <th class="text-left">Price</th>
+                                <th class="text-left"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <% packages.each do |package| %>
+                                <tr>
+                                  <td class="text-left">
+                                    <%= package.duration %>
+                                  </td>
+                                  <td>
+                                    <p class="text-left">
+                                      <%= package.feature_1 %>
+                                    <br>
+                                    <%= package.feature_2 %>
+                                    <br>
+                                    <%= package.feature_3 %>
+                                    <br>
+                                    <%= package.feature_4 %>
+                                    </p>
+                                    
+                                  </td>
+                                  <td class="text-left">
+                                    <span class="text-muted"><s> <%= package.real_price %></s></span>
+                                    <br>
+                                    <strong class="text-success"> <%= package.price %></strong>
+                                    <span class="badge bg-warning text-dark">10% OFF</span>
+                                  </td>
+                                  <td class="text-center">
+                                    <a href="https://wa.me/989932533239" class="btn btn-dark"> book now </a>
+                                  </td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <% end %>
+                    <% end %>
+              </div>
+            </div>
+            <% end %>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <h2 class="mt-5 text-center">What Our Clients Say</h2>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <blockquote class="blockquote">“Amazing experience! The team captured every moment beautifully.”<footer>- Sarah A.</footer></blockquote>
+      </div>
+      <div class="col-md-4">
+        <blockquote class="blockquote">“Highly professional and affordable. Will book again.”<footer>- Ahmed R.</footer></blockquote>
+      </div>
+      <div class="col-md-4">
+        <blockquote class="blockquote">“Best photography service in Dubai! The pictures were stunning.”<footer>- Fatima K.</footer></blockquote>
+      </div>
+    </div>
+
+
+    <!-- CTA -->
+    <div class="text-center mt-5">
+      <a href="https://wa.me/989932533239" class="btn btn-dark btn-lg">Book Your Session Now</a>
+    </div>
+  </div>
+</section>
+
 
 <%#= render "public/pricing/pricing_testimonial" %>
 
-<%#= render "public/pricing/faq" %>
+<%= render "public/pricing/faq" %>
+
+<%= render "public/shared/pros" %>
+
 
 <%= render "public/shared/section_of_call_request" , dest_url: create_call_request_path %>
-
-<!-- <section class="fdb-block py-0">
-  <div class="container py-5 my-5 bg-r" style="background-image: url(/types/imgs/shapes/9.svg);">
-    <div class="row text-left py-5">
-      <div class="col-12 col-md-8 col-lg-6 ml-sm-auto">
-        <div class="fdb-box fdb-touch">
-          <div class="row justify-content-center">
-            <div class="col-12 col-xl-8 text-center">
-              <h2>
-                قیمت چاپ عکس
-              </h2>
-              <p class="lead">
-                قیمت های چاپ عکس کادرو در مقایسه با بازار بسیار رقابتی است و شما میتوانید بعد از عکاسی تان به تعداد دلخواه از عکس هایتان سفارش چاپ عکس و شاسی بدهید.
-              </p>
-              <p class="h3 mt-4">
-                <%#= link_to "قیمت چاپ عکس" , print_prices_path , class:"btn btn-dark"%>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- <section class="fdb-block py-2">
-  <div class="container " style="background-image: url(/types/imgs/shapes/9.svg);">
-    <div class="row text-right pt-5 justify-content-end">
-      <div class="col-12 col-md-8 col-lg-6 pull-left ml-0">
-        <div class="fdb-box fdb-touch rounded-bottom-0">
-          <h2>
-            <strong>
-            تعرفه قیمتی انجمن عکاسان
-          </strong>
-          </h2>
-          <p class="lead">
-            در مقایسه تعرفه قیمت عکاسی کادرو  با تعرفه قیمتی انجمن عکاسان‌، متوجه این امر خواهید شد که کادرو به دلیل طراحی سیستم عکاسی ساعتی و مبتنی بر زمان آزاد عکاس، توانسته است تعرفه قیمت مقرون به صرفه ای را برای داشتن یک عکاس حرفه ای و ارزان یا رزرو آتلیه عکاسی در نظر بگیرد.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- <section class="fdb-block mb-2">
-  <div class="container">
-    <div class="row">
-      <div class="col text-center">
-        <h3 class="text-right"> دسترسی سریع </h3>
-      </div>
-    </div>
-    <div class="row-70"></div>
-    <div class="row text-center justify-content-sm-center no-gutters">
-      <% ShootType.all.active.order("shoot_types.order").each do |sh| %>
-        <div class="col-3 my-3">
-          <%= link_to  "قیمت عکاسی #{sh.title}" , types_show_path(title: sh.w_url) + '/#prices' %>
-        </div>
-      <%end %>
-    </div>
-  </div>
-</section> -->
-
-
-<script>
-    $(document).ready(function () {
-        //DOM manipulation code
-        console.log("inside");
-        $('#personal').click(function () {
-                console.log("personal clicked.");
-                $(this).removeClass("btn-outline-primary");
-                $(this).addClass("btn-primary");
-                $('#business').removeClass("btn-primary").addClass("btn-outline-primary");
-                $("#personal_types").removeClass("d-none");
-                $("#business_types").addClass("d-none");
-            }
-        );
-        $('#business').click(function () {
-                console.log("business clicked.");
-                $(this).removeClass("btn-outline-primary");
-                $(this).addClass("btn-primary");
-                $('#personal').removeClass("btn-primary").addClass("btn-outline-primary");
-                $("#business_types").removeClass("d-none");
-                $("#personal_types").addClass("d-none");
-            }
-        )
-    });
-</script>

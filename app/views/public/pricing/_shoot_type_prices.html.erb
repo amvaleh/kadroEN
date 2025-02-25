@@ -25,7 +25,7 @@
           <% ShootType.all.is_personal.active.order("shoot_types.order").each do |sh| %>
             <div class="col-4 col-sm-3 pt-5 pt-sm-0 text-center specialty">
               <a href="<%= types_show_path(title: sh.w_url) + '/#prices' %>">
-                <img alt=" <%= t(:'general.pricing.section4.string') %> <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar_url(:medium) %>">
+                <img alt=" <%= t(:'general.pricing.section4.string') %> <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar %>">
                 <h5 class="text-center">
                   <strong>
                       <%= sh.title %> 
@@ -39,7 +39,7 @@
           <% ShootType.all.is_business.active.order("shoot_types.order").each do |sh| %>
             <div class="col-4 col-sm-3 pt-5 pt-sm-0 text-center specialty ">
               <a href="<%= types_show_path(title: sh.w_url) + '/#prices' %>">
-                <img alt="قیمت عکاسی <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar_url(:medium) %>">
+                <img alt="pricing for <%= sh.title %>" class="img-fluid rounded" width="70%" src="<%= sh.avatar %>">
                 <h5 class="text-center">
                   <strong>
                      <%= sh.title %>

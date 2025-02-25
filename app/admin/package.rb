@@ -3,7 +3,7 @@ ActiveAdmin.register Package do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
-  permit_params :photographer_commission, :is_full, :title, :duration, :price, :digitals, :order, :extra_price, :shoot_type_id, :is_active, :rational_distance, :name, :vip, :vip_url, :feature_1, :feature_2, :feature_3, :feature_4, :feature_5, :feature_6, :feature_7, :description, :real_price, :extra_credit
+  permit_params :photographer_commission, :is_full, :title, :duration, :price, :digitals, :order, :extra_price, :shoot_type_id, :is_active, :rational_distance, :name, :vip, :vip_url, :feature_1, :feature_2, :feature_3, :feature_4, :feature_5, :feature_6, :feature_7, :description, :real_price, :extra_credit, :category
   #
   # or
   #
@@ -20,6 +20,7 @@ ActiveAdmin.register Package do
     toggle_bool_column :is_active
     toggle_bool_column :is_full
     column :title
+    column :category
     column :duration
     column :price
     column :digitals

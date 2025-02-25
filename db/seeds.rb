@@ -1497,187 +1497,256 @@
 
 #Item.find_or_create_by(:title=>"دانلود فایل",:price=>"10000",:description=>"با رزولوشن تقریبا ۱۲۰۰ پیکسل در ۲۵۰۰ پیکسل", :item_type_id=>ItemType.find_by(title: "دانلود فایل").id)
 
-ShootType.create!(
-  [
-    {
-      title: "Wedding Photography",
-      avatar: "img/vectors/wedding.svg",
-      is_personal: true,
-      order: 1,
-      is_active: true,
-      recommended_hours: 4.0,
-      w_url: "/wedding",
-      w_title: "Beautiful Wedding Photography",
-      w_subtitle: "Capture your special day with our expert photographers",
-      delivery_deadline_hours: 48,
-      ideas_url: "/ideas/wedding",
-      samples: [{ url: "sample1.jpg" }, { url: "sample2.jpg" }],
-      is_business: false,
-      half_hour_extend_cost: 100000,
-      max_frame_size: 10,
-      min_frame_size: 5
-    },
-    {
-      title: "Corporate Event Photography",
-      avatar: "img/vectors/event.svg",
-      is_personal: false,
-      order: 2,
-      is_active: true,
-      recommended_hours: 3.0,
-      w_url: "/corporate",
-      w_title: "Professional Corporate Event Photography",
-      w_subtitle: "Capture key moments from your business events",
-      delivery_deadline_hours: 24,
-      ideas_url: "/ideas/corporate",
-      samples: [{ url: "sample3.jpg" }, { url: "sample4.jpg" }],
-      is_business: true,
-      half_hour_extend_cost: 120000,
-      max_frame_size: 8,
-      min_frame_size: 3
-    },
-    {
-      title: "Family Portraits",
-      avatar: "img/vectors/family.svg",
-      is_personal: true,
-      order: 3,
-      is_active: true,
-      recommended_hours: 2.0,
-      w_url: "/family",
-      w_title: "Memorable Family Portraits",
-      w_subtitle: "Preserve beautiful family moments",
-      delivery_deadline_hours: 24,
-      ideas_url: "/ideas/family",
-      samples: [{ url: "sample5.jpg" }],
-      is_business: false,
-      half_hour_extend_cost: 80000,
-      max_frame_size: 5,
-      min_frame_size: 2
-    },
-    {
-      title: "Fashion Photography",
-      avatar: "img/vectors/dress.png",
-      is_personal: false,
-      order: 4,
-      is_active: true,
-      recommended_hours: 3.5,
-      w_url: "/fashion",
-      w_title: "High-End Fashion Photography",
-      w_subtitle: "Showcase your fashion in style",
-      delivery_deadline_hours: 48,
-      ideas_url: "/ideas/fashion",
-      samples: [{ url: "sample6.jpg" }, { url: "sample7.jpg" }],
-      is_business: true,
-      half_hour_extend_cost: 150000,
-      max_frame_size: 6,
-      min_frame_size: 3
-    },
-    {
-      title: "Product Photography",
-      avatar: "img/vectors/product.svg",
-      is_personal: false,
-      order: 5,
-      is_active: true,
-      recommended_hours: 2.5,
-      w_url: "/product",
-      w_title: "High-Quality Product Photography",
-      w_subtitle: "Perfect shots for your eCommerce business",
-      delivery_deadline_hours: 36,
-      ideas_url: "/ideas/product",
-      samples: [{ url: "sample8.jpg" }],
-      is_business: true,
-      half_hour_extend_cost: 90000,
-      max_frame_size: 7,
-      min_frame_size: 3
-    },
-    {
-      title: "Real Estate Photography",
-      avatar: "img/vectors/realestate.svg",
-      is_personal: false,
-      order: 6,
-      is_active: true,
-      recommended_hours: 3.0,
-      w_url: "/real-estate",
-      w_title: "Stunning Real Estate Photography",
-      w_subtitle: "Highlight your properties with professional photography",
-      delivery_deadline_hours: 24,
-      ideas_url: "/ideas/real-estate",
-      samples: [{ url: "sample9.jpg" }],
-      is_business: true,
-      half_hour_extend_cost: 110000,
-      max_frame_size: 8,
-      min_frame_size: 4
-    },
-    {
-      title: "Food Photography",
-      avatar: "img/vectors/food.svg",
-      is_personal: false,
-      order: 7,
-      is_active: true,
-      recommended_hours: 2.0,
-      w_url: "/food",
-      w_title: "Delicious Food Photography",
-      w_subtitle: "Make your dishes look irresistible",
-      delivery_deadline_hours: 24,
-      ideas_url: "/ideas/food",
-      samples: [{ url: "sample10.jpg" }],
-      is_business: true,
-      half_hour_extend_cost: 95000,
-      max_frame_size: 6,
-      min_frame_size: 3
-    },
-    {
-      title: "Maternity Photography",
-      avatar: "img/vectors/maternity.svg",
-      is_personal: true,
-      order: 8,
-      is_active: true,
-      recommended_hours: 2.5,
-      w_url: "/maternity",
-      w_title: "Cherish Your Maternity Moments",
-      w_subtitle: "Celebrate your pregnancy with a beautiful photoshoot",
-      delivery_deadline_hours: 36,
-      ideas_url: "/ideas/maternity",
-      samples: [{ url: "sample11.jpg" }],
-      is_business: false,
-      half_hour_extend_cost: 85000,
-      max_frame_size: 5,
-      min_frame_size: 2
-    },
-    {
-      title: "Newborn Photography",
-      avatar: "img/vectors/newborn.svg",
-      is_personal: true,
-      order: 9,
-      is_active: true,
-      recommended_hours: 3.0,
-      w_url: "/newborn",
-      w_title: "Precious Newborn Photography",
-      w_subtitle: "Capture the innocence of your newborn baby",
-      delivery_deadline_hours: 48,
-      ideas_url: "/ideas/newborn",
-      samples: [{ url: "sample12.jpg" }],
-      is_business: false,
-      half_hour_extend_cost: 95000,
-      max_frame_size: 4,
-      min_frame_size: 2
-    },
-    {
-      title: "Travel Photography",
-      avatar: "img/vectors/travel.svg",
-      is_personal: true,
-      order: 10,
-      is_active: true,
-      recommended_hours: 4.0,
-      w_url: "/travel",
-      w_title: "Capture Your Travels",
-      w_subtitle: "Take professional photos of your adventures",
-      delivery_deadline_hours: 72,
-      ideas_url: "/ideas/travel",
-      samples: [{ url: "sample13.jpg" }],
-      is_business: false,
-      half_hour_extend_cost: 120000,
-      max_frame_size: 7,
-      min_frame_size: 3
-    }
-  ]
-)
+# ShootType.create!(
+#   [
+#     {
+#       title: "Wedding Photography",
+#       avatar: "img/vectors/wedding.svg",
+#       is_personal: true,
+#       order: 1,
+#       is_active: true,
+#       recommended_hours: 4.0,
+#       w_url: "/wedding",
+#       w_title: "Beautiful Wedding Photography",
+#       w_subtitle: "Capture your special day with our expert photographers",
+#       delivery_deadline_hours: 48,
+#       ideas_url: "/ideas/wedding",
+#       samples: [{ url: "sample1.jpg" }, { url: "sample2.jpg" }],
+#       is_business: false,
+#       half_hour_extend_cost: 100000,
+#       max_frame_size: 10,
+#       min_frame_size: 5
+#     },
+#     {
+#       title: "Corporate Event Photography",
+#       avatar: "img/vectors/event.svg",
+#       is_personal: false,
+#       order: 2,
+#       is_active: true,
+#       recommended_hours: 3.0,
+#       w_url: "/corporate",
+#       w_title: "Professional Corporate Event Photography",
+#       w_subtitle: "Capture key moments from your business events",
+#       delivery_deadline_hours: 24,
+#       ideas_url: "/ideas/corporate",
+#       samples: [{ url: "sample3.jpg" }, { url: "sample4.jpg" }],
+#       is_business: true,
+#       half_hour_extend_cost: 120000,
+#       max_frame_size: 8,
+#       min_frame_size: 3
+#     },
+#     {
+#       title: "Family Portraits",
+#       avatar: "img/vectors/family.svg",
+#       is_personal: true,
+#       order: 3,
+#       is_active: true,
+#       recommended_hours: 2.0,
+#       w_url: "/family",
+#       w_title: "Memorable Family Portraits",
+#       w_subtitle: "Preserve beautiful family moments",
+#       delivery_deadline_hours: 24,
+#       ideas_url: "/ideas/family",
+#       samples: [{ url: "sample5.jpg" }],
+#       is_business: false,
+#       half_hour_extend_cost: 80000,
+#       max_frame_size: 5,
+#       min_frame_size: 2
+#     },
+#     {
+#       title: "Fashion Photography",
+#       avatar: "img/vectors/dress.png",
+#       is_personal: false,
+#       order: 4,
+#       is_active: true,
+#       recommended_hours: 3.5,
+#       w_url: "/fashion",
+#       w_title: "High-End Fashion Photography",
+#       w_subtitle: "Showcase your fashion in style",
+#       delivery_deadline_hours: 48,
+#       ideas_url: "/ideas/fashion",
+#       samples: [{ url: "sample6.jpg" }, { url: "sample7.jpg" }],
+#       is_business: true,
+#       half_hour_extend_cost: 150000,
+#       max_frame_size: 6,
+#       min_frame_size: 3
+#     },
+#     {
+#       title: "Product Photography",
+#       avatar: "img/vectors/product.svg",
+#       is_personal: false,
+#       order: 5,
+#       is_active: true,
+#       recommended_hours: 2.5,
+#       w_url: "/product",
+#       w_title: "High-Quality Product Photography",
+#       w_subtitle: "Perfect shots for your eCommerce business",
+#       delivery_deadline_hours: 36,
+#       ideas_url: "/ideas/product",
+#       samples: [{ url: "sample8.jpg" }],
+#       is_business: true,
+#       half_hour_extend_cost: 90000,
+#       max_frame_size: 7,
+#       min_frame_size: 3
+#     },
+#     {
+#       title: "Real Estate Photography",
+#       avatar: "img/vectors/realestate.svg",
+#       is_personal: false,
+#       order: 6,
+#       is_active: true,
+#       recommended_hours: 3.0,
+#       w_url: "/real-estate",
+#       w_title: "Stunning Real Estate Photography",
+#       w_subtitle: "Highlight your properties with professional photography",
+#       delivery_deadline_hours: 24,
+#       ideas_url: "/ideas/real-estate",
+#       samples: [{ url: "sample9.jpg" }],
+#       is_business: true,
+#       half_hour_extend_cost: 110000,
+#       max_frame_size: 8,
+#       min_frame_size: 4
+#     },
+#     {
+#       title: "Food Photography",
+#       avatar: "img/vectors/food.svg",
+#       is_personal: false,
+#       order: 7,
+#       is_active: true,
+#       recommended_hours: 2.0,
+#       w_url: "/food",
+#       w_title: "Delicious Food Photography",
+#       w_subtitle: "Make your dishes look irresistible",
+#       delivery_deadline_hours: 24,
+#       ideas_url: "/ideas/food",
+#       samples: [{ url: "sample10.jpg" }],
+#       is_business: true,
+#       half_hour_extend_cost: 95000,
+#       max_frame_size: 6,
+#       min_frame_size: 3
+#     },
+#     {
+#       title: "Maternity Photography",
+#       avatar: "img/vectors/maternity.svg",
+#       is_personal: true,
+#       order: 8,
+#       is_active: true,
+#       recommended_hours: 2.5,
+#       w_url: "/maternity",
+#       w_title: "Cherish Your Maternity Moments",
+#       w_subtitle: "Celebrate your pregnancy with a beautiful photoshoot",
+#       delivery_deadline_hours: 36,
+#       ideas_url: "/ideas/maternity",
+#       samples: [{ url: "sample11.jpg" }],
+#       is_business: false,
+#       half_hour_extend_cost: 85000,
+#       max_frame_size: 5,
+#       min_frame_size: 2
+#     },
+#     {
+#       title: "Newborn Photography",
+#       avatar: "img/vectors/newborn.svg",
+#       is_personal: true,
+#       order: 9,
+#       is_active: true,
+#       recommended_hours: 3.0,
+#       w_url: "/newborn",
+#       w_title: "Precious Newborn Photography",
+#       w_subtitle: "Capture the innocence of your newborn baby",
+#       delivery_deadline_hours: 48,
+#       ideas_url: "/ideas/newborn",
+#       samples: [{ url: "sample12.jpg" }],
+#       is_business: false,
+#       half_hour_extend_cost: 95000,
+#       max_frame_size: 4,
+#       min_frame_size: 2
+#     },
+#     {
+#       title: "Travel Photography",
+#       avatar: "img/vectors/travel.svg",
+#       is_personal: true,
+#       order: 10,
+#       is_active: true,
+#       recommended_hours: 4.0,
+#       w_url: "/travel",
+#       w_title: "Capture Your Travels",
+#       w_subtitle: "Take professional photos of your adventures",
+#       delivery_deadline_hours: 72,
+#       ideas_url: "/ideas/travel",
+#       samples: [{ url: "sample13.jpg" }],
+#       is_business: false,
+#       half_hour_extend_cost: 120000,
+#       max_frame_size: 7,
+#       min_frame_size: 3
+#     }
+#   ]
+# )
+
+
+# Clear existing data (optional, use with caution)
+Package.destroy_all
+
+# Define shoot types by ID
+shoot_types = {
+  30 => "Travel Photography",
+  29 => "Newborn Photography",
+  28 => "Maternity Photography",
+  27 => "Food Photography",
+  26 => "Real Estate Photography",
+  25 => "Product Photography",
+  24 => "Fashion Photography",
+  23 => "Family Portraits",
+  22 => "Corporate Event Photography",
+  21 => "Wedding Photography"
+}
+
+# Define packages
+packages = [
+  # Travel Photography
+  { category: "photo" , title: "Travel Mini Shoot", duration: "30 mins", price: "360 AED", real_price: "400 AED", digitals: 30, shoot_type_id: 30, description: "30+ high-resolution images", feature_1: "Best outdoor locations", feature_2: "Fast delivery", feature_3: "Natural lighting", feature_4: "Perfect for solo travelers", is_full: false },
+  { category: "photo" , title: "Full Travel Package", duration: "2 Hours", price: "810 AED", real_price: "900 AED", digitals: 100, shoot_type_id: 30, description: "Professional travel photography", feature_1: "High-resolution edits", feature_2: "Multiple locations", feature_3: "Perfect for bloggers", feature_4: "Fast turnaround", is_full: true },
+  { category: "video" , title: "Full Travel Package", duration: "2 Hours", price: "810 AED", real_price: "900 AED", digitals: 100, shoot_type_id: 30, description: "Professional travel photography", feature_1: "High-resolution edits", feature_2: "Multiple locations", feature_3: "Perfect for bloggers", feature_4: "Fast turnaround", is_full: true },
+  { category: "combined" , title: "Full Travel Package", duration: "2 Hours", price: "1810 AED", real_price: "900 AED", digitals: 100, shoot_type_id: 30, description: "Professional travel photography", feature_1: "High-resolution edits", feature_2: "Multiple locations", feature_3: "Perfect for bloggers", feature_4: "Fast turnaround", is_full: true },
+
+  # Newborn Photography
+  { category: "photo" , title: "Basic Newborn Shoot", duration: "1 Hour", price: "540 AED", real_price: "600 AED", digitals: 50, shoot_type_id: 29, description: "50+ soft-edited images", feature_1: "Studio or home session", feature_2: "Soft lighting setup", feature_3: "Props included", feature_4: "Best for newborns", is_full: false },
+  { category: "photo" , title: "Newborn + Family Package", duration: "2 Hours", price: "900 AED", real_price: "1000 AED", digitals: 80, shoot_type_id: 29, description: "Beautifully captured newborn & family moments", feature_1: "Retouched images", feature_2: "Multiple outfits", feature_3: "Comfortable posing", feature_4: "Studio or home setup", is_full: true },
+  { category: "video" , title: "Newborn + Family Package", duration: "2 Hours", price: "900 AED", real_price: "1000 AED", digitals: 80, shoot_type_id: 29, description: "Beautifully captured newborn & family moments", feature_1: "Retouched images", feature_2: "Multiple outfits", feature_3: "Comfortable posing", feature_4: "Studio or home setup", is_full: true },
+
+  # Maternity Photography
+  { category: "photo" , title: "Maternity Glow Session", duration: "1 Hour", price: "540 AED", real_price: "600 AED", digitals: 50, shoot_type_id: 28, description: "Elegant maternity photography", feature_1: "Soft & flattering lighting", feature_2: "Custom poses", feature_3: "Outdoor or studio", feature_4: "Best for moms-to-be", is_full: false },
+  { category: "photo" , title: "Full Maternity Experience", duration: "2 Hours", price: "900 AED", real_price: "1000 AED", digitals: 80, shoot_type_id: 28, description: "Celebrate your journey with stunning maternity portraits", feature_1: "Retouched images", feature_2: "Multiple outfits", feature_3: "Partner & sibling included", feature_4: "Studio or outdoor", is_full: true },
+  { category: "video" , title: "Newborn + Family Package", duration: "2 Hours", price: "900 AED", real_price: "1000 AED", digitals: 80, shoot_type_id: 29, description: "Beautifully captured newborn & family moments", feature_1: "Retouched images", feature_2: "Multiple outfits", feature_3: "Comfortable posing", feature_4: "Studio or home setup", is_full: true },
+
+  # Food Photography
+  { category: "photo" , title: "Basic Food Shoot", duration: "1 Hour", price: "540 AED", real_price: "600 AED", digitals: 40, shoot_type_id: 27, description: "Perfect for restaurants & menus", feature_1: "High-res images", feature_2: "Professional lighting", feature_3: "Fast turnaround", feature_4: "Best for social media", is_full: false },
+  { category: "photo" , title: "Premium Food Branding", duration: "3 Hours", price: "1170 AED", real_price: "1300 AED", digitals: 100, shoot_type_id: 27, description: "Elevate your brand with stunning food photography", feature_1: "Styled compositions", feature_2: "Retouched images", feature_3: "Multiple angles", feature_4: "Ideal for marketing", is_full: true },
+
+  # Real Estate Photography
+  { category: "photo" , title: "Property Showcase", duration: "1 Hour", price: "720 AED", real_price: "800 AED", digitals: 30, shoot_type_id: 26, description: "Professional real estate photos", feature_1: "Wide-angle shots", feature_2: "HDR processing", feature_3: "Exterior & interior", feature_4: "Best for property listings", is_full: false },
+  { category: "photo" , title: "Real Estate Pro Package", duration: "3 Hours", price: "1350 AED", real_price: "1500 AED", digitals: 80, shoot_type_id: 26, description: "Includes detailed property imagery", feature_1: "Drone photography", feature_2: "High-end retouching", feature_3: "Twilight shots", feature_4: "Perfect for luxury homes", is_full: true },
+
+  # Product Photography
+  { category: "photo" , title: "Basic Product Shoot", duration: "1 Hour", price: "630 AED", real_price: "700 AED", digitals: 40, shoot_type_id: 25, description: "Professional product photography", feature_1: "White background", feature_2: "High-res images", feature_3: "Multiple angles", feature_4: "Perfect for eCommerce", is_full: false },
+  { category: "photo" , title: "Advanced Product Shoot", duration: "2 Hours", price: "990 AED", real_price: "1100 AED", digitals: 80, shoot_type_id: 25, description: "Perfect for branding & catalogs", feature_1: "Styled compositions", feature_2: "Detailed retouching", feature_3: "Lifestyle product shots", feature_4: "Great for social media", is_full: true },
+
+  # Fashion Photography
+  { category: "photo" , title: "Fashion Editorial", duration: "2 Hours", price: "990 AED", real_price: "1100 AED", digitals: 60, shoot_type_id: 24, description: "Styled fashion shoot with professional lighting", feature_1: "Model guidance", feature_2: "Studio or outdoor", feature_3: "High-end retouching", feature_4: "Best for brands", is_full: false },
+  { category: "photo" , title: "Fashion Campaign", duration: "4 Hours", price: "1800 AED", real_price: "2000 AED", digitals: 120, shoot_type_id: 24, description: "Ideal for magazine covers & campaigns", feature_1: "Multiple outfits", feature_2: "Professional styling", feature_3: "High-end production", feature_4: "Perfect for designers", is_full: true },
+
+  # Family Portraits
+  { category: "photo" , title: "Family Mini Shoot", duration: "1 Hour", price: "630 AED", real_price: "700 AED", digitals: 50, shoot_type_id: 23, description: "Capture timeless family moments", feature_1: "Outdoor or studio", feature_2: "Guided posing", feature_3: "High-quality edits", feature_4: "Perfect for memories", is_full: false },
+
+  # Corporate Event Photography
+  { category: "photo" , title: "Corporate Event Coverage", duration: "2 Hours", price: "1080 AED", real_price: "1200 AED", digitals: 100, shoot_type_id: 22, description: "Best for business conferences & gatherings", feature_1: "On-site professional coverage", feature_2: "Candid & posed shots", feature_3: "Fast delivery", feature_4: "Great for PR & marketing", is_full: true },
+
+  # Wedding Photography
+  { category: "photo" , title: "Wedding Ceremony Coverage", duration: "3 Hours", price: "2250 AED", real_price: "2500 AED", digitals: 150, shoot_type_id: 21, description: "Beautifully captured wedding moments", feature_1: "Bride & groom portraits", feature_2: "Candid & group shots", feature_3: "Retouched images", feature_4: "Perfect for any wedding", is_full: true }
+]
+
+# Create Packages
+packages.each do |package|
+  Package.create!(package)
+end
+
+puts "✅ Seeded #{packages.size} packages successfully!"
