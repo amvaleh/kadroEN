@@ -185,10 +185,11 @@
                           <h4 class="text-left font-weight-bold">
                             <%= category.capitalize %> Packages
                           </h4>
+                          <div class="table-responsive">
                           <table class="table table-striped text-center">
                             <thead>
                               <tr>
-                                <th class="text-left" >Duration</th>
+                                <th class="text-left">Duration</th>
                                 <th class="text-left">Details</th>
                                 <th class="text-left">Price</th>
                                 <th class="text-left"></th>
@@ -203,19 +204,23 @@
                                   <td>
                                     <p class="text-left">
                                       <%= package.feature_1 %>
-                                    <br>
-                                    <%= package.feature_2 %>
-                                    <br>
-                                    <%= package.feature_3 %>
-                                    <br>
-                                    <%= package.feature_4 %>
+                                        <br>
+                                        <%= package.feature_2 %>
+                                          <br>
+                                          <%= package.feature_3 %>
+                                            <br>
+                                            <%= package.feature_4 %>
                                     </p>
-                                    
+                          
                                   </td>
                                   <td class="text-left">
-                                    <span class="text-muted"><s> <%= package.real_price %></s></span>
+                                    <span class="text-muted"><s>
+                                        <%= package.real_price %>
+                                      </s></span>
                                     <br>
-                                    <strong class="text-success"> <%= package.price %></strong>
+                                    <strong class="text-success">
+                                      <%= package.price %>
+                                    </strong>
                                     <span class="badge bg-warning text-dark">10% OFF</span>
                                   </td>
                                   <td class="text-center">
@@ -225,6 +230,8 @@
                                 <% end %>
                             </tbody>
                           </table>
+                          </div>
+
                         </div>
                       </div>
                       <% end %>
