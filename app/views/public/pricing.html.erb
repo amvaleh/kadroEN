@@ -178,7 +178,7 @@
               <!-- Pricing Table -->
               <div class="row">
                 <% ["photo", "video" , "combined" ].each do |category| %>
-                  <% packages=shoot_type.packages.where(category: category) %>
+                  <% packages=shoot_type.packages.active.where(category: category) %>
                     <% if packages.any? %>
                       <div class="col-12 mb-4">
                         <div class="card border-0 shadow-sm p-3">
@@ -211,7 +211,6 @@
                                             <br>
                                             <%= package.feature_4 %>
                                     </p>
-                          
                                   </td>
                                   <td class="text-left">
                                     <span class="text-muted"><s>
