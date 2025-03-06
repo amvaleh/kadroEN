@@ -172,13 +172,13 @@
           <% end %>
       </ul>
         <div class="tab-content mt-4">
-          <% ShootType.active.each_with_index do |shoot_type, index| %>
+          <% ShootType.active.order("shoot_types.order").each_with_index do |shoot_type, index| %>
             <div class="tab-pane fade <%= 'show active' if index == 0 %>" id="content-<%= shoot_type.id %>" role="tabpanel" aria-labelledby="content-<%= shoot_type.id %>-tab">
     
               <!-- Pricing Table -->
               <div class="row">
                 <% ["photo", "video" , "combined" ].each do |category| %>
-                  <% packages=shoot_type.packages.active.where(category: category) %>
+                  <% packages=shoot_type.packages.active.order("packages.order").where(category: category) %>
                     <% if packages.any? %>
                       <div class="col-12 mb-4">
                         <div class="card border-0 shadow-sm p-3">
