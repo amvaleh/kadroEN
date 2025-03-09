@@ -171,74 +171,75 @@
           </li>
           <% end %>
       </ul>
-        <div class="tab-content mt-4">
-          <% ShootType.active.order("shoot_types.order").each_with_index do |shoot_type, index| %>
-            <div class="tab-pane fade <%= 'show active' if index == 0 %>" id="content-<%= shoot_type.id %>" role="tabpanel" aria-labelledby="content-<%= shoot_type.id %>-tab">
-    
-              <!-- Pricing Table -->
-              <div class="row">
-                <% ["photo", "video" , "combined" ].each do |category| %>
-                  <% packages=shoot_type.packages.active.order("packages.order").where(category: category) %>
-                    <% if packages.any? %>
-                      <div class="col-12 mb-4">
-                        <div class="card border-0 shadow-sm p-3">
-                          <h4 class="text-left font-weight-bold">
-                            <%= category.capitalize %> Packages
-                          </h4>
-                          <div class="table-responsive">
-                          <table class="table table-striped text-center">
-                            <thead>
-                              <tr>
-                                <th class="text-left">Duration</th>
-                                <th class="text-left">Details</th>
-                                <th class="text-left">Price</th>
-                                <th class="text-left"></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <% packages.each do |package| %>
-                                <tr>
-                                  <td class="text-left">
-                                    <%= package.duration %>
-                                  </td>
-                                  <td>
-                                    <p class="text-left">
-                                      <%= package.feature_1 %>
-                                        <br>
-                                        <%= package.feature_2 %>
-                                          <br>
-                                          <%= package.feature_3 %>
-                                            <br>
-                                            <%= package.feature_4 %>
-                                    </p>
-                                  </td>
-                                  <td class="text-left">
-                                    <span class="text-muted"><s>
-                                        <%= package.real_price %>
-                                      </s></span>
-                                    <br>
-                                    <strong class="text-success">
-                                      <%= package.price %>
-                                    </strong>
-                                    <span class="badge bg-warning text-dark">10% OFF</span>
-                                  </td>
-                                  <td class="text-center">
-                                    <a href="https://wa.me/989932533239" class="btn btn-dark"> book now </a>
-                                  </td>
-                                </tr>
-                                <% end %>
-                            </tbody>
-                          </table>
-                          </div>
+        
 
+      <div class="tab-content mt-4">
+        <% ShootType.active.order("shoot_types.order").each_with_index do |shoot_type, index| %>
+          <div class="tab-pane fade <%= 'show active' if index == 0 %>" id="content-<%= shoot_type.id %>" role="tabpanel"
+            aria-labelledby="content-<%= shoot_type.id %>-tab">
+      
+            <div class="row">
+              <% ["photo", "video" , "combined" ].each do |category| %>
+                <% packages=shoot_type.packages.active.order("packages.order").where(category: category) %>
+                  <% if packages.any? %>
+                    <div class="col-12 mb-4">
+                      <h4 class="text-left font-weight-bold">
+                        <%= category.capitalize %> Packages
+                      </h4>
+                    </div>
+      
+                    <% packages.each do |package| %>
+                      <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm p-3 text-center">
+                          <div class="card-body">
+                            <h5 class="card-title font-weight-bold">
+                              <%= package.duration %>
+                            </h5>
+                            <ul class="list-unstyled text-left">
+                              <li>✅ <%= package.feature_1 %>
+                              </li>
+                              <% if package.feature_2.present? %>
+                                <li>✅ <%= package.feature_2 %>
+                                </li>
+                                <% end %>
+                                  <% if package.feature_3.present? %>
+                                    <li>✅ <%= package.feature_3 %>
+                                    </li>
+                                    <% end %>
+                                      <% if package.feature_4.present? %>
+                                        <li>✅ <%= package.feature_4 %>
+                                        </li>
+                                        <% end %>
+                                          <% if package.feature_5.present? %>
+                                            <li>✅ <%= package.feature_5 %>
+                                            </li>
+                                            <% end %>
+                            </ul>
+                            
+                            <h4 class="text-success font-weight-bold">
+                              <small class="mb-1 text-muted text-center"><s>
+                                  <%= package.real_price %>
+                                </s>
+                              </small>
+                              <%= package.price %>
+                            </h4>
+                            <span class="badge bg-warning text-dark">10% OFF</span>
+                            <div class="mt-3">
+                              <a href="https://wa.me/989932533239" class="btn btn-dark w-100">Book Now</a>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <% end %>
-                    <% end %>
-              </div>
+                        <% end %>
+                          <% end %>
             </div>
-            <% end %>
-        </div>
+      
+          </div>
+          <% end %>
+      </div>
+
+
       </div>
     </section>
     
