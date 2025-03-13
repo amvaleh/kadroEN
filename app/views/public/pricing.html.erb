@@ -218,6 +218,16 @@
                                         <%= package.feature_5 %>
                                       </li>
                                       <% end %>
+                                      <% if package.feature_6.present? %>
+                                        <li><span style="font-weight: bold; color: #555;">✓</span>
+                                          <%= package.feature_6 %>
+                                        </li>
+                                        <% end %>
+                                        <% if package.feature_7.present? %>
+                                          <li><span style="font-weight: bold; color: #555;">✓</span>
+                                            <%= package.feature_7 %>
+                                          </li>
+                                          <% end %>
                       </ul>
                       <h4 class="text-dark font-weight-bold">
                         <small>
